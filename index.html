@@ -435,6 +435,8 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 :root[data-theme="dark"] .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
+.hero,.hero .bubble{color:#3B2A5A}.hero .bubble small,.hero .bubble #growTxt{color:#6E5C94}.hero .apples i{filter:none}.hero .apples i:not(.on){filter:grayscale(1)}
+.ver{text-align:center;color:var(--ink2);font:700 15px/1 var(--f-body);opacity:.8}
 </style>
 
 <div class="wrap" id="app">
@@ -478,6 +480,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="bkbar" id="bkbar" hidden></div>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck">📖 我的詞卡冊</button><button class="btn alt sm" id="toParent">👨‍👩‍👧 家長區</button></div>
+    <p class="ver">說說島 v1.2.1</p>
   </section>
 
   <!-- 選擇題 -->
