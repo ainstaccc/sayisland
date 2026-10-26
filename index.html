@@ -435,6 +435,15 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 .hero,.hero .bubble{color:#3B2A5A}.hero .bubble small,.hero .bubble #growTxt{color:#6E5C94}.hero .apples i{filter:none}.hero .apples i:not(.on){filter:grayscale(1)}
+.grpbtn{width:100%;min-height:60px;border:0;border-radius:24px;font:900 22px/1.2 var(--f-disp);color:#3B2A00;background:linear-gradient(#9BF0C2,#4FD18B);box-shadow:0 5px 0 #2FA566,0 10px 18px -8px rgba(0,0,0,.3);cursor:pointer;white-space:nowrap}
+.lbs{display:flex;flex-direction:column;gap:8px}.lb{display:flex;align-items:center;gap:8px;background:var(--bg);border:3px solid var(--line);border-radius:20px;padding:8px 10px}
+.lb.me{border-color:var(--c1);background:color-mix(in srgb,var(--c1) 14%,var(--card))}
+.lb .rk{font:900 24px/1 var(--f-disp);min-width:34px;text-align:center}.lb .av{font-size:34px}.lb .nm{flex:1;min-width:0;display:flex;flex-direction:column}.lb .nm b{font:800 22px/1.2 var(--f-disp);white-space:nowrap}.lb .nm small{font-size:15px;color:var(--ink2)}.lb .nm small span{white-space:nowrap}
+.lb .ws{font:900 22px/1 var(--f-disp);white-space:nowrap;flex:none}.lb{flex-wrap:wrap}.lb .ch{display:flex;gap:8px;width:100%;justify-content:flex-end;align-items:center}.lb .ch:before{content:'幫他加油：';font-size:15px;color:var(--ink2);margin-right:auto;padding-left:4px}.lb .ch .ibtn{width:44px;height:44px;font-size:22px}.lb .ch .ibtn:disabled{opacity:.35}
+.gbar{height:18px;border-radius:99px;background:var(--line);overflow:hidden}.gbar i{display:block;height:100%;background:linear-gradient(90deg,#FFD84D,#4FD18B)}
+.icode{font:900 40px/1 var(--f-disp);letter-spacing:8px;text-align:center;padding:12px;border-radius:18px;background:var(--bg);border:3px dashed var(--c1)}
+.goal{background:linear-gradient(#FFE680,#FFC83D)!important;color:#3B2A00}.goal b{font-size:22px}
+@media (max-width:360px){.lb .nm small{font-size:13px}.lb .ch .ibtn{width:38px;height:38px}}
 .ver{text-align:center;color:var(--ink2);font:700 15px/1 var(--f-body);opacity:.8}
 </style>
 
@@ -477,9 +486,10 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     </div>
     <div class="cmap" id="missions"></div>
     <div class="bkbar" id="bkbar" hidden></div>
+    <button class="grpbtn" id="toGrp">👫 好友團・看朋友的星星 <span id="grpDot" hidden>🔴</span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck">📖 我的詞卡冊</button><button class="btn alt sm" id="toParent">👨‍👩‍👧 家長區</button></div>
-    <p class="ver">說說島 v1.2.3</p>
+    <p class="ver">說說島 v1.3.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -610,6 +620,10 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   </section>
 
   <!-- 家長區 -->
+  <section id="v-grp" class="wrap" hidden>
+    <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
+    <div id="grpBody"></div>
+  </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
     <div class="panel" id="pgate"><h3>家長確認</h3><p class="muted" id="pgq"></p><input class="ta" id="pgin" inputmode="numeric" style="min-height:0;height:56px" maxlength="3" aria-label="答案"><div class="fbrow"><button class="btn sm" id="pgok">進入</button></div><p class="muted" id="pgmsg"></p></div>
@@ -1401,9 +1415,9 @@ function say(text){
 }
 
 /* ---------- 版面 ---------- */
-const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent'];
-function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot',"'"+($('#mascot').textContent||'🐣')+"'")}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit'].includes(v));
-  if(v==='home')renderHome();if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v==='who')renderWho()}
+const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp'];
+function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot',"'"+($('#mascot').textContent||'🐣')+"'")}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));
+  if(v==='home')renderHome();if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v==='who')renderWho();if(v==='grp')renderGrp()}
 document.addEventListener('click',e=>{if(e.target.closest('[data-home]')){try{speechSynthesis.cancel()}catch(x){}show('home')}});
 
 /* ---------- 進度計算 ---------- */
@@ -1490,7 +1504,7 @@ $('#whoBtn').onclick=()=>{try{speechSynthesis.cancel()}catch(e){}show('who');if(
 
 /* ---------- 首頁 ---------- */
 function renderHome(){
-  syncU();
+  syncU();setTimeout(()=>{try{grpHomeSync()}catch(e){}},0);
   $('#whoHint').textContent=Object.keys(DB.profiles).length>1?'換人 ▾':'＋ 新增小朋友';
   $('#whoAv').textContent=S.av;$('#whoName').textContent=S.name||'小朋友';
   $('#starN').textContent=S.stars;$('#streakN').textContent=streak();
@@ -2060,7 +2074,7 @@ function renderWeek(){
   <div class="bdg">${BADGES.map(b=>`<span class="${(S.badges||{})[b[0]]?'':'off'}">${b[1]} ${b[2]}</span>`).join('')}</div>`;
 }
 function finish({title,acc,line,cat}){
-  const n=acc>=.85?3:acc>=.6?2:1,td=today();
+  const n=acc>=.85?3:acc>=.6?2:1,td=today(),s0=S.stars;
   S.claim=S.claim||{};const cl=S.claim[td]||(S.claim[td]={});
   Object.keys(S.claim).sort().slice(0,-30).forEach(k=>delete S.claim[k]);
   let got=0;const msgs=[];
@@ -2070,7 +2084,7 @@ function finish({title,acc,line,cat}){
   if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星 🎉');S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
   if(S.wkClaim!==wkKey()&&wkDone()>=WK_NEED){S.wkClaim=wkKey();S.stars+=WK_STARS;msgs.push('本週挑戰完成！寶箱打開 +'+WK_STARS+' 顆星 🎁')}
   const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+nb.join('、'))
-  save();
+  addWk(S.stars-s0);save();GRP_LAST=0;grpPush();
   $('#starN').textContent=S.stars;
   $('#rtitle').textContent=title;
   $('#rstars').innerHTML=got?[0,1,2].map(i=>`<span class="${i<got?'':'off'}">⭐</span>`).join(''):'<span>💪</span>';
@@ -2079,6 +2093,133 @@ function finish({title,acc,line,cat}){
   show('res');sfx.win();
 }
 $('#again').onclick=()=>lastGame&&lastGame();
+
+/* ---------- 好友團（排行榜）---------- */
+/* 後端：Firebase Firestore（免費方案）。FBCFG 沒填時是「示範模式」，朋友是假的，資料只在本機。 */
+const FBCFG={apiKey:'',projectId:''};
+const FB_ON=!!(FBCFG.apiKey&&FBCFG.projectId);
+const eh=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function addWk(d){if(d<=0)return;const k=wkKey();if(!S.wk||S.wk.k!==k)S.wk={k,n:0};S.wk.n+=d}
+const wkStars=()=>S.wk&&S.wk.k===wkKey()?S.wk.n:0;
+const pidSafe=()=>String(DB.cur).replace(/[^A-Za-z0-9]/g,'').slice(0,20)||'p';
+const GCH='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+const newCode=()=>Array.from({length:6},()=>GCH[Math.floor(Math.random()*GCH.length)]).join('');
+function meDoc(){const dc=dailyCats();return{nick:(S.grp&&S.grp.nick)||S.name||'小朋友',av:S.av||'🐣',wk:wkKey(),ws:wkStars(),st:streak(),td:today(),tn:dc.filter(k=>todayN(k)>=GOAL).length,tt:dc.length,up:Date.now()}}
+/* --- Firebase REST --- */
+const FBK='zizi_fbauth';
+async function fbAuth(){
+  let a=null;try{a=JSON.parse(localStorage.getItem(FBK)||'null')}catch(e){}
+  if(a&&a.exp>Date.now()+60000)return a;
+  let r;
+  if(a&&a.ref){r=await fetch('https://securetoken.googleapis.com/v1/token?key='+FBCFG.apiKey,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:'grant_type=refresh_token&refresh_token='+encodeURIComponent(a.ref)});
+    if(r.ok){const j=await r.json();a={id:j.id_token,uid:j.user_id,ref:j.refresh_token,exp:Date.now()+(+j.expires_in)*1000};try{localStorage.setItem(FBK,JSON.stringify(a))}catch(e){}return a}}
+  r=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key='+FBCFG.apiKey,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({returnSecureToken:true})});
+  if(!r.ok)throw new Error('auth '+r.status);const j=await r.json();
+  a={id:j.idToken,uid:j.localId,ref:j.refreshToken,exp:Date.now()+(+j.expiresIn)*1000};try{localStorage.setItem(FBK,JSON.stringify(a))}catch(e){}return a;
+}
+const fsU=p=>'https://firestore.googleapis.com/v1/projects/'+FBCFG.projectId+'/databases/(default)/documents/'+p;
+const fsEnc=o=>{const f={};Object.keys(o).forEach(k=>{f[k]=typeof o[k]==='number'?{integerValue:String(Math.round(o[k]))}:{stringValue:String(o[k])}});return f};
+async function fsList(path){const a=await fbAuth();const out=[];let tok='';
+  for(let i=0;i<4;i++){const r=await fetch(fsU(path)+'?pageSize=100'+(tok?'&pageToken='+tok:''),{headers:{Authorization:'Bearer '+a.id}});
+    if(r.status===404)return out;if(!r.ok)throw new Error('list '+r.status);const j=await r.json();
+    (j.documents||[]).forEach(d=>{const o={};Object.keys(d.fields||{}).forEach(k=>{const v=d.fields[k];o[k]=v.integerValue!==undefined?+v.integerValue:v.stringValue});o._id=d.name.split('/').pop();out.push(o)});
+    if(!j.nextPageToken)break;tok=j.nextPageToken}
+  return out}
+async function fsSet(path,o){const a=await fbAuth();const q=Object.keys(o).map(k=>'updateMask.fieldPaths='+k).join('&');
+  const r=await fetch(fsU(path)+'?'+q,{method:'PATCH',headers:{Authorization:'Bearer '+a.id,'Content-Type':'application/json'},body:JSON.stringify({fields:fsEnc(o)})});
+  if(!r.ok)throw new Error('set '+r.status)}
+async function fsDel(path){const a=await fbAuth();await fetch(fsU(path),{method:'DELETE',headers:{Authorization:'Bearer '+a.id}})}
+/* --- 示範模式（本機假朋友）--- */
+const MK='zizi_mockgrp';
+function mockLoad(){try{return JSON.parse(localStorage.getItem(MK)||'{}')}catch(e){return{}}}
+function mockMembers(code){
+  const seed=[...code+wkKey()].reduce((a,c)=>a*31+c.charCodeAt(0)>>>0,7);
+  const fr=[['🦊','小狐'],['🐼','阿熊'],['🐰','兔兔']];
+  const dc=dailyCats().length;
+  return fr.map((f,i)=>({_id:'mock'+i,nick:f[1],av:f[0],wk:wkKey(),ws:(seed>>>(i*3))%17+3,st:(seed>>>(i*2))%6,td:today(),tn:(seed>>>i)%2?dc:Math.min(1,dc),tt:dc,up:Date.now()}));
+}
+/* --- 統一介面 --- */
+async function grpPull(){
+  const g=S.grp;if(!g)return null;
+  if(!FB_ON){const mem=mockMembers(g.code);mem.push(Object.assign(meDoc(),{_id:g.mid}));const m=mockLoad();return{mem,ch:(m.ch||[]).filter(c=>c.d===today()&&c.to===g.mid)}}
+  const [mem,ch]=await Promise.all([fsList('groups/'+g.code+'/members'),fsList('groups/'+g.code+'/cheers')]);
+  const lim=Date.now()-21*864e5;
+  return{mem:mem.filter(m=>m.up>lim),ch:ch.filter(c=>c.d===today()&&c.to===g.mid)};
+}
+async function grpPush(){const g=S.grp;if(!g||!FB_ON)return;try{await fsSet('groups/'+g.code+'/members/'+g.mid,meDoc())}catch(e){}}
+async function grpCheer(to,k){const g=S.grp;S.sent=S.sent||{};const key=today()+to+k;if(S.sent[key])return;S.sent[key]=1;Object.keys(S.sent).filter(x=>x.indexOf(today())!==0).forEach(x=>delete S.sent[x]);save();
+  if(!FB_ON){const m=mockLoad();m.ch=m.ch||[];m.ch.push({to,fn:g.nick,k,d:today()});localStorage.setItem(MK,JSON.stringify(m));return}
+  await fsSet('groups/'+g.code+'/cheers/'+(today()+'_'+g.mid+'_'+to+'_'+(k==='👏'?'a':'b')).replace(/-/g,''),{to,fn:g.nick,k,d:today()})}
+async function grpCreate(nick){const code=newCode();
+  if(FB_ON){const a=await fbAuth();const mid=a.uid+'_'+pidSafe();S.grp={code,mid,nick};await fsSet('groups/'+code+'/members/'+mid,meDoc());}
+  else S.grp={code,mid:'me'+pidSafe(),nick};
+  save()}
+async function grpJoin(code,nick){code=code.toUpperCase().replace(/[^A-Z0-9]/g,'');if(code.length!==6)throw new Error('碼是 6 個字');
+  if(FB_ON){const a=await fbAuth();const mem=await fsList('groups/'+code+'/members');if(!mem.length)throw new Error('找不到這個好友團，請確認邀請碼');
+    if(mem.length>=12)throw new Error('這個好友團滿了（最多 12 人）');
+    const mid=a.uid+'_'+pidSafe();S.grp={code,mid,nick};await fsSet('groups/'+code+'/members/'+mid,meDoc())}
+  else S.grp={code,mid:'me'+pidSafe(),nick};
+  save()}
+async function grpLeave(){const g=S.grp;if(!g)return;if(FB_ON){try{await fsDel('groups/'+g.code+'/members/'+g.mid)}catch(e){}}S.grp=null;save()}
+/* --- 畫面 --- */
+let GRP_BUSY=false,GRP_DATA=null,GRP_ERR='',GRP_ARM=false;
+function grpGoalCheck(mem){const t=today();if(!S.grp||mem.length<2||S.gclaim===t)return'';
+  if(mem.every(m=>m.td===t&&m.tt>0&&m.tn>=m.tt)){S.gclaim=t;S.stars+=3;addWk(3);save();$('#starN').textContent=S.stars;return'全員完成今日任務！大家各拿 3 顆星 🎉'}return''}
+async function renderGrp(){
+  const B=$('#grpBody');const g=S.grp;
+  if(!g){
+    B.innerHTML=`<div class="panel"><h3>👫 跟朋友一起玩</h3><p class="muted">建一個好友團，看大家本週的星星，互相加油。只會分享暱稱、頭像、星星、連續天數，不會分享學習內容。</p>
+    ${FB_ON?'':'<p class="muted" style="color:var(--c2)"><b>示範模式</b>：目前朋友是假的，只存在這台裝置。</p>'}
+    <label class="muted">我的暱稱（請不要用全名）</label><input class="ta" id="gNick" maxlength="8" style="min-height:0;height:56px" value="${eh(S.name||'')}" aria-label="暱稱">
+    <button class="btn" id="gNew">✨ 建立好友團</button>
+    <div class="muted" style="text-align:center">或</div>
+    <input class="ta" id="gCode" maxlength="8" style="min-height:0;height:56px;text-transform:uppercase;letter-spacing:4px;text-align:center" placeholder="輸入邀請碼" aria-label="邀請碼">
+    <button class="btn alt" id="gJoin">🔑 加入好友團</button>
+    <p class="muted" id="gErr" style="color:var(--c2);font-weight:800">${eh(GRP_ERR)}</p></div>`;return}
+  if(!GRP_DATA){B.innerHTML='<div class="panel"><p class="muted">讀取中…</p></div>'}
+  if(!GRP_BUSY){GRP_BUSY=true;try{GRP_DATA=await grpPull();GRP_ERR='';await grpPush()}catch(e){GRP_ERR='連線不太順，等一下再試'}GRP_BUSY=false}
+  if(!S.grp)return;
+  const d=GRP_DATA||{mem:[],ch:[]},t=today(),wk=wkKey();
+  const mem=d.mem.map(m=>Object.assign({},m,{ws:m.wk===wk?m.ws:0,tn:m.td===t?m.tn:0,done:m.td===t&&m.tt>0&&m.tn>=m.tt}));
+  mem.sort((a,b)=>b.ws-a.ws||b.st-a.st);
+  const goalMsg=grpGoalCheck(d.mem);
+  const doneN=mem.filter(m=>m.done).length;
+  const medal=['🥇','🥈','🥉'];
+  S.sent=S.sent||{};
+  const rows=mem.map((m,i)=>{const me=m._id===S.grp.mid;
+    return`<div class="lb${me?' me':''}"><span class="rk">${medal[i]||i+1}</span><span class="av">${eh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>🔥${m.st}天</span> <span>${m.done?'今日完成✅':'今日'+m.tn+'項'}</span></small></div><span class="ws">⭐ ${m.ws}</span>${me?'':`<div class="ch"><button class="ibtn" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">👏</button><button class="ibtn" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">🔥</button></div>`}</div>`}).join('');
+  const rc={};d.ch.forEach(c=>{rc[c.k]=(rc[c.k]||0)+1});
+  const got=Object.keys(rc).map(k=>k+'×'+rc[k]).join(' ');
+  S.cheerSeen=d.ch.length;save();
+  B.innerHTML=`${goalMsg?`<div class="panel goal"><b>${goalMsg}</b></div>`:''}
+  <div class="panel"><h3>🏆 本週星星排行</h3><div class="lbs">${rows||'<p class="muted">還沒有人</p>'}</div>
+  <p class="muted">每週一重新計算。每個人的星星都是自己玩出來的！</p></div>
+  <div class="panel"><h3>🤝 合作目標</h3><p class="muted">全員今天都完成「今日任務」，每個人再多拿 3 ⭐。</p>
+  <div class="gbar"><i style="width:${mem.length?Math.round(doneN/mem.length*100):0}%"></i></div><p class="muted"><b>${doneN} / ${mem.length}</b> 人完成${S.gclaim===t?'・今天的獎勵已領 ✅':''}</p></div>
+  <div class="panel"><h3>💌 今天收到的鼓勵</h3><p style="font-size:24px">${got||'還沒有，先去鼓勵朋友吧！'}</p></div>
+  <div class="panel"><h3>邀請朋友</h3><p class="muted">把這組邀請碼給朋友（用 LINE 傳給家長就好）：</p>
+  <div class="icode">${eh(S.grp.code)}</div><button class="btn alt sm" id="gCopy">📋 複製邀請碼</button>
+  ${FB_ON?'':'<p class="muted"><b>示範模式</b>：朋友是假的，雲端還沒開。</p>'}
+  <p class="muted" style="color:var(--c2);font-weight:800">${eh(GRP_ERR)}</p>
+  <button class="btn alt sm" id="gRef">🔄 更新</button>
+  <button class="btn alt sm" id="gLeave">${GRP_ARM?'再按一次，確定離開':'離開好友團'}</button></div>`;
+}
+function openGrp(){GRP_DATA=null;GRP_ERR='';GRP_ARM=false;show('grp')}
+$('#toGrp').onclick=openGrp;
+$('#grpBody').addEventListener('click',async e=>{
+  const b=e.target.closest('button');if(!b)return;
+  if(b.id==='gNew'||b.id==='gJoin'){const nick=($('#gNick').value||'').trim().slice(0,8);if(!nick){GRP_ERR='先填暱稱';return renderGrp()}
+    b.disabled=true;try{b.id==='gNew'?await grpCreate(nick):await grpJoin($('#gCode').value,nick);GRP_ERR='';GRP_DATA=null}catch(x){GRP_ERR=x.message||'失敗了，再試一次';S.grp=null}renderGrp();return}
+  if(b.dataset.ch){b.disabled=true;try{await grpCheer(b.dataset.to,b.dataset.ch);toast('送出 '+b.dataset.ch)}catch(x){b.disabled=false;toast('送不出去，等一下再試')}return}
+  if(b.id==='gCopy'){try{await navigator.clipboard.writeText(S.grp.code);toast('已複製邀請碼')}catch(x){toast('邀請碼：'+S.grp.code)}return}
+  if(b.id==='gRef'){GRP_DATA=null;renderGrp();return}
+  if(b.id==='gLeave'){if(!GRP_ARM){GRP_ARM=true;renderGrp();return}b.disabled=true;await grpLeave();GRP_ARM=false;GRP_DATA=null;renderGrp()}
+});
+let GRP_LAST=0;
+async function grpHomeSync(){const g=S.grp,dot=$('#grpDot');if(!g){dot.hidden=true;return}
+  if(Date.now()-GRP_LAST<60000)return;GRP_LAST=Date.now();
+  try{await grpPush();const d=await grpPull();if(!d)return;const msg=grpGoalCheck(d.mem);if(msg){toast(msg);$('#starN').textContent=S.stars}
+    dot.hidden=!(d.ch.length>(S.cheerSeen||0))}catch(e){}}
 
 /* ---------- 家長區 ---------- */
 let pgA=0;
