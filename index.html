@@ -428,14 +428,21 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 #wRest{display:flex;flex-direction:column;gap:10px;align-items:center}
 .track{overflow:visible;position:relative}.track i{position:relative;min-width:12px}.track i::after{content:var(--mascot,'🐣');position:absolute;right:-16px;top:-15px;font-size:28px;line-height:1;filter:drop-shadow(0 3px 0 rgba(150,80,190,.25))}
 .res,#v-res .qcard{background:radial-gradient(circle at 20% 10%,#FFF6C9 0 14%,transparent 15%),radial-gradient(circle at 85% 30%,#E9E4FF 0 12%,transparent 13%),#fff}
+.pill{cursor:pointer}.pill:active{transform:translateY(3px)}
+.tipbox{position:fixed;inset:0;z-index:80;background:rgba(59,42,90,.45);display:grid;place-items:center;padding:20px;animation:fadein .15s}
+.tipc{width:min(360px,100%);background:#fff;color:#3B2A5A;border:5px solid #fff;border-radius:34px;padding:18px 18px 20px;box-shadow:0 10px 0 rgba(150,80,190,.35),0 24px 40px -10px rgba(0,0,0,.4);display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.tipc .tip-i{font-size:64px;line-height:1}.tipc b{font:900 26px/1.3 var(--f-disp)}.tipc p{margin:0;font-size:20px;line-height:1.5}
+:root[data-theme="dark"] .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
 </style>
 
 <div class="wrap" id="app">
   <header class="top">
     <div class="brand"><span class="bl b1">說</span><span class="bl b2">說</span><span class="bl b3">島</span><small>讀得懂，說得好 ✨</small></div>
     <div class="tools">
-      <span class="pill" aria-label="連續練習天數">🔥 <span id="streakN">0</span></span>
-      <span class="pill" aria-label="星星數量">⭐ <span id="starN">0</span></span>
+      <button class="pill" id="pStreak" aria-label="連續練習天數，點一下看說明">🔥 <span id="streakN">0</span></button>
+      <button class="pill" id="pStar" aria-label="星星數量，點一下看說明">⭐ <span id="starN">0</span></button>
       <button class="ibtn" id="sndBtn" aria-label="音效開關">🔔</button>
     </div>
   </header>
@@ -1466,6 +1473,17 @@ $('#wGo').onclick=()=>{
   DB.cur=id;S=DB.profiles[id];save();show('home');
 };
 $('#whoList').addEventListener('click',e=>{const b=e.target.closest('[data-pid]');if(!b)return;DB.cur=b.dataset.pid;S=DB.profiles[DB.cur];save();show('home')});
+function tipBox(ic,title,lines){
+  document.querySelectorAll('.tipbox').forEach(x=>x.remove());
+  const d=document.createElement('div');d.className='tipbox';d.setAttribute('role','dialog');
+  d.innerHTML=`<div class="tipc"><div class="tip-i">${ic}</div><b>${title}</b>${lines.map(l=>`<p>${l}</p>`).join('')}<button class="btn sm">知道了</button></div>`;
+  d.onclick=()=>d.remove();
+  document.body.appendChild(d);d.querySelector('button').focus();
+}
+$('#pStreak').onclick=()=>{const n=streak();
+  tipBox('🔥','連續練習 '+n+' 天',[n?'你已經連續玩了 '+n+' 天，明天再玩就是 '+(n+1)+' 天！':'今天玩一關，就開始計算連續天數！','每天玩一點點，火就會越來越大。','連續 3、7、14、30 天會拿到徽章。','中間停一天，就會從 1 重新開始。'])};
+$('#pStar').onclick=()=>{
+  tipBox('⭐','你有 '+S.stars+' 顆星星',['每一關，每天第一次完成，可以拿 1～3 顆。','「今日任務」全部完成，再多 3 顆。','本週挑戰開寶箱，多 10 顆。','星星越多，代表你越努力！'])};
 $('#whoBtn').onclick=()=>{try{speechSynthesis.cancel()}catch(e){}show('who');if(Object.keys(DB.profiles).length===1)openForm()};
 
 /* ---------- 首頁 ---------- */
@@ -2113,6 +2131,3 @@ $('#pDel').onclick=()=>{const b=$('#pDel');if(!armedDel){armedDel=true;b.textCon
 if(!Object.keys(DB.profiles).length)idbGet().then(async r=>{try{if(!r)return;const o=JSON.parse(r);if(Object.keys(o.profiles||{}).length&&!Object.keys(DB.profiles).length){DB=Object.assign({cur:'',profiles:{}},o);S=DB.profiles[DB.cur]||newProf('','🐣');save();show(DB.cur?'home':'who');toast('已找回上次的進度 ✨')}}catch(e){}});
 })();
 </script>
-
-</body>
-</html>
