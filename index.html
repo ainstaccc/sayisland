@@ -489,7 +489,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <button class="grpbtn" id="toGrp">👫 好友團・看朋友的星星 <span id="grpDot" hidden>🔴</span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck">📖 我的詞卡冊</button><button class="btn alt sm" id="toParent">👨‍👩‍👧 家長區</button></div>
-    <p class="ver">說說島 v1.3.0</p>
+    <p class="ver">說說島 v1.3.1</p>
   </section>
 
   <!-- 選擇題 -->
@@ -2096,7 +2096,7 @@ $('#again').onclick=()=>lastGame&&lastGame();
 
 /* ---------- 好友團（排行榜）---------- */
 /* 後端：Firebase Firestore（免費方案）。FBCFG 沒填時是「示範模式」，朋友是假的，資料只在本機。 */
-const FBCFG={apiKey:'',projectId:''};
+const FBCFG={apiKey:'AIzaSyB7Z97vZzzeQUc8a4JDD2zMu-ZxAVnv12U',projectId:'sayisland-bb910'};
 const FB_ON=!!(FBCFG.apiKey&&FBCFG.projectId);
 const eh=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function addWk(d){if(d<=0)return;const k=wkKey();if(!S.wk||S.wk.k!==k)S.wk={k,n:0};S.wk.n+=d}
@@ -2177,7 +2177,7 @@ async function renderGrp(){
     <button class="btn alt" id="gJoin">🔑 加入好友團</button>
     <p class="muted" id="gErr" style="color:var(--c2);font-weight:800">${eh(GRP_ERR)}</p></div>`;return}
   if(!GRP_DATA){B.innerHTML='<div class="panel"><p class="muted">讀取中…</p></div>'}
-  if(!GRP_BUSY){GRP_BUSY=true;try{GRP_DATA=await grpPull();GRP_ERR='';await grpPush()}catch(e){GRP_ERR='連線不太順，等一下再試'}GRP_BUSY=false}
+  if(!GRP_BUSY){GRP_BUSY=true;try{GRP_DATA=await grpPull();GRP_ERR='';await grpPush()}catch(e){GRP_ERR='連線不太順，等一下再試（'+(e.message||'錯誤')+'）'}GRP_BUSY=false}
   if(!S.grp)return;
   const d=GRP_DATA||{mem:[],ch:[]},t=today(),wk=wkKey();
   const mem=d.mem.map(m=>Object.assign({},m,{ws:m.wk===wk?m.ws:0,tn:m.td===t?m.tn:0,done:m.td===t&&m.tt>0&&m.tn>=m.tt}));
@@ -2209,7 +2209,7 @@ $('#toGrp').onclick=openGrp;
 $('#grpBody').addEventListener('click',async e=>{
   const b=e.target.closest('button');if(!b)return;
   if(b.id==='gNew'||b.id==='gJoin'){const nick=($('#gNick').value||'').trim().slice(0,8);if(!nick){GRP_ERR='先填暱稱';return renderGrp()}
-    b.disabled=true;try{b.id==='gNew'?await grpCreate(nick):await grpJoin($('#gCode').value,nick);GRP_ERR='';GRP_DATA=null}catch(x){GRP_ERR=x.message||'失敗了，再試一次';S.grp=null}renderGrp();return}
+    b.disabled=true;try{b.id==='gNew'?await grpCreate(nick):await grpJoin($('#gCode').value,nick);GRP_ERR='';GRP_DATA=null}catch(x){GRP_ERR=(x.message||'失敗了，再試一次');S.grp=null}renderGrp();return}
   if(b.dataset.ch){b.disabled=true;try{await grpCheer(b.dataset.to,b.dataset.ch);toast('送出 '+b.dataset.ch)}catch(x){b.disabled=false;toast('送不出去，等一下再試')}return}
   if(b.id==='gCopy'){try{await navigator.clipboard.writeText(S.grp.code);toast('已複製邀請碼')}catch(x){toast('邀請碼：'+S.grp.code)}return}
   if(b.id==='gRef'){GRP_DATA=null;renderGrp();return}
