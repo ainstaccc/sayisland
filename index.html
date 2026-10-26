@@ -13,7 +13,6 @@
 <link rel="manifest" href="manifest.json">
 <style>[hidden]{display:none!important}</style>
 <title>說說島</title>
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@500;800&display=swap">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@500;700;900&display=swap">
 <style>
@@ -120,7 +119,7 @@ h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
 .track{flex:1;height:16px;border-radius:99px;background:var(--card);box-shadow:inset 0 2px 0 var(--shadow);overflow:hidden}
 .track i{display:block;height:100%;width:0;background:var(--c2);border-radius:99px;transition:width .35s}
 .qcard{background:var(--card);border-radius:26px;padding:20px 16px 22px;box-shadow:0 6px 0 var(--shadow);display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
-.tag{font:800 16px/1 var(--f-disp);padding:7px 14px;border-radius:99px;background:color-mix(in srgb,var(--c1) 18%,var(--card));color:var(--ink);white-space:nowrap}
+.tag{font:800 16px/1 var(--f-disp);padding:7px 14px;border-radius:99px;background:#FFD84D;color:#3B2A00;white-space:nowrap;cursor:pointer}
 .qe{font-size:76px;line-height:1.1}
 .qt{font:800 clamp(25px,7vw,34px)/1.5 var(--f-disp);display:flex;flex-wrap:wrap;justify-content:center;gap:0 2px}
 .qt .ch,.ch{white-space:nowrap}
@@ -347,7 +346,7 @@ body{background:
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .opt{background:linear-gradient(#3A2A66,#2B1D4D);border-color:#4F3A8C}}
 .opt.good{background:linear-gradient(#C6F8E0,#8DE8BD);border-color:#fff;color:#0B6E48;box-shadow:0 6px 0 #2FB27C}
 .opt.bad{background:linear-gradient(#FFE0E8,#FFB8CB);border-color:#fff;color:#B3203F;box-shadow:0 6px 0 #E8456B}
-.tag{background:linear-gradient(#FFE680,#FFC83D);color:#4A3200;box-shadow:0 3px 0 #D99A00;border-radius:999px;padding:8px 16px}
+.tag{background:linear-gradient(#FFE680,#FFC83D);color:#3B2A00;box-shadow:0 3px 0 #D99A00;border-radius:999px;padding:8px 16px}
 .qe{filter:drop-shadow(0 8px 0 rgba(150,80,190,.18));animation:bob 2.8s ease-in-out infinite}
 .fb{border-radius:26px;border:3px solid #fff}
 .wk .wd i{border-radius:999px;background:linear-gradient(#fff,#F4EAFF);box-shadow:0 3px 0 rgba(150,80,190,.2)}
@@ -431,7 +430,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .pill{cursor:pointer}.pill:active{transform:translateY(3px)}
 .tipbox{position:fixed;inset:0;z-index:80;background:rgba(59,42,90,.45);display:grid;place-items:center;padding:20px;animation:fadein .15s}
 .tipc{width:min(360px,100%);background:#fff;color:#3B2A5A;border:5px solid #fff;border-radius:34px;padding:18px 18px 20px;box-shadow:0 10px 0 rgba(150,80,190,.35),0 24px 40px -10px rgba(0,0,0,.4);display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
-.tipc .tip-i{font-size:64px;line-height:1}.tipc b{font:900 26px/1.3 var(--f-disp)}.tipc p{margin:0;font-size:20px;line-height:1.5}
+.tipc .btn.ghost{background:transparent;color:inherit;box-shadow:none;border:3px solid currentColor;opacity:.8}.tipc .tip-i{font-size:64px;line-height:1}.tipc b{font:900 26px/1.3 var(--f-disp)}.tipc p{margin:0;font-size:20px;line-height:1.5}
 :root[data-theme="dark"] .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tipc{background:#2B1D4D;color:#F6EEFF;border-color:#45327A}}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
@@ -480,7 +479,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="bkbar" id="bkbar" hidden></div>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck">📖 我的詞卡冊</button><button class="btn alt sm" id="toParent">👨‍👩‍👧 家長區</button></div>
-    <p class="ver">說說島 v1.2.1</p>
+    <p class="ver">說說島 v1.2.2</p>
   </section>
 
   <!-- 選擇題 -->
@@ -507,7 +506,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-build" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="bprog"></i></div><span class="pill" id="bcount" style="font-size:18px">1/3</span></div>
     <div class="qcard">
-      <span class="tag" style="background:color-mix(in srgb,var(--c4) 22%,var(--card))">短文小偵探</span>
+      <span class="tag">短文小偵探</span>
       <div class="qe" id="bemoji"></div>
       <p class="cap" id="bmode"></p>
       <div class="scene" id="bscenewrap"><p id="bscene"></p><button class="ibtn" id="bsay" aria-label="唸給我聽">🔊</button></div>
@@ -530,7 +529,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-talk" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="tprog"></i></div><span class="pill" id="tcount" style="font-size:18px">1/2</span></div>
     <div class="qcard">
-      <span class="tag" style="background:color-mix(in srgb,var(--c5) 20%,var(--card))" id="ttag">看圖說話</span>
+      <span class="tag" id="ttag">看圖說話</span>
       <div class="pic" id="tpic"></div>
       <p class="cap" id="tcap"></p>
       <div class="ask" style="font-size:22px">看看圖，說說看！<br><span style="font-size:18px;font-weight:500;color:var(--ink2)">有誰？在哪裡？在做什麼？心情怎麼樣？</span></div>
@@ -551,7 +550,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-match" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="mprog"></i></div><span class="pill" id="mcount" style="font-size:18px">1/2</span></div>
     <div class="qcard">
-      <span class="tag" style="background:color-mix(in srgb,var(--c6) 20%,var(--card))">因果配對</span>
+      <span class="tag">因果配對</span>
       <div class="ask" style="font-size:22px">先點「因為」，再點對應的「所以」</div>
       <div class="mgrid"><div class="mcol"><div class="mh">因為⋯</div><div class="mcol" id="mleft"></div></div><div class="mcol"><div class="mh">所以⋯</div><div class="mcol" id="mright"></div></div></div>
       <div class="mline" id="mline">配對成功後，這裡會唸出完整的句子。</div>
@@ -570,7 +569,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-ord" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="oprog"></i></div><span class="pill" id="ocount" style="font-size:18px">0/0</span></div>
     <div class="qcard">
-      <span class="tag" style="background:color-mix(in srgb,var(--c4) 20%,var(--card))">句子排序</span>
+      <span class="tag">句子排序</span>
       <div class="ask" style="font-size:22px">照課文的順序，一句一句點</div>
       <div class="ostack" id="oans"></div>
       <div class="ostack" id="opool"></div>
@@ -582,7 +581,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-zy" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="zprog"></i></div><span class="pill" id="zcount" style="font-size:18px">1/6</span></div>
     <div class="qcard">
-      <span class="tag" style="background:color-mix(in srgb,var(--c3) 20%,var(--card))">注音拼音</span>
+      <span class="tag">注音拼音</span>
       <button class="zq" id="zq" aria-label="點一下聽題目"><span class="ze" id="zemoji"></span><b id="zchar"></b><span><small id="zword"></small></span><span class="zsp">🔊</span></button>
       <div class="ask" style="font-size:22px">拼出這個字的注音</div>
       <div class="zslots" id="zslots"></div>
@@ -1548,14 +1547,32 @@ function placeWalker(i,anim){
   if(anim)setTimeout(()=>w.classList.remove('go'),700);
 }
 addEventListener('resize',()=>{if($('#missions')&&!$('#v-home').hidden){const ks=mapKeys();drawTrail(ks);const w=$('#walker');if(w&&mapLast!=null)placeWalker(mapLast,false)}});
+const KID={u:['📚','我的課文','爸媽上傳的課文，變成挖空和排序的小遊戲。','玩法：選出空格該放的詞，或把句子排成順序。'],
+z:['🔤','注音拼音','看國字，點卡片拼出注音，再選聲調。','玩法：點卡片和題目，會唸給你聽。'],
+q:['🧺','量詞','一＿＿書？一＿＿魚？選出最適合的量詞。','玩法：看句子，點最對的那一個。'],
+v:['🏃','動詞','哪個動作最貼切？','玩法：選出最對的動作。'],
+a:['🌈','形容詞','形容樣子、味道、感覺的詞。','玩法：選出最能形容的那一個。'],
+e:['🕵️','短文小偵探','讀短文，找出有幾個、什麼樣子、在哪裡、做什麼。','玩法：回答問題，拼成完整的一句話。'],
+t:['🖼️','看圖說話','看圖用說的或打字，老師會問你問題，幫你說得更完整。','玩法：按麥克風說說看，或用鍵盤打字。'],
+h:['💬','好好說話','同一件事，有三種說法。選別人聽起來最舒服的那一句。','玩法：選答案，答對再大聲說一次。'],
+m:['🔗','因果配對','「因為」要配對「所以」。','玩法：把原因和結果連在一起。']};
+function missionInfo(k,go){
+  const c=CATS[k],i=KID[k]||[c.ic,c.n,c.d,''];
+  document.querySelectorAll('.tipbox').forEach(x=>x.remove());
+  const d=document.createElement('div');d.className='tipbox';d.setAttribute('role','dialog');
+  d.innerHTML=`<div class="tipc"><div class="tip-i">${i[0]}</div><b>${i[1]}</b><p>${i[2]}</p><p>${i[3]}</p>${go?'<button class="btn sm" data-go="1">開始玩 ▶</button>':''}<button class="btn sm ghost" data-x="1">${go?'先不要':'知道了'}</button></div>`;
+  d.onclick=e=>{const t=e.target;if(t.closest('[data-go]')){d.remove();go()}else if(t===d||t.closest('[data-x]'))d.remove()};
+  document.body.appendChild(d);
+}
 function mapGo(e){
   const b=e.target.closest('[data-cat]');if(!b||mapBusy)return;
   const ks=mapKeys(),i=ks.indexOf(b.dataset.cat);mapBusy=true;mapLast=i;
   placeWalker(i,true);sfx.ok&&sfx.ok();
-  setTimeout(()=>{mapBusy=false;openCat({target:b})},REDU()?0:720);
+  setTimeout(()=>{mapBusy=false;missionInfo(b.dataset.cat,()=>openCat({target:b}))},REDU()?0:720);
 }
 const openCat=e=>{const b=e.target.closest('[data-cat]');if(!b)return;
   const k=b.dataset.cat;const G={e:startBuild,t:startTalk,m:startMatch,z:startZ,u:()=>show('unit')};G[k]?G[k]():startQuiz(k)};
+document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t||!document.body.classList.contains('ingame'))return;const k=Object.keys(CATS).find(x=>CATS[x].n===t.textContent.trim());k&&missionInfo(k,null)});
 $('#missions').addEventListener('click',mapGo);$('#dRow').addEventListener('click',openCat);
 $('.hero').addEventListener('click',()=>say($('#bubble').textContent+$('#growTxt').textContent));
 $('#lv1').onclick=()=>{S.lv=1;save();renderHome()};
@@ -1577,7 +1594,7 @@ const qSpoken=q=>q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說�
 $('#qlisten').onclick=()=>{if(Q)say(qSpoken(Q.list[Q.i]))};
 function renderQ(){
   const q=Q.list[Q.i];Q.locked=false;const c=CATS[Q.cat];
-  $('#qtag').textContent=c.n;$('#qtag').style.background=`color-mix(in srgb,var(${c.c}) 20%,var(--card))`;
+  $('#qtag').textContent=c.n;
   $('#qprog').style.width=(Q.i/Q.list.length*100)+'%';$('#qprog').style.background=`var(${c.c})`;
   $('#qcount').textContent=(Q.i+1)+'/'+Q.list.length;
   $('#qemoji').textContent=q.e;
