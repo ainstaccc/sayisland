@@ -545,7 +545,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn">🛟 有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.6.2</p>
+    <p class="ver">說說島 v1.6.3</p>
   </section>
 
   <!-- 首頁 -->
@@ -564,7 +564,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.6.2</p>
+    <p class="ver">說說島 v1.6.3</p>
   </section>
 
   <!-- 選擇題 -->
@@ -705,7 +705,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-grp" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.6.2</p>
+    <p class="ver">說說島 v1.6.3</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -769,7 +769,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.6.2</p>
+    <p class="ver">說說島 v1.6.3</p>
   </section>
 </div>
 
@@ -2236,7 +2236,8 @@ const pidSafe=()=>String(DB.cur).replace(/[^A-Za-z0-9]/g,'').slice(0,20)||'p';
 const GCH='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 const newCode=()=>Array.from({length:6},()=>GCH[Math.floor(Math.random()*GCH.length)]).join('');
 function meDoc(full){const dc=dailyCats();const o={nick:(S.grp&&S.grp.nick)||S.name||'小朋友',av:S.av||'🐣',wk:wkKey(),ws:wkStars(),st:streak(),td:today(),tn:dc.filter(k=>todayN(k)>=GOAL).length,tt:dc.length,up:Date.now()};if(full!==false){const I=S.isl||{};o.isl=(I.items||[]).map(r=>r.join(',')).join(';');o.sz=I.size||6}return o}
-async function putMe(path){try{await fsSet(path,meDoc(true))}catch(e){await fsSet(path,meDoc(false))}}
+let PUT_MODE='';
+async function putMe(path){try{await fsSet(path,meDoc(true));PUT_MODE='full'}catch(e){await fsSet(path,meDoc(false));PUT_MODE='basic'}}
 /* --- Firebase REST --- */
 const FBK='zizi_fbauth';
 async function fbAuth(){
@@ -2328,7 +2329,7 @@ async function renderGrp(){
   const doneN=mem.filter(m=>m.done).length;
     S.sent=S.sent||{};
   const rows=mem.map((m,i)=>{const me=m._id===S.grp.mid;
-    return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${eh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span>${m.done?ic('check')+'今日完成':'今日'+m.tn+'項'}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch">${typeof m.isl==='string'?`<button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic('island')}<span>參觀島</span></button>`:''}<button class="ibtn" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
+    return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${eh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span>${m.done?ic('check')+'今日完成':'今日'+m.tn+'項'}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch"><button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic('island')}<span>參觀島</span></button><button class="ibtn" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
   const rc={};d.ch.forEach(c=>{rc[c.k]=(rc[c.k]||0)+1});
   const got=Object.keys(rc).map(k=>(k==='👏'?ic('clap'):k==='🔥'?ic('flame'):eh(k))+'×'+rc[k]).join('　');
   const gfs=gfOpen(d.gf);GRP_GF=gfs.length;
@@ -2343,7 +2344,7 @@ async function renderGrp(){
   <div class="panel"><h3>邀請朋友</h3><p class="muted">把這組邀請碼給朋友（用 LINE 傳給家長就好）：</p>
   <div class="icode">${eh(S.grp.code)}</div><button class="btn alt sm" id="gCopy">複製邀請碼</button>
   ${FB_ON?'':'<p class="muted"><b>示範模式</b>：朋友是假的，雲端還沒開。</p>'}
-  <p class="muted" style="color:var(--c2);font-weight:800">${eh(GRP_ERR)}</p>
+  <p class="muted" style="color:var(--c2);font-weight:800">${eh(GRP_ERR)}${PUT_MODE==='basic'?'　⚠ 雲端規則還沒更新，朋友看不到你的島（請到 Firebase 發布新規則）':''}</p>
   <button class="btn alt sm" id="gRef">更新</button>
   <button class="btn alt sm" id="gLeave">${GRP_ARM?'再按一次，確定離開':'離開好友團'}</button></div>`;
 }
@@ -2515,7 +2516,7 @@ function renderIsl(){
     if(ISLS.on){try{Island.unmount()}catch(e){}ISLS.on=false}
     $('#islHost').innerHTML='';const I=ISL(),v=ISLS.visit,sz=v?(+v.sz||6):islSize();
     Island.mount($('#islHost'),{size:sz});Island.setTime(ISLS.tm);
-    if(v){Island.setItems(parseIsl(v.isl));Island.on('tile',null);Island.on('item',null)}
+    if(v){Island.setItems(parseIsl(v.isl));Island.on('tile',null);Island.on('item',null);if(typeof v.isl!=='string')toast(v.nick+' 還沒更新到新版，島先空著')}
     else{
       if(!I.welcome){I.welcome=1;I.free=(I.free||0)+1;save();toast('歡迎！送你 1 個免費盲盒')}
       Island.setItems(I.items);Island.on('tile',islTile);Island.on('item',islItem);
