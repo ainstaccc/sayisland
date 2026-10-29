@@ -23,6 +23,7 @@
 5. 絕對不要動：題庫（`index.html` 內題目陣列順序、`bank.js`）、存檔格式（`DB`／`S` 欄位名稱）、Firebase 設定、既有元素 id 與 data- 屬性、遊戲判定邏輯。
 6. 驗證（任何一項失敗就 `git checkout .` 還原，不要 push）：
    - `node tools/check.js` 印出 `ALL OK`。
+   - **不可以注入 `[hidden]{display:none!important}`**：要直接測真正的 index.html，並確認首頁只有 `#v-home` 可見（`section[id^=v-]` 中 offsetHeight>0 的只有一個）。曾因漏掉這條規則讓所有關卡畫面疊在首頁。
    - Playwright（chromium 參數 `--use-gl=swiftshader --enable-unsafe-swiftshader --ignore-gpu-blocklist --allow-file-access-from-files`，注入 `[hidden]{display:none!important}`）：開 `file://.../index.html`，輸入暱稱進首頁、進任一關卡出題、進「我的島」看到 canvas、開商店／盲盒面板；全程無 `pageerror`。
    - 320px 與 390px 寬各截圖首頁與島面板，檢查 `scrollWidth - innerWidth == 0`。
    - 看截圖確認改動真的比較好看；變差就還原該項。
