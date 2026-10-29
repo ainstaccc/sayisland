@@ -444,6 +444,31 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .icode{font:900 40px/1 var(--f-disp);letter-spacing:8px;text-align:center;padding:12px;border-radius:18px;background:var(--bg);border:3px dashed var(--c1)}
 .goal{background:linear-gradient(#FFE680,#FFC83D)!important;color:#3B2A00}.goal b{font-size:22px}
 @media (max-width:360px){.lb .nm small{font-size:13px}.lb .ch .ibtn{width:38px;height:38px}}
+#v-isl{position:fixed;inset:0;z-index:20;background:#BFE9F5;overflow:hidden}
+#islHost{position:absolute;inset:0}.islmsg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;font:800 24px/1.5 var(--f-disp);color:#3B2A5A;padding:24px}
+.islTop{position:absolute;top:max(10px,env(safe-area-inset-top));left:12px;right:12px;display:flex;gap:10px;align-items:center;justify-content:space-between;z-index:3}
+.islTop .pill{font-size:24px;padding:8px 18px}
+.islBar{position:absolute;bottom:max(14px,env(safe-area-inset-bottom));left:12px;right:12px;display:flex;gap:10px;z-index:3}
+.islBar .btn{flex:1;min-height:62px;font-size:21px;white-space:nowrap;position:relative}
+.dotn{background:#FF4D6D;color:#fff;border-radius:99px;padding:2px 9px;font-size:18px;margin-left:4px}
+.islHint{position:absolute;top:calc(max(10px,env(safe-area-inset-top)) + 64px);left:50%;transform:translateX(-50%);z-index:3;background:rgba(255,255,255,.94);color:#3B2A5A;border-radius:99px;padding:10px 20px;font:800 20px/1.3 var(--f-disp);white-space:nowrap;box-shadow:0 4px 0 rgba(150,80,190,.25)}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:6;max-height:62%;overflow:auto;background:var(--card);color:var(--ink);border-radius:28px 28px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.28)}
+.sh-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.sh-h h3{font:900 26px/1.2 var(--f-disp)}
+.tabs{display:flex;gap:8px;margin:6px 0 10px}.tabb{flex:1;min-height:48px;border-radius:16px;border:3px solid var(--line);background:var(--bg);color:var(--ink);font:800 20px/1 var(--f-disp);white-space:nowrap}.tabb[aria-pressed="true"]{background:#FFD84D;color:#3B2A00;border-color:#FFB000}
+.igrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.icard{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 4px;border-radius:20px;border:3px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}.icard:disabled{opacity:.4}
+.icard .ie{font-size:44px;line-height:1.1}.icard b{font:800 19px/1.2 var(--f-disp);white-space:nowrap}.icard small{font:800 17px/1.2 var(--f-body);white-space:nowrap;color:var(--ink2)}
+.dex{display:flex;flex-wrap:wrap;gap:8px}.dx{width:48px;height:48px;border-radius:14px;border:3px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--bg)}.dx.off{opacity:.45;font-size:20px}
+.boxes{display:grid;grid-template-columns:1fr 1fr;gap:12px}.bx{display:flex;flex-direction:column;align-items:center;gap:8px;padding:14px 8px;border-radius:22px;background:var(--bg);border:3px solid var(--line);text-align:center}.bx.lucky{border-color:#FFB000;background:color-mix(in srgb,#FFD84D 18%,var(--bg))}
+.bx .be{font-size:64px;line-height:1}.bx b{font:900 22px/1.2 var(--f-disp);white-space:nowrap}.bx .btn{min-height:52px;font-size:19px;padding:6px 10px;white-space:nowrap}.bx small{font-size:15px;line-height:1.5;color:var(--ink2)}
+.islbtn{width:100%;min-height:68px;border:0;border-radius:26px;font:900 25px/1.2 var(--f-disp);color:#3B2A00;background:linear-gradient(#FFE680,#FFC83D);box-shadow:0 6px 0 #D99A00,0 12px 20px -8px rgba(0,0,0,.35);cursor:pointer;white-space:nowrap}
+.reveal{position:fixed;inset:0;z-index:60;background:rgba(20,10,50,.82);display:flex;align-items:center;justify-content:center;padding:20px}
+.rv-box{text-align:center;color:#fff;font:800 24px/1.4 var(--f-disp)}.shake{font-size:110px;animation:shk .35s infinite}@keyframes shk{0%,100%{transform:rotate(-10deg) scale(1)}50%{transform:rotate(10deg) scale(1.12)}}
+.rv-card{position:relative;width:min(340px,100%);background:#fff;color:#3B2A5A;border-radius:34px;padding:22px 18px;display:flex;flex-direction:column;align-items:center;gap:10px;overflow:hidden;box-shadow:0 10px 0 rgba(150,80,190,.35);animation:rvin .45s cubic-bezier(.2,1.4,.4,1)}@keyframes rvin{from{transform:scale(.3);opacity:0}to{transform:scale(1);opacity:1}}
+.rv-card .rays{position:absolute;inset:-60%;background:repeating-conic-gradient(rgba(255,216,77,.28) 0 12deg,transparent 12deg 24deg);animation:spin 8s linear infinite;z-index:0}@keyframes spin{to{transform:rotate(360deg)}}
+.rv-card>*:not(.rays){position:relative;z-index:1}.rv-card .rv-e{font-size:96px;line-height:1.1}.rv-card b{font:900 30px/1.2 var(--f-disp)}.rv-card small{font-size:17px;color:#6B5A8A}.rv-card .btn{width:100%;min-height:54px;font-size:20px}
+.rar{padding:5px 16px;border-radius:99px;font:900 19px/1.2 var(--f-disp);color:#1B1030;white-space:nowrap}.new{position:absolute!important;top:12px;left:14px;background:#FF4D6D;color:#fff;font:900 18px/1 var(--f-disp);padding:6px 12px;border-radius:99px;z-index:2}
+@media (max-width:360px){.icard .ie{font-size:36px}.icard b{font-size:17px}.islBar .btn{font-size:18px}.islHint{font-size:17px;padding:8px 14px}.boxes{gap:8px}.bx .btn{font-size:16px}}
 .ver{text-align:center;color:var(--ink2);font:700 15px/1 var(--f-body);opacity:.8}
 </style>
 
@@ -472,12 +497,13 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn">🛟 有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.4.2</p>
+    <p class="ver">說說島 v1.5.0</p>
   </section>
 
   <!-- 首頁 -->
   <section id="v-home" class="wrap" style="gap:16px">
     <button class="who" id="whoBtn" aria-label="換人"><span id="whoAv">🐣</span><b id="whoName">小朋友</b><small id="whoHint">換人 ▾</small></button>
+    <button class="islbtn" id="toIsl">🏝️ 我的島　<span id="islC">🪙 0</span></button>
     <div class="hero"><div class="mascot" id="mascot">🥚</div><div class="bubble"><span id="bubble"></span><div class="apples" id="apples"></div><small id="growTxt"></small></div></div>
     <div class="daily2"><div><b>今日任務</b><small id="dailyTxt"></small></div><div class="drow" id="dRow"></div></div>
     <div class="seg s3" role="group" aria-label="選擇年級">
@@ -490,7 +516,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <button class="grpbtn" id="toGrp">👫 好友團・看朋友的星星 <span id="grpDot" hidden>🔴</span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck">📖 我的詞卡冊</button><button class="btn alt sm" id="toParent">👨‍👩‍👧 家長區</button></div>
-    <p class="ver">說說島 v1.4.2</p>
+    <p class="ver">說說島 v1.5.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -621,10 +647,17 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   </section>
 
   <!-- 家長區 -->
+  <section id="v-isl" hidden>
+    <div id="islHost"></div>
+    <div class="islTop"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="pill" id="islCoin">🪙 0</div><button class="ibtn" id="islTime" aria-label="日夜">🌗</button></div>
+    <div class="islHint" id="islHint" hidden></div>
+    <div class="islBar" id="islBar"></div>
+    <div class="sheet" id="islSheet" hidden></div>
+  </section>
   <section id="v-grp" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.4.2</p>
+    <p class="ver">說說島 v1.5.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -688,7 +721,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.4.2</p>
+    <p class="ver">說說島 v1.5.0</p>
   </section>
 </div>
 
@@ -1421,9 +1454,9 @@ function say(text){
 }
 
 /* ---------- 版面 ---------- */
-const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp'];
+const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp','isl'];
 function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot',"'"+($('#mascot').textContent||'🐣')+"'")}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));
-  if(v==='home')renderHome();if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v==='who')renderWho();if(v==='grp')renderGrp()}
+  if(v==='home')renderHome();if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
 document.addEventListener('click',e=>{if(e.target.closest('[data-home]')){try{speechSynthesis.cancel()}catch(x){}show('home')}});
 
 /* ---------- 進度計算 ---------- */
@@ -1513,7 +1546,7 @@ function renderHome(){
   syncU();setTimeout(()=>{try{grpHomeSync()}catch(e){}},0);
   $('#whoHint').textContent=Object.keys(DB.profiles).length>1?'換人 ▾':'＋ 新增小朋友';
   $('#whoAv').textContent=S.av;$('#whoName').textContent=S.name||'小朋友';
-  $('#starN').textContent=S.stars;$('#streakN').textContent=streak();
+  $('#starN').textContent=S.stars;$('#streakN').textContent=streak();{const ic=$('#islC');if(ic)ic.textContent='🪙 '+(S.coin==null?S.stars+10:S.coin)}
   $('#sndBtn').textContent=S.snd?'🔔':'🔕';
   $('#lv1').setAttribute('aria-pressed',S.lv===1);$('#lv2').setAttribute('aria-pressed',S.lv===2);$('#lv3').setAttribute('aria-pressed',S.lv===3);
   const L=learnedAll(),cnt=L.length;
@@ -2087,7 +2120,7 @@ function finish({title,acc,line,cat}){
   if(!cl[cat]){cl[cat]=1;got=n;S.stars+=n}else msgs.push('今天這一關的星星已經拿過了，多練習會存進學習紀錄，但不會再多拿星星。');
   S.days[td]=(S.days[td]||0)+1;
   const dc=dailyCats();
-  if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星 🎉');S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
+  if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星，還送你 1 個免費盲盒 🎉');ISL().free=(ISL().free||0)+1;S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
   if(S.wkClaim!==wkKey()&&wkDone()>=WK_NEED){S.wkClaim=wkKey();S.stars+=WK_STARS;msgs.push('本週挑戰完成！寶箱打開 +'+WK_STARS+' 顆星 🎁')}
   const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+nb.join('、'))
   addWk(S.stars-s0);save();GRP_LAST=0;grpPush();
@@ -2105,7 +2138,7 @@ $('#again').onclick=()=>lastGame&&lastGame();
 const FBCFG={apiKey:'AIzaSyB7Z97vZzzeQUc8a4JDD2zMu-ZxAVnv12U',projectId:'sayisland-bb910'};
 const FB_ON=!!(FBCFG.apiKey&&FBCFG.projectId);
 const eh=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function addWk(d){if(d<=0)return;const k=wkKey();if(!S.wk||S.wk.k!==k)S.wk={k,n:0};S.wk.n+=d}
+function addWk(d){if(d<=0)return;if(S.coin==null)S.coin=S.stars+10;else S.coin+=d;const k=wkKey();if(!S.wk||S.wk.k!==k)S.wk={k,n:0};S.wk.n+=d}
 const wkStars=()=>S.wk&&S.wk.k===wkKey()?S.wk.n:0;
 const pidSafe=()=>String(DB.cur).replace(/[^A-Za-z0-9]/g,'').slice(0,20)||'p';
 const GCH='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
@@ -2226,6 +2259,142 @@ async function grpHomeSync(){const g=S.grp,dot=$('#grpDot');if(!g){dot.hidden=tr
   if(Date.now()-GRP_LAST<60000)return;GRP_LAST=Date.now();
   try{await grpPush();const d=await grpPull();if(!d)return;const msg=grpGoalCheck(d.mem);if(msg){toast(msg);$('#starN').textContent=S.stars}
     dot.hidden=!(d.ch.length>(S.cheerSeen||0))}catch(e){}}
+
+/* ---------- 我的島（3D 造島＋盲盒）---------- */
+const ISL=()=>S.isl||(S.isl={items:[],inv:{},seen:{},pity:0,free:0,size:6});
+const coin=()=>{if(S.coin==null)S.coin=S.stars+10;return S.coin};
+const RN=['普通','稀有','超稀有','傳說'],RC=['#B8C6D8','#7CC4FF','#C79BFF','#FFC83D'];
+const rarOf=id=>{const p=Island.BYID[id].p;return p<=5?0:p<=12?1:p<=25?2:3};
+const buyP=d=>Math.ceil(d.p*1.6);
+const ISLS={mode:'idle',t:null,idx:-1,pos:null,loaded:null,on:false,cat:'自然',tm:'auto'};
+function loadIsl(){
+  if(window.Island&&window.Island.ready)return Promise.resolve();
+  if(ISLS.loaded)return ISLS.loaded;
+  const ld=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error(src));document.head.appendChild(s)});
+  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=1')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
+  ISLS.loaded.catch(()=>{ISLS.loaded=null});return ISLS.loaded;
+}
+const islSize=()=>{const n=learnedAll().length;return n>=50?10:n>=20?8:6};
+const islNeed=()=>{const n=learnedAll().length;return n>=50?0:n>=20?50-n:20-n};
+function islHud(){$('#islCoin').textContent='🪙 '+coin()}
+function islHint(t){const h=$('#islHint');h.hidden=!t;h.textContent=t||''}
+function islClose(){const s=$('#islSheet');s.hidden=true;s.innerHTML=''}
+function islIdle(){
+  ISLS.mode='idle';ISLS.t=null;ISLS.idx=-1;ISLS.pos=null;
+  if(window.Island&&Island.clearGhost){Island.clearGhost();Island.mark(null)}
+  islHint('');islClose();islHud();
+  const f=ISL().free;
+  $('#islBar').innerHTML=`<button class="btn alt" data-ia="shop">🛒 商店</button><button class="btn" data-ia="box">🎁 盲盒${f?` <b class="dotn">${f}</b>`:''}</button><button class="btn alt" data-ia="bag">🎒 背包</button>`;
+}
+function islSave(){ISL().items=Island.list();save();islHud()}
+function startPlace(t,idx){
+  ISLS.mode=idx>=0?'move':'place';ISLS.t=t;ISLS.idx=idx==null?-1:idx;ISLS.pos=null;islClose();Island.clearGhost();Island.mark(null);
+  const d=Island.BYID[t];islHint((idx>=0?'要搬到哪裡？':'要放在哪裡？')+' 點一下島上的草地 '+d.e);
+  $('#islBar').innerHTML=`<button class="btn alt" data-ia="cancel">✕ 取消</button>`;
+}
+function islTile(gx,gz){
+  if(ISLS.mode==='place'||ISLS.mode==='move'){
+    const d=Island.BYID[ISLS.t],s=d.s,ig=ISLS.mode==='move'?ISLS.idx:-1;
+    let c=[[gx,gz],[gx-1,gz],[gx,gz-1],[gx-1,gz-1]].slice(0,s===2?4:1).find(p=>Island.valid(p[0],p[1],s,ig));
+    const ok=!!c;if(!c)c=[gx,gz];ISLS.pos=ok?c:null;
+    Island.showGhost(ISLS.t,c[0],c[1],ok);Island.mark(c[0],c[1],s);
+    islHint(ok?'放這裡可以嗎？':'這裡放不下，換一格試試');
+    $('#islBar').innerHTML=`<button class="btn" data-ia="ok" ${ok?'':'disabled'}>✓ 放這裡</button><button class="btn alt" data-ia="cancel">✕ 取消</button>`;
+  }else if(ISLS.mode==='sel'){islIdle()}
+}
+function islItem(idx){
+  if(ISLS.mode!=='idle'&&ISLS.mode!=='sel')return;
+  const it=Island.list()[idx],d=Island.BYID[it[0]];ISLS.mode='sel';ISLS.idx=idx;ISLS.t=it[0];
+  Island.mark(it[1],it[2],d.s);islHint(d.e+' '+d.n);islClose();
+  $('#islBar').innerHTML=`<button class="btn alt" data-ia="mv">🚚 搬家</button><button class="btn alt" data-ia="pk">🎒 收起來</button><button class="btn alt" data-ia="cancel">✕</button>`;
+}
+function islOk(){
+  if(!ISLS.pos)return;const [x,z]=ISLS.pos,I=ISL();
+  if(ISLS.mode==='place'){if(!(I.inv[ISLS.t]>0))return islIdle();I.inv[ISLS.t]--;Island.add(ISLS.t,x,z);sfx.ok&&sfx.ok()}
+  else{Island.move(ISLS.idx,x,z)}
+  islSave();islIdle();
+}
+const card=(cls,e,n,sub,attr,dis)=>`<button class="icard ${cls||''}" ${attr} ${dis?'disabled':''}><span class="ie">${e}</span><b>${n}</b><small>${sub}</small></button>`;
+function sheetShop(){
+  const cats=['自然','動物','生活','特別'];
+  const list=Island.CAT.filter(c=>c.c===ISLS.cat);
+  $('#islSheet').hidden=false;
+  $('#islSheet').innerHTML=`<div class="sh-h"><h3>🛒 商店</h3><button class="ibtn" data-ia="close" aria-label="關閉">✕</button></div>
+  <div class="tabs">${cats.map(c=>`<button class="tabb" aria-pressed="${c===ISLS.cat}" data-tab="${c}">${c}</button>`).join('')}</div>
+  <div class="igrid">${list.map(d=>card('',d.e,d.n,'🪙 '+buyP(d)+(d.s===2?'・大':''),`data-buy="${d.id}"`,coin()<buyP(d))).join('')}</div>
+  <p class="muted">你有 🪙 ${coin()}。也可以去玩「盲盒」，更便宜，還有機會抽到稀有的。</p>`;
+}
+function sheetBag(){
+  const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0),seen=Island.CAT.filter(c=>I.seen[c.id]||I.items.some(r=>r[0]===c.id)).length;
+  $('#islSheet').hidden=false;
+  $('#islSheet').innerHTML=`<div class="sh-h"><h3>🎒 背包</h3><button class="ibtn" data-ia="close" aria-label="關閉">✕</button></div>
+  ${have.length?`<div class="igrid">${have.map(d=>card('',d.e,d.n,'× '+I.inv[d.id],`data-place="${d.id}"`)).join('')}</div>`:'<p class="muted" style="font-size:20px">背包是空的。去商店買，或玩盲盒！</p>'}
+  <h3 style="margin-top:8px">📖 圖鑑　${Math.min(seen,Island.CAT.length)} / ${Island.CAT.length}</h3>
+  <div class="dex">${Island.CAT.map(d=>{const k=I.seen[d.id]||I.items.some(r=>r[0]===d.id);return`<span class="dx ${k?'':'off'}" style="${k?'border-color:'+RC[rarOf(d.id)]:''}" title="${k?d.n:'？'}">${k?d.e:'❓'}</span>`}).join('')}</div>`;
+}
+function sheetBox(){
+  const I=ISL();
+  $('#islSheet').hidden=false;
+  $('#islSheet').innerHTML=`<div class="sh-h"><h3>🎁 盲盒</h3><button class="ibtn" data-ia="close" aria-label="關閉">✕</button></div>
+  <div class="boxes">
+   <div class="bx"><div class="be">📦</div><b>普通盲盒</b><button class="btn" data-draw="n" ${(I.free>0||coin()>=8)?'':'disabled'}>${I.free>0?'免費抽（×'+I.free+'）':'🪙 8　抽一個'}</button><small>普通 60%　稀有 28%<br>超稀有 10%　傳說 2%</small></div>
+   <div class="bx lucky"><div class="be">🎁</div><b>幸運盲盒</b><button class="btn" data-draw="l" ${coin()>=25?'':'disabled'}>🪙 25　抽一個</button><small>稀有 50%　超稀有 40%<br>傳說 10%</small></div>
+  </div>
+  <p class="muted">你有 🪙 ${coin()}。每抽 10 次，一定會出「超稀有」以上。每天完成「今日任務」送 1 個免費普通盲盒。島幣只能靠玩遊戲賺，不能用錢買。抽到重複的，也可以多放幾個。</p>`;
+}
+const roll=w=>{const s=w.reduce((a,b)=>a+b,0);let r=Math.random()*s;for(let i=0;i<w.length;i++){r-=w[i];if(r<0)return i}return 0};
+function drawBox(kind){
+  const I=ISL();let paid=true;
+  if(kind==='n'&&I.free>0){I.free--;paid=false}
+  else{const c=kind==='n'?8:25;if(coin()<c){toast('島幣不夠，先去玩幾關');return}S.coin-=c}
+  I.pity=(I.pity||0)+1;let r=roll(kind==='n'?[60,28,10,2]:[0,50,40,10]);
+  if(I.pity>=10&&r<2)r=2;if(r>=2)I.pity=0;
+  const pool=Island.CAT.filter(c=>rarOf(c.id)===r);const it=pool[Math.floor(Math.random()*pool.length)];
+  const isNew=!I.seen[it.id]&&!I.items.some(x=>x[0]===it.id);
+  I.inv[it.id]=(I.inv[it.id]||0)+1;I.seen[it.id]=1;save();islHud();
+  reveal(it,r,isNew,kind);
+}
+function reveal(it,r,isNew,kind){
+  document.querySelectorAll('.reveal').forEach(x=>x.remove());
+  const o=document.createElement('div');o.className='reveal';
+  o.innerHTML=`<div class="rv-box"><div class="shake">🎁</div><p>打開中…</p></div>`;document.body.appendChild(o);
+  try{sfx.ok&&sfx.ok()}catch(e){}
+  setTimeout(()=>{
+    const f=ISL().free;
+    o.innerHTML=`<div class="rv-card r${r}"><div class="rays"></div>${isNew?'<span class="new">NEW!</span>':''}<div class="rv-e">${it.e}</div><span class="rar" style="background:${RC[r]}">${RN[r]}</span><b>${it.n}</b><small>已放進背包，現在有 ${ISL().inv[it.id]} 個</small>
+    <button class="btn" data-rv="place">📍 放到島上</button>
+    <button class="btn alt" data-rv="again" ${(kind==='n'?(f>0||coin()>=8):coin()>=25)?'':'disabled'}>🎁 再抽一次</button>
+    <button class="btn alt sm" data-rv="close">收進背包</button></div>`;
+    if(r>=2){try{sfx.win&&sfx.win()}catch(e){}}
+    o.onclick=e=>{const b=e.target.closest('[data-rv]');if(!b)return;const a=b.dataset.rv;o.remove();
+      if(a==='place'){islClose();startPlace(it.id)}else if(a==='again'){drawBox(kind)}else{sheetBox()}};
+  },1300);
+}
+$('#islBar').addEventListener('click',e=>{const b=e.target.closest('[data-ia]');if(!b)return;const a=b.dataset.ia;
+  if(a==='shop')sheetShop();else if(a==='bag')sheetBag();else if(a==='box')sheetBox();
+  else if(a==='cancel')islIdle();else if(a==='ok')islOk();
+  else if(a==='mv')startPlace(ISLS.t,ISLS.idx);
+  else if(a==='pk'){const I=ISL();I.inv[ISLS.t]=(I.inv[ISLS.t]||0)+1;Island.remove(ISLS.idx);islSave();toast('收進背包了');islIdle()}});
+$('#islSheet').addEventListener('click',e=>{
+  const t=e.target.closest('[data-tab]');if(t){ISLS.cat=t.dataset.tab;sheetShop();return}
+  const b=e.target.closest('[data-buy]');if(b){const d=Island.BYID[b.dataset.buy],p=buyP(d);if(coin()<p)return;S.coin-=p;const I=ISL();I.inv[d.id]=(I.inv[d.id]||0)+1;I.seen[d.id]=1;save();islHud();startPlace(d.id);return}
+  const pl=e.target.closest('[data-place]');if(pl){startPlace(pl.dataset.place);return}
+  const dr=e.target.closest('[data-draw]');if(dr){drawBox(dr.dataset.draw);return}
+  if(e.target.closest('[data-ia="close"]'))islIdle()});
+$('#islTime').onclick=()=>{ISLS.tm=ISLS.tm==='auto'?'day':ISLS.tm==='day'?'night':'auto';$('#islTime').textContent=ISLS.tm==='auto'?'🌗':ISLS.tm==='day'?'☀️':'🌙';if(window.Island&&Island.setTime)Island.setTime(ISLS.tm);toast(ISLS.tm==='auto'?'跟著現在的時間':ISLS.tm==='day'?'白天':'晚上')};
+function renderIsl(){
+  $('#islHost').innerHTML='<p class="islmsg">載入我的島…</p>';islHud();
+  loadIsl().then(()=>{
+    if($('#v-isl').hidden)return;
+    $('#islHost').innerHTML='';const I=ISL(),sz=islSize();
+    if(!I.welcome){I.welcome=1;I.free=(I.free||0)+1;save();toast('🎁 歡迎！送你 1 個免費盲盒')}
+    Island.mount($('#islHost'),{size:sz});Island.setTime(ISLS.tm);Island.setItems(I.items);
+    Island.on('tile',islTile);Island.on('item',islItem);ISLS.on=true;
+    if(I.size&&sz>I.size)toast('🎉 島變大了！可以放更多東西');I.size=sz;save();islIdle();
+  }).catch(()=>{$('#islHost').innerHTML='<p class="islmsg">這個版本打不開 3D 島。<br>請用網址 ainstaccc.github.io/sayisland 開啟。</p>';$('#islBar').innerHTML=''});
+}
+function leaveIsl(){if(ISLS.on&&window.Island){try{Island.unmount()}catch(e){}ISLS.on=false}}
+$('#toIsl').onclick=()=>show('isl');
 
 /* ---------- 家長區 ---------- */
 let pgA=0;
