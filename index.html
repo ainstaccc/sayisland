@@ -489,6 +489,27 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .bdg span.off{opacity:1!important;filter:none!important;background:transparent!important;box-shadow:none!important;color:var(--ink);border:2px dashed var(--line)}
 .bdg span.off .sv{opacity:.45;filter:grayscale(.7)}
 .bdg span.off em{color:var(--ink2,var(--ink));opacity:.85;background:none}
+/* v1.7.4 結果頁／週挑戰／徽章 */
+.res{position:relative;overflow:hidden}
+.res::before{content:"";position:absolute;left:50%;top:-40px;width:340px;height:340px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,216,77,.38),transparent 62%);pointer-events:none;z-index:0}
+.res>*{position:relative;z-index:1}
+.res h2{font-size:30px;white-space:nowrap}
+.stars{gap:10px;font-size:64px}
+.stars span:not(.off){filter:drop-shadow(0 5px 0 rgba(217,154,0,.35));animation:pop .5s both,twk 2.4s ease-in-out 1.2s infinite}
+@keyframes twk{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.08) rotate(-4deg)}}
+.bonus{border:3px dashed #FFC83D;background:linear-gradient(135deg,color-mix(in srgb,var(--sun) 38%,var(--card)),color-mix(in srgb,var(--sun) 16%,var(--card)));box-shadow:0 4px 0 rgba(217,154,0,.28);animation:rise .5s .5s both}
+.wk .wd i.t{outline:3px solid #7B4DFF;outline-offset:2px;animation:tpulse 1.8s ease-in-out infinite}
+@keyframes tpulse{50%{outline-color:#FFC83D}}
+.wk .wd i.on{color:#13304A;font-size:20px}
+.wk .chest{width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:16px;background:linear-gradient(#FFF3C4,#FFD84D);box-shadow:0 4px 0 #D99A00}
+.wk .chest .sv{width:30px;height:30px}
+.bdg span.on{border:2px solid #FFC83D;box-shadow:0 3px 0 #D99A00}
+.bdg span.on .sv{filter:drop-shadow(0 2px 0 rgba(217,154,0,.35))}
+:root[data-theme="dark"] .res,:root[data-theme="dark"] #v-res .qcard{background:radial-gradient(circle at 20% 10%,rgba(255,216,77,.12) 0 14%,transparent 15%),radial-gradient(circle at 85% 30%,rgba(150,120,255,.16) 0 12%,transparent 13%),var(--card)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .res,:root:not([data-theme="light"]) #v-res .qcard{background:radial-gradient(circle at 20% 10%,rgba(255,216,77,.12) 0 14%,transparent 15%),radial-gradient(circle at 85% 30%,rgba(150,120,255,.16) 0 12%,transparent 13%),var(--card)}}
+:root[data-theme="dark"] .res::before{opacity:.3}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .res::before{opacity:.3}}
+@media (prefers-reduced-motion:reduce){.stars span,.wk .wd i.t,.bonus{animation:none!important}}
 .chest .sv{width:56px;height:56px}
 .dc>span .sv{width:1.2em;height:1.2em}
 .mission .ic .sv,.node .ic .sv{width:1em;height:1em;vertical-align:0}
@@ -563,7 +584,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.7.4</p>
   </section>
 
   <!-- 首頁 -->
@@ -582,7 +603,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.7.4</p>
   </section>
 
   <!-- 選擇題 -->
@@ -723,7 +744,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-grp" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.7.4</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -787,7 +808,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.7.4</p>
   </section>
 </div>
 
