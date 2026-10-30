@@ -536,6 +536,38 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .qcard{border:3px solid #fff;box-shadow:0 6px 0 rgba(150,80,190,.2),0 14px 22px -12px rgba(150,80,190,.35)}
 .opt:disabled:not(.good):not(.bad){opacity:.55;filter:saturate(.6)}
 @media (prefers-reduced-motion:reduce){.track i,.fb,.opt.good::after,.opt.bad::after{animation:none!important}}
+/* v1.8.0 首頁瘦身＋底部導航 */
+#v-home .islbtn,#v-home .grpbtn,#v-home .row2{display:none}
+.hbar{position:relative;height:40px;border-radius:999px;background:linear-gradient(#fff,#F1E6FF);border:3px solid #fff;box-shadow:inset 0 3px 0 rgba(150,80,190,.16),0 3px 0 rgba(150,80,190,.18);overflow:hidden}
+.hbar .hf{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:linear-gradient(#FF9CC4,#FF5E9E);transition:width .5s}
+.hbar .hs{position:absolute;inset:0;display:flex;align-items:center;justify-content:space-around;padding:0 4px}
+.hbar em{width:24px;height:24px;display:block;font-style:normal}
+.hbar em .sv{width:24px;height:24px;display:block}
+.hbar em:not(.on){filter:grayscale(1) brightness(1.35);opacity:.55}
+.daily2 .drow{display:block}
+.cmap .node{width:112px}
+.cmap .node .orb{width:76px;height:76px}
+.cmap .node .ic{font-size:36px}
+.cmap .node b{font-size:19px;padding:4px 8px}
+.cmap .node small{font-size:15px}
+.cmap .walker{font-size:44px}
+.cmap .t1{stroke-width:22;stroke-linejoin:round}
+.cmap .t2{stroke-linejoin:round}
+body.hasnav .wrap{padding-bottom:104px}
+.bnav{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;justify-content:center;padding:0 max(12px,env(safe-area-inset-left,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-right,0px));pointer-events:none}
+.bnav{gap:0}
+.bnav button{pointer-events:auto}
+.bnav::before{content:"";position:absolute;left:max(12px,env(safe-area-inset-left,0px));right:max(12px,env(safe-area-inset-right,0px));bottom:max(12px,env(safe-area-inset-bottom,0px));height:72px;max-width:536px;margin:0 auto;border-radius:36px;background:linear-gradient(#fff,#F6EAFF);border:4px solid #fff;box-shadow:0 6px 0 rgba(150,80,190,.25),0 14px 24px -8px rgba(150,80,190,.4);box-sizing:border-box}
+.bnav button{position:relative;z-index:1;flex:1 1 0;min-width:0;max-width:107px;height:72px;margin-bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;border-radius:30px;color:#5E4C82;font:900 15px/1.1 var(--f-disp);white-space:nowrap}
+.bnav button .sv,.bnav button i .sv{width:30px;height:30px;display:block}
+.bnav button i{display:block;width:30px;height:30px;font-style:normal}
+.bnav button.on{background:linear-gradient(#FFE680,#FFC83D);color:#3B2A00;box-shadow:0 4px 0 #D99A00;transform:translateY(-4px);height:72px}
+.bnav .rdot{position:absolute;top:6px;right:calc(50% - 26px);width:14px;height:14px;border-radius:50%;background:#FF4D6D;box-shadow:0 0 0 3px #fff}
+:root[data-theme="dark"] .bnav::before{background:linear-gradient(#3A2A66,#2B1D4D);border-color:#45327A}
+:root[data-theme="dark"] .bnav button{color:#C2B2E6}
+:root[data-theme="dark"] .bnav button.on{color:#3B2A00}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bnav::before{background:linear-gradient(#3A2A66,#2B1D4D);border-color:#45327A}:root:not([data-theme="light"]) .bnav button{color:#C2B2E6}:root:not([data-theme="light"]) .bnav button.on{color:#3B2A00}}
+@media (max-width:340px){.bnav button{font-size:14px}.bnav button .sv,.bnav button i .sv,.bnav button i{width:26px;height:26px}}
 </style>
 
 <div class="wrap" id="app">
@@ -548,6 +580,14 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     </div>
   </header>
 
+  <!-- v1.8.0 底部導航 -->
+  <nav id="bnav" class="bnav" aria-label="主選單" hidden>
+    <button type="button" data-nv="home" aria-label="地圖"><svg class="sv" viewBox="0 0 32 32" aria-hidden="true"><path d="M5 15 16 5l11 10v11a2 2 0 0 1-2 2h-6v-8h-6v8H7a2 2 0 0 1-2-2z" fill="#FFD84D" stroke="#C98F00" stroke-width="2" stroke-linejoin="round"/></svg><span>地圖</span></button>
+    <button type="button" data-nv="isl" aria-label="我的島"><i data-i="island"></i><span>我的島</span></button>
+    <button type="button" data-nv="grp" aria-label="好友團"><i data-i="friends"></i><span>好友團</span><b class="rdot" id="nvDot" hidden></b></button>
+    <button type="button" data-nv="deck" aria-label="詞卡冊"><i data-i="book"></i><span>詞卡冊</span></button>
+    <button type="button" data-nv="parent" aria-label="家長區"><i data-i="gear"></i><span>家長</span></button>
+  </nav>
   <!-- 誰要玩 -->
   <div id="fx" aria-hidden="true"></div>
   <section id="v-who" class="wrap" hidden>
@@ -563,7 +603,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
 
   <!-- 首頁 -->
@@ -582,7 +622,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -723,7 +763,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-grp" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -787,7 +827,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.7.3</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
 </div>
 
@@ -1620,7 +1660,17 @@ function say(text){
 
 /* ---------- 版面 ---------- */
 const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp','isl'];
-function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot-img',msUri(MI))}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));
+/* v1.8.0 底部導航 */
+const NAVV=['home','grp','deck','parent'];
+function syncNav(v){const nb=$('#bnav');if(!nb)return;const on=NAVV.includes(v);nb.hidden=!on;document.body.classList.toggle('hasnav',on);
+  nb.querySelectorAll('button').forEach(b=>{const a=b.dataset.nv===v;b.classList.toggle('on',a);a?b.setAttribute('aria-current','page'):b.removeAttribute('aria-current')});
+  const g=$('#grpDot'),d=$('#nvDot');if(g&&d)d.hidden=g.hidden}
+try{new MutationObserver(()=>{const g=$('#grpDot'),d=$('#nvDot');if(g&&d)d.hidden=g.hidden}).observe($('#grpDot'),{attributes:true,attributeFilter:['hidden']})}catch(x){}
+document.addEventListener('click',e=>{const b=e.target.closest&&e.target.closest('#bnav button');if(!b)return;const k=b.dataset.nv;
+  const map={home:null,isl:'#toIsl',grp:'#toGrp',deck:'#toDeck',parent:'#toParent'};
+  if(k==='home'){const h=$('#v-home');if(h&&h.hidden)document.querySelector('[data-home]')&&document.querySelector('[data-home]').click();return}
+  const t=$(map[k]);if(t)t.click()});
+function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot-img',msUri(MI))}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));syncNav(v);
   if(v==='home')renderHome();if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
 document.addEventListener('click',e=>{if(e.target.closest('[data-home]')){try{speechSynthesis.cancel()}catch(x){}show('home')}});
 
@@ -1732,33 +1782,36 @@ function renderHome(){
   $('#growTxt').textContent=nx?`再吃 ${need-have} 顆蘋果就變${nx[2]}！（同一題連續答對 2 次＝1 顆）`:'夥伴已經長到最大了！';
   renderWeek();renderBk();
   const dc=dailyCats(),nd=dc.filter(k=>todayN(k)>=GOAL).length;
-  $('#dRow').innerHTML=dc.map(k=>{const c=CATS[k],n=todayN(k),ok=n>=GOAL;return `<button class="dc${ok?' ok':''}" data-cat="${k}" aria-label="${c.n}"><span>${cic(k)}</span><i>${ok?'✓':Math.min(n,GOAL)+'/'+GOAL}</i></button>`}).join('');
+  $('#dRow').innerHTML=`<div class="hbar" role="img" aria-label="今天完成 ${nd} 關，共 ${dc.length} 關"><i class="hf" style="width:${dc.length?Math.round(nd/dc.length*100):0}%"></i><span class="hs">${dc.map((k,i)=>`<em class="${i<nd?'on':''}">${ICO.heart}</em>`).join('')}</span></div>`;
   $('#dailyTxt').textContent=S.bonus===today()?'今天全部完成了，明天再來！':`完成 ${nd}/${dc.length} 關　每關 ${GOAL} 題，全完成多 3 顆星`;
   renderMap();
 }
 /* ---------- 冒險地圖（v1.0）：夥伴會走到你點的關卡 ---------- */
-const MAPX=[24,72,30,70,26,74,32,68,50];
-const MAPH=132,MAPTOP=78;
+const MAPX=[18,50,82,82,50,18,18,50,82],MAPDY=[0,22,0,0,22,0,0,22,0];
+const MAPH=172,MAPTOP=70,COLS=3;
+const mapY=i=>MAPTOP+Math.floor(i/COLS)*MAPH+MAPDY[i%MAPDY.length];
+const mapRows=n=>Math.ceil(n/COLS);
+const mapH=n=>MAPTOP+mapRows(n)*MAPH+10;
 let mapLast=null,mapBusy=false;
 const REDU=()=>window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
 function mapKeys(){const ks=Object.keys(CATS).filter(k=>k==='u'||D[k].some(x=>x.lv===S.lv));return ks.filter(k=>k!=='u').concat(ks.includes('u')?['u']:[])}
-function nodeCenter(i){const W=$('#missions').clientWidth||320;return [MAPX[i%MAPX.length]/100*W,MAPTOP+i*MAPH+46]}
+function nodeCenter(i){const W=$('#missions').clientWidth||320;return [MAPX[i%MAPX.length]/100*W,mapY(i)+38]}
 function renderMap(){
-  const box=$('#missions'),ks=mapKeys();box.style.height=(MAPTOP+ks.length*MAPH+30)+'px';
-  const deco=[ICO.cloud,ICO.star,ICO.balloon,ICO.cloud,ICO.heart,ICO.star,ICO.cloud,ICO.balloon].map((e,i)=>`<i class="dco" style="left:${[6,86,48,90,10,52,84,14][i]}%;top:${40+i*(ks.length*MAPH/8)}px;animation-delay:${i*.4}s">${e}</i>`).join('');
+  const box=$('#missions'),ks=mapKeys();box.style.height=mapH(ks.length)+'px';
+  const deco=[ICO.cloud,ICO.star,ICO.balloon,ICO.cloud,ICO.heart,ICO.star,ICO.cloud,ICO.balloon].map((e,i)=>`<i class="dco" style="left:${[6,86,48,90,10,52,84,14][i]}%;top:${30+i*((mapH(ks.length)-60)/8)}px;animation-delay:${i*.4}s">${e}</i>`).join('');
   box.innerHTML=`<svg class="trail" id="trail" aria-hidden="true"></svg>${deco}`+ks.map((k,i)=>{
     const c=CATS[k],pool=k==='u'?D.u:D[k].filter(x=>x.lv===S.lv),m=pool.filter(learned).length,n=todayN(k),ok=n>=GOAL;
-    return `<button class="node${ok?' ok':''}" style="--c:var(${c.c});left:${MAPX[i%MAPX.length]}%;top:${MAPTOP+i*MAPH}px" data-cat="${k}" aria-label="${c.n}">${c.nw?'<span class="new">新</span>':''}<span class="orb"><span class="ic">${cic(k)}</span>${ok?'<em class="chk">✓</em>':''}</span><b>${c.n}</b><small>${k==='u'?'家長準備':ok?'今天完成':'今天 '+Math.min(n,GOAL)+'/'+GOAL}</small></button>`}).join('')+`<div class="walker" id="walker" aria-hidden="true"><span>${$('#mascot').textContent}</span></div>`;
+    return `<button class="node${ok?' ok':''}" style="--c:var(${c.c});left:${MAPX[i%MAPX.length]}%;top:${mapY(i)}px" data-cat="${k}" aria-label="${c.n}">${c.nw?'<span class="new">新</span>':''}<span class="orb"><span class="ic">${cic(k)}</span>${ok?'<em class="chk">✓</em>':''}</span><b>${c.n}</b><small>${k==='u'?'家長準備':ok?'今天完成':'今天 '+Math.min(n,GOAL)+'/'+GOAL}</small></button>`}).join('')+`<div class="walker" id="walker" aria-hidden="true"><span>${$('#mascot').textContent}</span></div>`;
   drawTrail(ks);
   const first=ks.findIndex(k=>k!=='u'&&todayN(k)<GOAL),target=first<0?ks.length-1:first;
   const from=mapLast!=null&&mapLast<ks.length?mapLast:0;
   placeWalker(from,false);
   if(target!==from)setTimeout(()=>{if($('#walker'))placeWalker(target,true)},REDU()?0:500);
   mapLast=target;
-  requestAnimationFrame(()=>{if(!$('#walker'))return;drawTrail(ks);const w=$('#walker');if(!w.classList.contains('go')&&w.dataset.i!=null&&!w._mv){const x=nodeCenter(+w.dataset.i)[0],W=$('#missions').clientWidth||320;w.style.left=(x+(x<W/2?80:-80))+'px'}});
+  requestAnimationFrame(()=>{if(!$('#walker'))return;drawTrail(ks);const w=$('#walker');if(!w.classList.contains('go')&&w.dataset.i!=null&&!w._mv){const x=nodeCenter(+w.dataset.i)[0],W=$('#missions').clientWidth||320;w.style.left=(x-34)+'px'}});
 }
 function drawTrail(ks){
-  const W=$('#missions').clientWidth||320,H=MAPTOP+ks.length*MAPH+30;
+  const W=$('#missions').clientWidth||320,H=mapH(ks.length);
   let d='';const pts=ks.map((k,i)=>nodeCenter(i));pts.unshift([W/2,24]);
   pts.forEach((pt,i)=>{if(!i){d+=`M${pt[0]},${pt[1]}`;return}const pr=pts[i-1],my=(pr[1]+pt[1])/2;d+=` C${pr[0]},${my} ${pt[0]},${my} ${pt[0]},${pt[1]}`});
   $('#trail').setAttribute('viewBox',`0 0 ${W} ${H}`);$('#trail').setAttribute('width',W);$('#trail').setAttribute('height',H);
@@ -1768,7 +1821,7 @@ function placeWalker(i,anim){
   const w=$('#walker');if(!w)return;const [x,y]=nodeCenter(i);
   const px=parseFloat(w.dataset.x||x);w.classList.toggle('flip',x>px?false:x<px);
   w.dataset.x=x;w.dataset.i=i;w.classList.toggle('go',!!anim&&!REDU());
-  const W=$('#missions').clientWidth||320,wx=x+(x<W/2?80:-80);w.dataset.wx=wx;w.style.left=wx+'px';w.style.top=(y-34)+'px';
+  const wx=x-34;w.dataset.wx=wx;w.style.left=wx+'px';w.style.top=(y-38-40)+'px';
   if(anim)setTimeout(()=>w.classList.remove('go'),700);
 }
 addEventListener('resize',()=>{if($('#missions')&&!$('#v-home').hidden){const ks=mapKeys();drawTrail(ks);const w=$('#walker');if(w&&mapLast!=null)placeWalker(mapLast,false)}});
