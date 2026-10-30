@@ -31,3 +31,7 @@
 8. 在 `tools/ui-log.md` 最上面追加：日期、主題、改了什麼、截圖檢查結果。
 9. `git pull --rebase`（每晚還有題庫機器人會 commit）→ `git add -A && git commit && git push origin main`。commit 訊息：`ui: YYYY-MM-DD 主題簡述`，結尾加排程給的 Co-Authored-By 與 Claude-Session 行。
 10. 回報：今天主題、改了哪幾處、驗證結果、push 是否成功。
+
+## 補充（v1.7.2）
+- 人類（Stacy 的手動版本）是從 `zizi.html` 打包出 `index.html`。排程直接改 `index.html` 沒問題，但請在 commit 訊息與 `tools/ui-log.md` 清楚寫出改了哪些 CSS／函式，方便手動版同步回去。
+- 頭像是 `a:代號` 格式（`AVSVG`），不要改回 emoji；島是六角地塊（`island.js` 的 `hp()`、`RAD()`、`hd()`），不要改回方格。
