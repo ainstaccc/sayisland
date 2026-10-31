@@ -656,7 +656,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
       <span class="tag" id="ttag">看圖說話</span>
       <div class="pic" id="tpic"></div>
       <p class="cap" id="tcap"></p>
-      <div class="ask" style="font-size:22px">看看圖，說說看！<br><span style="font-size:18px;font-weight:500;color:var(--ink2)">有誰？在哪裡？在做什麼？心情怎麼樣？</span></div>
+      <div class="ask" style="font-size:22px">看看圖，說說看！<br><span id="tqs" style="font-size:18px;font-weight:500;color:var(--ink2)">有誰？在哪裡？在做什麼？心情怎麼樣？</span></div>
       <div id="tin" style="width:100%;display:flex;flex-direction:column;gap:10px">
         <textarea class="ta" id="tbox" maxlength="150" placeholder="按鍵盤上的 🎤 用說的，或用注音打字" aria-label="說出你看到的"></textarea>
         <div class="fbrow" style="justify-content:center">
@@ -1264,10 +1264,14 @@ const E2=[
 const EL=['誰','哪裡','做什麼','樣子','心情'];
 const ELI={誰:'👤',哪裡:'📍',做什麼:'🎬',樣子:'🎨',心情:'💗',原因:'❓'};
 const els=()=>S.lv===3?[...EL,'原因']:EL;
-const CAUSE0=['因為','所以','由於','為了','因此','才會','怕'];
+const CAUSE0=['因為','所以','由於','為了','因此','才會','怕','是因為','這樣才','好讓'];
 const ASKS={誰:'圖裡有誰呢？',哪裡:'他們在什麼地方？',做什麼:'他們在做什麼事？',樣子:'再看看圖，天氣、顏色、東西是什麼樣子？',心情:'你覺得他們的心情怎麼樣？為什麼？',原因:'為什麼會這樣呢？用「因為」說說看。'};
 const MOOD=['焦急','著急','擔心','無奈','失望','後悔','驚訝','激動','感動','心疼','不忍','難受','滿意','開心','高興','快樂','笑','愉快','滿足','喜歡','興奮','幸福','舒服','好玩','期待','得意','驕傲','難過','害怕','生氣','緊張','無聊','餓','好想','想吃','感覺','覺得','很棒','太棒','狼狽','沮喪','傷心','尷尬','委屈','害羞','驚喜','慌張','嚇','開懷','失落','孤單','可憐','溫暖','放心','安心','自在','輕鬆'];
-const WHO0=['我','他','她','牠','它'];
+const WHO0=['我','他','她','牠','它','人','大家','哥哥','姊姊','姐姐','弟弟','妹妹','哥','姐','姊','弟','妹','爸','媽','爺','奶','公','嬤','婆','阿姨','叔叔','伯伯','舅','姑','姨','老師','同學','朋友','小朋友','男生','女生','男孩','女孩','孩子','小孩','寶寶','先生','小姐','醫生','警察','店員','老闆','爸爸媽媽'];
+/* 「誰」= 任何人或角色：親屬、稱謂、人名（小芳、小明、阿華…）都算 */
+const isWho=t=>WHO0.some(k=>t.includes(k))||/(?<!小)小(?![小心聲時學的了])[\u4e00-\u9fff]/.test(t)||/阿[\u4e00-\u9fff]/.test(t);
+/* 每個標籤對應的提問：題目上方的提示會跟著顯示，孩子照著提示練習說 */
+const ELQ={誰:'有誰？',哪裡:'在哪裡？',做什麼:'在做什麼？',樣子:'看起來什麼樣子？（天氣、顏色、東西）',心情:'心情怎麼樣？',原因:'為什麼？（用「因為」說說看）'};
 const TS=[
 {lv:1,pic:'👦🍉👧🌳',title:'夏天的公園',cap:'圖裡的哥哥叫小明，旁邊是他妹妹。',desc:'夏天，公園的長椅上，哥哥小明和妹妹各拿著一片紅紅的西瓜在吃，旁邊有樹，兩個人都笑得很開心。',model:'夏天的公園裡，小明和妹妹坐在長椅上吃紅紅的西瓜，兩個人都很開心。',
  kw:{誰:['小明','妹妹','哥哥','妹','弟','姐','小朋友','男生','女生','男孩','女孩','兩個','孩子','小孩'],哪裡:['公園','樹','草','長椅','椅子','戶外','外面','花園'],做什麼:['吃','咬','啃','坐','玩'],樣子:['夏天','熱','紅','甜','好吃','涼','大','綠']}},
@@ -1995,9 +1999,9 @@ function localJudge(sc,text){
       ask:who?`把它們連成一句話：「${who}」在做什麼呢？`:'把它們連成一句完整的話：圖裡是誰？他在做什麼？'};
   }
   const cov=els().filter(el=>{
-    if(el==='原因')return (sc.kw.原因||CAUSE0).some(k=>text.includes(k));
+    if(el==='原因')return CAUSE0.some(k=>text.includes(k))||(sc.kw.原因||[]).some(k=>text.includes(k));
     if(el==='心情')return MOOD.some(k=>text.includes(k));
-    if(el==='誰')return WHO0.some(k=>text.includes(k))||(sc.kw.誰||[]).some(k=>text.includes(k));
+    if(el==='誰')return isWho(text)||(sc.kw.誰||[]).some(k=>text.includes(k));
     const hit=(sc.kw[el]||[]).some(k=>text.includes(k));
     if(hit)return true;
     if(el==='哪裡')return PLACE0.some(k=>text.includes(k))||/[在到去來往](?:[^，。！？]{0,3})(邊|裡|上|中|旁|園|場|館|店|院|校|站|室|廳|房|灘|池)/.test(text);
@@ -2017,11 +2021,11 @@ function renderT(){
   const sc=T.list[T.i];T.tries=0;T.ctl=null;T.done=false;T.busy=false;T.last=null;
   $('#tprog').style.width=(T.i/T.list.length*100)+'%';$('#tprog').style.background='var(--c5)';
   $('#tcount').textContent=(T.i+1)+'/'+T.list.length;
-  $('#tpic').textContent=sc.pic;$('#tcap').textContent=sc.cap||'';
+  $('#tpic').textContent=sc.pic;$('#tcap').textContent=sc.cap||'';$('#tqs').textContent=els().map(x=>ELQ[x]).join('');
   $('#tbox').value='';$('#thint').textContent='';
   $('#tin').hidden=false;$('#tfb').hidden=true;
 }
-$('#tprompt').onclick=()=>say('看看圖，說說看。有誰？在哪裡？在做什麼？心情怎麼樣？');
+$('#tprompt').onclick=()=>say('看看圖，說說看。'+els().map(x=>ELQ[x].replace(/（.*?）/g,'')).join(''));
 /* 最簡單的開口方式：點「開始說話」就打開鍵盤，孩子按鍵盤上的 🎤 聽寫；也可以用注音打字 */
 $('#tmic').onclick=()=>{
   const b=$('#tbox');b.focus();
