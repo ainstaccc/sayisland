@@ -601,7 +601,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.8.0</p>
+    <p class="ver">說說島 v1.8.1</p>
   </section>
 
   <!-- 首頁 -->
@@ -620,7 +620,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.8.0</p>
+    <p class="ver">說說島 v1.8.1</p>
   </section>
 
   <!-- 選擇題 -->
@@ -763,7 +763,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.8.0</p>
+    <p class="ver">說說島 v1.8.1</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -832,7 +832,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.8.0</p>
+    <p class="ver">說說島 v1.8.1</p>
   </section>
 </div>
 
@@ -937,10 +937,10 @@ function petSalmon(st){
  return MS(`<ellipse cx="32" cy="56" rx="18" ry="2.500" fill="#000" opacity=".08"/><path d="M46 36q8-10 16-8-5 8 0 18-8 0-16-10z" ${SK('#E6806F','#B04F46',2)}/><ellipse cx="29" cy="37" rx="23" ry="12.500" ${SK('#F59A8A','#B04F46')}/><path d="M22 20q8 5 16 1 0 6-16 5z" ${SK('#E6806F','#B04F46',2)}/><path d="M10 38q18 9 34 0-8 12-34 0z" fill="#FFC9BB"/><path d="M7 38q-2-5 3-6l5 3q-3 4-8 3z" ${SK('#F59A8A','#B04F46',2)}/>${[22,29,36,42].map((x,i)=>`<circle cx="${x}" cy="${30+(i%2)*2}" r="1.700" fill="#C94F5C"/>`).join('')}${EY(15,33,3.6)}${CHK(20,40)}<path d="M9 38q3 3 7 1" ${LN('#B5603F',1.6)}/>`);}
 const PETS={
  chick:{n:'小雞',cls:'雞',stg:['雛雞','小雞','少年雞','公雞'],art:petChick,fin:s=>s==='f'?'p_hen':'p_rooster',fn:{m:'公雞',f:'母雞'},it:'p_rooster'},
- bird:{n:'小鳥',stg:['雛鳥','幼鳥','少年鳥','老鷹'],art:petBird,fin:()=>'p_eagle'},
+ bird:{n:'小鳥',stg:['雛鳥','幼鳥','小鳥','老鷹'],art:petBird,fin:()=>'p_eagle'},
  frog:{n:'小青蛙',stg:['蝌蚪','長腿蝌蚪','小青蛙','青蛙'],art:petFrog,fin:()=>'p_frog'},
- dino:{n:'小恐龍',stg:['幼龍','小龍','少年龍','暴龍'],art:petDino,fin:()=>'p_trex'},
- salmon:{n:'小鮭魚',stg:['仔魚','幼魚','銀鮭','成年鮭魚'],art:petSalmon,fin:()=>'p_salmon'}};
+ dino:{n:'小恐龍',stg:['龍寶寶','幼龍','小龍','暴龍'],art:petDino,fin:()=>'p_trex'},
+ salmon:{n:'小鮭魚',stg:['仔魚','幼魚','小魚','成年鮭魚'],art:petSalmon,fin:()=>'p_salmon'}};
 const PSP=Object.keys(PETS),EGGK=Object.keys(EGGC);
 const PAT=[4,8,12,16];
 const petStage=ap=>PAT.filter(x=>ap>=x).length;
