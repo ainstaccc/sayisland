@@ -638,7 +638,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.12.0</p>
+    <p class="ver">說說島 v1.13.0</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -667,7 +667,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.12.0</p>
+    <p class="ver">說說島 v1.13.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -811,7 +811,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.12.0</p>
+    <p class="ver">說說島 v1.13.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -880,7 +880,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.12.0</p>
+    <p class="ver">說說島 v1.13.0</p>
   </section>
 </div>
 
@@ -1060,6 +1060,7 @@ const miiParse=str=>{str=String(str||'').replace(/^m:/,'');const leg=!/p\d/.test
 function miiFix(m){if(!m||m.v===2)return m;const c=m.cur||{},o=m.own||{};
   m.cur=Object.assign({},M_DEF,{s:c.s||0,h:c.h||0,c:c.c||0,t:c.t||0,a:c.a||0,e:M_EMAP[c.e||0]||0,x:c.g||0});
   m.own={h:o.h||[],t:o.t||[],a:o.a||[],e:(o.e||[]).map(i=>M_EMAP[i]).filter(i=>i!==undefined),x:(o.g||[]).slice()};m.v=2;return m}
+const miiFace=c=>miiSvg(Object.assign({},M_DEF,c),{feat:1});
 const miiStr=c=>Object.keys(M_DEF).map(k=>k+(c[k]||0)).join('');
 const mixc=(h,f,w)=>{const n=parseInt(h.slice(1),16),t=w?255:0,c=[n>>16&255,n>>8&255,n&255].map(v=>Math.round(v+(t-v)*f));return'#'+c.map(v=>v.toString(16).padStart(2,'0')).join('')};
 function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M_SKIN[0],hc=M_HAIR[c.c]||M_HAIR[0],OL='#4A382E',ds='#3D2E26',ST=` stroke="${OL}" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"`,SH='M8 64Q10 48 32 47Q54 48 56 64Z';
@@ -1109,6 +1110,7 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
    `<g fill="#FF6B9A" fill-opacity=".9" stroke="${OL}" stroke-width="1"><path d="M24.5 37.4L19.5 32.4A2.8 2.8 0 0 1 24.5 29.9A2.8 2.8 0 0 1 29.5 32.4Z"/><path d="M39.5 37.4L34.5 32.4A2.8 2.8 0 0 1 39.5 29.9A2.8 2.8 0 0 1 44.5 32.4Z"/></g>`,
    `<g transform="rotate(-25 43 38)"><rect x="39" y="36" width="9" height="4" rx="1.6" fill="#FFE2BC" stroke="${OL}" stroke-width=".8"/><path d="M43.5 36v4" stroke="#E0B88F" stroke-width=".8"/></g>`,
    `<g fill="#B5764F"><circle cx="20" cy="35.5" r=".7"/><circle cx="22.5" cy="36.6" r=".7"/><circle cx="19.5" cy="37.5" r=".7"/><circle cx="44" cy="35.5" r=".7"/><circle cx="41.5" cy="36.6" r=".7"/><circle cx="44.5" cy="37.5" r=".7"/></g>`][c.x]||'';
+  if(o.feat)return`<svg xmlns="http://www.w3.org/2000/svg" viewBox="14.5 16 35 33" width="280" height="264"><g transform="translate(0 2.5)"><circle cx="20.6" cy="37.6" r="3.7" fill="#FF8C9C" fill-opacity="${X.ck}"/><circle cx="43.4" cy="37.6" r="3.7" fill="#FF8C9C" fill-opacity="${X.ck}"/>${eye(24.5,-1)}${eye(39.5,1)}${brow(24.5,-1)}${brow(39.5,1)}${mouth}${GA}</g></svg>`;
   const full=!!o.stage||['t','p','s','full'].indexOf(o.z)>=0,tile=!!o.z||o.tile,vb=o.vb||(o.stage?M_ZV.full:M_ZV[o.z]||'0 0 64 64');
   const bg=o.stage?'':tile?`<rect x="-60" y="-60" width="200" height="200" fill="${o.bg||'#FFF1F8'}"/>`:`<circle cx="32" cy="32" r="31" fill="${o.bg||'#E8F4FF'}"/>`;
   let body;
@@ -3013,7 +3015,7 @@ function renderIsl(){
     if($('#v-isl').hidden)return;
     if(ISLS.on){try{Island.unmount()}catch(e){}ISLS.on=false}
     $('#islHost').innerHTML='';const I=ISL(),v=ISLS.visit,sz=ISLS.at?8:v?(+v.sz||6):islSize();
-    window.__MII=v?(/^m:/.test(v.av||'')?miiParse(v.av):{}):(S.mii?miiFix(S.mii).cur:{});
+    window.__MII=v?(/^m:/.test(v.av||'')?miiParse(v.av):{}):(S.mii?miiFix(S.mii).cur:{});window.__MII_FACE=miiFace(window.__MII);
     Island.mount($('#islHost'),{size:sz,theme:ISLS.at||null});Island.setTime(ISLS.tm);
     if(ISLS.at&&!v){const drop=Island.setItems((I.outs||{})[ISLS.at]||[])||[];if(drop.length){drop.forEach(r=>{I.inv[r[0]]=(I.inv[r[0]]||0)+1});(I.outs=I.outs||{})[ISLS.at]=Island.list();save()}Island.on('tile',islTile);Island.on('item',islItem)}
     else if(v){Island.setItems(parseIsl(v.isl));Island.on('tile',null);Island.on('item',null);if(typeof v.isl!=='string')toast(v.nick+' 還沒更新到新版，島先空著')}
