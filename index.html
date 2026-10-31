@@ -153,6 +153,9 @@ h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
 .ask{font:800 24px/1.3 var(--f-disp)}
 .opts.col{grid-template-columns:1fr}
 .opts.col .opt{font-size:clamp(21px,5.8vw,26px);min-height:62px}
+.opts.two{grid-template-columns:1fr 1fr}
+.opts.two .opt{min-height:96px;font-size:clamp(40px,12vw,56px)}
+.opts.zy .opt{white-space:nowrap;letter-spacing:.04em}
 .grow{font:800 20px/1.4 var(--f-disp);color:var(--ok)}
 .hint{font-size:17px;color:var(--ng);min-height:26px}
 
@@ -557,6 +560,15 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .qcard{border:3px solid #fff;box-shadow:0 6px 0 rgba(150,80,190,.2),0 14px 22px -12px rgba(150,80,190,.35)}
 .opt:disabled:not(.good):not(.bad){opacity:.55;filter:saturate(.6)}
 @media (prefers-reduced-motion:reduce){.track i,.fb,.opt.good::after,.opt.bad::after{animation:none!important}}
+/* v1.7.9 注音選項字放大 */
+.opts.zy .opt{font-size:clamp(28px,8vw,36px)}
+body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
+.pnum{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.pnum button{min-height:52px;border-radius:14px;border:2px solid var(--line);background:#fff;font:800 22px/1 inherit;color:var(--ink)}
+.pnum button.on{background:var(--c1);border-color:var(--c1);color:#fff}
+.prpop{position:fixed;inset:0;z-index:9999;background:rgba(40,20,70,.55);display:flex;align-items:center;justify-content:center;padding:24px}
+.prc{background:#fff;border-radius:28px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;animation:pop .4s}
+.prc .pre{font-size:72px;line-height:1}.prc b{font-size:28px;line-height:1.3}.prc p{font-size:22px;margin:0}
 </style>
 
 <div class="wrap" id="app">
@@ -584,7 +596,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.7.4</p>
+    <p class="ver">說說島 v1.7.10</p>
   </section>
 
   <!-- 首頁 -->
@@ -603,7 +615,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.7.4</p>
+    <p class="ver">說說島 v1.7.10</p>
   </section>
 
   <!-- 選擇題 -->
@@ -686,7 +698,8 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   <section id="v-unit" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><b style="font:800 26px/1 var(--f-disp)">📚 我的課文</b></div>
     <div id="ulist" class="ostack"></div>
-    <p class="muted">課文由家長自己上傳，只存在這台裝置，不會分享出去。</p>
+    <div id="ushared" class="ostack"></div>
+    <p class="muted">課文由家長自己上傳，只存在這台裝置。家長可以把「題目」分享給好友團（不含課文全文）。</p>
   </section>
 
   <!-- 句子排序 -->
@@ -743,8 +756,9 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
   </section>
   <section id="v-grp" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
+    <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.7.4</p>
+    <p class="ver">說說島 v1.7.10</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -772,6 +786,11 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
     <div class="panel"><h3>各關練習狀況</h3><div class="scroll"><table class="tbl" id="ptbl"></table></div></div>
     <div class="panel"><h3>學習紀錄（近 14 天）</h3><p class="muted" id="plogSum"></p><div class="scroll"><table class="tbl" id="plog"></table></div><p class="muted">數字是當天答的題數，綠色代表達到每天 3 題的目標。</p></div>
     <div class="panel"><h3>各關怎麼玩</h3><div id="phow"></div></div>
+    <div class="panel"><h3>🎁 獎勵島幣</h3><p class="muted" id="prwho"></p>
+      <div class="pnum" id="prnum"></div>
+      <input class="ta" id="prwhy" maxlength="14" style="min-height:0;height:52px" placeholder="為什麼獎勵？例如：主動收玩具（可不填）" aria-label="獎勵原因">
+      <div class="fbrow"><button class="btn" id="prsend">送出島幣</button></div>
+      <div class="hint" id="prmsg"></div><div id="prlog" class="muted"></div></div>
     <div class="panel"><h3>低年級自動唸題目</h3><p class="muted">低年級選擇題一出現就自動唸一次，小朋友還不太會認字時很有用。</p><label style="display:flex;gap:10px;align-items:center;font-size:20px"><input type="checkbox" id="pauto" style="width:26px;height:26px"> 自動唸題目</label></div>
     <div class="panel"><h3>發音修正</h3><p class="muted">發現某個詞唸錯（例如破音字），在左邊填原詞、右邊填「同音但不會唸錯的字」，按新增。只改發音，不改畫面；全部小朋友通用。可按「試唸」確認。</p>
       <div class="row2"><input class="ta" id="pfa" style="min-height:0;height:52px" maxlength="8" placeholder="原詞，例如：頭髮" aria-label="原詞"><input class="ta" id="pfb" style="min-height:0;height:52px" maxlength="8" placeholder="改唸成，例如：頭法" aria-label="改唸成"></div>
@@ -808,7 +827,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.7.4</p>
+    <p class="ver">說說島 v1.7.10</p>
   </section>
 </div>
 
@@ -1646,7 +1665,7 @@ function say(text){
 /* ---------- 版面 ---------- */
 const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp','isl'];
 function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot-img',msUri(MI))}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));
-  if(v==='home')renderHome();if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
+  if(v==='home'){renderHome();setTimeout(prPop,350)}if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
 document.addEventListener('click',e=>{if(e.target.closest('[data-home]')){try{speechSynthesis.cancel()}catch(x){}show('home')}});
 
 /* ---------- 進度計算 ---------- */
@@ -1666,7 +1685,11 @@ function pickItems(cat,n,only){
   return pool.map(x=>[(learned(x)&&!stale(x)?1:learned(x)?.4:0)+Math.random()*.9,x]).sort((a,b)=>a[0]-b[0]).slice(0,n).map(a=>a[1]);
 }
 const chunks=str=>(str.match(/[^，。！？]+[，。！？]?/g)||[]).map(p=>`<span class="ch">${esc(p)}</span>`).join('');
-const qFull=q=>q.cat==='h'?q.ans:q.t.replace('＿＿',q.ans);
+const zyClean=t=>t.replace(ZYRE,'').replace('＿＿','').replace(/[「『]\s*[」』]/g,'').replace(/[（(]\s*[）)]/g,'').replace(/[，、]{2,}/g,'，').replace(/^[，。\s]+|[，\s]+$/g,'').replace(/。+$/,'');
+const qFull=q=>{if(q.cat==='h')return q.ans;
+  if(q.cat==='u'&&isOX(q.ans))return zyClean(q.t)+(q.ans==='○'?'。這句話是對的。':'。這句話是錯的。');
+  if(q.cat==='u'&&hasZy(q.t+q.ans))return q.tip||zyClean(q.t);
+  return q.t.replace('＿＿',q.ans)};
 
 /* ---------- 誰要玩（多位小朋友） ---------- */
 let WF={mode:'add',id:'',av:AVS[0],lv:1};
@@ -1837,18 +1860,19 @@ let Q=null,lastGame=null;
 function startQuiz(cat,only){
   lastGame=()=>startQuiz(cat,only);
   const list=pickItems(cat,6,only);
-  Q={cat,list,i:0,firstOk:0,total:list.length,retried:false,locked:false,first:{}};
+  Q={cat,only,list,i:0,firstOk:0,total:list.length,retried:false,locked:false,first:{}};
   show('quiz');renderQ();
 }
-const qSpoken=q=>q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說比較好？第一種，${q.shown[0]}。第二種，${q.shown[1]}。第三種，${q.shown[2]}。`:q.t.replace('＿＿','，什麼，');
+const qSpoken=q=>q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說比較好？第一種，${q.shown[0]}。第二種，${q.shown[1]}。第三種，${q.shown[2]}。`:(q.cat==='u'&&isOX(q.ans)?zyClean(q.t)+'。對還是錯？':q.cat==='u'&&hasZy(q.t+q.opts.join(''))?zyClean(q.t)+'。請選出正確的答案。':q.t.replace('＿＿','，什麼，'));
 $('#qlisten').onclick=()=>{if(Q)say(qSpoken(Q.list[Q.i]))};
+function uLayout(q){if(q.opts.length===2)return 'two';return q.opts.some(o=>hasZy(o)||[...o].length>3)?'col':''}
 function renderQ(){
   const q=Q.list[Q.i];Q.locked=false;const c=CATS[Q.cat];
   $('#qtag').textContent=c.n;
   $('#qprog').style.width=(Q.i/Q.list.length*100)+'%';$('#qprog').style.background=`var(${c.c})`;
   $('#qcount').textContent=(Q.i+1)+'/'+Q.list.length;
   $('#qemoji').textContent=q.e;
-  const isH=Q.cat==='h';document.querySelector('#v-quiz .qcard').classList.toggle('hq',isH);$('#qopts').classList.toggle('col',isH);$('#qopts').classList.toggle('hh',isH);
+  const isH=Q.cat==='h';document.querySelector('#v-quiz .qcard').classList.toggle('hq',isH);const uc=Q.cat==='u'?uLayout(q):'';$('#qopts').classList.toggle('col',isH||uc==='col');$('#qopts').classList.toggle('two',uc==='two');$('#qopts').classList.toggle('zy',Q.cat==='u'&&hasZy(q.opts.join('')));$('#qopts').classList.toggle('hh',isH);
   if(isH){
     q.shown=shuffle(q.opts);
     $('#qtext').innerHTML=chunks(q.t)+`<span class="who2">💬 ${esc(q.who==='我'?'我':q.who)}可以怎麼說？</span>`;
@@ -1856,7 +1880,7 @@ function renderQ(){
   }else{
   const [a,b]=q.t.split('＿＿');
   $('#qtext').innerHTML=(a?chunks(a):'')+'<span class="blank" id="blank">？</span>'+(b?chunks(b):'');
-  $('#qopts').innerHTML=shuffle(q.opts).map(o=>`<button class="opt" data-o="${o}">${o}</button>`).join('');}
+  $('#qopts').innerHTML=shuffle(q.opts).map(o=>`<button class="opt" data-o="${o}">${o==='○'?'⭕':o==='✕'?'❌':o}</button>`).join('');}
   $('#qfb').hidden=true;$('#hsay').hidden=true;$('#hbox').value='';$('#hfb').hidden=true;$('#hhint').textContent='';
   if(S.lv===1&&!S.noauto)setTimeout(()=>{if(Q&&Q.list[Q.i]===q&&!Q.locked)say(qSpoken(q))},450);
 }
@@ -1915,7 +1939,7 @@ function nextQ(){
   if(Q.i>=Q.list.length){
     if(!Q.retried){const miss=Q.list.filter(x=>Q.first[x.id]===false);
       if(miss.length){Q.retried=true;Q.list=Q.list.concat(miss);renderQ();return}}
-    return finish({cat:Q.cat,title:'這一關完成！',acc:Q.firstOk/Q.total,line:`第一次就答對 ${Q.firstOk}/${Q.total} 題`});
+    return finish({cat:Q.cat,lid:Q.cat==='u'?Q.only:null,title:'這一關完成！',acc:Q.firstOk/Q.total,line:`第一次就答對 ${Q.firstOk}/${Q.total} 題`});
   }
   renderQ();
 }
@@ -2190,16 +2214,20 @@ function nextZ(){
 }
 
 /* ---------- 我的課文（家長貼課文，自動做成關卡） ---------- */
+const uRowOk=r=>Array.isArray(r)&&[0,1,2,3].every(i=>typeof r[i]==='string'&&r[i])&&r[1].split('＿＿').length===2&&typeof r[4]==='string'&&(r[4]?new Set([r[2],r[3],r[4]]).size===3:(isOX(r[2])&&isOX(r[3])&&r[2]!==r[3]));
 function syncU(){
   S.units=S.units||[];
-  D.u=S.units.flatMap(u=>u.items.map((r,i)=>({id:'u'+u.id+'-'+i,cat:'u',lv:0,uid:u.id,e:r[0],t:r[1],ans:r[2],opts:[r[2],r[3],r[4]],tip:r[5]||''})));
+  D.u=S.units.flatMap(u=>u.items.map((r,i)=>({id:'u'+u.id+'-'+i,cat:'u',lv:0,uid:u.id,e:uEmoji(r[0]),t:r[1],ans:r[2],opts:[r[2],r[3],r[4]].filter(Boolean),tip:r[5]||''})));
   D.u.forEach(x=>ALL[x.id]=x);
 }
-const sentsOf=t=>((t||'').replace(/【|】/g,'').replace(/\s+/g,'').match(/[^。！？!?]+[。！？!?]?/g)||[]).filter(x=>x.length>=4);
+const SENT_RE=/[^。！？!?]+(?:[。！？!?]+[」』”’）)]*)?/g;
+const sentsOf=t=>((t||'').replace(/【|】/g,'').replace(/\s+/g,'').match(SENT_RE)||[]).filter(x=>x.length>=4);
+const ZYRE=/[ㄅ-ㄯˉˊˇˋ˙]/g,hasZy=s=>/[ㄅ-ㄯ]/.test(s||''),isOX=a=>a==='○'||a==='✕';
+const uEmoji=e=>e==='🔤'?'✏️':e;
 function bankWords(){const m=[];['v','a'].forEach(k=>D[k].forEach(x=>{if(x.ans.length>=2&&!m.some(y=>y.w===x.ans))m.push({w:x.ans,k})}));return m}
 function genCloze(text){
   const items=[],mw=[...new Set([...text.matchAll(/【(.+?)】/g)].map(m=>m[1]))],bank=bankWords();
-  const sents=(text.replace(/\s+/g,'').match(/[^。！？!?]+[。！？!?]?/g)||[]);
+  const sents=(text.replace(/\s+/g,'').match(SENT_RE)||[]);
   const dist=(w,sent)=>{
     const pool=[...mw.filter(x=>x!==w),...shuffle(bank.map(b=>b.w))].filter((x,i,a)=>x!==w&&!sent.includes(x)&&a.indexOf(x)===i);
     const same=pool.filter(x=>x.length===w.length),rest=pool.filter(x=>x.length!==w.length);
@@ -2220,15 +2248,47 @@ function genCloze(text){
 function renderUnits(){
   syncU();
   const card=(u,mg)=>{const ss=sentsOf(u.text).length;
-    return `<div class="uc"><b>${esc(u.title)}</b><small>挖空題 ${u.items.length} 題｜課文 ${ss} 句</small><div class="row">${mg?'':(u.items.length?`<button class="btn sm" data-uq="${u.id}">🧩 挖空選詞</button>`:'')+(ss>=3?`<button class="btn sm" data-uo="${u.id}">🔢 句子排序</button>`:'')+(ss?`<button class="btn sm alt" data-us="${u.id}">🔊 聽課文</button>`:'')}${mg?`<button class="btn sm alt" data-ud="${u.id}">🗑 刪除</button>`:''}</div></div>`};
+    return `<div class="uc"><b>${esc(u.title)}</b><small>挖空題 ${u.items.length} 題｜課文 ${ss} 句</small><div class="row">${mg?'':(u.items.length?`<button class="btn sm" data-uq="${u.id}">🧩 挖空選詞</button>`:'')+(ss>=3?`<button class="btn sm" data-uo="${u.id}">🔢 句子排序</button>`:'')+(ss?`<button class="btn sm alt" data-us="${u.id}">🔊 聽課文</button>`:'')}${mg&&S.grp&&u.items.length?`<button class="btn sm alt" data-ush="${u.id}">${u.sh?'↩ 取消分享':'📤 分享給好友團'}</button>`:''}${mg?`<button class="btn sm alt" data-ud="${u.id}">🗑 刪除</button>`:''}</div></div>`};
   $('#ulist').innerHTML=S.units.length?S.units.map(u=>card(u,0)).join(''):'<p class="muted">還沒有課文。請家長到「家長區 → 課文管理」新增。</p>';
   $('#ulistP').innerHTML=S.units.length?S.units.map(u=>card(u,1)).join(''):'<p class="muted">還沒有課文。</p>';
+  renderShared();
 }
+/* ---------- 好友團共享課文：只分享題目（不含課文全文） ---------- */
+let SH={list:[],t:0};
+const shDoc=u=>S.grp.mid+'_'+u.id;
+async function shPull(force){const g=S.grp;if(!g)return[];if(!force&&Date.now()-SH.t<60000)return SH.list;
+  const raw=FB_ON?await fsList('groups/'+g.code+'/lessons'):(mockLoad().ls||[]);
+  SH.list=raw.map(l=>{let it=[];try{it=JSON.parse(l.d)}catch(e){}return Object.assign({},l,{items:(Array.isArray(it)?it:[]).filter(uRowOk).slice(0,60)})}).filter(l=>l.items.length&&l.up>Date.now()-90*864e5).sort((a,b)=>b.up-a.up);
+  SH.t=Date.now();return SH.list}
+async function shShare(uid){const g=S.grp,u=S.units.find(x=>x.id===uid);if(!g||!u)return;
+  const o={ti:u.title.slice(0,20),by:g.nick,n:u.items.length,d:JSON.stringify(u.items),up:Date.now(),own:g.mid};
+  if(o.d.length>60000)throw new Error('題目太多');
+  const id=shDoc(u);
+  if(FB_ON)await fsSet('groups/'+g.code+'/lessons/'+id,o);
+  else{const m=mockLoad();m.ls=(m.ls||[]).filter(x=>x._id!==id).concat([Object.assign({_id:id},o)]);localStorage.setItem(MK,JSON.stringify(m))}
+  u.sh=1;SH.t=0;save()}
+async function shUnshare(uid){const g=S.grp,u=S.units.find(x=>x.id===uid);if(!g||!u)return;const id=shDoc(u);
+  if(FB_ON)await fsDel('groups/'+g.code+'/lessons/'+id);
+  else{const m=mockLoad();m.ls=(m.ls||[]).filter(x=>x._id!==id);localStorage.setItem(MK,JSON.stringify(m))}
+  u.sh=0;SH.t=0;save()}
+function shCards(){const g=S.grp;if(!g)return'';const ls=SH.list.filter(l=>l.own!==g.mid);
+  return ls.length?`<div class="sec">👥 好友分享的課文<small>${ls.length} 課</small></div>`+ls.map(l=>`<div class="uc"><b>${eh(l.ti)}</b><small>${eh(l.by)} 分享｜題目 ${l.items.length} 題｜玩完拿 3 顆星</small><div class="row"><button class="btn sm" data-shq="${eh(l._id)}">🧩 開始玩</button></div></div>`).join(''):''}
+async function renderShared(){const el=$('#ushared');if(!el)return;
+  if(!S.grp||$('#v-unit').hidden){el.innerHTML='';return}
+  el.innerHTML=shCards();
+  try{await shPull();if(!$('#v-unit').hidden)el.innerHTML=shCards()}catch(e){}}
+function startShared(id){const l=SH.list.find(x=>x._id===id);if(!l)return;syncU();const uid='sh'+id;
+  const arr=l.items.map((r,i)=>({id:uid+'-'+i,cat:'u',lv:0,uid,e:uEmoji(r[0]),t:r[1],ans:r[2],opts:[r[2],r[3],r[4]].filter(Boolean),tip:r[5]||''}));
+  arr.forEach(x=>ALL[x.id]=x);D.u=D.u.concat(arr);startQuiz('u',uid);lastGame=()=>startShared(id)}
 let uDel=null;
-[$('#ulist'),$('#ulistP')].forEach(el=>el.addEventListener('click',e=>{
+[$('#ulist'),$('#ulistP'),$('#ushared')].forEach(el=>el.addEventListener('click',async e=>{
   const g=a=>{const b=e.target.closest('['+a+']');return b&&b.getAttribute(a)};
   let id;
   if(id=g('data-uq'))return startQuiz('u',id);
+  if(id=g('data-shq'))return startShared(id);
+  if(id=g('data-ush')){const b=e.target.closest('[data-ush]');const u=S.units.find(x=>x.id===id);if(!u)return;b.disabled=true;
+    try{if(u.sh){await shUnshare(id);toast('已取消分享')}else{await shShare(id);toast('已分享題目給好友團')}}catch(x){toast('現在分享不了，等一下再試')}
+    renderUnits();return}
   if(id=g('data-uo'))return startOrd(id);
   if(id=g('data-us')){const u=S.units.find(x=>x.id===id);if(u)say(sentsOf(u.text).join(''));return}
   if(id=g('data-ud')){const b=e.target.closest('[data-ud]');
@@ -2245,12 +2305,12 @@ $('#uadd').onclick=()=>{
   m.textContent=items.length?`做好了：${items.length} 題挖空題，另有句子排序。`:'沒找到可以挖空的詞，只做了句子排序。想考的詞請用【】框起來再試一次。';
   renderUnits();
 };
-const CLAUDE_PROMPT='請看我附的課文（照片或文字），做成小學生的學習關卡。只輸出一段 JSON，不要其他說明：\n{"title":"課名","text":"課文全文（保留標點）","items":[["📖","含＿＿的句子","正確詞","錯誤詞1","錯誤詞2","一句話提示"]]}\n規則：\n1. items 出 10 題，句子用課文原句，把重點詞（動詞、形容詞、量詞、生字詞）換成＿＿，每句只能有一個＿＿。\n2. 錯誤詞要同詞性、字數相近、明顯錯誤，不能也說得通。\n3. 提示要用小朋友聽得懂的話。\n4. 全部用台灣繁體中文與台灣慣用詞。';
+const CLAUDE_PROMPT='請看我附的課文（照片或文字），做成小學生的學習關卡。只輸出一段 JSON，不要其他說明：\n{"title":"課名","text":"課文全文（保留標點）","items":[["😀","含＿＿的題目","正確答案","錯誤答案1","錯誤答案2","一句話提示"]]}\n共同規則：\n1. 每題題目只能有一個＿＿。答案與錯誤答案三個要不同，字數相近，錯的要明顯錯誤。\n2. 第一格表情符號請用跟題目有關的物品圖，不要用🔤、🔠、🅰️這類字母符號。\n3. 提示要用小朋友聽得懂的話，全部用台灣繁體中文與台灣慣用詞。\n\n【低年級（1～2年級）】照學校考卷出題，出 14 題，混合下面題型，選項注音要寫完整（含聲調，輕聲 ˙ 放在字前面）：\nA. 選注音：題目「（物品）的注音是＿＿」，錯的注音是聲調或韻母差一點點。\nB. 補聲調：題目「ㄌㄨㄛ＿＿ ㄅㄛ˙」，選項是聲調符號 ˊ ˇ ˋ（第一聲不標，可用「無」代表）。\nC. 補缺的注音：題目「ㄌㄨㄛˊ ㄅ＿＿˙」，選項是 ㄛ、ㄜ、ㄡ 這類注音。\nD. 看句子選字：把課文句子中的生字詞換成＿＿，三個選項都是國字詞。\nE. ○✕ 判斷：題目寫成「蘿蔔是紅色的。這句話對不對？＿＿」，正確答案填「○」或「✕」，錯誤答案1 填另一個符號，錯誤答案2 留空字串。\n\n【中高年級】句子用課文原句，把動詞、形容詞、量詞或生字詞換成＿＿，不要出注音題，出 10 題。';
 $('#ucopy').onclick=async()=>{const b=$('#ucopy');try{await navigator.clipboard.writeText(CLAUDE_PROMPT);b.textContent='已複製 ✓'}catch(e){$('#ujson').value=CLAUDE_PROMPT;$('#ujson').select();b.textContent='請長按全選複製（已放進下面格子）'}setTimeout(()=>{b.textContent='複製給 Claude 的指令'},3500)};
 $('#ujadd').onclick=()=>{
   const m=$('#ujmsg');let o;
   try{let r=$('#ujson').value.trim();r=r.replace(/^```(?:json)?/i,'').replace(/```$/,'').trim();o=JSON.parse(r)}catch(e){m.textContent='格式看不懂，請確認是 Claude 回的完整 JSON（從 { 到 }）。';return}
-  const rows=(o.items||[]).filter(r=>Array.isArray(r)&&r.length>=5&&r.slice(0,5).every(x=>typeof x==='string'&&x)&&r[1].split('＿＿').length===2&&new Set([r[2],r[3],r[4]]).size===3).slice(0,40).map(r=>[r[0],r[1],r[2],r[3],r[4],r[5]||'']);
+  const rows=(o.items||[]).filter(uRowOk).slice(0,60).map(r=>[uEmoji(r[0]),r[1],r[2],r[3],r[4],r[5]||'']);
   const text=typeof o.text==='string'?o.text.slice(0,1500):'';
   if(!rows.length&&sentsOf(text).length<3){m.textContent='沒有可用的題目，請請 Claude 重做一次。';return}
   syncU();if(S.units.length>=20){m.textContent='最多 20 課，請先刪除舊的。';return}
@@ -2263,7 +2323,7 @@ function startOrd(uid){
   const u=S.units.find(x=>x.id===uid);if(!u)return;lastGame=()=>startOrd(uid);
   let ss=sentsOf(u.text);if(ss.length>5){const st=Math.floor(Math.random()*(ss.length-4));ss=ss.slice(st,st+5)}
   let order=shuffle(ss.map((_,i)=>i));let tries=0;while(order.every((v,i)=>v===i)&&tries++<10)order=shuffle(order);
-  O={ss,order,exp:0,mist:0,done:[]};show('ord');renderO();
+  O={ss,order,exp:0,mist:0,done:[],uid};show('ord');renderO();
 }
 function renderO(){
   $('#oprog').style.width=(O.exp/O.ss.length*100)+'%';$('#oprog').style.background='var(--c4)';
@@ -2276,7 +2336,7 @@ $('#opool').addEventListener('click',e=>{
   const b=e.target.closest('[data-oi]');if(!b||!O)return;const i=+b.dataset.oi;
   if(i===O.exp){O.exp++;sfx.ok();say(O.ss[i]);
     if(O.exp>=O.ss.length){renderO();const f=$('#ofb');f.hidden=false;f.className='fb good';f.innerHTML='<b>排好了！</b><span>整段課文照順序唸給你聽。</span><div class="fbrow"><button class="btn sm alt" id="osay">🔊 唸全文</button><button class="btn sm" id="odone">完成</button></div>';
-      $('#osay').onclick=()=>say(O.ss.join(''));$('#odone').onclick=()=>finish({cat:'u',title:'課文排序高手！',acc:Math.max(.5,1-O.mist/(O.ss.length*2)),line:`排錯 ${O.mist} 次`});return}
+      $('#osay').onclick=()=>say(O.ss.join(''));$('#odone').onclick=()=>finish({cat:'u',lid:O.uid,title:'課文排序高手！',acc:Math.max(.5,1-O.mist/(O.ss.length*2)),line:`排錯 ${O.mist} 次`});return}
     renderO();
   }else{O.mist++;sfx.ng();b.classList.add('bad');setTimeout(()=>b.classList.remove('bad'),400)}
 });
@@ -2318,12 +2378,15 @@ function renderWeek(){
   <div class="wd">${days.map((d,i)=>`<i class="${(S.bd||{})[d]?'on':''}${d===t?' t':''}">${(S.bd||{})[d]?'★':W[i]}</i>`).join('')}</div>
   <div class="bdg">${BADGES.map(b=>`<span class="${(S.badges||{})[b[0]]?'on':'off'}">${ic(b[1])}<em>${b[2]}</em></span>`).join('')}</div>`;
 }
-function finish({title,acc,line,cat}){
+function finish({title,acc,line,cat,lid}){
   const n=acc>=.85?3:acc>=.6?2:1,td=today(),s0=S.stars;
   S.claim=S.claim||{};const cl=S.claim[td]||(S.claim[td]={});
   Object.keys(S.claim).sort().slice(0,-30).forEach(k=>delete S.claim[k]);
   let got=0;const msgs=[];
-  if(!cl[cat]){cl[cat]=1;got=n;S.stars+=n}else msgs.push('今天這一關的星星已經拿過了，多練習會存進學習紀錄，但不會再多拿星星。');
+  if(cat==='u'&&lid){S.uclaim=S.uclaim||{};const k=td+'|'+lid;
+    if(!S.uclaim[k]){Object.keys(S.uclaim).forEach(x=>{if(!x.startsWith(td))delete S.uclaim[x]});S.uclaim[k]=1;got=3;S.stars+=3}
+    else msgs.push('這一課今天的 3 顆星已經拿過了，換一課或明天再來拿！')}
+  else if(!cl[cat]){cl[cat]=1;got=n;S.stars+=n}else msgs.push('今天這一關的星星已經拿過了，多練習會存進學習紀錄，但不會再多拿星星。');
   S.days[td]=(S.days[td]||0)+1;
   const dc=dailyCats();
   if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星，還送你 1 個免費盲盒 🎉');ISL().free=(ISL().free||0)+1;S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
@@ -2640,15 +2703,36 @@ function renderIsl(){
 }
 function leaveIsl(){if(ISLS.on&&window.Island){try{Island.unmount()}catch(e){}ISLS.on=false}ISLS.visit=null}
 $('#toIsl').onclick=()=>{ISLS.visit=null;show('isl')};
+$('#toIslG').onclick=()=>{ISLS.visit=null;show('isl')};
 
 /* ---------- 家長區 ---------- */
 let pgA=0;
+/* ---------- 家長獎勵島幣（1–10，獎勵日常好行為） ---------- */
+let PR_N=0;
+function renderPR(){
+  $('#prwho').textContent=`送給「${S.name||'小朋友'}」（目前選的小朋友），現在有 ${coin()} 島幣。要換人，先回首頁換小朋友。`;
+  $('#prnum').innerHTML=[1,2,3,4,5,6,7,8,9,10].map(n=>`<button data-prn="${n}" class="${n===PR_N?'on':''}">${n}</button>`).join('');
+  const lg=(S.prl||[]).slice(-8).reverse();
+  $('#prlog').innerHTML=lg.length?'最近獎勵：<br>'+lg.map(r=>`${r.d}　+${r.n}${r.w?'　'+eh(r.w):''}`).join('<br>'):'';
+}
+$('#prnum').addEventListener('click',e=>{const b=e.target.closest('[data-prn]');if(!b)return;PR_N=+b.dataset.prn;$('#prmsg').textContent='';renderPR()});
+$('#prsend').onclick=()=>{
+  const m=$('#prmsg');if(!PR_N){m.textContent='先選要送幾個島幣。';return}
+  const n=PR_N,w=$('#prwhy').value.trim().slice(0,14);
+  coin();S.coin+=n;S.pq=(S.pq||[]).concat([{n,w}]).slice(-10);S.prl=(S.prl||[]).concat([{d:today(),n,w}]).slice(-30);save();
+  PR_N=0;$('#prwhy').value='';m.textContent=`已送出 ${n} 島幣，小朋友回首頁時會看到。`;renderPR();
+};
+function prPop(){const q=S.pq||[];if(!q.length||$('#v-home').hidden||document.querySelector('.prpop'))return;
+  const r=q.shift();save();const o=document.createElement('div');o.className='prpop';
+  o.innerHTML=`<div class="prc"><div class="pre">🪙</div><b>爸媽送你 ${r.n} 島幣！</b><p>${r.w?eh(r.w):'做得好！'}</p><button class="btn" id="prok">收下</button></div>`;
+  document.body.appendChild(o);try{sfx.ok();fxBurst(24)}catch(e){}
+  $('#prok').onclick=()=>{o.remove();prPop()}}
 function openParent(){
   const a=6+Math.floor(Math.random()*4),b=4+Math.floor(Math.random()*6);pgA=a+b;
   $('#pgq').textContent=`請輸入答案才能進入：${a} + ${b} = ？`;$('#pgin').value='';$('#pgmsg').textContent='';
   $('#pgate').hidden=false;$('#pbody').hidden=true;
 }
-function tryParent(){if(+$('#pgin').value===pgA){$('#pgate').hidden=true;$('#pbody').hidden=false;renderParent();renderUnits()}else{$('#pgmsg').textContent='答案不對，請再試一次。';$('#pgin').value=''}}
+function tryParent(){if(+$('#pgin').value===pgA){$('#pgate').hidden=true;$('#pbody').hidden=false;renderParent();renderUnits();renderPR()}else{$('#pgmsg').textContent='答案不對，請再試一次。';$('#pgin').value=''}}
 document.addEventListener('click',e=>{if(e.target.closest('#pgok'))tryParent()});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='pgin')tryParent()});
 function renderParent(){storeCheck().then(t=>{const e=document.getElementById('pstore');if(e)e.textContent=t});
