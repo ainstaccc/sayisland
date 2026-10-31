@@ -269,6 +269,33 @@ function roam(g,o){o=o||{};const u=g.userData,SP=o.sp||.4,k=o.gait||'walk',bb=ne
 CAT.push(
  {id:'fac_cafe',n:'咖啡廳',c:'商店',p:14,e:'☕',nb:1},{id:'fac_flower',n:'花店',c:'商店',p:12,e:'💐',nb:1},{id:'fac_book',n:'書店',c:'商店',p:14,e:'📚',nb:1},{id:'fac_icecream',n:'冰淇淋攤',c:'商店',p:10,e:'🍦',nb:1},{id:'fac_restaurant',n:'餐廳',c:'商店',p:18,e:'🍜',nb:1},{id:'fac_market',n:'市集攤位',c:'商店',p:12,e:'🍎',nb:1},{id:'fac_conv',n:'便利商店',c:'商店',p:16,e:'🏪',nb:1},{id:'fac_post',n:'郵局',c:'公共',p:16,e:'📮',nb:1},
  {id:'fac_school',n:'學校',c:'公共',p:50,e:'🏫',s:2,nb:1},{id:'fac_library',n:'圖書館',c:'公共',p:48,e:'📖',s:2,nb:1},{id:'fac_hospital',n:'醫院',c:'公共',p:55,e:'🏥',s:2,nb:1},{id:'fac_fire',n:'消防局',c:'公共',p:52,e:'🚒',s:2,nb:1});
+
+/* ---------- v1.10 交通建築與神祕島特殊物品 ---------- */
+B.fac_airport=()=>{const w=glowMat('#BFE6FF',1.1);const g=G(box(1.7,.03,.5,'#6B6F80',0,.015,.42),box(1.6,.035,.04,'#FFFFFF',0,.02,.42));
+ for(let i=-3;i<=3;i++)g.add(box(.14,.036,.05,'#FFE680',i*.22,.022,.42));
+ g.add(rbox(.8,.34,.42,'#FFFFFF',-.4,.17,-.35,.05),box(.86,.05,.48,'#6FC3F2',-.4,.36,-.35),box(.5,.12,.04,w,-.4,.2,-.13));
+ g.add(cyl(.07,.09,.62,'#FFFFFF',.5,.31,-.4,10),cyl(.16,.12,.14,w,.5,.68,-.4,10),cyl(.2,.2,.03,'#E5484D',.5,.77,-.4,10));
+ const pl=G(cyl(.07,.07,.5,'#FFFFFF',0,0,0,10),cone(.07,.14,'#E5484D',0,.32,0,10),box(.66,.03,.15,'#6FC3F2',0,0,0),box(.2,.02,.1,'#6FC3F2',0,-.02,-.22),box(.03,.14,.1,'#E5484D',0,.07,-.22));
+ pl.children[0].rotation.x=Math.PI/2;pl.children[1].rotation.x=-Math.PI/2;pl.children[1].position.set(0,0,.32);pl.children[3].position.set(0,0,-.22);pl.children[4].position.set(0,.07,-.22);
+ const pr=box(.02,.2,.03,'#6B6F80',0,0,.37);pl.add(pr);pl.position.set(-.3,.12,.42);g.add(pl);
+ g.userData.anim=t=>{pr.rotation.z=t*28;pl.position.y=.12+Math.sin(t*2)*.01};return g};
+B.fac_pier=()=>{const g=G(box(.9,.04,.9,'#B98255',0,.02,0));for(let i=0;i<5;i++)g.add(box(.9,.045,.03,'#8A5A3A',0,.04,-.4+i*.2));
+ const ship=G(box(.7,.16,.34,'#FFFFFF',0,.08,0),box(.74,.05,.38,'#E5484D',0,.18,0),box(.5,.14,.28,'#FFFFFF',-.02,.3,0),box(.3,.1,.22,'#FFFFFF',-.02,.42,0),cyl(.05,.05,.14,'#E5484D',-.02,.54,0,8),cone(.17,.2,'#FFFFFF',.42,.08,0,4));
+ ship.children[5].rotation.z=-Math.PI/2;for(let i=0;i<4;i++)ship.add(box(.07,.05,.01,'#6FC3F2',-.18+i*.12,.3,.15),box(.07,.05,.01,'#6FC3F2',-.18+i*.12,.3,-.15));
+ ship.position.set(0,.08,0);ship.scale.setScalar(1.05);g.add(ship,cyl(.04,.05,.2,'#8A5A3A',.4,.1,.4,6),cyl(.04,.05,.2,'#8A5A3A',-.4,.1,.4,6));
+ g.userData.anim=t=>{ship.position.y=.08+Math.sin(t*1.6)*.025;ship.rotation.z=Math.sin(t*1.3)*.04};return g};
+B.fac_rocket=()=>{const fl=glowMat('#FFA94D',1.6);const g=G(cyl(.3,.34,.06,'#8E94A6',0,.03,0,12),cyl(.15,.17,.6,'#FFFFFF',0,.4,0,14),cone(.15,.28,'#E5484D',0,.84,0,14),sph(.07,'#6FC3F2',0,.5,.14),box(.04,.2,.2,'#E5484D',.15,.2,0),box(.04,.2,.2,'#E5484D',-.15,.2,0),box(.2,.2,.04,'#E5484D',0,.2,.15));
+ const f=cone(.09,.22,fl,0,.02,0,8);f.rotation.x=Math.PI;f.position.y=.04;g.add(f,cyl(.02,.02,.7,'#9A9AA8',.28,.35,0,5));
+ g.userData.anim=t=>{f.scale.set(1,.8+Math.sin(t*20)*.25,1);g.rotation.y=Math.sin(t*.5)*.1};return g};
+B.sp_crystal=()=>{const m=mat('#B79CF5',{transparent:true,opacity:.85,emissive:'#7A5AC8',emissiveIntensity:.35,roughness:.2});const g=G(cone(.12,.5,m,0,.3,0,5),cone(.09,.34,m,.15,.2,.05,5),cone(.08,.28,m,-.14,.16,.02,5),cyl(.22,.26,.05,'#8E94A6',0,.02,0,8));g.userData.anim=t=>{m.emissiveIntensity=.35+Math.sin(t*2)*.2};return g};
+B.sp_meteor=()=>{const gl=glowMat('#FF9A3C',1.3);const g=G(ico(.26,'#6B6F80',0,.24,0,1),ico(.09,gl,.14,.3,.14,0),ico(.07,gl,-.12,.36,.1,0),ico(.06,gl,.02,.18,-.2,0));g.userData.anim=t=>{g.rotation.y=t*.4};return g};
+B.sp_glowtree=()=>{const gl=glowMat('#7FE0FF',1.5);const g=G(cyl(.06,.1,.5,'#6A5A8A',0,.25,0,7),ico(.3,'#4A7ACF',0,.7,0),ico(.1,gl,.2,.78,.1,0),ico(.08,gl,-.18,.62,.14,0),ico(.09,gl,.02,.95,-.12,0));g.userData.sway=1;return g};
+B.sp_ufo=()=>{const gl=glowMat('#FFE680',1.4);const g=new T.Group();const u=G(cyl(.34,.34,.07,'#B8BED0',0,.0,0,16),cyl(.2,.34,.1,'#9AA3B5',0,-.06,0,16),sph(.17,'#BFE6FF',0,.1,0,1,.9,1),sph(.035,gl,.28,-.02,0),sph(.035,gl,-.28,-.02,0),sph(.035,gl,0,-.02,.28));u.position.y=.62;g.add(u,cyl(.02,.03,.62,'#9A9AA8',0,.3,0,5));g.userData.anim=t=>{u.position.y=.62+Math.sin(t*2)*.05;u.rotation.y=t*1.2};return g};
+B.sp_moon=()=>{const g=G(cyl(.16,.2,.08,'#8E94A6',0,.04,0,10));const mo=G(sph(.26,'#FFF3C4',0,0,0),sph(.06,'#EAD99A',.1,.1,.2),sph(.045,'#EAD99A',-.12,-.05,.22),sph(.035,'#EAD99A',.02,-.14,.24));mo.position.y=.5;g.add(mo);g.userData.anim=t=>{mo.position.y=.5+Math.sin(t*1.5)*.05;mo.rotation.y=t*.5};return g};
+B.sp_alien=()=>{const g=person({top:'#8EE6A8',bottom:'#5FBF7F',hair:'#8EE6A8',skin:'#A9F0B8'});[-.07,.07].forEach(x=>{g.add(cyl(.012,.012,.14,'#5FBF7F',x,.82,0,4),sph(.03,'#FFE680',x,.9,0))});addWander(g,.22,.3);return g};
+CAT.push({id:'fac_airport',n:'機場',c:'交通',p:0,e:'✈️',s:2,np:1},{id:'fac_pier',n:'郵輪碼頭',c:'交通',p:0,e:'🚢',np:1},{id:'fac_rocket',n:'火箭發射台',c:'交通',p:0,e:'🚀',np:1},
+ {id:'sp_crystal',n:'紫水晶',c:'神祕',p:0,r:2,e:'💎',np:1},{id:'sp_meteor',n:'隕石',c:'神祕',p:0,r:2,e:'☄️',np:1},{id:'sp_glowtree',n:'發光樹',c:'神祕',p:0,r:2,e:'🌳',np:1},
+ {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1});
 CAT.forEach(c=>{c.s=c.s||1});const BYID={};CAT.forEach(c=>BYID[c.id]=c);
 
 /* ---------- 場景 ---------- */
@@ -322,13 +349,13 @@ function init(){
 }
 const HS=.5774,HW=1;
 const hp=(q,r)=>[HW*(q+r/2),1.5*HS*r];
-const RAD=()=>(N-6)/2+3;
+let THEME=null;const RAD=()=>(N-6)/2+3;
 const hd=(q,r)=>Math.max(Math.abs(q),Math.abs(r),Math.abs(q+r));
 const WP=(gx,gz,s)=>{if(s===2){let x=0,z=0;[[0,0],[1,0],[0,1],[1,1]].forEach(o=>{const c=hp(gx+o[0]-5,gz+o[1]-5);x+=c[0]/4;z+=c[1]/4});return new T.Vector3(x,0,z)}const c=hp(gx-5,gz-5);return new T.Vector3(c[0],0,c[1])};
 const active=(gx,gz)=>hd(gx-5,gz-5)<=RAD();
 function buildBase(){
  while(baseG.children.length)baseG.remove(baseG.children[0]);while(tilesG.children.length)tilesG.remove(tilesG.children[0]);tileMeshes=[];
- const R=RAD(),GR=[P.grass,P.grass2,'#A0CC84'],hx=(r,h,c,x,y,z,cast)=>{const m=cyl(r,r,h,c,x,y,z,6);m.castShadow=!!cast;return m};
+ const R=RAD(),GR=({sand:['#F2D88C','#EACB78','#F6E2A8'],forest:['#3E9650','#368A48','#48A25A'],snow:['#F7FBFF','#DCEAF6','#FFFFFF']})[THEME]||[P.grass,P.grass2,'#A0CC84'],hx=(r,h,c,x,y,z,cast)=>{const m=cyl(r,r,h,c,x,y,z,6);m.castShadow=!!cast;return m};
  for(let q=-R-1;q<=R+1;q++)for(let r=-R-1;r<=R+1;r++){const d=hd(q,r);if(d>R+1)continue;const c=hp(q,r),x=c[0],z=c[1];
   if(d<=R){const col=GR[(((q-r)%3)+3)%3];const m=hx(HS*.99,.5,col,x,-.25,z,false);m.receiveShadow=true;m.userData={gx:q+5,gz:r+5};tilesG.add(m);tileMeshes.push(m)}
   else baseG.add(hx(HS*.99,.56,P.sand,x,-.34,z));
@@ -391,7 +418,7 @@ function frame(now){
 function tintGhost(g,ok){g.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.transparent=true;o.material.opacity=.7;o.castShadow=false;if(o.material.emissive){o.material.emissive.set(ok?'#000000':'#FF2D2D');o.material.emissiveIntensity=ok?0:.8}}})}
 /* ---------- 對外 ---------- */
 window.Island={ready:true,CAT,BYID,
- mount(el,o){host=el;if(!renderer)init();host.appendChild(canvas);N=(o&&o.size)||N;buildBase();applyTime();fit();if(window.ResizeObserver){ro=new ResizeObserver(fit);ro.observe(host)}running=true;lastT=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(frame)},
+ mount(el,o){host=el;if(!renderer)init();host.appendChild(canvas);N=(o&&o.size)||N;THEME=(o&&o.theme)||null;buildBase();applyTime();fit();if(window.ResizeObserver){ro=new ResizeObserver(fit);ro.observe(host)}running=true;lastT=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(frame)},
  unmount(){running=false;cancelAnimationFrame(raf);if(ro){ro.disconnect();ro=null}if(canvas&&canvas.parentNode)canvas.parentNode.removeChild(canvas);host=null;this.clearGhost()},
  on(k,f){cbs[k]=f},size(){return N},
  setSize(n){N=n;if(renderer){buildBase();items.forEach(it=>{})}},
