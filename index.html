@@ -569,7 +569,15 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .pnum button.on{background:var(--c1);border-color:var(--c1);color:#fff}
 .fly{position:fixed;inset:0;z-index:9998;background:linear-gradient(#7CCBFF,#DDF3FF);overflow:hidden;animation:flyin .25s both}
 @keyframes flyin{from{opacity:0}to{opacity:1}}@keyframes cloudd{from{transform:translateY(-120px)}to{transform:translateY(110vh)}}@keyframes vbob{from{transform:translate(-50%,-50%) rotate(-6deg)}to{transform:translate(-50%,-56%) rotate(6deg)}}
-.fly .cl{position:absolute;font-size:72px;opacity:.9;animation:cloudd linear infinite}.fly .vh{position:absolute;left:50%;top:50%;font-size:110px;line-height:1;animation:vbob .5s ease-in-out infinite alternate}
+.fly .cl{position:absolute;font-size:72px;opacity:.9;animation:cloudd linear infinite}
+.fly .cx{position:absolute;left:0;font-size:64px;opacity:.92;animation:cloudx linear infinite}.fly.rev .cx{animation-direction:reverse}
+@keyframes cloudx{from{transform:translateX(110vw)}to{transform:translateX(-30vw)}}
+.fly .vh{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;animation:vfly .55s ease-in-out infinite alternate}.fly .vh svg{display:block;height:auto;filter:drop-shadow(0 8px 6px rgba(0,60,120,.25))}.fly.rev .vh svg{transform:scaleX(-1)}
+@keyframes vfly{from{transform:translate(-50%,-54%)}to{transform:translate(-50%,-46%)}}
+.fly.rk .vh{animation:vshake .12s linear infinite alternate}@keyframes vshake{from{transform:translate(-51%,-50%)}to{transform:translate(-49%,-50%)}}
+.fly .flm{animation:flm .15s ease-in-out infinite alternate;transform-origin:40px 106px}@keyframes flm{from{transform:scaleY(.8)}to{transform:scaleY(1.25)}}
+.fly.sh{background:linear-gradient(#8FD3FF 0,#DDF3FF 50%)}.fly .sea{position:absolute;left:0;right:0;top:52%;bottom:0;background:linear-gradient(#4DB6F0,#1F6FC2);box-shadow:0 -6px 0 #7FD0FF}.fly .sea:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20px 0,transparent 14px,rgba(255,255,255,.35) 15px,rgba(255,255,255,.35) 17px,transparent 18px) 0 14px/48px 28px repeat;animation:waves 1s linear infinite}
+.fly.rev .sea:before{animation-direction:reverse}@keyframes waves{to{background-position:-48px 14px}}
 .fly b{position:absolute;bottom:12%;left:0;right:0;text-align:center;font:900 30px/1.3 var(--f-disp);color:#2B1D4D;white-space:nowrap}
 .goalfab{position:absolute;bottom:calc(96px + env(safe-area-inset-bottom));left:12px;z-index:3;width:auto!important;height:46px;border-radius:99px;padding:0 16px 0 10px;display:flex;align-items:center;gap:6px;background:#fff!important;color:#3B2A5A!important;font:800 18px/1 var(--f-disp);border:3px solid #FFD84D!important}.goalfab .sv{width:26px;height:26px}
 .sh4{margin:10px 0 6px;font:800 18px/1.2 var(--f-disp)}.avb{font-size:40px;line-height:1;display:block}
@@ -630,7 +638,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.11.2</p>
+    <p class="ver">說說島 v1.11.3</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -659,7 +667,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.11.2</p>
+    <p class="ver">說說島 v1.11.3</p>
   </section>
 
   <!-- 選擇題 -->
@@ -803,7 +811,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.11.2</p>
+    <p class="ver">說說島 v1.11.3</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -872,7 +880,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.11.2</p>
+    <p class="ver">說說島 v1.11.3</p>
   </section>
 </div>
 
@@ -2896,8 +2904,14 @@ const allItems=()=>{const I=ISL();return (I.items||[]).concat(...Object.values(I
 const STK=[{k:'👏',n:'你好棒',ok:()=>true},{k:'📚',n:'一起讀',ok:()=>true},{k:'✏️',n:'好認真',ok:()=>true},{k:'🔥',n:'加油',ok:()=>true},
  {k:'🧠',n:'好聰明',ok:()=>learnedAll().length>=20,tip:'學會20題'},{k:'🌟',n:'閃亮',ok:()=>S.stars>=150,tip:'150顆星'},{k:'🌈',n:'堅持',ok:()=>streak()>=7,tip:'連續7天'},{k:'💪',n:'不放棄',ok:()=>streak()>=14,tip:'連續14天'},{k:'🦄',n:'超厲害',ok:()=>S.stars>=300,tip:'300顆星'}];
 const PC=[{e:'📚',t:'一起讀課文吧！'},{e:'🌟',t:'你今天好認真！'},{e:'🏝️',t:'你的島好漂亮！'},{e:'💪',t:'答錯沒關係，再試一次'},{e:'🎈',t:'明天一起來練習'},{e:'🌈',t:'我們一起變厲害'}];
-function flyTo(txt,cb,em,ms){const o=document.createElement('div');o.className='fly';
-  o.innerHTML=[0,1,2,3,4,5].map(i=>`<span class="cl" style="left:${(i*19+5)%90}%;animation-duration:${(0.7+i*.12).toFixed(2)}s;animation-delay:-${i*.2}s">☁️</span>`).join('')+`<div class="vh">${em||'🛩️'}</div><b>${eh(txt)}</b>`;
+const VSVG={
+ pl:`<svg viewBox="0 0 160 84" width="190"><path d="M76 34L60 12L92 12L104 34Z" fill="#CBD3E6" stroke="#8E9AB8" stroke-width="2" stroke-linejoin="round"/><path d="M14 36L3 8L32 8L42 30Z" fill="#FF6B8A" stroke="#C2405E" stroke-width="2" stroke-linejoin="round"/><path d="M10 42Q10 28 42 28L120 28Q150 30 156 42Q150 54 120 54L42 54Q10 54 10 42Z" fill="#fff" stroke="#8E9AB8" stroke-width="2.5"/><path d="M14 46H150" stroke="#6FC3F2" stroke-width="4"/><path d="M128 31Q146 32 152 41L128 41Z" fill="#6FC3F2" stroke="#3A8FC8" stroke-width="2" stroke-linejoin="round"/><g fill="#BFE6FF" stroke="#8E9AB8" stroke-width="1.5"><circle cx="40" cy="38" r="4"/><circle cx="56" cy="38" r="4"/><circle cx="72" cy="38" r="4"/><circle cx="88" cy="38" r="4"/><circle cx="104" cy="38" r="4"/></g><path d="M72 48L50 80L92 80L114 48Z" fill="#E4E8F2" stroke="#8E9AB8" stroke-width="2.5" stroke-linejoin="round"/><rect x="78" y="56" width="20" height="9" rx="4.5" fill="#FFB84D" stroke="#C98A20" stroke-width="1.5"/></svg>`,
+ sh:`<svg viewBox="0 0 170 110" width="200"><path d="M8 66H160L142 96H26Z" fill="#E5484D" stroke="#B02C32" stroke-width="2.5" stroke-linejoin="round"/><path d="M14 74H154" stroke="#fff" stroke-width="4"/><rect x="26" y="44" width="104" height="22" rx="5" fill="#fff" stroke="#8E9AB8" stroke-width="2.5"/><rect x="44" y="26" width="68" height="20" rx="5" fill="#fff" stroke="#8E9AB8" stroke-width="2.5"/><rect x="62" y="8" width="20" height="20" rx="3" fill="#FFB84D" stroke="#C98A20" stroke-width="2.5"/><rect x="62" y="8" width="20" height="6" fill="#E5484D"/><g fill="#6FC3F2" stroke="#3A8FC8" stroke-width="1.2"><circle cx="40" cy="55" r="3.6"/><circle cx="56" cy="55" r="3.6"/><circle cx="72" cy="55" r="3.6"/><circle cx="88" cy="55" r="3.6"/><circle cx="104" cy="55" r="3.6"/><circle cx="120" cy="55" r="3.6"/><circle cx="58" cy="36" r="3.2"/><circle cx="74" cy="36" r="3.2"/><circle cx="90" cy="36" r="3.2"/><circle cx="102" cy="36" r="3.2"/></g><path d="M160 66L170 50" stroke="#8E9AB8" stroke-width="2"/></svg>`,
+ rk:`<svg viewBox="0 0 80 150" width="96"><path d="M40 4Q62 30 62 74L62 98L18 98L18 74Q18 30 40 4Z" fill="#fff" stroke="#8E9AB8" stroke-width="2.5" stroke-linejoin="round"/><path d="M40 4Q55 20 59 44L21 44Q25 20 40 4Z" fill="#E5484D" stroke="#B02C32" stroke-width="2.5" stroke-linejoin="round"/><circle cx="40" cy="64" r="11" fill="#6FC3F2" stroke="#3A8FC8" stroke-width="3"/><path d="M18 78L2 106L18 98ZM62 78L78 106L62 98Z" fill="#E5484D" stroke="#B02C32" stroke-width="2.5" stroke-linejoin="round"/><path d="M26 98H54L50 106H30Z" fill="#8E94A6"/><path class="flm" d="M30 106Q40 148 50 106Z" fill="#FFB84D" stroke="#E5742D" stroke-width="2"/><path class="flm" d="M35 106Q40 132 45 106Z" fill="#FFE680"/></svg>`};
+function flyTo(txt,cb,em,ms){const mode=em==='🚢'?'sh':em==='🚀'?'rk':'pl',rev=/^回/.test(txt)&&mode!=='rk';
+  const o=document.createElement('div');o.className='fly '+mode+(rev?' rev':'');
+  const cl=mode==='rk'?[0,1,2,3,4,5].map(i=>`<span class="cl" style="left:${(i*19+5)%90}%;animation-duration:${(0.7+i*.12).toFixed(2)}s;animation-delay:-${i*.2}s">☁️</span>`).join(''):[[10,2.6],[26,3.4],[58,2.9],[72,3.8],[84,3.1]].map((c,i)=>`<span class="cx" style="top:${c[0]}%;animation-duration:${c[1]}s;animation-delay:-${i*.7}s">☁️</span>`).join('');
+  o.innerHTML=(mode==='sh'?'<div class="sea"></div>':'')+cl+`<div class="vh">${VSVG[mode]}</div><b>${eh(txt)}</b>`;
   document.body.appendChild(o);try{sfx.tog()}catch(e){}setTimeout(()=>{try{cb()}finally{setTimeout(()=>o.remove(),150)}},ms||1400)}
 function flyVisit(m){flyTo('飛往 '+m.nick+' 的島…',()=>{ISLS.visit=m;ISLS.at=null;show('isl')},'🛩️',1400)}
 function lockMsg(){const u=UNL[0];if(!(S.unl||{})[u.id])return '機場還沒解鎖：累積 100 顆星（還差 '+Math.max(0,100-S.stars)+' 顆）';return '先把「機場」從背包放到島上'}
