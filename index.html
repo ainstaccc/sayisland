@@ -601,7 +601,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.8.2</p>
+    <p class="ver">說說島 v1.9.0</p>
   </section>
 
   <!-- 首頁 -->
@@ -620,7 +620,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.8.2</p>
+    <p class="ver">說說島 v1.9.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -763,7 +763,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.8.2</p>
+    <p class="ver">說說島 v1.9.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -832,7 +832,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.8.2</p>
+    <p class="ver">說說島 v1.9.0</p>
   </section>
 </div>
 
@@ -2679,7 +2679,7 @@ function loadIsl(){
   if(window.Island&&window.Island.ready)return Promise.resolve();
   if(ISLS.loaded)return ISLS.loaded;
   const ld=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error(src));document.head.appendChild(s)});
-  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=4')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
+  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=5')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
   ISLS.loaded.catch(()=>{ISLS.loaded=null});return ISLS.loaded;
 }
 const islSize=()=>{const n=learnedAll().length;return n>=50?10:n>=20?8:6};
@@ -2696,7 +2696,7 @@ function islIdle(){
     $('#islBar').innerHTML=bt('vback','back','回我的島')+bt('vcheer','clap','鼓勵')+bt('vgift','gift','送禮物','');return}
   islHint('');
   const f=ISL().free;
-  $('#islBar').innerHTML=bt('shop','shop','商店')+`<button class="btn" data-ia="box">${ic('gift')}<span>盲盒</span>${f?`<b class="dotn">${f}</b>`:''}</button>`+bt('bag','bag','背包');
+  $('#islBar').innerHTML=bt('shop','shop','商店')+bt('fac','island','設施')+`<button class="btn" data-ia="box">${ic('gift')}<span>盲盒</span>${f?`<b class="dotn">${f}</b>`:''}</button>`+bt('bag','bag','背包');
 }
 function islSave(){ISL().items=Island.list();save();islHud()}
 function startPlace(t,idx){
@@ -2728,11 +2728,11 @@ function islOk(){
 }
 const card=(cls,id,n,sub,attr,dis)=>`<button class="icard ${cls||''}" ${attr} ${dis?'disabled':''}>${th(id,112)}<b>${n}</b><small>${sub}</small></button>`;
 const shHead=(i,t)=>`<div class="sh-h"><h3>${ic(i)}<span>${t}</span></h3><button class="ibtn" data-ia="close" aria-label="關閉">✕</button></div>`;
-function sheetShop(){
-  const cats=['自然','動物','生活','特別'];
+function sheetShop(fac){
+  const cats=fac?['商店','公共']:['自然','動物','生活','特別'];
   const list=Island.CAT.filter(c=>c.c===ISLS.cat);
   $('#islSheet').hidden=false;
-  $('#islSheet').innerHTML=shHead('shop','商店')+`<div class="tabs">${cats.map(c=>`<button class="tabb" aria-pressed="${c===ISLS.cat}" data-tab="${c}">${c}</button>`).join('')}</div>
+  $('#islSheet').innerHTML=shHead(fac?'island':'shop',fac?'設施':'商店')+`<div class="tabs">${cats.map(c=>`<button class="tabb" aria-pressed="${c===ISLS.cat}" data-tab="${c}">${c}</button>`).join('')}</div>
   <div class="igrid">${list.map(d=>card('',d.id,d.n,cn(buyP(d))+(d.s===2?'<em class="big">大</em>':''),`data-buy="${d.id}"`,coin()<buyP(d))).join('')}</div>
   <p class="muted">你有 ${cn(coin())}　盲盒比較便宜，還有機會抽到稀有的，人物只能用盲盒抽。</p>`;
 }
@@ -2759,7 +2759,7 @@ function drawBox(kind){
   else{if(coin()<b.cost){toast('島幣不夠，先去玩幾關');return}S.coin-=b.cost}
   const chr=b.pool==='char',pk=chr?'pityC':'pity',lim=chr?8:10;
   I[pk]=(I[pk]||0)+1;let r=roll(b.w);if(I[pk]>=lim&&r<2)r=2;if(r>=2)I[pk]=0;
-  let pool=Island.CAT.filter(c=>!c.np&&!!c.ch===chr&&rarOf(c.id)===r);if(!pool.length)pool=Island.CAT.filter(c=>!c.np&&!!c.ch===chr);
+  let pool=Island.CAT.filter(c=>!c.np&&!c.nb&&!!c.ch===chr&&rarOf(c.id)===r);if(!pool.length)pool=Island.CAT.filter(c=>!c.np&&!c.nb&&!!c.ch===chr);
   const it=pool[Math.floor(Math.random()*pool.length)];
   const had=!!I.seen[it.id]||I.items.some(x=>x[0]===it.id)||(I.inv[it.id]>0);
   let dup=false;
@@ -2789,7 +2789,7 @@ function sheetGift(){
   $('#islSheet').innerHTML=shHead('gift','送給 '+eh(ISLS.visit.nick))+(have.length?`<div class="igrid">${have.map(d=>card('',d.id,d.n,'× '+I.inv[d.id],`data-give="${d.id}"`)).join('')}</div><p class="muted">每天每位朋友可以送 1 個禮物。送出去的東西會少 1 個。</p>`:'<p class="muted" style="font-size:20px">背包裡沒有可以送的東西。去抽盲盒，抽到重複的就可以送朋友！</p>');
 }
 $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-ia]');if(!b)return;const a=b.dataset.ia;
-  if(a==='shop')sheetShop();else if(a==='bag')sheetBag();else if(a==='box')sheetBox();
+  if(a==='shop'){ISLS.fac=0;if(['商店','公共'].includes(ISLS.cat))ISLS.cat='自然';sheetShop(0)}else if(a==='fac'){ISLS.fac=1;if(!['商店','公共'].includes(ISLS.cat))ISLS.cat='商店';sheetShop(1)}else if(a==='bag')sheetBag();else if(a==='box')sheetBox();
   else if(a==='cancel')islIdle();else if(a==='ok')islOk();
   else if(a==='mv')startPlace(ISLS.t,ISLS.idx);
   else if(a==='pk'){const I=ISL();I.inv[ISLS.t]=(I.inv[ISLS.t]||0)+1;Island.remove(ISLS.idx);islSave();toast('收進背包了');islIdle()}
@@ -2797,7 +2797,7 @@ $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-
   else if(a==='vcheer'){try{await grpCheer(ISLS.visit._id,'👏');toast('送出鼓勵')}catch(x){toast('今天已經送過了')}}
   else if(a==='vgift')sheetGift()});
 $('#islSheet').addEventListener('click',async e=>{
-  const t=e.target.closest('[data-tab]');if(t){ISLS.cat=t.dataset.tab;sheetShop();return}
+  const t=e.target.closest('[data-tab]');if(t){ISLS.cat=t.dataset.tab;sheetShop(ISLS.fac);return}
   const b=e.target.closest('[data-buy]');if(b){const d=Island.BYID[b.dataset.buy],p=buyP(d);if(coin()<p)return;S.coin-=p;const I=ISL();I.inv[d.id]=(I.inv[d.id]||0)+1;I.seen[d.id]=1;save();islHud();startPlace(d.id);return}
   const pl=e.target.closest('[data-place]');if(pl){startPlace(pl.dataset.place);return}
   const dr=e.target.closest('[data-draw]');if(dr){drawBox(dr.dataset.draw);return}
