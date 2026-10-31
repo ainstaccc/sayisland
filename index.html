@@ -268,7 +268,7 @@ section.wrap:not([hidden]){animation:view .3s ease-out}
 .zc,.mc{border-bottom-width:6px}
 #fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
 #fx span{position:absolute;font-size:30px;animation:fly .95s ease-out forwards}
-.toast{position:fixed;top:78px;left:50%;transform:translateX(-50%);background:var(--sun);color:#3A2A00;font:800 24px/1 var(--f-disp);padding:10px 20px;border-radius:99px;box-shadow:0 5px 0 var(--shadow);z-index:60;white-space:nowrap;animation:pop .35s both}
+.toast{position:fixed;top:78px;left:0;right:0;margin:0 auto;width:max-content;max-width:calc(100vw - 32px);box-sizing:border-box;text-align:center;background:var(--sun);color:#3A2A00;font:800 22px/1.35 var(--f-disp);padding:10px 20px;border-radius:24px;box-shadow:0 5px 0 var(--shadow);z-index:10000;white-space:normal;word-break:break-word;pointer-events:none;animation:pop .35s both}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}#fx{display:none}}
 .wk{background:var(--card);border-radius:20px;padding:12px 16px;box-shadow:0 4px 0 var(--shadow)}
 .wk b{font:800 20px/1.3 var(--f-disp)}.wk small{display:block;color:var(--ink2);font-size:17px;margin-top:2px}
@@ -454,7 +454,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .islBar{position:absolute;bottom:max(14px,env(safe-area-inset-bottom));left:12px;right:12px;display:flex;gap:10px;z-index:3}
 .islBar .btn{flex:1;min-height:62px;font-size:21px;white-space:nowrap;position:relative}
 .dotn{background:#FF4D6D;color:#fff;border-radius:99px;padding:2px 9px;font-size:18px;margin-left:4px}
-.islHint{position:absolute;top:calc(max(10px,env(safe-area-inset-top)) + 64px);left:50%;transform:translateX(-50%);z-index:3;background:rgba(255,255,255,.94);color:#3B2A5A;border-radius:99px;padding:10px 20px;font:800 20px/1.3 var(--f-disp);white-space:nowrap;box-shadow:0 4px 0 rgba(150,80,190,.25)}
+.islHint{position:absolute;top:calc(max(10px,env(safe-area-inset-top)) + 64px);left:0;right:0;margin:0 auto;width:max-content;max-width:calc(100% - 28px);box-sizing:border-box;text-align:center;z-index:3;background:rgba(255,255,255,.94);color:#3B2A5A;border-radius:22px;padding:10px 20px;font:800 20px/1.3 var(--f-disp);white-space:normal;pointer-events:none;box-shadow:0 4px 0 rgba(150,80,190,.25)}
 .sheet{position:absolute;left:0;right:0;bottom:0;z-index:6;max-height:62%;overflow:auto;background:var(--card);color:var(--ink);border-radius:28px 28px 0 0;padding:16px 16px calc(18px + env(safe-area-inset-bottom));box-shadow:0 -8px 30px rgba(0,0,0,.28)}
 .sh-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.sh-h h3{font:900 26px/1.2 var(--f-disp)}
 .tabs{display:flex;gap:8px;margin:6px 0 10px}.tabb{flex:1;min-height:48px;border-radius:16px;border:3px solid var(--line);background:var(--bg);color:var(--ink);font:800 20px/1 var(--f-disp);white-space:nowrap}.tabb[aria-pressed="true"]{background:#FFD84D;color:#3B2A00;border-color:#FFB000}
@@ -570,7 +570,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 @keyframes flyin{from{opacity:0}to{opacity:1}}@keyframes cloudd{from{transform:translateY(-120px)}to{transform:translateY(110vh)}}@keyframes vbob{from{transform:translate(-50%,-50%) rotate(-6deg)}to{transform:translate(-50%,-56%) rotate(6deg)}}
 .fly .cl{position:absolute;font-size:72px;opacity:.9;animation:cloudd linear infinite}.fly .vh{position:absolute;left:50%;top:50%;font-size:110px;line-height:1;animation:vbob .5s ease-in-out infinite alternate}
 .fly b{position:absolute;bottom:12%;left:0;right:0;text-align:center;font:900 30px/1.3 var(--f-disp);color:#2B1D4D;white-space:nowrap}
-.goalfab{position:absolute;top:calc(max(10px,env(safe-area-inset-top)) + 58px);left:12px;z-index:3;width:auto!important;height:46px;border-radius:99px;padding:0 16px 0 10px;display:flex;align-items:center;gap:6px;background:#fff!important;color:#3B2A5A!important;font:800 18px/1 var(--f-disp);border:3px solid #FFD84D!important}.goalfab .sv{width:26px;height:26px}
+.goalfab{position:absolute;bottom:calc(96px + env(safe-area-inset-bottom));left:12px;z-index:3;width:auto!important;height:46px;border-radius:99px;padding:0 16px 0 10px;display:flex;align-items:center;gap:6px;background:#fff!important;color:#3B2A5A!important;font:800 18px/1 var(--f-disp);border:3px solid #FFD84D!important}.goalfab .sv{width:26px;height:26px}
 .sh4{margin:10px 0 6px;font:800 18px/1.2 var(--f-disp)}.avb{font-size:40px;line-height:1;display:block}
 .gl{display:flex;gap:12px;align-items:center;border:2px solid var(--line);border-radius:18px;padding:10px 12px;margin:8px 0}.gl .gle{font-size:40px;line-height:1;flex:none}.gl>div{flex:1;min-width:0}.gl b{display:block;font-size:20px}.gl small{display:block;font-size:15px;color:var(--ink2);margin:2px 0}.gl .gls{white-space:nowrap}.gl .gbar{height:12px;margin:5px 0}
 .pcs{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pcb{border:2px solid var(--line);border-radius:18px;background:#FFFBF0;color:#3B2A5A;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;min-height:96px;font:800 17px/1.25 inherit}.pcb span{font-size:38px;line-height:1}.pcb small{color:#5E4B80}.pcb:disabled{opacity:.55}
@@ -621,7 +621,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.11.0</p>
+    <p class="ver">說說島 v1.11.1</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -649,7 +649,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.11.0</p>
+    <p class="ver">說說島 v1.11.1</p>
   </section>
 
   <!-- 選擇題 -->
@@ -793,7 +793,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.11.0</p>
+    <p class="ver">說說島 v1.11.1</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -862,7 +862,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.11.0</p>
+    <p class="ver">說說島 v1.11.1</p>
   </section>
 </div>
 
@@ -1815,7 +1815,11 @@ const vib=p=>{try{if(S.snd&&navigator.vibrate)navigator.vibrate(p)}catch(e){}};
 function fxBurst(n,big){const f=document.getElementById('fx');if(!f)return;const em=['⭐','✨','🎉','💫','🍀'];
   for(let i=0;i<n;i++){const sp=document.createElement('span');sp.textContent=em[Math.floor(Math.random()*em.length)];const a=Math.random()*Math.PI*2,r=(big?150:80)+Math.random()*(big?150:70);
     sp.style.setProperty('--dx',Math.cos(a)*r+'px');sp.style.setProperty('--dy',(Math.sin(a)*r-30)+'px');sp.style.left='50%';sp.style.top=big?'34%':'36%';f.appendChild(sp);setTimeout(()=>sp.remove(),1000)}}
-function toast(t){document.querySelectorAll('.toast').forEach(x=>x.remove());const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1300)}
+const TQ=[];
+function showT(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>{d.remove();nextT()},Math.max(1800,Math.min(4500,String(t).length*130+900)))}
+function nextT(){if(document.querySelector('.toast')||!TQ.length)return;showT(TQ.shift())}
+function toast(t){document.querySelectorAll('.toast').forEach(x=>x.remove());showT(t)}
+function toastQ(t){if(TQ.indexOf(t)<0)TQ.push(t);nextT()}
 const sfx={ok(){COMBO++;const k=Math.min(COMBO,6)*40;beep(660+k,.12);beep(880+k,.2,.12);fxBurst(COMBO>=3?14:8);vib(18);if(COMBO>=3)toast('連對 '+COMBO+'！🔥')},ng(){COMBO=0;beep(220,.28);vib([30,40,30])},tog(){beep(660,.07);beep(880,.09,.07)},bump(){beep(330,.09);beep(220,.14,.07)},coin(){beep(988,.08);beep(1319,.28,.08);vib(15)},read(){beep(784,.09);beep(1047,.12,.09)},place(){beep(440,.06);beep(660,.1,.05);vib(12)},hatch(){[523,659,784,1047,1319].forEach((f,i)=>beep(f,.16,i*.1));vib([30,30,60])},grow(){[659,880,1175].forEach((f,i)=>beep(f,.18,i*.12));vib(30)},win(){beep(523,.12);beep(659,.12,.12);beep(784,.12,.24);beep(1047,.3,.36);fxBurst(28,1);vib([40,40,80])}};
 let VOICES=[];
 function loadVoices(){try{VOICES=speechSynthesis.getVoices()||[]}catch(e){VOICES=[]}}
@@ -2941,10 +2945,10 @@ function renderIsl(){
     if(ISLS.at&&!v){const drop=Island.setItems((I.outs||{})[ISLS.at]||[])||[];if(drop.length){drop.forEach(r=>{I.inv[r[0]]=(I.inv[r[0]]||0)+1});(I.outs=I.outs||{})[ISLS.at]=Island.list();save()}Island.on('tile',islTile);Island.on('item',islItem)}
     else if(v){Island.setItems(parseIsl(v.isl));Island.on('tile',null);Island.on('item',null);if(typeof v.isl!=='string')toast(v.nick+' 還沒更新到新版，島先空著')}
     else{
-      {const un=unlChk();if(un.length)setTimeout(()=>toast('解鎖 '+un[0].n+' '+un[0].e+'！在背包裡'),700)}
-      if(!I.welcome){I.welcome=1;I.free=(I.free||0)+1;save();toast('歡迎！送你 1 個免費盲盒')}
-      const drop=Island.setItems(I.items)||[];if(drop.length){drop.forEach(r=>{I.inv[r[0]]=(I.inv[r[0]]||0)+1;I.seen[r[0]]=1});I.items=Island.list();save();setTimeout(()=>toast('島改成六角形了，'+drop.length+' 個放不下的東西收回背包'),600)}Island.on('tile',islTile);Island.on('item',islItem);
-      if(I.size&&sz>I.size)toast('島變大了！可以放更多東西');else if(GRP_GF>0)toast('朋友送了禮物！到好友團收下');I.size=sz;save();grpPush()}
+      {const un=unlChk();if(un.length)toastQ('解鎖 '+un.map(u=>u.n+u.e).join('、')+'！已放進背包')}
+      if(!I.welcome){I.welcome=1;I.free=(I.free||0)+1;save();toastQ('歡迎！送你 1 個免費盲盒')}
+      const drop=Island.setItems(I.items)||[];if(drop.length){drop.forEach(r=>{I.inv[r[0]]=(I.inv[r[0]]||0)+1;I.seen[r[0]]=1});I.items=Island.list();save();toastQ('島改成六角形了，'+drop.length+' 個放不下的東西收回背包')}Island.on('tile',islTile);Island.on('item',islItem);
+      if(I.size&&sz>I.size)toastQ('島變大了！可以放更多東西');else if(GRP_GF>0)toastQ('朋友送了禮物！到好友團收下');I.size=sz;save();grpPush()}
     ISLS.on=true;islIdle();
   }).catch(()=>{$('#islHost').innerHTML='<p class="islmsg">這個版本打不開 3D 島。<br>請用網址 ainstaccc.github.io/sayisland 開啟。</p>';$('#islBar').innerHTML=''});
 }
