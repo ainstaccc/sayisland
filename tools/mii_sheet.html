@@ -1,0 +1,18 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>捏臉部件接觸表</title>
+<style>body{margin:0;padding:16px;font:16px/1.4 system-ui,"Noto Sans TC",sans-serif;background:#fff;color:#3B2A5A}h2{margin:22px 0 8px;font-size:20px;white-space:nowrap}
+.g{display:flex;flex-wrap:wrap;gap:8px}.c{width:120px;text-align:center;font-size:14px;white-space:nowrap}.c div{width:120px;height:150px;border:1px solid #ddd;border-radius:10px;overflow:hidden;background:#FAF7FF}.c.sq div{height:120px}
+.c svg{width:100%;height:100%;display:block}.err{color:#c00;font-weight:700}</style></head><body>
+<h1>捏臉部件接觸表</h1><p>每個部件都疊在同一個標準身體上，用來檢查有沒有歪、被切到、被別的部件蓋住。資料來源：同資料夾上一層的 index.html（改版後重新整理就會更新）。</p><div id="o"></div>
+<script>
+(async()=>{const o=document.getElementById('o');
+try{const t=await (await fetch('../index.html?'+Date.now())).text();const a=t.indexOf('const M_SKIN=['),b=t.indexOf('const hy=(r)');
+if(a<0||b<0)throw new Error('在 index.html 找不到捏臉程式碼區段（const M_SKIN … const hy=）');
+const esc=x=>x;const api=new Function('esc',t.slice(a,b)+';return{miiSvg,M_DEF,MCNT,M_PR,M_FREE}')(esc);const {miiSvg,M_DEF,MCNT,M_PR}=api;
+const base={s:0,h:1,c:0,e:0,t:0,p:0,f:0,a:0,x:0};
+const sec=(title,key,n,opt,sq,over)=>{let h='<h2>'+title+'（'+n+'）</h2><div class="g">';for(let i=0;i<n;i++){const c=Object.assign({},base,over||{});c[key]=i;let s;try{s=miiSvg(c,opt)}catch(e){s='<span class="err">'+e.message+'</span>'}h+='<div class="c'+(sq?' sq':'')+'"><div>'+s+'</div>#'+i+(M_PR[key]?(i===0||(api.M_FREE[key]||[]).indexOf(i)>=0?' 免費':' '+M_PR[key]+'幣'):'')+'</div>'}o.insertAdjacentHTML('beforeend',h+'</div>')};
+sec('髮型（全身）','h',MCNT.h,{stage:1});sec('髮色','c',MCNT.c,{stage:1});sec('膚色','s',MCNT.s,{stage:1});sec('表情','e',MCNT.e,{stage:1});
+sec('頭飾','a',MCNT.a,{stage:1});sec('臉飾','x',MCNT.x,{stage:1});sec('上衣','t',MCNT.t,{stage:1});sec('褲','p',MCNT.p,{stage:1});sec('鞋','f',MCNT.f,{stage:1});
+sec('頭像（頭＋肩，各髮型）','h',MCNT.h,{},1);
+}catch(e){o.innerHTML='<p class="err">'+e.message+'（用 file:// 直接開會被瀏覽器擋，請從 GitHub Pages 網址開 /tools/mii_sheet.html）</p>'}})();
+</script></body></html>
