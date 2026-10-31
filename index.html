@@ -638,7 +638,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.11.4</p>
+    <p class="ver">說說島 v1.11.5</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -667,7 +667,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.11.4</p>
+    <p class="ver">說說島 v1.11.5</p>
   </section>
 
   <!-- 選擇題 -->
@@ -811,7 +811,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.11.4</p>
+    <p class="ver">說說島 v1.11.5</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -880,7 +880,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.11.4</p>
+    <p class="ver">說說島 v1.11.5</p>
   </section>
 </div>
 
@@ -1056,10 +1056,16 @@ const miiStr=c=>Object.keys(M_DEF).map(k=>k+(c[k]||0)).join('');
 const mixc=(h,f,w)=>{const n=parseInt(h.slice(1),16),t=w?255:0,c=[n>>16&255,n>>8&255,n&255].map(v=>Math.round(v+(t-v)*f));return'#'+c.map(v=>v.toString(16).padStart(2,'0')).join('')};
 function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M_SKIN[0],hc=M_HAIR[c.c]||M_HAIR[0],hd=mixc(hc,.3,0),hl=mixc(hc,.5,1),skd=mixc(sk,.14,0),ds='#33283F',ST=` stroke="${hd}" stroke-width=".9" stroke-linejoin="round"`,SH='M8 64Q10 48 32 47Q54 48 56 64Z';
  const star=(x,y,r,f)=>{let d='';for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;d+=(i?'L':'M')+(x+Math.cos(a)*rr).toFixed(1)+' '+(y+Math.sin(a)*rr).toFixed(1)}return`<path d="${d}Z" fill="${f}" stroke="#E08A00" stroke-width=".6" stroke-linejoin="round"/>`};
- const cap=`<path d="M16 31Q13 11 32 11Q51 11 48 31Q44 21 32 21Q20 21 16 31Z" fill="${hc}"${ST}/>`,flat=`<path d="M16.5 33Q12 10 32 10Q52 10 47.5 33L45 25Q32 22 19 25Z" fill="${hc}"${ST}/>`;
- const HB=['','',`<ellipse cx="11" cy="40" rx="5" ry="9" fill="${hc}"${ST}/><ellipse cx="53" cy="40" rx="5" ry="9" fill="${hc}"${ST}/>`,`<path d="M15 30Q13 10 32 10Q51 10 49 30L52 58L12 58Z" fill="${hc}"${ST}/>`,`<circle cx="32" cy="8" r="6.5" fill="${hc}"${ST}/>`,
-  `<g fill="${hc}"${ST}><circle cx="18" cy="22" r="7"/><circle cx="26" cy="14" r="8"/><circle cx="38" cy="14" r="8"/><circle cx="46" cy="22" r="7"/><circle cx="13" cy="33" r="5"/><circle cx="51" cy="33" r="5"/></g>`,`<path d="M44 18Q61 22 57 46Q53 34 46 30Z" fill="${hc}"${ST}/>`,`<path d="M15 30Q13 10 32 10Q51 10 49 30L50 44Q32 49 14 44Z" fill="${hc}"${ST}/>`,'',`<circle cx="32" cy="23" r="22" fill="${hc}"${ST}/>`];
- const HF=[cap,flat,cap+`<circle cx="14" cy="31" r="2.3" fill="#FF6B9A"/><circle cx="50" cy="31" r="2.3" fill="#FF6B9A"/>`,`<path d="M16 33Q12 10 32 10Q52 10 48 33Q46 22 36 20Q28 26 18 28Z" fill="${hc}"${ST}/>`,cap,`<path d="M18 28Q32 15 46 28Q40 22 32 22Q24 22 18 28Z" fill="${hc}"${ST}/>`,cap+`<circle cx="49" cy="26" r="2.3" fill="#FF6B9A"/>`,flat,`<path d="M16 31L13 14L22 20L26 7L32 18L38 7L42 20L51 14L48 31Q32 19 16 31Z" fill="${hc}"${ST}/>`,cap];
+ const F=(d)=>`<path d="${d}" fill="${hc}"${ST}/>`,PUF=F('M12.5 30Q9 6 32 5.5Q55 6 51.5 30Q47 17 32 17Q17 17 12.5 30Z'),SB=F('M15.5 28Q13.5 36 16 40Q18.5 35 18.5 27Z')+F('M48.5 28Q50.5 36 48 40Q45.5 35 45.5 27Z'),
+  FR=F('M15.5 29Q12.5 8.5 32 7.5Q51.5 8.5 48.5 29Q47 21.5 41.5 21.5Q38 26 33 21Q28 26 23 21.5Q18 22 15.5 29Z')+`<path d="M24 11.5Q22 17 23.5 21M33 9.5Q32 15 33 20.5M41.5 11.5Q43 17 41.5 21" stroke="${hd}" stroke-width=".8" fill="none" opacity=".4" stroke-linecap="round"/>`,
+  BANG=F('M15.5 30Q12.5 8.5 32 7.5Q51.5 8.5 48.5 30Q48 24 44 24H20Q16 24 15.5 30Z')+`<path d="M24 11.5V22M32 9.5V22M40 11.5V22" stroke="${hd}" stroke-width=".8" opacity=".35"/>`,
+  SIDE=F('M15.5 30Q9 40 11 58H18Q18 44 19 29Z')+F('M48.5 30Q55 40 53 58H46Q46 44 45 29Z'),
+  SWEEP=F('M15.5 31Q12 8.5 32 7.5Q52 8.5 48.5 31Q47 20 37 17.5Q32 25 22 26Q17.5 26 15.5 31Z')+`<path d="M26 11Q24 18 21 23M33 9.5Q32 15 29 21" stroke="${hd}" stroke-width=".8" fill="none" opacity=".35" stroke-linecap="round"/>`;
+ const HB=[PUF,F('M12 30Q8.5 5.5 32 5.5Q55.5 5.5 52 30L53 47Q52 51 47 50L46.5 38H17.5L17 50Q12 51 11 47Z'),PUF+F('M13 28Q3 32 5.5 48Q9 58 14.5 51Q12 40 17 32Z')+F('M51 28Q61 32 58.5 48Q55 58 49.5 51Q52 40 47 32Z'),F('M12 30Q8 5 32 5Q56 5 52 30L56.5 63H7.5Z'),F('M24 8.5a8 8 0 1 0 16 0a8 8 0 1 0-16 0Z')+PUF,
+  `<g fill="${hc}"${ST}><circle cx="15" cy="24" r="8"/><circle cx="21" cy="12" r="9"/><circle cx="32" cy="8" r="9.5"/><circle cx="43" cy="12" r="9"/><circle cx="49" cy="24" r="8"/><circle cx="13" cy="36" r="6"/><circle cx="51" cy="36" r="6"/></g>`,PUF+F('M44 14Q63 13 60.5 40Q58 54 51.5 57Q54 42 49.5 31Z'),F('M12 30Q8.5 5.5 32 5.5Q55.5 5.5 52 30L53 47Q52 51 47 50L46.5 38H17.5L17 50Q12 51 11 47Z'),'',`<circle cx="32" cy="22" r="25" fill="${hc}"${ST}/>`];
+ const HF=[FR+SB,BANG+SIDE.replace(/M15\.5 30Q9 40 11 58H18/,'M15.5 30Q11 38 12.5 50H18'),FR+SB+`<circle cx="13.5" cy="31" r="2.8" fill="#FF6B9A" stroke="#D9467F" stroke-width=".8"/><circle cx="50.5" cy="31" r="2.8" fill="#FF6B9A" stroke="#D9467F" stroke-width=".8"/>`,SWEEP+SIDE,FR+SB+`<ellipse cx="32" cy="13.5" rx="6" ry="1.8" fill="#FF6B9A"/>`,
+  `<g fill="${hc}"${ST}><circle cx="23" cy="22" r="5.5"/><circle cx="32" cy="20" r="6"/><circle cx="41" cy="22" r="5.5"/></g>`,FR+SB+`<circle cx="47" cy="18" r="3.2" fill="#FF6B9A" stroke="#D9467F" stroke-width=".8"/>`,SWEEP+SB+`<path d="M40 14l1.2 2.6 2.8.3-2.1 1.9.6 2.8-2.5-1.5-2.5 1.5.6-2.8-2.1-1.9 2.8-.3Z" fill="#FFD84D" stroke="#E59A00" stroke-width=".6"/>`,
+  F('M14.5 30L10.5 13L20 19L22 3.5L29.5 15L35 2.5L40.5 15L47.5 5.5L48 19L54 13L49.5 30Q47 22 41 22Q36 26 31 22Q25 26 20 23Q16 24 14.5 30Z')+SB,FR+SB];
  const HI=c.h===8?'':`<path d="M21.5 18Q26 13.5 33 13.2" stroke="${hl}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".6"/>`;
  const TP=[{b:'#FFFFFF'},{b:'#6FC3F2'},{b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><path d="M8 52H56M8 57H56M8 62H56" stroke="#F46B6B" stroke-width="2.6"/></g>`},
   {b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><rect x="18" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="42" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="18" y="56" width="28" height="9" fill="#3A5FB8"/></g>`},
@@ -1077,7 +1083,7 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
   star(x,ey,4.8,'#FFC83D')+`<circle cx="${x+.8}" cy="${ey-1}" r=".8" fill="#fff"/>`,
   `<path d="M${x} ${ey+3.6}L${x-4} ${ey-.3}A2.3 2.3 0 0 1 ${x} ${ey-2.5}A2.3 2.3 0 0 1 ${x+4} ${ey-.3}Z" fill="#FF5C8A"/><circle cx="${x-1.2}" cy="${ey-1}" r=".8" fill="#fff"/>`][c.e]||'';
  const by=29.6;
- const brow=(x,sd)=>{const o1=x+sd*3,i1=x-sd*3,k=`stroke="${hc===M_HAIR[0]?'#4A3A3A':hd}" fill="none" stroke-linecap="round"`;return[`<path d="M${x-3} ${by}Q${x} ${by-1.6} ${x+3} ${by}" ${k} stroke-width="1.5"/>`,`<path d="M${x-3.2} ${by-.3}L${x+3.2} ${by-.3}" ${k} stroke-width="2.6"/>`,`<path d="M${x-3} ${by-1.6}Q${x} ${by-4} ${x+3} ${by-1.6}" ${k} stroke-width="1.5"/>`,`<path d="M${o1} ${by+1.2}L${i1} ${by-1.4}" ${k} stroke-width="1.8"/>`,`<path d="M${o1} ${by-1.2}L${i1} ${by+1.4}" ${k} stroke-width="1.8"/>`][c.b]||''};
+ const brow=(x,sd)=>{const o1=x+sd*3,i1=x-sd*3,k=`stroke="${mixc(hc,.12,0)}" fill="none" stroke-linecap="round" opacity=".85"`;return[`<path d="M${x-3} ${by}Q${x} ${by-1.6} ${x+3} ${by}" ${k} stroke-width="1.2"/>`,`<path d="M${x-3.2} ${by-.3}L${x+3.2} ${by-.3}" ${k} stroke-width="2"/>`,`<path d="M${x-3} ${by-1.6}Q${x} ${by-4} ${x+3} ${by-1.6}" ${k} stroke-width="1.5"/>`,`<path d="M${o1} ${by+1.2}L${i1} ${by-1.4}" ${k} stroke-width="1.8"/>`,`<path d="M${o1} ${by-1.2}L${i1} ${by+1.4}" ${k} stroke-width="1.8"/>`][c.b]||''};
  const mouth=[`<path d="M29.4 41.2Q32 43.8 34.6 41.2" stroke="#B5473A" stroke-width="1.7" fill="none" stroke-linecap="round"/>`,`<path d="M29 40.6Q32 47 35 40.6Z" fill="#C0392B"/><path d="M30.6 44.2Q32 42.8 33.4 44.2Q32 45.8 30.6 44.2Z" fill="#FF8FA3"/>`,`<path d="M29 41Q30.5 43.6 32 41Q33.5 43.6 35 41" stroke="#B5473A" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,`<ellipse cx="32" cy="42.4" rx="2" ry="2.5" fill="#C0392B"/>`,`<path d="M29.4 41.2Q32 43.8 34.6 41.2" stroke="#B5473A" stroke-width="1.7" fill="none" stroke-linecap="round"/><path d="M30.8 43h3.4v2.5a1.7 1.7 0 0 1-3.4 0Z" fill="#FF8FA3"/>`,`<path d="M29.8 42.2Q33 42.6 35.6 40.4" stroke="#B5473A" stroke-width="1.7" fill="none" stroke-linecap="round"/>`][c.m]||'';
  const HA=['',`<path d="M16 25Q18 7 32 7Q46 7 48 25Z" fill="#E5484D" stroke="#B02C32" stroke-width=".9" stroke-linejoin="round"/><path d="M30 24h22a3 2.2 0 0 1 0 4.4H30Z" fill="#C23A3F"/>`,`<path d="M47 17L56 12L55 22Z" fill="#FF8FB7"/><path d="M47 17L38 12L39 22Z" fill="#FF8FB7"/><circle cx="47" cy="17" r="2.6" fill="#FF6B9A"/>`,`<path d="M19 17L21 5L27 11L32 3L37 11L43 5L45 17Z" fill="#FFD84D" stroke="#E59A00" stroke-width="1.2" stroke-linejoin="round"/>`,
   `<path d="M17 20L19 6L28 14Z" fill="#B8BED0" stroke="#8E94A6" stroke-width=".8"/><path d="M47 20L45 6L36 14Z" fill="#B8BED0" stroke="#8E94A6" stroke-width=".8"/><path d="M20 15L21 10L25 14Z" fill="#FFB7D0"/><path d="M44 15L43 10L39 14Z" fill="#FFB7D0"/>`,
@@ -1088,10 +1094,10 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
   `<g fill="#FF6B9A" fill-opacity=".85" stroke="#C23A6A" stroke-width="1"><path d="M25.5 37L20.5 32A2.8 2.8 0 0 1 25.5 29.5A2.8 2.8 0 0 1 30.5 32Z"/><path d="M38.5 37L33.5 32A2.8 2.8 0 0 1 38.5 29.5A2.8 2.8 0 0 1 43.5 32Z"/></g>`,
   `<g transform="rotate(-25 43 37)"><rect x="39" y="35" width="9" height="4" rx="1.6" fill="#FFD9B0" stroke="#D9A97A" stroke-width=".8"/><path d="M43.5 35v4" stroke="#E7BE95" stroke-width=".8"/></g>`,
   `<g fill="#B5764F"><circle cx="22" cy="37" r=".8"/><circle cx="24.5" cy="38.5" r=".8"/><circle cx="21.5" cy="39.5" r=".8"/><circle cx="42" cy="37" r=".8"/><circle cx="39.5" cy="38.5" r=".8"/><circle cx="42.5" cy="39.5" r=".8"/></g>`][c.g]||'';
- const tile=!!o.z||o.tile,vb=o.z==='f'?'13 22 38 32':o.z==='h'?'5 1 54 54':o.z==='a'?'5 -4 54 54':'0 0 64 64';
+ const tile=!!o.z||o.tile,vb=o.stage?'0 -3 64 67':o.z==='f'?'14 22 36 32':o.z==='h'?'2 -2 60 60':o.z==='a'?'2 -6 60 60':'0 0 64 64';
  const bg=o.stage?'':tile?`<rect x="-60" y="-60" width="200" height="200" fill="${o.bg||'#FFF1F8'}"/>`:`<circle cx="32" cy="32" r="31" fill="${o.bg||'#E8F4FF'}"/>`;
- const body=`<g transform="translate(0 2.4)">${TP.pre||''}<path d="${SH}" fill="${TP.b}" stroke="${mixc(TP.b,.18,0)}" stroke-width=".9" stroke-linejoin="round"/>${TP.x||''}</g>`;
- const head=`<g transform="translate(32 32) scale(1.12) translate(-32 -32)">${HB[c.h]||''}<ellipse cx="32" cy="44" rx="6.5" ry="2" fill="${skd}" opacity=".35"/><rect x="28.5" y="41" width="7" height="8" rx="3" fill="${sk}"/><circle cx="16.8" cy="32.5" r="3.2" fill="${sk}" stroke="${skd}" stroke-width=".7"/><circle cx="47.2" cy="32.5" r="3.2" fill="${sk}" stroke="${skd}" stroke-width=".7"/><ellipse cx="32" cy="31" rx="15.5" ry="14" fill="${sk}" stroke="${skd}" stroke-width=".8"/><ellipse cx="20.8" cy="39.6" rx="3.3" ry="2.1" fill="#FF8FA8" fill-opacity=".5"/><ellipse cx="43.2" cy="39.6" rx="3.3" ry="2.1" fill="#FF8FA8" fill-opacity=".5"/>${eye(25,-1)}${eye(39,1)}${brow(25,-1)}${brow(39,1)}<path d="M31.2 38.4Q32 39.3 32.8 38.4" stroke="${skd}" stroke-width="1" fill="none" stroke-linecap="round"/>${mouth}${HF[c.h]||''}${HI}<g transform="translate(0 1.6)">${GA}</g>${HA}</g>`;
+ const body=`<g transform="translate(32 66) scale(.84) translate(-32 -64)">${TP.pre||''}<path d="${SH}" fill="${TP.b}" stroke="${mixc(TP.b,.18,0)}" stroke-width=".9" stroke-linejoin="round"/>${TP.x||''}</g>`;
+ const head=`<g transform="translate(32 33.5) scale(1.2) translate(-32 -32)">${HB[c.h]||''}<ellipse cx="32" cy="44" rx="6.5" ry="2" fill="${skd}" opacity=".35"/><rect x="28.5" y="41" width="7" height="8" rx="3" fill="${sk}"/><circle cx="16.8" cy="32.5" r="3.2" fill="${sk}" stroke="${skd}" stroke-width=".7"/><circle cx="47.2" cy="32.5" r="3.2" fill="${sk}" stroke="${skd}" stroke-width=".7"/><ellipse cx="32" cy="31" rx="15.5" ry="14" fill="${sk}" stroke="${skd}" stroke-width=".8"/><ellipse cx="20.8" cy="39.6" rx="3.3" ry="2.1" fill="#FF8FA8" fill-opacity=".5"/><ellipse cx="43.2" cy="39.6" rx="3.3" ry="2.1" fill="#FF8FA8" fill-opacity=".5"/>${eye(25,-1)}${eye(39,1)}${brow(25,-1)}${brow(39,1)}<path d="M31.2 38.4Q32 39.3 32.8 38.4" stroke="${skd}" stroke-width="1" fill="none" stroke-linecap="round"/>${mouth}${HF[c.h]||''}${HI}<g transform="translate(0 1.6)">${GA}</g>${HA}</g>`;
  return`<svg class="av2" viewBox="${vb}" aria-hidden="true"><defs><clipPath id="miiC"><circle cx="32" cy="32" r="31"/></clipPath><clipPath id="miiS"><path d="${SH}"/></clipPath></defs>${bg}<g${tile||o.stage?'':' clip-path="url(#miiC)"'}>${body}${head}</g></svg>`}
 
 const hy=(r)=>(r||document).querySelectorAll('[data-i]').forEach(e=>{if(ICO[e.dataset.i])e.innerHTML=ICO[e.dataset.i]});
