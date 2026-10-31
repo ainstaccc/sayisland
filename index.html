@@ -638,7 +638,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.11.5</p>
+    <p class="ver">說說島 v1.11.6</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -667,7 +667,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.11.5</p>
+    <p class="ver">說說島 v1.11.6</p>
   </section>
 
   <!-- 選擇題 -->
@@ -811,7 +811,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.11.5</p>
+    <p class="ver">說說島 v1.11.6</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -880,7 +880,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.11.5</p>
+    <p class="ver">說說島 v1.11.6</p>
   </section>
 </div>
 
@@ -1054,7 +1054,7 @@ const M_PR={h:6,t:12,a:15,g:15,e:4,b:4,m:4},M_FREE={h:[0,1],t:[0,1],e:[0,1],b:[0
 const miiParse=str=>{const o=Object.assign({},M_DEF);String(str||'').replace(/^m:/,'').replace(/([a-z])(\d+)/g,(_,k,v)=>{if(k in o)o[k]=Math.min(+v,MCNT[k]-1)});return o};
 const miiStr=c=>Object.keys(M_DEF).map(k=>k+(c[k]||0)).join('');
 const mixc=(h,f,w)=>{const n=parseInt(h.slice(1),16),t=w?255:0,c=[n>>16&255,n>>8&255,n&255].map(v=>Math.round(v+(t-v)*f));return'#'+c.map(v=>v.toString(16).padStart(2,'0')).join('')};
-function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M_SKIN[0],hc=M_HAIR[c.c]||M_HAIR[0],hd=mixc(hc,.3,0),hl=mixc(hc,.5,1),skd=mixc(sk,.14,0),ds='#33283F',ST=` stroke="${hd}" stroke-width=".9" stroke-linejoin="round"`,SH='M8 64Q10 48 32 47Q54 48 56 64Z';
+function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M_SKIN[0],hc=M_HAIR[c.c]||M_HAIR[0],OL='#5E4838',hd=OL,hl=mixc(hc,.5,1),skd=OL,ds='#4A3626',ST=` stroke="${OL}" stroke-width="1" stroke-linejoin="round"`,SH='M8 64Q10 48 32 47Q54 48 56 64Z';
  const star=(x,y,r,f)=>{let d='';for(let i=0;i<10;i++){const a=-Math.PI/2+i*Math.PI/5,rr=i%2?r*.45:r;d+=(i?'L':'M')+(x+Math.cos(a)*rr).toFixed(1)+' '+(y+Math.sin(a)*rr).toFixed(1)}return`<path d="${d}Z" fill="${f}" stroke="#E08A00" stroke-width=".6" stroke-linejoin="round"/>`};
  const F=(d)=>`<path d="${d}" fill="${hc}"${ST}/>`,PUF=F('M12.5 30Q9 6 32 5.5Q55 6 51.5 30Q47 17 32 17Q17 17 12.5 30Z'),SB=F('M15.5 28Q13.5 36 16 40Q18.5 35 18.5 27Z')+F('M48.5 28Q50.5 36 48 40Q45.5 35 45.5 27Z'),
   FR=F('M15.5 29Q12.5 8.5 32 7.5Q51.5 8.5 48.5 29Q47 21.5 41.5 21.5Q38 26 33 21Q28 26 23 21.5Q18 22 15.5 29Z')+`<path d="M24 11.5Q22 17 23.5 21M33 9.5Q32 15 33 20.5M41.5 11.5Q43 17 41.5 21" stroke="${hd}" stroke-width=".8" fill="none" opacity=".4" stroke-linecap="round"/>`,
@@ -1066,7 +1066,7 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
  const HF=[FR+SB,BANG+SIDE.replace(/M15\.5 30Q9 40 11 58H18/,'M15.5 30Q11 38 12.5 50H18'),FR+SB+`<circle cx="13.5" cy="31" r="2.8" fill="#FF6B9A" stroke="#D9467F" stroke-width=".8"/><circle cx="50.5" cy="31" r="2.8" fill="#FF6B9A" stroke="#D9467F" stroke-width=".8"/>`,SWEEP+SIDE,FR+SB+`<ellipse cx="32" cy="13.5" rx="6" ry="1.8" fill="#FF6B9A"/>`,
   `<g fill="${hc}"${ST}><circle cx="23" cy="22" r="5.5"/><circle cx="32" cy="20" r="6"/><circle cx="41" cy="22" r="5.5"/></g>`,FR+SB+`<circle cx="47" cy="18" r="3.2" fill="#FF6B9A" stroke="#D9467F" stroke-width=".8"/>`,SWEEP+SB+`<path d="M40 14l1.2 2.6 2.8.3-2.1 1.9.6 2.8-2.5-1.5-2.5 1.5.6-2.8-2.1-1.9 2.8-.3Z" fill="#FFD84D" stroke="#E59A00" stroke-width=".6"/>`,
   F('M14.5 30L10.5 13L20 19L22 3.5L29.5 15L35 2.5L40.5 15L47.5 5.5L48 19L54 13L49.5 30Q47 22 41 22Q36 26 31 22Q25 26 20 23Q16 24 14.5 30Z')+SB,FR+SB];
- const HI=c.h===8?'':`<path d="M21.5 18Q26 13.5 33 13.2" stroke="${hl}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".6"/>`;
+ const HI='';const HI0=c.h===8?'':`<path d="M21.5 18Q26 13.5 33 13.2" stroke="${hl}" stroke-width="2.2" fill="none" stroke-linecap="round" opacity=".6"/>`;
  const TP=[{b:'#FFFFFF'},{b:'#6FC3F2'},{b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><path d="M8 52H56M8 57H56M8 62H56" stroke="#F46B6B" stroke-width="2.6"/></g>`},
   {b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><rect x="18" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="42" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="18" y="56" width="28" height="9" fill="#3A5FB8"/></g>`},
   {b:'#FF9EBB',x:`<path d="M19 50Q32 58 45 50" stroke="#E56A98" stroke-width="3" fill="none"/><path d="M28 55v7M36 55v7" stroke="#fff" stroke-width="1.6"/>`},
@@ -1076,15 +1076,15 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
   {b:'#FF8FB7',x:`<circle cx="12" cy="55" r="5.5" fill="#FF8FB7" stroke="#D96A94" stroke-width=".9"/><circle cx="52" cy="55" r="5.5" fill="#FF8FB7" stroke="#D96A94" stroke-width=".9"/><path d="M21 49Q32 57 43 49" stroke="#FFD84D" stroke-width="2.4" fill="none"/><circle cx="32" cy="57" r="2" fill="#FFD84D"/>`},
   {b:'#3A6FD8',pre:`<path d="M6 64Q8 44 32 44Q56 44 58 64Z" fill="#E5484D" stroke="#B02C32" stroke-width=".9"/>`,x:`<path d="M32 53l3.2 4.4-3.2 4.4-3.2-4.4Z" fill="#FFD84D"/>`}][c.t]||{b:'#fff'};
  const ey=34.6;
- const eye=(x,sd)=>[`<ellipse cx="${x}" cy="${ey}" rx="2.5" ry="3.1" fill="${ds}"/><circle cx="${x+.9}" cy="${ey-1.1}" r="1" fill="#fff"/>`,
-  `<ellipse cx="${x}" cy="${ey}" rx="3.3" ry="4" fill="${ds}"/><ellipse cx="${x}" cy="${ey+1.2}" rx="2.2" ry="2.1" fill="#6B5AB8"/><circle cx="${x+1.2}" cy="${ey-1.4}" r="1.4" fill="#fff"/><circle cx="${x-1}" cy="${ey+1.5}" r=".7" fill="#fff"/>`,
-  `<path d="M${x-3} ${ey+1.4}Q${x} ${ey-3} ${x+3} ${ey+1.4}" stroke="${ds}" stroke-width="2.1" fill="none" stroke-linecap="round"/>`,
-  `<path d="M${x-3} ${ey-.4}Q${x} ${ey+3} ${x+3} ${ey-.4}" stroke="${ds}" stroke-width="2.1" fill="none" stroke-linecap="round"/><path d="M${x+sd*3} ${ey-.4}l${sd*1.4} -1.4" stroke="${ds}" stroke-width="1.3" stroke-linecap="round"/>`,
+ const eye=(x,sd)=>[`<circle cx="${x}" cy="${ey}" r="2" fill="${ds}"/>`,
+  `<ellipse cx="${x}" cy="${ey}" rx="2.6" ry="3.2" fill="${ds}"/><circle cx="${x+.8}" cy="${ey-1}" r=".9" fill="#fff"/>`,
+  `<path d="M${x-3} ${ey+1.4}Q${x} ${ey-3} ${x+3} ${ey+1.4}" stroke="${ds}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
+  `<path d="M${x-3} ${ey-.4}Q${x} ${ey+3} ${x+3} ${ey-.4}" stroke="${ds}" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M${x+sd*3} ${ey-.4}l${sd*1.4} -1.4" stroke="${ds}" stroke-width="1.3" stroke-linecap="round"/>`,
   star(x,ey,4.8,'#FFC83D')+`<circle cx="${x+.8}" cy="${ey-1}" r=".8" fill="#fff"/>`,
   `<path d="M${x} ${ey+3.6}L${x-4} ${ey-.3}A2.3 2.3 0 0 1 ${x} ${ey-2.5}A2.3 2.3 0 0 1 ${x+4} ${ey-.3}Z" fill="#FF5C8A"/><circle cx="${x-1.2}" cy="${ey-1}" r=".8" fill="#fff"/>`][c.e]||'';
  const by=29.6;
  const brow=(x,sd)=>{const o1=x+sd*3,i1=x-sd*3,k=`stroke="${mixc(hc,.12,0)}" fill="none" stroke-linecap="round" opacity=".85"`;return[`<path d="M${x-3} ${by}Q${x} ${by-1.6} ${x+3} ${by}" ${k} stroke-width="1.2"/>`,`<path d="M${x-3.2} ${by-.3}L${x+3.2} ${by-.3}" ${k} stroke-width="2"/>`,`<path d="M${x-3} ${by-1.6}Q${x} ${by-4} ${x+3} ${by-1.6}" ${k} stroke-width="1.5"/>`,`<path d="M${o1} ${by+1.2}L${i1} ${by-1.4}" ${k} stroke-width="1.8"/>`,`<path d="M${o1} ${by-1.2}L${i1} ${by+1.4}" ${k} stroke-width="1.8"/>`][c.b]||''};
- const mouth=[`<path d="M29.4 41.2Q32 43.8 34.6 41.2" stroke="#B5473A" stroke-width="1.7" fill="none" stroke-linecap="round"/>`,`<path d="M29 40.6Q32 47 35 40.6Z" fill="#C0392B"/><path d="M30.6 44.2Q32 42.8 33.4 44.2Q32 45.8 30.6 44.2Z" fill="#FF8FA3"/>`,`<path d="M29 41Q30.5 43.6 32 41Q33.5 43.6 35 41" stroke="#B5473A" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,`<ellipse cx="32" cy="42.4" rx="2" ry="2.5" fill="#C0392B"/>`,`<path d="M29.4 41.2Q32 43.8 34.6 41.2" stroke="#B5473A" stroke-width="1.7" fill="none" stroke-linecap="round"/><path d="M30.8 43h3.4v2.5a1.7 1.7 0 0 1-3.4 0Z" fill="#FF8FA3"/>`,`<path d="M29.8 42.2Q33 42.6 35.6 40.4" stroke="#B5473A" stroke-width="1.7" fill="none" stroke-linecap="round"/>`][c.m]||'';
+ const mouth=[`<path d="M29.4 41.2Q32 43.8 34.6 41.2" stroke="#A8493C" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,`<path d="M29 40.6Q32 47 35 40.6Z" fill="#C0392B"/><path d="M30.6 44.2Q32 42.8 33.4 44.2Q32 45.8 30.6 44.2Z" fill="#FF8FA3"/>`,`<path d="M29 41Q30.5 43.6 32 41Q33.5 43.6 35 41" stroke="#B5473A" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,`<ellipse cx="32" cy="42.4" rx="2" ry="2.5" fill="#C0392B"/>`,`<path d="M29.4 41.2Q32 43.8 34.6 41.2" stroke="#A8493C" stroke-width="1.3" fill="none" stroke-linecap="round"/><path d="M30.8 43h3.4v2.5a1.7 1.7 0 0 1-3.4 0Z" fill="#FF8FA3"/>`,`<path d="M29.8 42.2Q33 42.6 35.6 40.4" stroke="#A8493C" stroke-width="1.3" fill="none" stroke-linecap="round"/>`][c.m]||'';
  const HA=['',`<path d="M16 25Q18 7 32 7Q46 7 48 25Z" fill="#E5484D" stroke="#B02C32" stroke-width=".9" stroke-linejoin="round"/><path d="M30 24h22a3 2.2 0 0 1 0 4.4H30Z" fill="#C23A3F"/>`,`<path d="M47 17L56 12L55 22Z" fill="#FF8FB7"/><path d="M47 17L38 12L39 22Z" fill="#FF8FB7"/><circle cx="47" cy="17" r="2.6" fill="#FF6B9A"/>`,`<path d="M19 17L21 5L27 11L32 3L37 11L43 5L45 17Z" fill="#FFD84D" stroke="#E59A00" stroke-width="1.2" stroke-linejoin="round"/>`,
   `<path d="M17 20L19 6L28 14Z" fill="#B8BED0" stroke="#8E94A6" stroke-width=".8"/><path d="M47 20L45 6L36 14Z" fill="#B8BED0" stroke="#8E94A6" stroke-width=".8"/><path d="M20 15L21 10L25 14Z" fill="#FFB7D0"/><path d="M44 15L43 10L39 14Z" fill="#FFB7D0"/>`,
   `<g><circle cx="21" cy="17" r="2.8" fill="#FF9EBB"/><circle cx="26" cy="17" r="2.8" fill="#FF9EBB"/><circle cx="23.5" cy="13" r="2.8" fill="#FF9EBB"/><circle cx="23.5" cy="20" r="2.8" fill="#FF9EBB"/><circle cx="23.5" cy="17" r="2" fill="#FFD84D"/></g>`,
@@ -1096,8 +1096,8 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
   `<g fill="#B5764F"><circle cx="22" cy="37" r=".8"/><circle cx="24.5" cy="38.5" r=".8"/><circle cx="21.5" cy="39.5" r=".8"/><circle cx="42" cy="37" r=".8"/><circle cx="39.5" cy="38.5" r=".8"/><circle cx="42.5" cy="39.5" r=".8"/></g>`][c.g]||'';
  const tile=!!o.z||o.tile,vb=o.stage?'0 -3 64 67':o.z==='f'?'14 22 36 32':o.z==='h'?'2 -2 60 60':o.z==='a'?'2 -6 60 60':'0 0 64 64';
  const bg=o.stage?'':tile?`<rect x="-60" y="-60" width="200" height="200" fill="${o.bg||'#FFF1F8'}"/>`:`<circle cx="32" cy="32" r="31" fill="${o.bg||'#E8F4FF'}"/>`;
- const body=`<g transform="translate(32 66) scale(.84) translate(-32 -64)">${TP.pre||''}<path d="${SH}" fill="${TP.b}" stroke="${mixc(TP.b,.18,0)}" stroke-width=".9" stroke-linejoin="round"/>${TP.x||''}</g>`;
- const head=`<g transform="translate(32 33.5) scale(1.2) translate(-32 -32)">${HB[c.h]||''}<ellipse cx="32" cy="44" rx="6.5" ry="2" fill="${skd}" opacity=".35"/><rect x="28.5" y="41" width="7" height="8" rx="3" fill="${sk}"/><circle cx="16.8" cy="32.5" r="3.2" fill="${sk}" stroke="${skd}" stroke-width=".7"/><circle cx="47.2" cy="32.5" r="3.2" fill="${sk}" stroke="${skd}" stroke-width=".7"/><ellipse cx="32" cy="31" rx="15.5" ry="14" fill="${sk}" stroke="${skd}" stroke-width=".8"/><ellipse cx="20.8" cy="39.6" rx="3.3" ry="2.1" fill="#FF8FA8" fill-opacity=".5"/><ellipse cx="43.2" cy="39.6" rx="3.3" ry="2.1" fill="#FF8FA8" fill-opacity=".5"/>${eye(25,-1)}${eye(39,1)}${brow(25,-1)}${brow(39,1)}<path d="M31.2 38.4Q32 39.3 32.8 38.4" stroke="${skd}" stroke-width="1" fill="none" stroke-linecap="round"/>${mouth}${HF[c.h]||''}${HI}<g transform="translate(0 1.6)">${GA}</g>${HA}</g>`;
+ const body=`<g transform="translate(32 66) scale(.84) translate(-32 -64)">${TP.pre||''}<path d="${SH}" fill="${TP.b}" stroke="${OL}" stroke-width="1" stroke-linejoin="round"/>${TP.x||''}</g>`;
+ const head=`<g transform="translate(32 33.5) scale(1.2) translate(-32 -32)">${HB[c.h]||''}<ellipse cx="32" cy="44" rx="6.5" ry="2" fill="${skd}" opacity=".35"/><rect x="28.5" y="41" width="7" height="8" rx="3" fill="${sk}"/><circle cx="16.8" cy="32.5" r="3.2" fill="${sk}" stroke="${OL}" stroke-width=".9"/><circle cx="47.2" cy="32.5" r="3.2" fill="${sk}" stroke="${OL}" stroke-width=".9"/><ellipse cx="32" cy="31" rx="15.5" ry="14" fill="${sk}" stroke="${OL}" stroke-width="1"/><ellipse cx="20.8" cy="39.6" rx="3.3" ry="2.1" fill="#FF9A9A" fill-opacity=".32"/><ellipse cx="43.2" cy="39.6" rx="3.3" ry="2.1" fill="#FF9A9A" fill-opacity=".32"/>${eye(25,-1)}${eye(39,1)}${brow(25,-1)}${brow(39,1)}${mouth}${HF[c.h]||''}${HI}<g transform="translate(0 1.6)">${GA}</g>${HA}</g>`;
  return`<svg class="av2" viewBox="${vb}" aria-hidden="true"><defs><clipPath id="miiC"><circle cx="32" cy="32" r="31"/></clipPath><clipPath id="miiS"><path d="${SH}"/></clipPath></defs>${bg}<g${tile||o.stage?'':' clip-path="url(#miiC)"'}>${body}${head}</g></svg>`}
 
 const hy=(r)=>(r||document).querySelectorAll('[data-i]').forEach(e=>{if(ICO[e.dataset.i])e.innerHTML=ICO[e.dataset.i]});
