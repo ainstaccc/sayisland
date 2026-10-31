@@ -609,7 +609,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .egb{background:#FAF5FF;border:2px solid var(--line);border-radius:18px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font:800 18px/1 inherit;color:#3B2A5A}
 .egb .ms{width:68px;height:68px}.egb small{font-size:17px;color:#5E4B80}
 .egb:active{transform:scale(.95)}.pbig .ms{width:150px;height:150px}.prc .muted{margin:0}
-/* v1.15.0 我的島 UI（主題3）：底部按鈕立體感、面板把手、卡片按壓、盲盒光暈、頂部資訊 */
+/* v1.15.1 我的島 UI（主題3）：底部按鈕立體感、面板把手、卡片按壓、盲盒光暈、頂部資訊 */
 .islBar .btn{box-shadow:0 5px 0 rgba(0,0,0,.18),0 10px 16px -8px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
 .islBar .btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 .islBar .btn .sv{width:1.25em;height:1.25em}
@@ -660,7 +660,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.15.0</p>
+    <p class="ver">說說島 v1.15.1</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -689,7 +689,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.15.0</p>
+    <p class="ver">說說島 v1.15.1</p>
   </section>
 
   <!-- 選擇題 -->
@@ -833,7 +833,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.15.0</p>
+    <p class="ver">說說島 v1.15.1</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -902,7 +902,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.15.0</p>
+    <p class="ver">說說島 v1.15.1</p>
   </section>
 </div>
 
@@ -1832,7 +1832,7 @@ const Y1=[['🏠','我＿＿家寫功課。','在','再','載','「在」說的�
 const Y2=[['🥇','哥哥跑步得到第一＿＿。','名','明','鳴','第一名的「名」。'],['🛒','媽媽帶我去市＿＿買菜。','場','常','長','「市場」的「場」，土字旁。'],['🧒','我們一＿＿去公園玩。','起','氣','七','「一起」的「起」。'],['🌈','雨後出現美麗的彩＿＿。','虹','紅','江','「彩虹」的「虹」是蟲字旁。'],['🏫','上學要準時，不可以＿＿到。','遲','持','池','「遲到」是比規定的時間晚到。'],['🎶','我很喜歡聽＿＿樂。','音','因','陰','「音樂」的「音」。'],['🧴','洗手要用肥＿＿。','皂','早','造','「肥皂」的「皂」。'],['📖','我喜歡看＿＿外書。','課','客','可','「課外書」的「課」，言字旁。']];
 const Y3=[['🏃','他跑＿＿很快。','得','的','地','「跑得」是說明跑的情形，用「得」。'],['🌸','花兒靜靜＿＿開放。','地','的','得','「地」放在動作前面，說明怎麼做。'],['🎒','這是我＿＿書包。','的','得','地','「的」放在名詞前面，表示是誰的。'],['✍️','我在寫＿＿業。','作','做','坐','「作業」的「作」。'],['🍳','媽媽在廚房＿＿菜。','做','作','坐','「做菜」是動手完成一件事，用「做」。'],['🤝','我們要互相幫＿＿。','助','住','注','「幫助」的「助」，力字旁。'],['📣','老師＿＿醒我們要守秩序。','提','題','堤','「提醒」的「提」，提手旁。'],['🧪','他很有耐＿＿，不怕失敗。','心','新','辛','「耐心」的「心」。']];
 
-/* v1.15.0 注音辨辨看（低年級）：ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ。[圖, 詞, 字, 正確注音, 干擾1, 干擾2, 類型]；三個選項的聲調一樣，只差在要分辨的音 */
+/* v1.15.1 注音辨辨看（低年級）：ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ。[圖, 詞, 字, 正確注音, 干擾1, 干擾2, 類型]；三個選項的聲調一樣，只差在要分辨的音 */
 const ZBT={n:'ㄣ 收音時，舌尖頂在上排牙齒後面，嘴巴小小的。',g:'ㄥ 收音時，嘴巴放鬆，聲音往鼻子後面走。',a:'ㄢ 收音時，舌尖往上頂，嘴巴扁一點。',h:'ㄤ 收音時，嘴巴張大，聲音往後面拉長。',c:'ㄔ、ㄓ 是翹舌音，舌頭要往後捲。',z:'ㄘ、ㄗ 是平舌音，舌頭平平的，靠近牙齒。',cz:'ㄓ、ㄔ 是翹舌音，ㄗ、ㄘ 是平舌音，這個字要記起來。'};
 const ZB=[
 ['🚪','大門','門','ㄇㄣˊ','ㄇㄥˊ','ㄇㄢˊ','n'],['🌱','樹根','根','ㄍㄣ','ㄍㄥ','ㄍㄢ','n'],['🧑','大人','人','ㄖㄣˊ','ㄖㄥˊ','ㄖㄢˊ','n'],['📕','書本','本','ㄅㄣˇ','ㄅㄥˇ','ㄅㄢˇ','n'],
@@ -3163,12 +3163,27 @@ function prPop(){const q=S.pq||[];if(!q.length||$('#v-home').hidden||document.qu
   o.innerHTML=`<div class="prc"><div class="pre">${ICO.coin}</div><b>爸媽送你 ${r.n} 島幣！</b><p>${r.w?eh(r.w):'做得好！'}</p><button class="btn" id="prok">收下</button></div>`;
   document.body.appendChild(o);try{sfx.coin();fxBurst(24)}catch(e){}
   $('#prok').onclick=()=>{o.remove();homePops()}}
+let pgBad=0,pgLock=0;
+function pgNew(){
+  const a=12+Math.floor(Math.random()*8),b=6+Math.floor(Math.random()*4);pgA=a*b;
+  $('#pgq').textContent=`請輸入答案才能進入：${a} × ${b} = ？`;$('#pgin').value='';
+}
 function openParent(){
-  const a=6+Math.floor(Math.random()*4),b=4+Math.floor(Math.random()*6);pgA=a+b;
-  $('#pgq').textContent=`請輸入答案才能進入：${a} + ${b} = ？`;$('#pgin').value='';$('#pgmsg').textContent='';
+  pgNew();$('#pgmsg').textContent='';
   $('#pgate').hidden=false;$('#pbody').hidden=true;
 }
-function tryParent(){if(+$('#pgin').value===pgA){$('#pgate').hidden=true;$('#pbody').hidden=false;renderParent();renderUnits();renderPR()}else{$('#pgmsg').textContent='答案不對，請再試一次。';$('#pgin').value=''}}
+function tryParent(){
+  const left=Math.ceil((pgLock-Date.now())/1000);
+  if(left>0){$('#pgmsg').textContent=`錯太多次了，請等 ${left} 秒再試。`;$('#pgin').value='';return}
+  const v=($('#pgin').value||'').trim();
+  if(v!==''&&+v===pgA){pgBad=0;$('#pgate').hidden=true;$('#pbody').hidden=false;renderParent();renderUnits();renderPR()}
+  else{
+    pgBad++;
+    if(pgBad>=3){pgBad=0;pgLock=Date.now()+30000;$('#pgmsg').textContent='錯太多次了，請等 30 秒再試。'}
+    else $('#pgmsg').textContent='答案不對，已換一題，請再試一次。';
+    pgNew();
+  }
+}
 document.addEventListener('click',e=>{if(e.target.closest('#pgok'))tryParent()});
 document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='pgin')tryParent()});
 function renderParent(){storeCheck().then(t=>{const e=document.getElementById('pstore');if(e)e.textContent=t});
