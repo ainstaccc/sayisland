@@ -39,7 +39,7 @@
 html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font:500 18px/1.55 var(--f-body);
   padding-block:12px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+.wrap{width:100%;box-sizing:border-box;max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
 button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;-webkit-tap-highlight-color:transparent}
 button:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
 h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
@@ -172,10 +172,10 @@ h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
 .src{font-size:15px;color:var(--ink2);text-align:center}
 
 /* 因果配對 */
-.mgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.xgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;width:100%}
 .mcol{display:flex;flex-direction:column;gap:10px}
 .mh{font:800 19px/1 var(--f-disp);text-align:center;color:var(--ink2)}
-.mc{min-height:88px;border-radius:18px;border:3px solid var(--line);background:var(--bg);padding:8px 4px;font:800 clamp(17px,4.7vw,21px)/1.25 var(--f-disp);white-space:nowrap;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 4px 0 var(--shadow)}
+.mc{min-height:88px;border-radius:18px;border:3px solid var(--line);background:var(--bg);padding:8px 6px;font:800 clamp(16px,4.4vw,20px)/1.25 var(--f-disp);white-space:normal;overflow-wrap:anywhere;text-align:center;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;box-shadow:0 4px 0 var(--shadow)}
 .mc .me{font-size:26px;line-height:1}
 .mc.sel{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 18%,var(--bg))}
 .mc.bad{border-color:var(--ng);animation:shake .3s}
@@ -183,6 +183,19 @@ h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
 .mc.p0{background:color-mix(in srgb,var(--c1) 26%,var(--card))}.mc.p1{background:color-mix(in srgb,var(--c2) 26%,var(--card))}
 .mc.p2{background:color-mix(in srgb,var(--c3) 26%,var(--card))}.mc.p3{background:color-mix(in srgb,var(--c4) 26%,var(--card))}
 .mline{width:100%;min-height:62px;background:var(--ok-bg);border-radius:16px;padding:10px 14px;font:800 20px/1.4 var(--f-disp);color:var(--ok);text-align:center}
+/* v1.16.0 填入玩法：點一個字，再點空格 */
+.fgrid{display:flex;flex-direction:column;gap:10px;width:100%}
+.fc{display:flex;align-items:center;gap:10px;min-height:64px;border-radius:18px;border:3px solid var(--line);background:var(--bg);padding:8px 12px;box-shadow:0 4px 0 var(--shadow);font:800 clamp(20px,5.6vw,26px)/1.3 var(--f-disp);color:var(--ink)}
+.fc .fe{font-size:32px;line-height:1;flex:none;cursor:pointer}
+.fc .ft{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.fb{min-width:58px;height:50px;padding:0 8px;border-radius:14px;border:3px dashed var(--ink2);background:var(--card);font:900 inherit;color:var(--pri);cursor:pointer}
+.fb.sel{border-style:solid;border-color:var(--pri);background:color-mix(in srgb,var(--pri) 18%,var(--card))}
+.fb.bad,.fw.bad{border-color:var(--ng);animation:shake .3s}
+.fb.done{border:3px solid transparent;background:color-mix(in srgb,var(--ok) 22%,var(--card));color:var(--ok);cursor:default}
+.ftray{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%;padding:12px 10px;border-radius:20px;background:color-mix(in srgb,var(--c3) 22%,var(--card))}
+.fw{min-width:76px;height:62px;padding:0 12px;border-radius:18px;border:3px solid var(--line);background:var(--card);box-shadow:0 4px 0 var(--shadow);font:900 clamp(26px,7.4vw,32px)/1 var(--f-disp);color:var(--ink);cursor:pointer}
+.fw.sel{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 18%,var(--card));transform:translateY(-2px)}
+.fw.used{visibility:hidden}
 
 /* 詞卡冊、結果、家長 */
 .deck{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:10px}
@@ -609,7 +622,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .egb{background:#FAF5FF;border:2px solid var(--line);border-radius:18px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font:800 18px/1 inherit;color:#3B2A5A}
 .egb .ms{width:68px;height:68px}.egb small{font-size:17px;color:#5E4B80}
 .egb:active{transform:scale(.95)}.pbig .ms{width:150px;height:150px}.prc .muted{margin:0}
-/* v1.15.1 我的島 UI（主題3）：底部按鈕立體感、面板把手、卡片按壓、盲盒光暈、頂部資訊 */
+/* v1.16.0 我的島 UI（主題3）：底部按鈕立體感、面板把手、卡片按壓、盲盒光暈、頂部資訊 */
 .islBar .btn{box-shadow:0 5px 0 rgba(0,0,0,.18),0 10px 16px -8px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
 .islBar .btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 .islBar .btn .sv{width:1.25em;height:1.25em}
@@ -660,7 +673,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.15.1</p>
+    <p class="ver">說說島 v1.16.0</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -689,7 +702,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.15.1</p>
+    <p class="ver">說說島 v1.16.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -762,9 +775,22 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="qcard">
       <span class="tag">因果配對</span>
       <div class="ask" style="font-size:22px">先點「因為」，再點對應的「所以」</div>
-      <div class="mgrid"><div class="mcol"><div class="mh">因為⋯</div><div class="mcol" id="mleft"></div></div><div class="mcol"><div class="mh">所以⋯</div><div class="mcol" id="mright"></div></div></div>
+      <div class="xgrid"><div class="mcol"><div class="mh">因為⋯</div><div class="mcol" id="mleft"></div></div><div class="mcol"><div class="mh">所以⋯</div><div class="mcol" id="mright"></div></div></div>
       <div class="mline" id="mline">配對成功後，這裡會唸出完整的句子。</div>
       <button class="btn" id="mnext" hidden>繼續</button>
+    </div>
+  </section>
+
+  <!-- 填入配對（量詞、動詞、形容詞） -->
+  <section id="v-fill" class="wrap" hidden>
+    <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="fprog"></i></div><span class="pill" id="fcount" style="font-size:18px">1/2</span></div>
+    <div class="qcard">
+      <span class="tag" id="ftag">量詞</span>
+      <div class="ask" style="font-size:22px">點一個字，再點空格</div>
+      <div class="fgrid" id="fgrid"></div>
+      <div class="ftray" id="ftray"></div>
+      <div class="mline" id="fline"></div>
+      <button class="btn" id="fnext" hidden>繼續</button>
     </div>
   </section>
 
@@ -833,7 +859,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.15.1</p>
+    <p class="ver">說說島 v1.16.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -902,7 +928,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.15.1</p>
+    <p class="ver">說說島 v1.16.0</p>
   </section>
 </div>
 
@@ -1832,7 +1858,7 @@ const Y1=[['🏠','我＿＿家寫功課。','在','再','載','「在」說的�
 const Y2=[['🥇','哥哥跑步得到第一＿＿。','名','明','鳴','第一名的「名」。'],['🛒','媽媽帶我去市＿＿買菜。','場','常','長','「市場」的「場」，土字旁。'],['🧒','我們一＿＿去公園玩。','起','氣','七','「一起」的「起」。'],['🌈','雨後出現美麗的彩＿＿。','虹','紅','江','「彩虹」的「虹」是蟲字旁。'],['🏫','上學要準時，不可以＿＿到。','遲','持','池','「遲到」是比規定的時間晚到。'],['🎶','我很喜歡聽＿＿樂。','音','因','陰','「音樂」的「音」。'],['🧴','洗手要用肥＿＿。','皂','早','造','「肥皂」的「皂」。'],['📖','我喜歡看＿＿外書。','課','客','可','「課外書」的「課」，言字旁。']];
 const Y3=[['🏃','他跑＿＿很快。','得','的','地','「跑得」是說明跑的情形，用「得」。'],['🌸','花兒靜靜＿＿開放。','地','的','得','「地」放在動作前面，說明怎麼做。'],['🎒','這是我＿＿書包。','的','得','地','「的」放在名詞前面，表示是誰的。'],['✍️','我在寫＿＿業。','作','做','坐','「作業」的「作」。'],['🍳','媽媽在廚房＿＿菜。','做','作','坐','「做菜」是動手完成一件事，用「做」。'],['🤝','我們要互相幫＿＿。','助','住','注','「幫助」的「助」，力字旁。'],['📣','老師＿＿醒我們要守秩序。','提','題','堤','「提醒」的「提」，提手旁。'],['🧪','他很有耐＿＿，不怕失敗。','心','新','辛','「耐心」的「心」。']];
 
-/* v1.15.1 注音辨辨看（低年級）：ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ。[圖, 詞, 字, 正確注音, 干擾1, 干擾2, 類型]；三個選項的聲調一樣，只差在要分辨的音 */
+/* v1.16.0 注音辨辨看（低年級）：ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ。[圖, 詞, 字, 正確注音, 干擾1, 干擾2, 類型]；三個選項的聲調一樣，只差在要分辨的音 */
 const ZBT={n:'ㄣ 收音時，舌尖頂在上排牙齒後面，嘴巴小小的。',g:'ㄥ 收音時，嘴巴放鬆，聲音往鼻子後面走。',a:'ㄢ 收音時，舌尖往上頂，嘴巴扁一點。',h:'ㄤ 收音時，嘴巴張大，聲音往後面拉長。',c:'ㄔ、ㄓ 是翹舌音，舌頭要往後捲。',z:'ㄘ、ㄗ 是平舌音，舌頭平平的，靠近牙齒。',cz:'ㄓ、ㄔ 是翹舌音，ㄗ、ㄘ 是平舌音，這個字要記起來。'};
 const ZB=[
 ['🚪','大門','門','ㄇㄣˊ','ㄇㄥˊ','ㄇㄢˊ','n'],['🌱','樹根','根','ㄍㄣ','ㄍㄥ','ㄍㄢ','n'],['🧑','大人','人','ㄖㄣˊ','ㄖㄥˊ','ㄖㄢˊ','n'],['📕','書本','本','ㄅㄣˇ','ㄅㄥˇ','ㄅㄢˇ','n'],
@@ -1974,7 +2000,7 @@ function say(text){
 }
 
 /* ---------- 版面 ---------- */
-const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp','isl','mii'];
+const views=['who','home','quiz','build','talk','match','fill','zy','unit','ord','deck','res','parent','grp','isl','mii'];
 function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot-img',msUri())}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp','mii'].includes(v));
   bgmMode(v);if(v==='home'){renderHome();setTimeout(homePops,350)}if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
 document.addEventListener('click',e=>{if(e.target.closest('[data-home]')){try{speechSynthesis.cancel()}catch(x){}show('home')}});
@@ -2141,9 +2167,9 @@ r:['🧩','部首小幫手','看國字，找出它的部首。','玩法：選出
 y:['✏️','選對字','一樣唸法或長得像的字，哪一個才對？','玩法：看句子，選出該寫的那一個字。'],
 u:['📚','我的課文','爸媽上傳的課文，變成挖空和排序的小遊戲。','玩法：選出空格該放的詞，或把句子排成順序。'],
 z:['🔤','注音拼音','看國字，點卡片拼出注音，再選聲調。','玩法：點卡片和題目，會唸給你聽。'],
-q:['🧺','量詞','一＿＿書？一＿＿魚？選出最適合的量詞。','玩法：看句子，點最對的那一個。'],
-v:['🏃','動詞','哪個動作最貼切？','玩法：選出最對的動作。'],
-a:['🌈','形容詞','形容樣子、味道、感覺的詞。','玩法：選出最能形容的那一個。'],
+q:['🧺','量詞','一＿＿書？一＿＿魚？選出最適合的量詞。','玩法：點一個字，再點空格，把字放進去。'],
+v:['🏃','動詞','哪個動作最貼切？','玩法：點一個動作，再點空格放進去。'],
+a:['🌈','形容詞','形容樣子、味道、感覺的詞。','玩法：點一個詞，再點空格放進去。'],
 e:['🕵️','短文小偵探','讀短文，找出有幾個、什麼樣子、在哪裡、做什麼。','玩法：回答問題，拼成完整的一句話。'],
 t:['🖼️','看圖說話','看圖用說的或打字，老師會問你問題，幫你說得更完整。','玩法：按麥克風說說看，或用鍵盤打字。'],
 h:['💬','好好說話','同一件事，有三種說法。選別人聽起來最舒服的那一句。','玩法：選答案，答對再大聲說一次。'],
@@ -2163,7 +2189,7 @@ function mapGo(e){
   setTimeout(()=>{mapBusy=false;missionInfo(b.dataset.cat,()=>openCat({target:b}))},REDU()?0:720);
 }
 const openCat=e=>{const b=e.target.closest('[data-cat]');if(!b)return;
-  const k=b.dataset.cat;const G={e:startBuild,t:startTalk,m:startMatch,z:startZ,u:()=>show('unit')};G[k]?G[k]():startQuiz(k)};
+  const k=b.dataset.cat;const G={e:startBuild,t:startTalk,m:startMatch,z:startZ,u:()=>show('unit'),q:()=>startFill('q'),v:()=>startFill('v'),a:()=>startFill('a')};G[k]?G[k]():startQuiz(k)};
 document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t||!document.body.classList.contains('ingame'))return;const k=Object.keys(CATS).find(x=>CATS[x].n===t.textContent.trim());k&&missionInfo(k,null)});
 $('#missions').addEventListener('click',mapGo);$('#dRow').addEventListener('click',openCat);
 $('.hero').addEventListener('click',e=>{if(e.target.closest('#petNew')){S.pet=null;S.petCarry=0;save();renderHome();eggPick();return}if(!S.pet){eggPick();return}say($('#bubble').textContent+$('#growTxt').textContent)});
@@ -2469,6 +2495,62 @@ $('#mnext').onclick=()=>{
   M.b++;
   if(M.b>=M.boards)return finish({cat:'m',title:'因果小專家！',acc:M.firstOk/M.list.length,line:`第一次就配對對 ${M.firstOk}/${M.list.length} 組`});
   renderM();
+};
+
+/* ---------- 填入配對（量詞、動詞、形容詞）：點一個字，再點空格 ---------- */
+let F=null;
+function startFill(cat){
+  lastGame=()=>startFill(cat);
+  const list=pickItems(cat,8);
+  F={cat,list,b:0,boards:Math.ceil(list.length/4),firstOk:0,miss:{},sel:null,filled:0};
+  show('fill');renderF();
+}
+function renderF(){
+  const bd=F.list.slice(F.b*4,F.b*4+4);F.cur=bd;F.sel=null;F.filled=0;
+  const c=CATS[F.cat];
+  $('#ftag').textContent=c.n;
+  $('#fprog').style.width=(F.b/F.boards*100)+'%';$('#fprog').style.background=`var(${c.c})`;
+  $('#fcount').textContent=(F.b+1)+'/'+F.boards;
+  $('#fgrid').innerHTML=bd.map(x=>{const [a,b]=x.t.split('＿＿');return `<div class="fc"><span class="fe" data-say="${esc(x.t.replace('＿＿','，什麼，'))}">${x.e}</span><span class="ft">${esc(a||'')}<button class="fb" data-id="${x.id}" aria-label="空格">？</button>${esc(b||'')}</span></div>`}).join('');
+  $('#ftray').innerHTML=shuffle(bd.map(x=>x.ans)).map((w,i)=>`<button class="fw" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('');
+  $('#fline').textContent='點一個字，再點空格，把它放進去。';$('#fnext').hidden=true;
+}
+function fillTry(bEl,wEl){
+  const id=bEl.dataset.id,it=ALL[id];
+  document.querySelectorAll('#v-fill .sel').forEach(x=>x.classList.remove('sel'));F.sel=null;
+  if(wEl.dataset.w===it.ans){
+    bEl.textContent=it.ans;bEl.classList.add('done');wEl.classList.add('used');
+    if(!F.miss[id]){F.firstOk++;rec(id,true)}
+    const sent=qFull(it);
+    $('#fline').textContent=sent+(it.tip?'　'+it.tip:'');sfx.ok();say(sent);save();
+    F.filled++;
+    if(F.filled>=F.cur.length){$('#fnext').hidden=false;$('#fnext').textContent=F.b+1>=F.boards?'看結果':'下一組'}
+  }else{
+    sfx.ng();
+    if(!F.miss[id]){F.miss[id]=1;rec(id,false);save()}
+    [bEl,wEl].forEach(x=>{x.classList.add('bad');setTimeout(()=>x.classList.remove('bad'),400)});
+    $('#fline').textContent='再想一想，換一個字試試看。';
+  }
+}
+$('#v-fill').addEventListener('click',e=>{
+  const em=e.target.closest('.fe');if(em){say(em.dataset.say);return}
+  const w=e.target.closest('.fw'),b=e.target.closest('.fb');
+  if(w&&!w.classList.contains('used')){
+    if(F.sel&&F.sel.t==='b')return fillTry(F.sel.el,w);
+    document.querySelectorAll('#v-fill .fw.sel').forEach(x=>x.classList.remove('sel'));
+    if(F.sel&&F.sel.el===w){F.sel=null;return}
+    w.classList.add('sel');F.sel={t:'w',el:w};
+  }else if(b&&!b.classList.contains('done')){
+    if(F.sel&&F.sel.t==='w')return fillTry(b,F.sel.el);
+    document.querySelectorAll('#v-fill .fb.sel').forEach(x=>x.classList.remove('sel'));
+    if(F.sel&&F.sel.el===b){F.sel=null;return}
+    b.classList.add('sel');F.sel={t:'b',el:b};
+  }
+});
+$('#fnext').onclick=()=>{
+  F.b++;
+  if(F.b>=F.boards)return finish({cat:F.cat,title:CATS[F.cat].n+'小達人！',acc:F.firstOk/F.list.length,line:`第一次就放對 ${F.firstOk}/${F.list.length} 個`});
+  renderF();
 };
 
 /* ---------- 注音拼音 ---------- */
