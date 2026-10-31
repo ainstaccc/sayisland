@@ -296,6 +296,29 @@ B.sp_alien=()=>{const g=person({top:'#8EE6A8',bottom:'#5FBF7F',hair:'#8EE6A8',sk
 CAT.push({id:'fac_airport',n:'機場',c:'交通',p:0,e:'✈️',s:2,np:1},{id:'fac_pier',n:'郵輪碼頭',c:'交通',p:0,e:'🚢',np:1},{id:'fac_rocket',n:'火箭發射台',c:'交通',p:0,e:'🚀',np:1},
  {id:'sp_crystal',n:'紫水晶',c:'神祕',p:0,r:2,e:'💎',np:1},{id:'sp_meteor',n:'隕石',c:'神祕',p:0,r:2,e:'☄️',np:1},{id:'sp_glowtree',n:'發光樹',c:'神祕',p:0,r:2,e:'🌳',np:1},
  {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1});
+
+/* ---------- v1.11 捏臉角色「我」（造型讀 window.__MII）---------- */
+B.c_me=()=>{const M=window.__MII||{},SK=['#FFE0C7','#F9CBA7','#EDB48A','#D69A6B','#B87A4F','#8D5A3B'],HC=['#2B2420','#5A3A22','#8B5A2B','#D9A441','#E8503A','#F78FB3','#6FA8F0','#B79CF5'],
+ TC=['#FFFFFF','#6FC3F2','#F46B6B','#4A7ACF','#FF9EBB','#F4F6FA','#FFFFFF','#E4E8F2','#FF8FB7','#3A6FD8'];
+ const h=+M.h||0,hc=HC[+M.c||0]||HC[0],sk=SK[+M.s||0]||SK[0],t=+M.t||0,a=+M.a||0,gl=+M.g||0;
+ const g=person({top:TC[t]||'#FFFFFF',bottom:t===3?'#3A5FB8':t===5?'#3A4A8A':'#4A5A8A',hair:hc,skin:sk,longHair:h===3||h===7,robe:t===8});
+ const add=(...m)=>m.forEach(x=>g.add(x));
+ if(h===2){add(sph(.07,hc,-.18,.55,-.02,1,1.6,1),sph(.07,hc,.18,.55,-.02,1,1.6,1))}
+ else if(h===4)add(sph(.09,hc,0,.82,-.02));
+ else if(h===5){[[-.12,.74],[.12,.74],[0,.8],[-.17,.6],[.17,.6]].forEach(q=>add(sph(.08,hc,q[0],q[1],-.02)))}
+ else if(h===6)add(sph(.07,hc,.17,.62,-.05,1,1.7,1));
+ else if(h===8){for(let i=0;i<5;i++)add(cone(.04,.12,hc,-.1+i*.05,.8+(i%2)*.02,0,4))}
+ else if(h===9)add(sph(.24,hc,0,.68,-.04));
+ if(a===1)add(cyl(.17,.17,.07,'#E5484D',0,.8,0,14),box(.2,.02,.12,'#C23A3F',0,.78,.15));
+ else if(a===2)add(sph(.045,'#FF8FB7',.1,.76,.12),sph(.03,'#FF6B9A',.1,.76,.12));
+ else if(a===3){add(cyl(.11,.13,.08,'#FFD84D',0,.82,0,5));for(let i=0;i<5;i++)add(cone(.025,.07,'#FFD84D',Math.cos(i*1.2566)*.11,.89,Math.sin(i*1.2566)*.11,4))}
+ else if(a===4)add(cone(.05,.1,'#B8BED0',-.1,.84,0,4),cone(.05,.1,'#B8BED0',.1,.84,0,4));
+ else if(a===5)add(sph(.05,'#FF9EBB',-.1,.76,.1),sph(.025,'#FFD84D',-.1,.76,.14));
+ else if(a===6)add(box(.38,.03,.05,'#3A4A8A',0,.8,0),sph(.05,'#3A4A8A',-.17,.62,0),sph(.05,'#3A4A8A',.17,.62,0));
+ else if(a===7)add(cone(.16,.3,'#7A5AC8',0,.9,0,10),cyl(.24,.24,.025,'#5B3FA8',0,.77,0,14));
+ if(gl===1||gl===2||gl===3){const c=gl===2?'#23232E':gl===3?'#FF6B9A':'#3A3A4A';[-.06,.06].forEach(x=>{const r=mesh(new T.TorusGeometry(.04,.009,5,12),c,x,.63,.15);add(r)})}
+ g.userData.extra=null;addWander(g,.22,.35);return g};
+CAT.push({id:'c_me',n:'我',c:'人物',p:0,r:1,e:'🧒',np:1,ch:1});
 CAT.forEach(c=>{c.s=c.s||1});const BYID={};CAT.forEach(c=>BYID[c.id]=c);
 
 /* ---------- 場景 ---------- */
@@ -435,11 +458,11 @@ window.Island={ready:true,CAT,BYID,
  pop(gx,gz){const p=WP(gx,gz);burst(p.x,.4,p.z)},
 
  thumb(id,px){px=px||128;if(!TH.r){TH.r=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});TH.r.setPixelRatio(1);TH.r.outputColorSpace=T.SRGBColorSpace;TH.r.toneMapping=T.ACESFilmicToneMapping;TH.s=new T.Scene();TH.s.add(new T.HemisphereLight('#FFFFFF','#FFE3B8',1.1));const dl=new T.DirectionalLight('#FFF4E0',1.2);dl.position.set(3,6,4);TH.s.add(dl);TH.c=new T.PerspectiveCamera(28,1,.1,50);TH.cache={}}
-  if(TH.cache[id+px])return TH.cache[id+px];
+  const ck=id+px+(id==='c_me'?JSON.stringify(window.__MII||{}):'');if(TH.cache[ck])return TH.cache[ck];
   const d=BYID[id];if(!d)return'';const g=B[id](0,0);const sc=new T.Group();sc.add(g);TH.s.add(sc);
   const bb=new T.Box3().setFromObject(g);const ctr=bb.getCenter(new T.Vector3()),sz=bb.getSize(new T.Vector3());const R=Math.max(sz.x,sz.y,sz.z,.5);
   const dist=R*2.9;TH.c.position.set(ctr.x+dist*.62,ctr.y+dist*.5,ctr.z+dist*.62);TH.c.lookAt(ctr.x,ctr.y-.02*R,ctr.z);
-  TH.r.setSize(px,px,false);TH.r.render(TH.s,TH.c);const url=TH.r.domElement.toDataURL('image/png');TH.s.remove(sc);TH.cache[id+px]=url;return url},
+  TH.r.setSize(px,px,false);TH.r.render(TH.s,TH.c);const url=TH.r.domElement.toDataURL('image/png');TH.s.remove(sc);TH.cache[ck]=url;return url},
  setReadonly(f){RO=!!f},
  snapshot(){renderer.render(scene,cam);return canvas.toDataURL('image/png')}
 };
