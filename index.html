@@ -590,14 +590,14 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .orbs{display:flex;gap:18px;position:relative}.orb{width:84px;height:84px;border-radius:50%;border:3px solid #fff;background:radial-gradient(circle at 35% 30%,#E7D9FF,#8E5BE0);color:#fff;font:900 40px/1 var(--f-disp);box-shadow:0 0 28px #B79CF5;animation:orbf 1.4s ease-in-out infinite alternate}.orb:disabled{opacity:.5}
 @keyframes orbf{from{transform:translateY(0)}to{transform:translateY(-14px)}}.mrv{position:relative}.mrv .th{width:180px;height:180px}
 .pillL{background:#fff!important;border:3px solid #FFD84D!important;color:#3B2A5A!important}
-.miiw{background:linear-gradient(#FFF4FA,#EAF4FF);color:#3B2A5A;border-radius:28px;padding:12px 12px 100px;display:flex;flex-direction:column;gap:12px}
+#v-mii{width:100%;box-sizing:border-box}.miiw{width:100%;box-sizing:border-box;align-self:stretch;background:linear-gradient(#FFF4FA,#EAF4FF);color:#3B2A5A;border-radius:28px;padding:12px 12px 110px;display:flex;flex-direction:column;gap:12px}
 .mhead{display:flex;align-items:center;justify-content:space-between;gap:10px}.mhead b{font:900 28px/1 var(--f-disp);color:#3B2A5A}.mhead .ibtn{background:#fff!important;color:#3B2A5A!important;border:3px solid #EADFF5!important}
 .mstage{position:relative;border-radius:26px;background:radial-gradient(circle at 50% 38%,#fff 0,#FFE3F1 55%,#DCEBFF 100%);padding:14px 0 8px;display:flex;justify-content:center;box-shadow:inset 0 -6px 0 rgba(150,110,200,.15)}
 .mstage:before{content:'✨';position:absolute;left:18px;top:14px;font-size:22px}.mstage:after{content:'⭐';position:absolute;right:22px;bottom:18px;font-size:20px}
-.miip{display:flex;justify-content:center}.miip .av2{width:min(46vw,190px);height:min(46vw,190px);filter:drop-shadow(0 8px 6px rgba(120,80,170,.25))}
+.miip{display:flex;justify-content:center;overflow:hidden;width:100%;height:min(68vw,300px)}.miip .av2{width:100%;height:100%;overflow:hidden;filter:drop-shadow(0 8px 6px rgba(120,80,170,.25))}.mblink{transform-box:fill-box;transform-origin:center;animation:mblink 4s infinite}@keyframes mblink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
 .mrnd{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;align-items:center;gap:2px;background:#fff;border:3px solid #EADFF5;border-radius:18px;padding:6px 10px;font-size:24px;line-height:1;color:#3B2A5A;box-shadow:0 3px 0 #D9CCEB}.mrnd span{font:800 14px/1 var(--f-body)}
-.mtabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.mtabs button{display:flex;flex-direction:column;align-items:center;gap:2px;min-height:58px;border-radius:16px;border:2px solid #EADFF5;background:#fff;color:#3B2A5A;font:800 15px/1.1 inherit;padding:4px 0}.mtabs button i{font-style:normal;font-size:22px;line-height:1}.mtabs button span{white-space:nowrap}.mtabs button[aria-pressed="true"]{background:#FF6BA6;border-color:#FF6BA6;color:#fff;box-shadow:0 3px 0 #D9467F}
-.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.mtabs{width:100%;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:6px}.mtabs button:nth-child(-n+4){grid-column:span 3}.mtabs button:nth-child(n+5){grid-column:span 4}.mtabs button{display:flex;flex-direction:column;align-items:center;gap:2px;min-height:58px;border-radius:16px;border:2px solid #EADFF5;background:#fff;color:#3B2A5A;font:800 15px/1.1 inherit;padding:4px 0}.mtabs button i{font-style:normal;line-height:0}.mtabs button i svg{width:26px;height:26px;display:block}.mtabs button span{white-space:nowrap}.mtabs button[aria-pressed="true"]{background:#FF6BA6;border-color:#FF6BA6;color:#fff;box-shadow:0 3px 0 #D9467F}
+.mgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;box-sizing:border-box;align-content:start;min-height:230px}.msec{grid-column:1/-1;font:900 18px/1 var(--f-body);color:#3B2A5A;padding:6px 2px 0;white-space:nowrap}.mt.dot{min-height:0;aspect-ratio:1;border-radius:50%;padding:4px}.mt.dot .sw{width:100%;height:100%;border-radius:50%;box-shadow:inset 0 0 0 2px rgba(0,0,0,.12)}.mt.dot.on:after{display:none}.mt.dot.on{border-width:5px}.mt.pop{animation:mpop .28s ease-out}@keyframes mpop{0%{transform:scale(.88)}60%{transform:scale(1.07)}100%{transform:scale(1)}}.mnone{width:100%;aspect-ratio:1;display:flex;align-items:center;justify-content:center;color:#9A8DB5}.mnone svg{width:48%;height:48%}.mt .chip.poor{background:#ECECF0;color:#8B8B99}
 .mt{position:relative;border:3px solid #EADFF5;border-radius:20px;background:#fff;color:#3B2A5A;padding:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;min-height:100px}.mt .av2{width:100%;height:auto;aspect-ratio:1;display:block}.mt.on{border-color:#FF6BA6;box-shadow:0 0 0 2px #FF6BA6}.mt.on:after{content:'✓';position:absolute;right:4px;top:4px;width:20px;height:20px;border-radius:50%;background:#FF6BA6;color:#fff;font:900 14px/20px inherit;text-align:center}
 .mt .sw{width:100%;aspect-ratio:1;display:block;border-radius:0}.mt .chip{position:static;margin:2px 0 6px;font-style:normal;font:800 13px/1 inherit;border-radius:99px;padding:3px 8px;background:#FFF1B8;color:#6B4700;white-space:nowrap;box-shadow:0 1px 0 rgba(0,0,0,.12)}.mt .chip.ok{background:#D8F5E2;color:#17703D}.mt .chip.base{background:#ECE7F6;color:#5E4B80}.mt .chip .cn{font-size:13px}
 .mbar{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:5;display:flex;gap:10px}.mbar .btn{flex:1;min-height:58px}
@@ -631,14 +631,14 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <h3 id="whoFormT">新增小朋友</h3>
       <input class="ta" id="wName" style="min-height:0;height:56px" maxlength="8" placeholder="小名或暱稱" aria-label="小朋友的名字">
       <div class="avs" id="wAvs" role="group" aria-label="選頭像"></div>
-      <button class="btn alt sm" id="wMii" hidden>✨ 捏臉（髮型、衣服、配件）</button>
+      <button class="btn alt sm" id="wMii" hidden>✨ 捏臉（髮型、衣服、褲鞋、配件）</button>
       <div class="seg s3" role="group" aria-label="選擇年級"><button id="wLv1" aria-pressed="true"><i data-i="sprout"></i>低年級<small>1–2 年級</small></button><button id="wLv2" aria-pressed="false"><i data-i="tree"></i>中年級<small>3–4 年級</small></button><button id="wLv3" aria-pressed="false"><i data-i="pine"></i>高年級<small>5–6 年級</small></button></div>
       <div class="fbrow"><button class="btn" id="wGo">開始玩</button><button class="btn alt sm" id="wCancel">取消</button></div>
     </div>
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.11.7</p>
+    <p class="ver">說說島 v1.12.0</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -667,7 +667,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.11.7</p>
+    <p class="ver">說說島 v1.12.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -811,7 +811,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.11.7</p>
+    <p class="ver">說說島 v1.12.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -880,7 +880,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.11.7</p>
+    <p class="ver">說說島 v1.12.0</p>
   </section>
 </div>
 
@@ -1049,9 +1049,17 @@ const AVL=Object.keys(AVSVG);
 const AVS=AVL.map(k=>'a:'+k);
 const avh=a=>{if(/^m:/.test(a||''))return miiSvg(miiParse(a));const m=/^a:([a-z0-9]+)$/.exec(a||'');return m&&AVSVG[m[1]]?AVSVG[m[1]]:esc(a||'')};
 /* ---------- 捏臉（Mii 風格 2D 頭像＋島上小人）---------- */
-const M_SKIN=['#FFE0C7','#F9CBA7','#EDB48A','#D69A6B','#B87A4F','#8D5A3B'],M_HAIR=['#3B2C2A','#5A3A22','#8B5A2B','#D9A441','#E8503A','#F78FB3','#6FA8F0','#B79CF5'];
-const M_PR={h:6,t:12,a:15,g:15,e:4,b:4,m:4},M_FREE={h:[0,1],t:[0,1],e:[0,1],b:[0,1],m:[0,1],a:[0],g:[0]},M_DEF={s:0,h:0,c:0,e:0,b:0,m:0,t:0,a:0,g:0},MCNT={h:10,c:8,s:6,e:6,b:5,m:6,t:10,a:8,g:6};
-const miiParse=str=>{const o=Object.assign({},M_DEF);String(str||'').replace(/^m:/,'').replace(/([a-z])(\d+)/g,(_,k,v)=>{if(k in o)o[k]=Math.min(+v,MCNT[k]-1)});return o};
+const M_SKIN=['#FFE0C7','#F9CBA7','#EDB48A','#D69A6B','#B87A4F','#8D5A3B','#FFEFE2','#6E4630'],M_HAIR=['#3B2C2A','#5A3A22','#8B5A2B','#D9A441','#E8503A','#F78FB3','#6FA8F0','#B79CF5'];
+const M_PR={h:6,e:4,t:12,p:8,f:8,a:15,x:15},M_FREE={h:[0,1],e:[0,1,2,3],t:[0,1],p:[0,1],f:[0,1],a:[0],x:[0]},M_DEF={s:0,h:0,c:0,e:0,t:0,p:0,f:0,a:0,x:0},MCNT={h:10,c:8,s:8,e:8,t:10,p:6,f:6,a:8,x:6};
+/* 表情 8 組（眼＋眉＋嘴一起換）；舊存檔的「眼睛」對到最接近的表情 */
+const M_EMAP=[0,1,1,2,6,7];
+const M_EXP=[{e:1,b:1,m:0,ck:.5},{e:2,b:2,m:1,ck:.5},{e:0,b:1,m:2,ck:.95},{e:7,b:2,m:3,ck:.35},{e:2,b:2,m:6,ck:.65},{e:6,b:1,m:5,ck:.3},{e:4,b:0,m:1,ck:.6},{e:5,b:0,m:0,ck:.75}];
+const M_ZV={h:'0 -2 64 68',f:'7 10 50 46',a:'3 -6 58 58',t:'8 44 48 48',p:'8 68 48 48',s:'14 86 36 36',full:'0 -8 64 128'};
+const miiParse=str=>{str=String(str||'').replace(/^m:/,'');const leg=!/p\d/.test(str),o=Object.assign({},M_DEF);str.replace(/([a-z])(\d+)/g,(_,k,v)=>{v=+v;if(leg){if(k==='e')o.e=M_EMAP[v]||0;else if(k==='g')o.x=Math.min(v,MCNT.x-1);else if(k in o&&'pfx'.indexOf(k)<0)o[k]=Math.min(v,MCNT[k]-1)}else if(k in o)o[k]=Math.min(v,MCNT[k]-1)});return o};
+/* 舊版（眼／眉／嘴分開）存檔轉成新版；只轉換、不刪進度 */
+function miiFix(m){if(!m||m.v===2)return m;const c=m.cur||{},o=m.own||{};
+  m.cur=Object.assign({},M_DEF,{s:c.s||0,h:c.h||0,c:c.c||0,t:c.t||0,a:c.a||0,e:M_EMAP[c.e||0]||0,x:c.g||0});
+  m.own={h:o.h||[],t:o.t||[],a:o.a||[],e:(o.e||[]).map(i=>M_EMAP[i]).filter(i=>i!==undefined),x:(o.g||[]).slice()};m.v=2;return m}
 const miiStr=c=>Object.keys(M_DEF).map(k=>k+(c[k]||0)).join('');
 const mixc=(h,f,w)=>{const n=parseInt(h.slice(1),16),t=w?255:0,c=[n>>16&255,n>>8&255,n&255].map(v=>Math.round(v+(t-v)*f));return'#'+c.map(v=>v.toString(16).padStart(2,'0')).join('')};
 function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M_SKIN[0],hc=M_HAIR[c.c]||M_HAIR[0],OL='#4A382E',ds='#3D2E26',ST=` stroke="${OL}" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"`,SH='M8 64Q10 48 32 47Q54 48 56 64Z';
@@ -1072,24 +1080,26 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
    `<g fill="${hc}"${ST}><circle cx="23" cy="22" r="5"/><circle cx="32" cy="20.5" r="5.5"/><circle cx="41" cy="22" r="5"/></g>`,
    FR0+TIE(47,17),FR0+star(41,15,3.4,'#FFD84D'),
    F('M13.8 31L9.5 13L19 19L21 3L29 15L35 2L41 15L48 5L48 19L54.5 13L50.2 31Q48 24 42 23Q37 27 32 22.5Q26 27 21 24Q16 25 13.8 31Z'),FRB];
-  const TP=[{b:'#FFFFFF'},{b:'#6FC3F2'},{b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><path d="M8 52H56M8 57H56M8 62H56" stroke="#F46B6B" stroke-width="2.6"/></g>`},
-  {b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><rect x="18" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="42" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="18" y="56" width="28" height="9" fill="#3A5FB8"/></g>`},
+  const TP=[{b:'#FFFFFF'},{b:'#6FC3F2'},{b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><path d="M8 52H56M8 57H56M8 62H56" stroke="#F46B6B" stroke-width="2.6"/></g>`,f:`<path d="M17 56H47M17 62H47M17 68H47M17 74H47M17 80H47" stroke="#F46B6B" stroke-width="2.6"/>`},
+  {b:'#FFFFFF',x:`<g clip-path="url(#miiS)"><rect x="18" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="42" y="47" width="4" height="17" fill="#3A5FB8"/><rect x="18" y="56" width="28" height="9" fill="#3A5FB8"/></g>`,f:`<rect x="22" y="50" width="4" height="30" fill="#3A5FB8"/><rect x="38" y="50" width="4" height="30" fill="#3A5FB8"/><rect x="19" y="66" width="26" height="16" fill="#3A5FB8"/><circle cx="24" cy="68.5" r="1.2" fill="#FFD84D"/><circle cx="40" cy="68.5" r="1.2" fill="#FFD84D"/>`},
   {b:'#FF9EBB',x:`<path d="M19 50Q32 58 45 50" stroke="#E56A98" stroke-width="3" fill="none"/><path d="M28 55v7M36 55v7" stroke="#fff" stroke-width="1.6"/>`},
   {b:'#FFFFFF',x:`<path d="M20 48L32 60L44 48L44 52L32 64L20 52Z" fill="#3A4A8A"/><circle cx="32" cy="60" r="2.4" fill="#E5484D"/>`},
   {b:'#FFFFFF',x:`<path d="M32 48v16" stroke="#C8C8D4" stroke-width="1.4"/><circle cx="27" cy="54" r="1.4" fill="#C8C8D4"/><circle cx="27" cy="59" r="1.4" fill="#C8C8D4"/><circle cx="37" cy="54" r="1.4" fill="#C8C8D4"/><circle cx="37" cy="59" r="1.4" fill="#C8C8D4"/><path d="M26 48L32 52L38 48" stroke="#E5484D" stroke-width="2.4" fill="none"/>`},
   {b:'#E4E8F2',x:`<path d="M20 49Q32 56 44 49" stroke="#FFA94D" stroke-width="3" fill="none"/><circle cx="42" cy="58" r="3.2" fill="#6FC3F2"/><circle cx="22" cy="58" r="2" fill="#E5484D"/>`},
   {b:'#FF8FB7',x:`<circle cx="12" cy="55" r="5.5" fill="#FF8FB7" stroke="#D96A94" stroke-width="1"/><circle cx="52" cy="55" r="5.5" fill="#FF8FB7" stroke="#D96A94" stroke-width="1"/><path d="M21 49Q32 57 43 49" stroke="#FFD84D" stroke-width="2.4" fill="none"/><circle cx="32" cy="57" r="2" fill="#FFD84D"/>`},
-  {b:'#3A6FD8',pre:`<path d="M6 64Q8 44 32 44Q56 44 58 64Z" fill="#E5484D" stroke="#B02C32" stroke-width="1"/>`,x:`<path d="M32 53l3.2 4.4-3.2 4.4-3.2-4.4Z" fill="#FFD84D"/>`}][c.t]||{b:'#fff'};
-  const ey=33.2;
+  {b:'#3A6FD8',pre:`<path d="M6 64Q8 44 32 44Q56 44 58 64Z" fill="#E5484D" stroke="#B02C32" stroke-width="1"/>`,x:`<path d="M32 53l3.2 4.4-3.2 4.4-3.2-4.4Z" fill="#FFD84D"/>`,fpre:`<path d="M16.5 52Q9 72 12 97H52Q55 72 47.5 52Z" fill="#E5484D" stroke="#B02C32" stroke-width="1"/>`}][c.t]||{b:'#fff'};
+  const ey=33.2,X=M_EXP[c.e]||M_EXP[0];
   const eye=(x,sd)=>[`<circle cx="${x}" cy="${ey}" r="1.9" fill="${ds}"/>`,
    `<ellipse cx="${x}" cy="${ey}" rx="2.3" ry="2.9" fill="${ds}"/><circle cx="${x+.8}" cy="${ey-1}" r=".85" fill="#fff"/>`,
    `<path d="M${x-2.8} ${ey+1.3}Q${x} ${ey-2.6} ${x+2.8} ${ey+1.3}" stroke="${ds}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
    `<path d="M${x-2.8} ${ey-.6}Q${x} ${ey+2.6} ${x+2.8} ${ey-.6}" stroke="${ds}" stroke-width="1.5" fill="none" stroke-linecap="round"/>`,
    star(x,ey,4.4,'#FFC83D'),
-   `<path d="M${x} ${ey+3.4}L${x-3.8} ${ey-.3}A2.2 2.2 0 0 1 ${x} ${ey-2.4}A2.2 2.2 0 0 1 ${x+3.8} ${ey-.3}Z" fill="#FF5C8A"/>`][c.e]||'';
+   `<path d="M${x} ${ey+3.4}L${x-3.8} ${ey-.3}A2.2 2.2 0 0 1 ${x} ${ey-2.4}A2.2 2.2 0 0 1 ${x+3.8} ${ey-.3}Z" fill="#FF5C8A"/>`,
+   `<path d="M${x-3} ${ey-.4}H${x+3}" stroke="${ds}" stroke-width="1.6" stroke-linecap="round"/><path d="M${x-2.5} ${ey}Q${x} ${ey+3.6} ${x+2.5} ${ey}Z" fill="${ds}"/>`,
+   `<ellipse cx="${x}" cy="${ey}" rx="3" ry="3.7" fill="${ds}"/><circle cx="${x+1}" cy="${ey-1.3}" r="1.15" fill="#fff"/>`][X.e]||'';
   const by=28.4;
-  const brow=(x,sd)=>{const o1=x+sd*2.8,i1=x-sd*2.8,k=`stroke="${OL}" fill="none" stroke-linecap="round" opacity=".8"`;return['',`<path d="M${x-2.4} ${by}Q${x} ${by-1.3} ${x+2.4} ${by}" ${k} stroke-width="1.1"/>`,`<path d="M${x-2.6} ${by-1}Q${x} ${by-3.4} ${x+2.6} ${by-1}" ${k} stroke-width="1.2"/>`,`<path d="M${o1} ${by+.8}L${i1} ${by-1.4}" ${k} stroke-width="1.3"/>`,`<path d="M${o1} ${by-1.2}L${i1} ${by+1}" ${k} stroke-width="1.3"/>`][c.b]||''};
-  const mouth=[`<path d="M29.6 38Q32 40.5 34.4 38" stroke="${OL}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,`<path d="M29.4 37.6Q32 43.4 34.6 37.6Z" fill="#E8575F" stroke="${OL}" stroke-width=".9" stroke-linejoin="round"/>`,`<path d="M29.4 38Q30.7 40.2 32 38Q33.3 40.2 34.6 38" stroke="${OL}" stroke-width="1.2" fill="none" stroke-linecap="round"/>`,`<ellipse cx="32" cy="39.4" rx="1.6" ry="2" fill="#E8575F" stroke="${OL}" stroke-width=".8"/>`,`<path d="M30.8 39.4h2.4v1.9a1.2 1.2 0 0 1-2.4 0Z" fill="#FF8FA3" stroke="${OL}" stroke-width=".8"/><path d="M29.6 38Q32 40.5 34.4 38" stroke="${OL}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,`<path d="M29.8 39.2Q33 39.6 35.2 37.4" stroke="${OL}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`][c.m]||'';
+  const brow=(x,sd)=>{const o1=x+sd*2.8,i1=x-sd*2.8,k=`stroke="${OL}" fill="none" stroke-linecap="round" opacity=".8"`;return['',`<path d="M${x-2.4} ${by}Q${x} ${by-1.3} ${x+2.4} ${by}" ${k} stroke-width="1.1"/>`,`<path d="M${x-2.6} ${by-1}Q${x} ${by-3.4} ${x+2.6} ${by-1}" ${k} stroke-width="1.2"/>`,`<path d="M${o1} ${by+.8}L${i1} ${by-1.4}" ${k} stroke-width="1.3"/>`,`<path d="M${o1} ${by-1.2}L${i1} ${by+1}" ${k} stroke-width="1.3"/>`][X.b]||''};
+  const mouth=[`<path d="M29.6 38Q32 40.5 34.4 38" stroke="${OL}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,`<path d="M29.4 37.6Q32 43.4 34.6 37.6Z" fill="#E8575F" stroke="${OL}" stroke-width=".9" stroke-linejoin="round"/>`,`<path d="M29.4 38Q30.7 40.2 32 38Q33.3 40.2 34.6 38" stroke="${OL}" stroke-width="1.2" fill="none" stroke-linecap="round"/>`,`<ellipse cx="32" cy="39.4" rx="1.6" ry="2" fill="#E8575F" stroke="${OL}" stroke-width=".8"/>`,`<path d="M30.8 39.4h2.4v1.9a1.2 1.2 0 0 1-2.4 0Z" fill="#FF8FA3" stroke="${OL}" stroke-width=".8"/><path d="M29.6 38Q32 40.5 34.4 38" stroke="${OL}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,`<path d="M29.8 39.2Q33 39.6 35.2 37.4" stroke="${OL}" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,`<path d="M27.6 37Q32 46.5 36.4 37Z" fill="#E8575F" stroke="${OL}" stroke-width=".9" stroke-linejoin="round"/><path d="M29.8 41.6Q32 39.8 34.2 41.6Q32 43.6 29.8 41.6Z" fill="#FF8FA3"/>`][X.m]||'';
   const HA=['',`<path d="M15 26Q16 8 32 8Q48 8 49 26Z" fill="#E5484D" stroke="${OL}" stroke-width="1.1" stroke-linejoin="round"/><path d="M30 25h23a3 2.2 0 0 1 0 4.4H30Z" fill="#C23A3F" stroke="${OL}" stroke-width="1.1" stroke-linejoin="round"/>`,`<path d="M47 17L56.5 11.5L55.5 22.5Z" fill="#FF8FB7" stroke="${OL}" stroke-width="1" stroke-linejoin="round"/><path d="M47 17L37.5 11.5L38.5 22.5Z" fill="#FF8FB7" stroke="${OL}" stroke-width="1" stroke-linejoin="round"/><circle cx="47" cy="17" r="2.7" fill="#FF6B9A" stroke="${OL}" stroke-width="1"/>`,`<path d="M18 17L20 4L27 10L32 2L37 10L44 4L46 17Z" fill="#FFD84D" stroke="${OL}" stroke-width="1.1" stroke-linejoin="round"/>`,
    `<path d="M16 20L18 5L28 13Z" fill="#C9CEDD" stroke="${OL}" stroke-width="1" stroke-linejoin="round"/><path d="M48 20L46 5L36 13Z" fill="#C9CEDD" stroke="${OL}" stroke-width="1" stroke-linejoin="round"/><path d="M19.5 15L20.5 9.5L25 13.5Z" fill="#FFB7D0"/><path d="M44.5 15L43.5 9.5L39 13.5Z" fill="#FFB7D0"/>`,
    `<g stroke="${OL}" stroke-width=".9"><circle cx="21" cy="16" r="3" fill="#FF9EBB"/><circle cx="27" cy="16" r="3" fill="#FF9EBB"/><circle cx="24" cy="11.5" r="3" fill="#FF9EBB"/><circle cx="24" cy="20" r="3" fill="#FF9EBB"/><circle cx="24" cy="16" r="2.2" fill="#FFD84D"/></g>`,
@@ -1098,12 +1108,25 @@ function miiSvg(c,o){o=o||{};c=Object.assign({},M_DEF,c);const sk=M_SKIN[c.s]||M
   const GA=['',`<g fill="rgba(255,255,255,.4)" stroke="${OL}" stroke-width="1.2"><circle cx="24.5" cy="33.4" r="5.2"/><circle cx="39.5" cy="33.4" r="5.2"/><path d="M29.7 33.4h4.6" fill="none"/></g>`,`<g fill="#2B2733" stroke="${OL}" stroke-width=".8"><rect x="19" y="29.5" width="11" height="7.5" rx="3"/><rect x="34" y="29.5" width="11" height="7.5" rx="3"/><rect x="30" y="31" width="4" height="1.3"/></g>`,
    `<g fill="#FF6B9A" fill-opacity=".9" stroke="${OL}" stroke-width="1"><path d="M24.5 37.4L19.5 32.4A2.8 2.8 0 0 1 24.5 29.9A2.8 2.8 0 0 1 29.5 32.4Z"/><path d="M39.5 37.4L34.5 32.4A2.8 2.8 0 0 1 39.5 29.9A2.8 2.8 0 0 1 44.5 32.4Z"/></g>`,
    `<g transform="rotate(-25 43 38)"><rect x="39" y="36" width="9" height="4" rx="1.6" fill="#FFE2BC" stroke="${OL}" stroke-width=".8"/><path d="M43.5 36v4" stroke="#E0B88F" stroke-width=".8"/></g>`,
-   `<g fill="#B5764F"><circle cx="20" cy="35.5" r=".7"/><circle cx="22.5" cy="36.6" r=".7"/><circle cx="19.5" cy="37.5" r=".7"/><circle cx="44" cy="35.5" r=".7"/><circle cx="41.5" cy="36.6" r=".7"/><circle cx="44.5" cy="37.5" r=".7"/></g>`][c.g]||'';
-  const tile=!!o.z||o.tile,vb=o.stage?'0 -3 64 67':o.z==='f'?'11 15 42 38':o.z==='h'?'3 0 58 58':o.z==='a'?'3 -4 58 58':'0 0 64 64';
+   `<g fill="#B5764F"><circle cx="20" cy="35.5" r=".7"/><circle cx="22.5" cy="36.6" r=".7"/><circle cx="19.5" cy="37.5" r=".7"/><circle cx="44" cy="35.5" r=".7"/><circle cx="41.5" cy="36.6" r=".7"/><circle cx="44.5" cy="37.5" r=".7"/></g>`][c.x]||'';
+  const full=!!o.stage||['t','p','s','full'].indexOf(o.z)>=0,tile=!!o.z||o.tile,vb=o.vb||(o.stage?M_ZV.full:M_ZV[o.z]||'0 0 64 64');
   const bg=o.stage?'':tile?`<rect x="-60" y="-60" width="200" height="200" fill="${o.bg||'#FFF1F8'}"/>`:`<circle cx="32" cy="32" r="31" fill="${o.bg||'#E8F4FF'}"/>`;
-  const body=`<g transform="translate(32 66) scale(.84) translate(-32 -64)">${TP.pre||''}<path d="${SH}" fill="${TP.b}" stroke="${OL}" stroke-width="1.3" stroke-linejoin="round"/>${TP.x||''}</g>`;
-  const head=`<g transform="translate(0 2.5)">${HB[c.h]||''}<circle cx="14.6" cy="31.5" r="3" fill="${sk}" stroke="${OL}" stroke-width="1"/><circle cx="49.4" cy="31.5" r="3" fill="${sk}" stroke="${OL}" stroke-width="1"/><rect x="28" y="42" width="8" height="9" rx="3" fill="${sk}" stroke="${OL}" stroke-width="1"/><ellipse cx="32" cy="30" rx="17.5" ry="16.5" fill="${sk}" stroke="${OL}" stroke-width="1.1"/><circle cx="20.6" cy="37.6" r="3.7" fill="#FF8C9C" fill-opacity=".5"/><circle cx="43.4" cy="37.6" r="3.7" fill="#FF8C9C" fill-opacity=".5"/>${eye(24.5,-1)}${eye(39.5,1)}${brow(24.5,-1)}${brow(39.5,1)}${mouth}${HF[c.h]||''}${GA}${HA}</g>`;
-  return`<svg class="av2" viewBox="${vb}" aria-hidden="true"><defs><clipPath id="miiC"><circle cx="32" cy="32" r="31"/></clipPath><clipPath id="miiS"><path d="${SH}"/></clipPath></defs>${bg}<g${tile||o.stage?'':' clip-path="url(#miiC)"'}>${body}${head}</g></svg>`}
+  let body;
+  if(!full)body=`<g transform="translate(32 66) scale(.84) translate(-32 -64)">${TP.pre||''}<path d="${SH}" fill="${TP.b}" stroke="${OL}" stroke-width="1.3" stroke-linejoin="round"/>${TP.x||''}</g>`;
+  else{
+   const PA=[{c:'#3A5FB8',t:'l'},{c:'#8E94A6',t:'s'},{c:'#FF9EBB',t:'k'},{c:'#FFD84D',t:'s'},{c:'#2B2733',t:'l',st:1},{c:'#7A5AC8',t:'l'}][c.p]||{c:'#3A5FB8',t:'l'},
+    SO=[{c:'#FFFFFF',s:'#C8C8D4',k:'#E5484D'},{c:'#E5484D',s:'#FFFFFF'},{c:'#2B2733',s:'#6A6482',sh:1},{c:'#FFD84D',s:'#E0A800',boot:1},{c:'#FF9EBB',s:'#FFFFFF',bow:1},{c:'#3A6FD8',s:'#FFFFFF',k:'#FFFFFF'}][c.f]||{c:'#FFFFFF',s:'#C8C8D4'},
+    O=` stroke="${OL}" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round"`,TOR='M19 51.5Q32 47.5 45 51.5L46.5 80Q32 83.5 17.5 80Z';
+   const legs=`<rect x="20" y="90" width="8" height="18" rx="3.5" fill="${sk}"${O}/><rect x="36" y="90" width="8" height="18" rx="3.5" fill="${sk}"${O}/>`;
+   let pants=PA.t==='l'?`<path d="M19.5 76H44.5L45.8 106H34.3L32 88L29.7 106H18.2Z" fill="${PA.c}"${O}/>`:PA.t==='s'?`<path d="M19.5 76H44.5L46 94H33.8L32 86.5L30.2 94H18Z" fill="${PA.c}"${O}/>`:`<path d="M18 76H46L51 97H13Z" fill="${PA.c}"${O}/><path d="M18.6 79.5H45.4" stroke="#fff" stroke-opacity=".55" stroke-width="1.4"/>`;
+   if(PA.st)pants+=`<path d="M21.2 78.5L20 104M42.8 78.5L44 104" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>`;
+   const foot=cx=>{const sh=SO.boot?`M${cx-5.5} 97H${cx+5.5}V104Q${cx+7.5} 105 ${cx+7.5} 111.5Q${cx+7.5} 114.5 ${cx+5} 114.5H${cx-5}Q${cx-7.5} 114.5 ${cx-7.5} 111.5Q${cx-7.5} 105 ${cx-5.5} 104Z`:`M${cx-7.5} 111.5Q${cx-7.5} 104.5 ${cx-2} 104.5H${cx+2}Q${cx+7.5} 104.5 ${cx+7.5} 111.5Q${cx+7.5} 114.5 ${cx+5} 114.5H${cx-5}Q${cx-7.5} 114.5 ${cx-7.5} 111.5Z`;
+    return`<path d="${sh}" fill="${SO.c}"${O}/><path d="M${cx-7.2} 112.3H${cx+7.2}" stroke="${SO.s}" stroke-width="1.8"/>`+(SO.k?`<path d="M${cx-2} 107.2H${cx+2}" stroke="${SO.k}" stroke-width="1.2" stroke-linecap="round"/>`:'')+(SO.sh?`<path d="M${cx-4.5} 107Q${cx-3} 105.8 ${cx-1} 106" stroke="#fff" stroke-opacity=".6" stroke-width="1.1" fill="none" stroke-linecap="round"/>`:'')+(SO.bow?`<circle cx="${cx-1.6}" cy="107.2" r="1.7" fill="#E5486D"/><circle cx="${cx+1.6}" cy="107.2" r="1.7" fill="#E5486D"/><circle cx="${cx}" cy="107.2" r="1" fill="#FFD84D"/>`:'')};
+   const art=TP.f||`<g transform="translate(32 53.5) scale(.62) translate(-32 -47)">${TP.x||''}</g>`;
+   const arm=(x1,x2)=>`<path d="M${x1} 55Q${x1+(x2-x1)*.55} 58 ${x2} 72L${x2+.5*(x2<x1?1:-1)} 78" fill="none" stroke="${OL}" stroke-width="7.6" stroke-linecap="round"/><path d="M${x1} 55Q${x1+(x2-x1)*.55} 58 ${x2} 72L${x2+.5*(x2<x1?1:-1)} 78" fill="none" stroke="${TP.b}" stroke-width="5.8" stroke-linecap="round"/>`;
+   body=`<ellipse cx="32" cy="116.5" rx="19" ry="3.4" fill="#785AA0" fill-opacity=".2"/>${TP.fpre||''}${legs}${pants}${foot(24)}${foot(40)}<path d="${TOR}" fill="${TP.b}"${O}/><g clip-path="url(#miiT)">${art}</g>${arm(19.5,13.5)}${arm(44.5,50.5)}<circle cx="13.2" cy="80.6" r="3.3" fill="${sk}"${O}/><circle cx="50.8" cy="80.6" r="3.3" fill="${sk}"${O}/>`}
+  const head=`<g transform="translate(0 2.5)">${HB[c.h]||''}<circle cx="14.6" cy="31.5" r="3" fill="${sk}" stroke="${OL}" stroke-width="1"/><circle cx="49.4" cy="31.5" r="3" fill="${sk}" stroke="${OL}" stroke-width="1"/><rect x="28" y="42" width="8" height="9" rx="3" fill="${sk}" stroke="${OL}" stroke-width="1"/><ellipse cx="32" cy="30" rx="17.5" ry="16.5" fill="${sk}" stroke="${OL}" stroke-width="1.1"/><circle cx="20.6" cy="37.6" r="3.7" fill="#FF8C9C" fill-opacity="${X.ck}"/><circle cx="43.4" cy="37.6" r="3.7" fill="#FF8C9C" fill-opacity="${X.ck}"/><g${o.stage?' class="mblink"':''}>${eye(24.5,-1)}${eye(39.5,1)}</g>${brow(24.5,-1)}${brow(39.5,1)}${mouth}${HF[c.h]||''}${GA}${HA}</g>`;
+  return`<svg class="av2" viewBox="${vb}" aria-hidden="true"><defs><clipPath id="miiC"><circle cx="32" cy="32" r="31"/></clipPath><clipPath id="miiS"><path d="${SH}"/></clipPath><clipPath id="miiT"><path d="M19 51.5Q32 47.5 45 51.5L46.5 80Q32 83.5 17.5 80Z"/></clipPath></defs>${bg}<g${tile||o.stage?'':' clip-path="url(#miiC)"'}>${body}${head}</g></svg>`}
  
 const hy=(r)=>(r||document).querySelectorAll('[data-i]').forEach(e=>{if(ICO[e.dataset.i])e.innerHTML=ICO[e.dataset.i]});
 const ic=n=>ICO[n]||'';
@@ -1963,7 +1986,7 @@ function openEdit(id){const p=DB.profiles[id];if(!p)return;
   setTimeout(()=>{try{$('#whoForm').scrollIntoView({block:'start'})}catch(e){}},50)}
 function closeForm(){$('#wGo').textContent='開始玩';$('#whoForm').hidden=true;$('#wAdd').hidden=Object.keys(DB.profiles).length>=6}
 function drawForm(){
-  const pm=WF.mode==='edit'&&DB.profiles[WF.id]&&DB.profiles[WF.id].mii,mv=pm?'m:'+miiStr(pm.cur):null;
+  const pm=WF.mode==='edit'&&DB.profiles[WF.id]&&DB.profiles[WF.id].mii,mv=pm?'m:'+miiStr(miiFix(pm).cur):null;
   $('#wAvs').innerHTML=(mv?`<button data-av="${mv}" aria-pressed="${mv===WF.av}" aria-label="我的造型">${avh(mv)}</button>`:'')+AVS.map(a=>`<button data-av="${a}" aria-pressed="${a===WF.av}" aria-label="${a.slice(2)}">${avh(a)}</button>`).join('');
   $('#wMii').hidden=WF.mode!=='edit';
   $('#wLv1').setAttribute('aria-pressed',WF.lv===1);$('#wLv2').setAttribute('aria-pressed',WF.lv===2);$('#wLv3').setAttribute('aria-pressed',WF.lv===3);
@@ -2990,7 +3013,7 @@ function renderIsl(){
     if($('#v-isl').hidden)return;
     if(ISLS.on){try{Island.unmount()}catch(e){}ISLS.on=false}
     $('#islHost').innerHTML='';const I=ISL(),v=ISLS.visit,sz=ISLS.at?8:v?(+v.sz||6):islSize();
-    window.__MII=v?(/^m:/.test(v.av||'')?miiParse(v.av):{}):((S.mii||{}).cur||{});
+    window.__MII=v?(/^m:/.test(v.av||'')?miiParse(v.av):{}):(S.mii?miiFix(S.mii).cur:{});
     Island.mount($('#islHost'),{size:sz,theme:ISLS.at||null});Island.setTime(ISLS.tm);
     if(ISLS.at&&!v){const drop=Island.setItems((I.outs||{})[ISLS.at]||[])||[];if(drop.length){drop.forEach(r=>{I.inv[r[0]]=(I.inv[r[0]]||0)+1});(I.outs=I.outs||{})[ISLS.at]=Island.list();save()}Island.on('tile',islTile);Island.on('item',islItem)}
     else if(v){Island.setItems(parseIsl(v.isl));Island.on('tile',null);Island.on('item',null);if(typeof v.isl!=='string')toast(v.nick+' 還沒更新到新版，島先空著')}
@@ -3009,26 +3032,48 @@ $('#islGoal').innerHTML=ic('trophy')+'<span>目標</span>';$('#islGoal').onclick
 
 
 /* ---------- 捏臉編輯器 ---------- */
-let MX=null;
-const MTABS=[['h','髮型','✂️'],['c','髮色','🎨'],['s','膚色','🧒'],['e','眼睛','👀'],['b','眉毛','🤨'],['m','嘴巴','👄'],['t','衣服','👕'],['a','帽子','🎩'],['g','眼鏡','👓']];
-function miiOwn(){const m=S.mii||(S.mii={cur:Object.assign({},M_DEF),own:{}});m.own=m.own||{};Object.keys(M_FREE).forEach(k=>{const a=m.own[k]||(m.own[k]=[]);M_FREE[k].forEach(i=>{if(a.indexOf(i)<0)a.push(i)})});return m}
+let MX=null,MTW=0;
+const mI=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const MTABS=[['h','髮型',mI('<path d="M5 14Q4 4.5 12 4.5Q20 4.5 19 14"/><path d="M5 14Q9 13 12 9Q15 13 19 14"/><path d="M8 18Q12 21 16 18"/>')],
+ ['c','顏色',mI('<path d="M12 3.5Q5 11 5 15a7 7 0 0 0 14 0Q19 11 12 3.5Z"/><path d="M9 15a3 3 0 0 0 3 3"/>')],
+ ['e','表情',mI('<circle cx="12" cy="12" r="8.5"/><path d="M9 10v1.5M15 10v1.5"/><path d="M8.5 14.5Q12 18 15.5 14.5"/>')],
+ ['a','配件',mI('<path d="M4 9L7 5l5 4 5-4 3 4-2 7H6Z"/><path d="M8 19h8"/>')],
+ ['t','上衣',mI('<path d="M8 4L3.5 7.5 6 11l2-1.2V20h8V9.8L18 11l2.5-3.5L16 4Q12 7 8 4Z"/>')],
+ ['p','褲',mI('<path d="M7 4h10l1.5 16h-5L12 11l-1.5 9h-5Z"/><path d="M7 7.5h10"/>')],
+ ['f','鞋',mI('<path d="M4 8h6l1 3 7 2.5a2.5 2.5 0 0 1 2 2.5V18H4Z"/><path d="M4 15h16"/>')]];
+const MKEYS={h:['h'],c:[],e:['e'],a:['a','x'],t:['t'],p:['p'],f:['f']},MZOOM={h:'h',c:'full',e:'f',a:'a',t:'full',p:'full',f:'full'};
+function miiOwn(){const m=miiFix(S.mii||(S.mii={cur:Object.assign({},M_DEF),own:{},v:2}));m.own=m.own||{};Object.keys(M_FREE).forEach(k=>{const a=m.own[k]||(m.own[k]=[]);M_FREE[k].forEach(i=>{if(a.indexOf(i)<0)a.push(i)})});return m}
 const miiHas=(k,i)=>!M_PR[k]||miiOwn().own[k].indexOf(i)>=0;
-function openMii(){const m=miiOwn();MX={cur:Object.assign({},M_DEF,m.cur),tab:'h'};show('mii');renderMii()}
+function openMii(){const m=miiOwn();MX={cur:Object.assign({},M_DEF,m.cur),tab:'h',vb:M_ZV.full};show('mii');renderMii()}
+function mTween(el,to){cancelAnimationFrame(MTW);const a=(MX.vb||to).split(' ').map(Number),b=to.split(' ').map(Number),t0=performance.now();
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){MX.vb=to;el.setAttribute('viewBox',to);return}
+  const st=n=>{let k=Math.min(1,(n-t0)/300);k=1-Math.pow(1-k,3);MX.vb=a.map((v,i)=>+(v+(b[i]-v)*k).toFixed(2)).join(' ');el.setAttribute('viewBox',MX.vb);if(k<1)MTW=requestAnimationFrame(st)};MTW=requestAnimationFrame(st)}
+const mPend=()=>{const c=MX.cur,L=[];MKEYS[MX.tab].forEach(k=>{if(M_PR[k]&&c[k]>0&&!miiHas(k,c[k])||M_PR[k]&&k!=='a'&&k!=='x'&&!miiHas(k,c[k]))L.push(k)});return L};
 function renderMii(){const c=MX.cur,k=MX.tab;
-  $('#miiPrev').innerHTML=miiSvg(c,{stage:1});$('#miiCoin').innerHTML=cn(coin());
+  $('#miiPrev').innerHTML=miiSvg(c,{stage:1,vb:MX.vb});mTween($('#miiPrev').firstChild,M_ZV[MZOOM[k]]);$('#miiCoin').innerHTML=cn(coin());
   $('#miiTabs').innerHTML=MTABS.map(t=>`<button data-mt="${t[0]}" aria-pressed="${t[0]===k}"><i>${t[2]}</i><span>${t[1]}</span></button>`).join('');
-  const zk={h:'h',a:'a',e:'f',b:'f',m:'f',g:'f',t:''},bgs={h:'#FFEAF4',a:'#FFF6D8',e:'#E8F3FF',b:'#E8F3FF',m:'#FFEEE8',g:'#EAF7EC',t:'#EEEAFF'};
-  let h='';for(let i=0;i<MCNT[k];i++){let inner;
-    if(k==='c')inner=`<span class="sw" style="background:${M_HAIR[i]}"></span>`;else if(k==='s')inner=`<span class="sw" style="background:${M_SKIN[i]}"></span>`;
-    else{const t=Object.assign({},c);t[k]=i;inner=miiSvg(t,{z:zk[k],tile:1,bg:bgs[k]})}
-    const has=miiHas(k,i),sub=M_PR[k]?(has?(M_FREE[k].indexOf(i)>=0?'<em class="chip base">基本</em>':'<em class="chip ok">已擁有</em>'):`<em class="chip">${cn(M_PR[k])}</em>`):'';
-    h+=`<button class="mt${c[k]===i?' on':''}" data-mi="${i}">${inner}${sub}</button>`}
+  const bgs={h:'#FFEAF4',e:'#E8F3FF',a:'#FFF6D8',t:'#EEEAFF',p:'#E8F7EC',f:'#FFEEE8'},zt={h:'h',e:'f',t:'t',p:'p',f:'s'};
+  const price=(kk,i)=>{if(!M_PR[kk])return'';const has=miiHas(kk,i);return has?(M_FREE[kk].indexOf(i)>=0?'<em class="chip base">基本</em>':'<em class="chip ok">✓ 已擁有</em>'):`<em class="chip${coin()<M_PR[kk]?' poor':''}">${cn(M_PR[kk])}</em>`};
+  let h='';
+  if(k==='c'){
+    h+='<div class="msec">髮色</div>';for(let i=0;i<MCNT.c;i++)h+=`<button class="mt dot${c.c===i?' on':''}" data-mk="c" data-mi="${i}" aria-label="髮色${i+1}"><span class="sw" style="background:${M_HAIR[i]}"></span></button>`;
+    h+='<div class="msec">膚色</div>';for(let i=0;i<MCNT.s;i++)h+=`<button class="mt dot${c.s===i?' on':''}" data-mk="s" data-mi="${i}" aria-label="膚色${i+1}"><span class="sw" style="background:${M_SKIN[i]}"></span></button>`;
+  }else if(k==='a'){
+    const none=!c.a&&!c.x;
+    h+=`<button class="mt${none?' on':''}" data-mk="n" data-mi="0" aria-label="不戴"><span class="mnone">${mI('<circle cx="12" cy="12" r="8"/><path d="M6.5 17.5L17.5 6.5"/>')}</span><em class="chip base">不戴</em></button>`;
+    for(let i=1;i<MCNT.a;i++){const t=Object.assign({},c,{a:i});h+=`<button class="mt${c.a===i?' on':''}" data-mk="a" data-mi="${i}">${miiSvg(t,{z:'a',tile:1,bg:bgs.a})}${price('a',i)}</button>`}
+    for(let i=1;i<MCNT.x;i++){const t=Object.assign({},c,{x:i});h+=`<button class="mt${c.x===i?' on':''}" data-mk="x" data-mi="${i}">${miiSvg(t,{z:'f',tile:1,bg:bgs.e})}${price('x',i)}</button>`}
+  }else{
+    for(let i=0;i<MCNT[k];i++){const t=Object.assign({},c);t[k]=i;h+=`<button class="mt${c[k]===i?' on':''}" data-mk="${k}" data-mi="${i}">${miiSvg(t,{z:zt[k],tile:1,bg:bgs[k]})}${price(k,i)}</button>`}
+  }
   $('#miiGrid').innerHTML=h;
-  const need=!!M_PR[k]&&!miiHas(k,c[k]);$('#miiBuy').hidden=!need;if(need){$('#miiBuy').innerHTML='買下　'+cn(M_PR[k]);$('#miiBuy').disabled=coin()<M_PR[k]}}
+  const pend=mPend(),tot=pend.reduce((a,kk)=>a+M_PR[kk],0);$('#miiBuy').hidden=!pend.length;if(pend.length){$('#miiBuy').innerHTML='買下　'+cn(tot);$('#miiBuy').disabled=coin()<tot}}
 $('#miiTabs').addEventListener('click',e=>{const b=e.target.closest('[data-mt]');if(b){MX.tab=b.dataset.mt;renderMii()}});
-$('#miiGrid').addEventListener('click',e=>{const b=e.target.closest('[data-mi]');if(b){MX.cur[MX.tab]=+b.dataset.mi;renderMii()}});
-$('#miiBuy').onclick=()=>{const k=MX.tab,i=MX.cur[k],pr=M_PR[k];if(!pr||miiHas(k,i))return;if(coin()<pr){toast('島幣不夠，先去玩幾關');return}
-  S.coin-=pr;miiOwn().own[k].push(i);save();try{sfx.coin()}catch(e){}toast('買下了！');renderMii()};
+$('#miiGrid').addEventListener('click',e=>{const b=e.target.closest('[data-mk]');if(!b)return;const kk=b.dataset.mk,i=+b.dataset.mi;
+  if(kk==='n'){MX.cur.a=0;MX.cur.x=0}else if((kk==='a'||kk==='x')&&MX.cur[kk]===i)MX.cur[kk]=0;else MX.cur[kk]=i;
+  renderMii();const nb=document.querySelector('#miiGrid .mt.on[data-mk="'+kk+'"]');if(nb){nb.classList.add('pop')}});
+$('#miiBuy').onclick=()=>{const pend=mPend(),tot=pend.reduce((a,kk)=>a+M_PR[kk],0);if(!pend.length)return;if(coin()<tot){toast('島幣不夠，先去玩幾關');return}
+  S.coin-=tot;pend.forEach(kk=>miiOwn().own[kk].push(MX.cur[kk]));save();try{sfx.coin();fxBurst(24)}catch(e){}toast('買下了！');renderMii()};
 $('#miiRnd').onclick=()=>{Object.keys(M_DEF).forEach(k=>{const own=M_PR[k]?miiOwn().own[k]:null;MX.cur[k]=own?own[Math.floor(Math.random()*own.length)]:Math.floor(Math.random()*MCNT[k])});renderMii()};
 $('#miiX').onclick=()=>show('home');
 $('#miiOk').onclick=()=>{const m=miiOwn();let back=0;Object.keys(M_PR).forEach(k=>{if(!miiHas(k,MX.cur[k])){MX.cur[k]=m.cur[k]||0;if(!miiHas(k,MX.cur[k]))MX.cur[k]=M_FREE[k][0];back++}});

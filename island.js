@@ -298,11 +298,19 @@ CAT.push({id:'fac_airport',n:'機場',c:'交通',p:0,e:'✈️',s:2,np:1},{id:'f
  {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1});
 
 /* ---------- v1.11 捏臉角色「我」（造型讀 window.__MII）---------- */
-B.c_me=()=>{const M=window.__MII||{},SK=['#FFE0C7','#F9CBA7','#EDB48A','#D69A6B','#B87A4F','#8D5A3B'],HC=['#2B2420','#5A3A22','#8B5A2B','#D9A441','#E8503A','#F78FB3','#6FA8F0','#B79CF5'],
- TC=['#FFFFFF','#6FC3F2','#F46B6B','#4A7ACF','#FF9EBB','#F4F6FA','#FFFFFF','#E4E8F2','#FF8FB7','#3A6FD8'];
- const h=+M.h||0,hc=HC[+M.c||0]||HC[0],sk=SK[+M.s||0]||SK[0],t=+M.t||0,a=+M.a||0,gl=+M.g||0;
- const g=person({top:TC[t]||'#FFFFFF',bottom:t===3?'#3A5FB8':t===5?'#3A4A8A':'#4A5A8A',hair:hc,skin:sk,longHair:h===3||h===7,robe:t===8});
+B.c_me=()=>{const M=window.__MII||{},SK=['#FFE0C7','#F9CBA7','#EDB48A','#D69A6B','#B87A4F','#8D5A3B','#FFEFE2','#6E4630'],HC=['#2B2420','#5A3A22','#8B5A2B','#D9A441','#E8503A','#F78FB3','#6FA8F0','#B79CF5'],
+ TC=['#FFFFFF','#6FC3F2','#F46B6B','#4A7ACF','#FF9EBB','#F4F6FA','#FFFFFF','#E4E8F2','#FF8FB7','#3A6FD8'],
+ PC=['#3A5FB8','#8E94A6','#FF9EBB','#FFD84D','#2B2733','#7A5AC8'],SC=[['#FFFFFF','#C8C8D4'],['#E5484D','#FFFFFF'],['#2B2733','#6A6482'],['#FFD84D','#E0A800'],['#FF9EBB','#FFFFFF'],['#3A6FD8','#FFFFFF']];
+ const h=+M.h||0,hc=HC[+M.c||0]||HC[0],sk=SK[+M.s||0]||SK[0],t=+M.t||0,a=+M.a||0,gl=+M.x||0,p=+M.p||0,f=+M.f||0,e=+M.e||0,pc=PC[p]||PC[0],sc=SC[f]||SC[0];
+ const g=person({top:TC[t]||'#FFFFFF',bottom:pc,hair:hc,skin:sk,longHair:h===3||h===7,robe:t===8});
  const add=(...m)=>m.forEach(x=>g.add(x));
+ /* 褲：裙子加一圈裙襬；短褲把腿下半露出皮膚色；鞋：腳上兩個小鞋 */
+ const P=g.userData.parts;
+ if(p===2)add(cone(.17,.16,pc,0,.2,0,12));
+ if(p===1||p===3){P.legL.material=P.legR.material=P.legL.material.clone();P.legL.material.color.copy(mat(sk).color);add(cyl(.054,.054,.09,pc,-.06,.155,0,8),cyl(.054,.054,.09,pc,.06,.155,0,8))}
+ if(p===2){P.legL.material=P.legR.material=P.legL.material.clone();P.legL.material.color.copy(mat(sk).color)}
+ [-.06,.06].forEach(x=>{const sh=sph(.062,sc[0],x,.022,.025,1,.55,1.35);add(sh,box(.11,.012,.14,sc[1],x,.006,.025));if(f===3)add(cyl(.056,.056,.07,sc[0],x,.07,0,8))});
+ if(e===2){add(sph(.03,'#FF7A93',-.105,.58,.14,1,.7,.5),sph(.03,'#FF7A93',.105,.58,.14,1,.7,.5))}
  if(h===2){add(sph(.07,hc,-.18,.55,-.02,1,1.6,1),sph(.07,hc,.18,.55,-.02,1,1.6,1))}
  else if(h===4)add(sph(.09,hc,0,.82,-.02));
  else if(h===5){[[-.12,.74],[.12,.74],[0,.8],[-.17,.6],[.17,.6]].forEach(q=>add(sph(.08,hc,q[0],q[1],-.02)))}
