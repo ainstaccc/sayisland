@@ -566,6 +566,11 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .pnum{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
 .pnum button{min-height:52px;border-radius:14px;border:2px solid var(--line);background:#fff;font:800 22px/1 inherit;color:#3B2A5A}
 .pnum button.on{background:var(--c1);border-color:var(--c1);color:#fff}
+.fly{position:fixed;inset:0;z-index:9998;background:linear-gradient(#7CCBFF,#DDF3FF);overflow:hidden;animation:flyin .25s both}
+@keyframes flyin{from{opacity:0}to{opacity:1}}@keyframes cloudd{from{transform:translateY(-120px)}to{transform:translateY(110vh)}}@keyframes vbob{from{transform:translate(-50%,-50%) rotate(-6deg)}to{transform:translate(-50%,-56%) rotate(6deg)}}
+.fly .cl{position:absolute;font-size:72px;opacity:.9;animation:cloudd linear infinite}.fly .vh{position:absolute;left:50%;top:50%;font-size:110px;line-height:1;animation:vbob .5s ease-in-out infinite alternate}
+.fly b{position:absolute;bottom:12%;left:0;right:0;text-align:center;font:900 30px/1.3 var(--f-disp);color:#2B1D4D;white-space:nowrap}
+.stk{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stk button{min-height:92px;border-radius:18px;border:2px solid var(--line);background:#fff;color:#3B2A5A;font:800 16px/1.2 inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}.stk button{white-space:nowrap}.stk button span{font-size:44px;line-height:1}.stk button:disabled{opacity:.55}
 .prpop{position:fixed;inset:0;z-index:9999;background:rgba(40,20,70,.55);display:flex;align-items:center;justify-content:center;padding:24px}
 .prc{background:#fff;color:#3B2A5A;border-radius:28px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;animation:pop .4s}
 .prc .pre{line-height:1;display:flex;justify-content:center}.prc .pre .sv{width:84px;height:84px}.prc b{font-size:28px;line-height:1.3;color:#3B2A5A}.prc p{font-size:22px;margin:0;color:#5E4B80}
@@ -601,7 +606,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.9.1</p>
+    <p class="ver">說說島 v1.9.2</p>
   </section>
 
   <!-- 首頁 -->
@@ -620,7 +625,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.9.1</p>
+    <p class="ver">說說島 v1.9.2</p>
   </section>
 
   <!-- 選擇題 -->
@@ -763,7 +768,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.9.1</p>
+    <p class="ver">說說島 v1.9.2</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -832,7 +837,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.9.1</p>
+    <p class="ver">說說島 v1.9.2</p>
   </section>
 </div>
 
@@ -2512,7 +2517,7 @@ function finish({title,acc,line,cat,lid}){
   const dc=dailyCats();
   if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星，還送你 1 個免費盲盒 🎉');ISL().free=(ISL().free||0)+1;S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
   if(S.wkClaim!==wkKey()&&wkDone()>=WK_NEED){S.wkClaim=wkKey();S.stars+=WK_STARS;msgs.push('本週挑戰完成！寶箱打開 +'+WK_STARS+' 顆星 🎁')}
-  const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+nb.join('、'))
+  const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+nb.join('、'));const vm=vehChk();if(vm)msgs.push(vm)
   addWk(S.stars-s0);save();GRP_LAST=0;grpPush();
   $('#starN').textContent=S.stars;
   $('#rtitle').textContent=title;
@@ -2581,7 +2586,7 @@ async function grpPull(){
 async function grpPush(){const g=S.grp;if(!g||!FB_ON)return;try{await putMe('groups/'+g.code+'/members/'+g.mid)}catch(e){}}
 async function grpCheer(to,k){const g=S.grp;S.sent=S.sent||{};const key=today()+to+k;if(S.sent[key])return;S.sent[key]=1;Object.keys(S.sent).filter(x=>x.indexOf(today())!==0).forEach(x=>delete S.sent[x]);save();
   if(!FB_ON){const m=mockLoad();m.ch=m.ch||[];m.ch.push({to,fn:g.nick,k,d:today()});localStorage.setItem(MK,JSON.stringify(m));return}
-  await fsSet('groups/'+g.code+'/cheers/'+(today()+'_'+g.mid+'_'+to+'_'+(k==='👏'?'a':'b')).replace(/-/g,''),{to,fn:g.nick,k,d:today()})}
+  await fsSet('groups/'+g.code+'/cheers/'+(today()+'_'+g.mid+'_'+to+'_'+({'👏':'a','🔥':'b','🌟':'c','🌈':'d','🦄':'e'}[k]||'z')).replace(/-/g,''),{to,fn:g.nick,k,d:today()})}
 async function grpGift(to,id){const g=S.grp;if(!g)throw new Error('先加入好友團');const I=ISL();S.sentG=S.sentG||{};const key=today()+to;
   if(S.sentG[key])throw new Error('今天已經送過這位朋友了');if(!(I.inv[id]>0))throw new Error('背包沒有這個了');
   I.inv[id]--;S.sentG[key]=1;Object.keys(S.sentG).filter(x=>x.indexOf(today())!==0).forEach(x=>delete S.sentG[x]);save();
@@ -2627,7 +2632,7 @@ async function renderGrp(){
   const doneN=mem.filter(m=>m.done).length;
     S.sent=S.sent||{};
   const rows=mem.map((m,i)=>{const me=m._id===S.grp.mid;
-    return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${avh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span>${m.done?ic('check')+'今日完成':'今日'+m.tn+'項'}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch"><button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic('island')}<span>參觀島</span></button><button class="ibtn" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
+    return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${avh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span>${m.done?ic('check')+'今日完成':'今日'+m.tn+'項'}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch"><button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic('island')}<span>${S.stars>=10?'飛去參觀':'🔒參觀島'}</span></button><button class="ibtn" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
   const rc={};d.ch.forEach(c=>{rc[c.k]=(rc[c.k]||0)+1});
   const got=Object.keys(rc).map(k=>(k==='👏'?ic('clap'):k==='🔥'?ic('flame'):eh(k))+'×'+rc[k]).join('　');
   const gfs=gfOpen(d.gf);GRP_GF=gfs.length;
@@ -2652,7 +2657,7 @@ $('#grpBody').addEventListener('click',async e=>{
   const b=e.target.closest('button');if(!b)return;
   if(b.id==='gNew'||b.id==='gJoin'){const nick=($('#gNick').value||'').trim().slice(0,8);if(!nick){GRP_ERR='先填暱稱';return renderGrp()}
     b.disabled=true;try{b.id==='gNew'?await grpCreate(nick):await grpJoin($('#gCode').value,nick);GRP_ERR='';GRP_DATA=null}catch(x){GRP_ERR=(x.message||'失敗了，再試一次');S.grp=null}renderGrp();return}
-  if(b.dataset.visit){const m=((GRP_DATA||{}).mem||[]).find(x=>x._id===b.dataset.visit);if(m){ISLS.visit=m;show('isl')}return}
+  if(b.dataset.visit){const m=((GRP_DATA||{}).mem||[]).find(x=>x._id===b.dataset.visit);if(m){const v=VEH[0];if(!v.ok()){toast('熱氣球還沒解鎖：'+v.tip+'（還差 '+Math.max(0,10-S.stars)+' 顆）');return}flyTo('飛往 '+m.nick+' 的島…',()=>{ISLS.visit=m;show('isl')})}return}
   if(b.dataset.claim){const k=b.dataset.k;try{await loadIsl()}catch(x){toast('現在打不開，等一下再試');return}if(giftClaim(b.dataset.claim,k))toast('收下了：'+Island.BYID[k].n+'，在背包裡');GRP_GF=0;renderGrp();return}
   if(b.dataset.ch){b.disabled=true;try{await grpCheer(b.dataset.to,b.dataset.ch);toast('送出鼓勵')}catch(x){b.disabled=false;toast('送不出去，等一下再試')}return}
   if(b.id==='gCopy'){try{await navigator.clipboard.writeText(S.grp.code);toast('已複製邀請碼')}catch(x){toast('邀請碼：'+S.grp.code)}return}
@@ -2695,7 +2700,7 @@ function islIdle(){
   if(window.Island&&Island.clearGhost){Island.clearGhost();Island.mark(null)}
   islClose();islHud();
   if(ISLS.visit){islHint('');
-    $('#islBar').innerHTML=bt('vback','back','回我的島')+bt('vcheer','clap','鼓勵')+bt('vgift','gift','送禮物','');return}
+    $('#islBar').innerHTML=bt('vback','back','回我的島')+bt('vcheer','clap','貼紙')+bt('vgift','gift','送禮物','');return}
   islHint('');
   const f=ISL().free;
   $('#islBar').innerHTML=bt('shop','shop','商店')+bt('fac','island','設施')+`<button class="btn" data-ia="box">${ic('gift')}<span>盲盒</span>${f?`<b class="dotn">${f}</b>`:''}</button>`+bt('bag','bag','背包');
@@ -2785,6 +2790,15 @@ function reveal(it,r,isNew,kind,dup){
       if(a==='place'){islClose();startPlace(it.id)}else if(a==='again'){drawBox(kind)}else{sheetBox()}};
   },1300);
 }
+const VEH=[{e:'🎈',n:'熱氣球',ok:()=>S.stars>=10,tip:'累積 10 顆星',ms:1700},{e:'🛩️',n:'小飛機',ok:()=>streak()>=7,tip:'連續練習 7 天',ms:1200},{e:'🚀',n:'火箭',ok:()=>S.stars>=100,tip:'累積 100 顆星',ms:900}];
+const STK=[{k:'👏',n:'鼓掌',ok:()=>true},{k:'🔥',n:'加油',ok:()=>true},{k:'🌟',n:'閃亮',ok:()=>S.stars>=30,tip:'累積 30 顆星'},{k:'🌈',n:'彩虹',ok:()=>streak()>=7,tip:'連續 7 天'},{k:'🦄',n:'獨角獸',ok:()=>S.stars>=100,tip:'累積 100 顆星'}];
+const vehBest=()=>{let b=null;VEH.forEach(v=>{if(v.ok())b=v});return b};
+function flyTo(txt,cb){const v=vehBest()||VEH[0];const o=document.createElement('div');o.className='fly';
+  o.innerHTML=[0,1,2,3,4,5].map(i=>`<span class="cl" style="left:${(i*19+5)%90}%;animation-duration:${(0.7+i*.12).toFixed(2)}s;animation-delay:-${i*.2}s">☁️</span>`).join('')+`<div class="vh">${v.e}</div><b>${eh(txt)}</b>`;
+  document.body.appendChild(o);try{sfx.tog()}catch(e){}setTimeout(()=>{try{cb()}finally{setTimeout(()=>o.remove(),150)}},v.ms)}
+function vehChk(){const n=VEH.filter(v=>v.ok()).length,old=S.vk||0;if(n>old){S.vk=n;return '解鎖 '+VEH[n-1].n+' '+VEH[n-1].e+'！飛得更快'}if(n!==old)S.vk=n;return ''}
+function sheetStk(){const to=ISLS.visit._id;S.sent=S.sent||{};
+  $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('clap','送貼紙給 '+eh(ISLS.visit.nick))+`<div class="stk">${STK.map(x=>{const on=x.ok(),sent=S.sent[today()+to+x.k];return`<button data-stk="${x.k}" ${on&&!sent?'':'disabled'}><span>${x.k}</span>${on?(sent?'今天送過了':x.n):'🔒 '+x.tip.replace('累積 ','').replace('連續 ','連續')}</button>`}).join('')}</div><p class="muted">每種貼紙，每天每位朋友可以送 1 次。多練習就會解鎖新貼紙！</p>`}
 function sheetGift(){
   const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0&&!c.ch&&!c.np);
   $('#islSheet').hidden=false;
@@ -2795,14 +2809,15 @@ $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-
   else if(a==='cancel')islIdle();else if(a==='ok')islOk();
   else if(a==='mv')startPlace(ISLS.t,ISLS.idx);
   else if(a==='pk'){const I=ISL();I.inv[ISLS.t]=(I.inv[ISLS.t]||0)+1;Island.remove(ISLS.idx);islSave();toast('收進背包了');islIdle()}
-  else if(a==='vback'){ISLS.visit=null;renderIsl()}
-  else if(a==='vcheer'){try{await grpCheer(ISLS.visit._id,'👏');toast('送出鼓勵')}catch(x){toast('今天已經送過了')}}
+  else if(a==='vback'){flyTo('回家囉～',()=>{ISLS.visit=null;renderIsl()})}
+  else if(a==='vcheer')sheetStk()
   else if(a==='vgift')sheetGift()});
 $('#islSheet').addEventListener('click',async e=>{
   const t=e.target.closest('[data-tab]');if(t){ISLS.cat=t.dataset.tab;sheetShop(ISLS.fac);return}
   const b=e.target.closest('[data-buy]');if(b){const d=Island.BYID[b.dataset.buy],p=buyP(d);if(coin()<p)return;S.coin-=p;const I=ISL();I.inv[d.id]=(I.inv[d.id]||0)+1;I.seen[d.id]=1;save();islHud();startPlace(d.id);return}
   const pl=e.target.closest('[data-place]');if(pl){startPlace(pl.dataset.place);return}
   const dr=e.target.closest('[data-draw]');if(dr){drawBox(dr.dataset.draw);return}
+  const sk=e.target.closest('[data-stk]');if(sk){try{await grpCheer(ISLS.visit._id,sk.dataset.stk);toast('貼紙送出去了 '+sk.dataset.stk);sheetStk()}catch(x){toast('今天已經送過了')}return}
   const gv=e.target.closest('[data-give]');if(gv){try{await grpGift(ISLS.visit._id,gv.dataset.give);toast('禮物送出去了！');islIdle()}catch(x){toast(x.message||'送不出去，等一下再試')}return}
   if(e.target.closest('[data-ia="close"]'))islIdle()});
 const TMI={auto:'half',day:'sun',night:'moon'};
