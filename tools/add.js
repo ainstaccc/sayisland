@@ -5,20 +5,25 @@ const fs=require('fs');
 const html=fs.readFileSync('index.html','utf8');
 const slice=(a,b)=>{const i=html.indexOf(a),j=html.indexOf(b,i);return html.slice(i,j)};
 const base=new Function(slice('const Q1=[','const mk=(')+';return {Q1,Q2,V1,V2,A1,A2,M1,M2,E1,E2,Q3,V3,A3,M3,E3};')();
-Object.assign(base,new Function(slice('const H1=[','const mkH=')+';return {H1,H2,H3};')());
+Object.assign(base,new Function(slice('const H1=[','const mkH=')+';return {H1,H2,H3,R1,R2,R3,Y1,Y2,Y3,ZB};')());
 const bankSrc=fs.readFileSync('bank.js','utf8');
 const bank=JSON.parse(bankSrc.replace(/^window\.EXTRA=/,'').replace(/;\s*$/,''));
 const inp=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
 const S=x=>typeof x==='string'&&x.trim().length>0;
-const keyOf=(k,r)=>k[0]==='M'?r[1]:k[0]==='E'?r.scene:k[0]==='H'?r[1]:r[1];
+const keyOf=(k,r)=>k==='ZB'?r[1]+r[2]:k[0]==='M'?r[1]:k[0]==='E'?r.scene:k[0]==='H'?r[1]:r[1];
 function check(k,r){
   const c=k[0];
-  if('QVA'.includes(c)){
+  if('QVARY'.includes(c)&&k!=='ZB'){
     if(!Array.isArray(r)||r.length!==6||!r.every(S))return'欄位數不對（要 6 個字串）';
     if(r[1].split('＿＿').length!==2)return'句子要剛好一個「＿＿」';
     if(new Set([r[2],r[3],r[4]]).size!==3)return'三個選項不能重複';
     if([r[2],r[3],r[4]].some(x=>x.length>4))return'選項不超過 4 個字';
     if(r[1].replace('＿＿',r[2])!==r[1].replace('＿＿',r[2])||r[1].length>30)return'句子太長';
+  }else if(k==='ZB'){
+    if(!Array.isArray(r)||r.length!==7||!r.every(S))return'ZB 要 7 個字串 [圖,詞,字,正確注音,干擾1,干擾2,類型]';
+    if(new Set([r[3],r[4],r[5]]).size!==3)return'三個注音不能重複';
+    if(!['n','g','a','h','c','z','cz'].includes(r[6]))return'類型要是 n g a h c z cz';
+    if(!r[1].includes(r[2]))return'字要在詞裡面';
   }else if(c==='M'){
     if(!Array.isArray(r)||r.length!==3||!r.every(S))return'要 [圖,原因,結果]';
     if(r[1].length>7||r[2].length>8)return'原因 ≤7 字、結果 ≤8 字';
@@ -36,7 +41,7 @@ function check(k,r){
 }
 const added={},rej=[];
 for(const k of Object.keys(inp)){
-  if(!/^[QVAMEH][123]$/.test(k)){rej.push(k+' key 不合法');continue}
+  if(!/^([QVAMEHRY][123]|ZB)$/.test(k)){rej.push(k+' key 不合法');continue}
   const seen=new Set([...(base[k]||[]),...(bank[k]||[])].map(r=>keyOf(k,r)));
   for(const r of inp[k]){
     const e=check(k,r);if(e){rej.push(k+' '+JSON.stringify(r).slice(0,40)+'… '+e);continue}
