@@ -135,6 +135,65 @@ const CAT=[
  {id:'c_student',n:'小學生',c:'人物',p:0,r:0,e:'🧒',ch:1},{id:'c_chef',n:'小廚師',c:'人物',p:0,r:0,e:'🧑‍🍳',ch:1},{id:'c_gardener',n:'小園丁',c:'人物',p:0,r:1,e:'🧑‍🌾',ch:1},{id:'c_painter',n:'小畫家',c:'人物',p:0,r:1,e:'🎨',ch:1},{id:'c_pirate',n:'小海盜',c:'人物',p:0,r:2,e:'🏴‍☠️',ch:1},{id:'c_astronaut',n:'太空人',c:'人物',p:0,r:2,e:'🧑‍🚀',ch:1},{id:'c_wizard',n:'小魔法師',c:'人物',p:0,r:2,e:'🧙',ch:1},{id:'c_princess',n:'公主',c:'人物',p:0,r:3,e:'👸',ch:1},{id:'c_fairy',n:'花仙子',c:'人物',p:0,r:3,e:'🧚',ch:1},{id:'c_dragon',n:'小龍人',c:'人物',p:0,r:3,e:'🐲',ch:1},
  {id:'lighthouse',n:'燈塔',c:'特別',p:30,e:'🗼'},{id:'rainbow',n:'彩虹拱門',c:'特別',p:35,e:'🌈'},{id:'balloon',n:'熱氣球',c:'特別',p:45,e:'🎈'},{id:'ferris',n:'摩天輪',c:'特別',p:50,e:'🎡',s:2},{id:'carousel',n:'旋轉木馬',c:'特別',p:45,e:'🎠',s:2},{id:'castle',n:'城堡',c:'特別',p:70,e:'🏰',s:2}
 ];
+/* ---------- v1.8 夥伴（蛋孵出來的動物，只能養大，不進商店與盲盒）---------- */
+const pw=(c,o)=>mat(c,Object.assign({transparent:true,opacity:.88},o||{}));
+const eye2=(x,y,z,r)=>[sph(r||.032,'#2B2B3A',-x,y,z),sph(r||.032,'#2B2B3A',x,y,z),sph((r||.032)*.35,'#FFFFFF',-x+.008,y+.01,z+.022),sph((r||.032)*.35,'#FFFFFF',x+.008,y+.01,z+.022)];
+const cheeks=(x,y,z)=>[sph(.035,'#FF9EBB',-x,y,z,1,.7,.5),sph(.035,'#FF9EBB',x,y,z,1,.7,.5)];
+const shade=(x,z,r)=>{const m=cyl(r,r,.01,'#000000',x,.01,z,16);m.material=new T.MeshBasicMaterial({color:'#000000',transparent:true,opacity:.12});m.castShadow=false;return m};
+B.p_rooster=(x,z)=>{const g=new T.Group(),b=new T.Group(),hd=new T.Group();g.add(b);
+ b.add(sph(.22,'#E8924B',0,.3,0,1,.95,1.15),sph(.17,'#F4C27A',0,.27,.12,1,.9,.8),cyl(.02,.02,.14,'#FFB84D',-.07,.07,.02,6),cyl(.02,.02,.14,'#FFB84D',.07,.07,.02,6));
+ [[-.5,'#2FA39A'],[0,'#E5484D'],[.5,'#F2B134']].forEach(a=>{const pv=new T.Group();pv.position.set(0,.38,-.22);pv.rotation.x=-.5;pv.rotation.z=a[0];pv.add(sph(.065,a[1],0,.16,0,.6,2.1,.5));b.add(pv)});
+ hd.position.set(0,.5,.15);hd.add(sph(.13,'#E8924B',0,.06,.04),sph(.05,'#E5484D',0,.2,.04,.8,1.5,.7),sph(.04,'#E5484D',0,.2,.1,.7,1.1,.6),cone(.04,.09,'#FFB84D',0,.05,.18,4),sph(.03,'#E5484D',0,-.02,.14,.8,1.4,.6));
+ hd.children[3].rotation.x=1.57;eye2(.07,.09,.14,.026).forEach(m=>hd.add(m));cheeks(.1,.04,.12).forEach(m=>hd.add(m));b.add(hd);
+ g.add(shade(0,0,.3));g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
+ g.userData.anim=t=>{const k=Math.max(0,Math.sin(t*2.4+p));hd.rotation.x=k*.9;b.position.y=Math.abs(Math.sin(t*1.2+p))*.01};return g};
+B.p_hen=(x,z)=>{const g=new T.Group(),b=new T.Group(),hd=new T.Group();g.add(b);
+ b.add(sph(.22,'#F6E7CC',0,.28,0,1,.95,1.15),sph(.15,'#D9A86C',-.17,.3,0,.5,1,1.1),sph(.15,'#D9A86C',.17,.3,0,.5,1,1.1),sph(.1,'#F6E7CC',0,.4,-.22,.9,.9,.7),cyl(.02,.02,.14,'#FFB84D',-.07,.07,.02,6),cyl(.02,.02,.14,'#FFB84D',.07,.07,.02,6));
+ hd.position.set(0,.5,.15);hd.add(sph(.13,'#F6E7CC',0,.06,.04),sph(.04,'#E5484D',0,.18,.04,.9,1.2,.7),cone(.04,.09,'#FFB84D',0,.05,.18,4),sph(.03,'#E5484D',0,-.02,.14,.8,1.4,.6));
+ hd.children[2].rotation.x=1.57;eye2(.07,.09,.14,.026).forEach(m=>hd.add(m));cheeks(.1,.04,.12).forEach(m=>hd.add(m));b.add(hd);
+ g.add(shade(0,0,.3));g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
+ g.userData.anim=t=>{const k=Math.max(0,Math.sin(t*2.8+p));hd.rotation.x=k*.9;b.position.y=Math.abs(Math.sin(t*1.5+p))*.012};return g};
+B.p_eagle=(x,z)=>{const g=new T.Group(),bd=new T.Group(),w1=new T.Group(),w2=new T.Group();
+ bd.add(sph(.18,'#9A6B43',0,0,0,1,.9,1.25),sph(.13,'#FFFFFF',0,.12,.17),cone(.04,.1,'#FFC83D',0,.1,.3,5),sph(.1,'#FFFFFF',0,-.02,-.22,.8,.6,1.2),sph(.04,'#E5484D',0,.02,.33,.6,.4,.4));
+ bd.children[2].rotation.x=1.57;eye2(.065,.15,.26,.026).forEach(m=>bd.add(m));
+ w1.add(sph(.2,'#7C5233',-.2,0,0,1.5,.2,.8));w1.add(sph(.08,'#4A2F1E',-.4,0,0,1.3,.1,.8));w1.position.set(-.1,.05,0);
+ w2.add(sph(.2,'#7C5233',.2,0,0,1.5,.2,.8));w2.add(sph(.08,'#4A2F1E',.4,0,0,1.3,.1,.8));w2.position.set(.1,.05,0);bd.add(w1,w2);
+ bd.scale.setScalar(1.3);bd.position.set(0,.5,0);g.add(bd);const sh=shade(0,0,.18);g.add(sh);g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
+ g.userData.anim=t=>{const a=t*.9+p,r=.55;bd.position.set(Math.cos(a)*r,.95+Math.sin(t*1.7+p)*.08,Math.sin(a)*r);bd.rotation.y=-a+Math.PI;bd.rotation.z=.12;const f=Math.sin(t*7+p)*.55;w1.rotation.z=f;w2.rotation.z=-f;sh.position.set(bd.position.x,.012,bd.position.z);sh.scale.setScalar(.8+Math.sin(t*1.7+p)*.1)};return g};
+B.p_frog=(x,z)=>{const g=new T.Group(),fr=new T.Group();
+ g.add(cyl(.34,.34,.03,'#5FB86B',0,.02,0,18),cyl(.3,.3,.035,'#7AD08A',0,.025,0,18),box(.02,.04,.34,'#9CCB7E',.17,.03,.0),sph(.06,'#FFB7D0',-.18,.06,.14,1,.5,1),sph(.035,'#FFD84D',-.18,.09,.14));
+ fr.add(sph(.2,'#7DBE63',0,.2,0,1.1,.85,1),sph(.14,'#E9F5C9',0,.15,.1,1,.8,.7),sph(.09,'#7DBE63',-.12,.38,.08),sph(.09,'#7DBE63',.12,.38,.08),sph(.05,'#FFFFFF',-.12,.4,.14),sph(.05,'#FFFFFF',.12,.4,.14),sph(.028,'#2B2B3A',-.12,.4,.18),sph(.028,'#2B2B3A',.12,.4,.18),
+  sph(.07,'#7DBE63',-.2,.06,.1,1,.5,1.5),sph(.07,'#7DBE63',.2,.06,.1,1,.5,1.5),sph(.045,'#7DBE63',-.1,.07,.2,1,.6,1),sph(.045,'#7DBE63',.1,.07,.2,1,.6,1),box(.1,.012,.02,'#C55A6A',0,.22,.2));cheeks(.13,.2,.18).forEach(m=>fr.add(m));
+ g.add(fr);const p=hash(x,z,3)*6;g.rotation.y=hash(x,z)*6;
+ g.userData.anim=t=>{const s=Math.sin(t*2.6+p),k=Math.max(0,s);fr.position.y=k*.3;fr.position.z=Math.sin(t*1.3+p)*.0+k*.02;fr.scale.set(1,.82+.18*Math.min(1,k*2)+(s<0?s*.06:0),1)};return g};
+B.p_trex=(x,z)=>{const g=new T.Group(),b=new T.Group(),hd=new T.Group(),tl=new T.Group();g.add(b);
+ b.add(sph(.24,'#6FC48B',0,.38,0,.9,1.1,1.1),sph(.17,'#E9F1C9',0,.34,.1,.8,1.1,.7),cyl(.07,.08,.2,'#5BB07A',-.1,.1,0,8),cyl(.07,.08,.2,'#5BB07A',.1,.1,0,8),sph(.07,'#5BB07A',-.1,.02,.06,1,.5,1.4),sph(.07,'#5BB07A',.1,.02,.06,1,.5,1.4),sph(.03,'#5BB07A',-.17,.38,.17,1,1,1.6),sph(.03,'#5BB07A',.17,.38,.17,1,1,1.6));
+ for(let i=0;i<4;i++){const sp=cone(.04,.09,'#E6B86A',0,.6-i*.1,-.12-i*.05,4);sp.rotation.x=-.5;b.add(sp)}
+ hd.position.set(0,.62,.12);hd.add(sph(.2,'#6FC48B',0,.04,.07,1.1,1,1.1),sph(.12,'#6FC48B',0,-.02,.26,1,.75,1),sph(.1,'#E9F1C9',0,-.07,.2,1,.45,1),sph(.045,'#FFB7D0',0,-.07,.29,1,.4,.6));
+ eye2(.1,.1,.24,.04).forEach(m=>hd.add(m));cheeks(.15,.0,.22).forEach(m=>hd.add(m));[-.05,.05].forEach(xx=>hd.add(cone(.012,.03,'#FFFFFF',xx,-.12,.27,4)));b.add(hd);
+ tl.position.set(0,.28,-.18);const tc=cone(.1,.42,'#6FC48B',0,0,-.18,8);tc.rotation.x=-1.35;tl.add(tc);b.add(tl);
+ g.add(shade(0,0,.32));g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
+ g.userData.anim=t=>{tl.rotation.y=Math.sin(t*2.2+p)*.5;hd.rotation.x=Math.sin(t*1.8+p)*.12;hd.rotation.y=Math.sin(t*.9+p)*.3;const k=Math.max(0,Math.sin(t*3+p));b.position.y=k*.04};return g};
+B.p_salmon=(x,z)=>{const g=new T.Group(),fish=new T.Group(),tail=new T.Group();
+ g.add(cyl(.38,.38,.03,'#8FD3F4',0,.02,0,20));g.children[0].material=pw('#8FD3F4');
+ const r1=new T.Mesh(new T.TorusGeometry(.2,.012,5,24),new T.MeshBasicMaterial({color:'#FFFFFF',transparent:true,opacity:.7}));r1.rotation.x=1.57;r1.position.y=.045;g.add(r1);
+ fish.add(sph(.2,'#F28F82',0,0,0,1.7,.78,.72),sph(.15,'#FFC7B8',.04,-.05,.02,1.5,.5,.62),sph(.055,'#FFFFFF',.2,.04,.09),sph(.03,'#2B2B3A',.22,.04,.12),sph(.016,'#FFFFFF',.225,.055,.135),sph(.05,'#E6806F',.33,-.02,0,.9,.55,.75),box(.1,.012,.02,'#C55A6A',.3,-.03,.1),sph(.032,'#FF9EBB',.12,-.01,.13,1,.7,.5));
+ const df=cone(.07,.14,'#E6806F',0,.15,0,4);df.rotation.z=-.3;fish.add(df);
+ [[-.04,.06],[.08,.07],[-.14,.04],[.0,-.02]].forEach(a=>fish.add(sph(.02,'#C94F5C',a[0],a[1],.14)));
+ tail.position.set(-.33,0,0);[.45,-.45].forEach(a=>{const tf=sph(.1,'#E6806F',-.08,a*.18,0,1.5,.5,.18);tf.rotation.z=a*.6;tail.add(tf)});fish.add(tail);
+ fish.position.y=.12;g.add(fish);g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
+ g.userData.anim=t=>{const k=Math.max(0,Math.sin(t*2.2+p));fish.position.y=.1+k*k*.3;fish.rotation.z=Math.sin(t*14)*.18+k*.5;tail.rotation.y=Math.sin(t*18)*.7;const q=(t*.8+p)%1,sc=1+q*.7;r1.scale.set(sc,sc,1);r1.material.opacity=.7*(1-q)};return g};
+/* 舊夥伴（改版前長到的樣子，收進背包）*/
+const oldBird=(col,belly,beak,fn)=>(x,z)=>{const g=G(sph(.17,col,0,.2,0,1,1,1.05),sph(.13,col,0,.38,.1),sph(.1,belly,0,.17,.1,1,1.1,.8),cone(.04,.09,beak,0,.37,.23,4),cyl(.02,.02,.1,'#FFB84D',-.06,.05,0,6),cyl(.02,.02,.1,'#FFB84D',.06,.05,0,6));g.children[3].rotation.x=1.57;eye2(.06,.42,.19,.026).forEach(m=>g.add(m));if(fn)fn(g);g.add(shade(0,0,.22));g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;g.userData.anim=t=>{const k=Math.max(0,Math.sin(t*3+p));g.position.y=k*k*.08};return g};
+B.old_chick=oldBird('#FFD84D','#FFE680','#FFA94D');
+B.old_bird=oldBird('#6FC3F2','#E7F6FF','#FFC83D',g=>{g.add(sph(.05,'#6FC3F2',0,.52,.1,.6,1.2,.6))});
+B.old_owl=oldBird('#A9774E','#F0D9B5','#FFC83D',g=>{g.add(cone(.04,.09,'#8A5A3A',-.07,.52,.08,4),cone(.04,.09,'#8A5A3A',.07,.52,.08,4),sph(.05,'#FFFFFF',-.06,.4,.2),sph(.05,'#FFFFFF',.06,.4,.2))});
+B.old_parrot=oldBird('#E5484D','#FFD84D','#2B2B3A',g=>{g.add(sph(.06,'#4FA8E8',-.17,.2,0,.5,1.4,1),sph(.06,'#4FA8E8',.17,.2,0,.5,1.4,1),sph(.06,'#FFD84D',0,.15,-.2,.6,.5,1.8))});
+B.old_dragon=(x,z)=>{const g=G(sph(.2,'#B79CF5',0,.26,0,1,1,1.1),sph(.15,'#B79CF5',0,.5,.12),sph(.08,'#E8DFFF',0,.46,.24,1,.7,1),sph(.12,'#FFE680',0,.22,.12,.9,1.1,.6),cone(.04,.1,'#FFE680',-.08,.64,.1,4),cone(.04,.1,'#FFE680',.08,.64,.1,4),cyl(.03,.03,.14,'#9A7BE0',-.08,.07,.02,6),cyl(.03,.03,.14,'#9A7BE0',.08,.07,.02,6));
+ const w1=sph(.12,'#8E6FE0',-.22,.38,-.05,1.4,1.1,.2),w2=sph(.12,'#8E6FE0',.22,.38,-.05,1.4,1.1,.2);const tl=cone(.06,.3,'#B79CF5',0,.12,-.22,6);tl.rotation.x=-1.2;g.add(w1,w2,tl);eye2(.065,.54,.2,.028).forEach(m=>g.add(m));cheeks(.1,.48,.22).forEach(m=>g.add(m));g.add(shade(0,0,.26));g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
+ g.userData.anim=t=>{const f=Math.sin(t*6+p)*.35;w1.rotation.z=.2+f;w2.rotation.z=-.2-f;tl.rotation.z=Math.sin(t*3+p)*.4;g.position.y=Math.abs(Math.sin(t*3+p))*.03};return g};
+CAT.push({id:'p_rooster',n:'公雞',c:'夥伴',p:0,r:3,e:'🐓',np:1},{id:'p_hen',n:'母雞',c:'夥伴',p:0,r:3,e:'🐔',np:1},{id:'p_eagle',n:'老鷹',c:'夥伴',p:0,r:3,e:'🦅',np:1},{id:'p_frog',n:'青蛙',c:'夥伴',p:0,r:3,e:'🐸',np:1},{id:'p_trex',n:'暴龍',c:'夥伴',p:0,r:3,e:'🦖',np:1},{id:'p_salmon',n:'鮭魚',c:'夥伴',p:0,r:3,e:'🐟',np:1},
+ {id:'old_chick',n:'舊夥伴：小雞',c:'夥伴',p:0,r:1,e:'🐥',np:1},{id:'old_bird',n:'舊夥伴：小鳥',c:'夥伴',p:0,r:1,e:'🐦',np:1},{id:'old_owl',n:'舊夥伴：貓頭鷹',c:'夥伴',p:0,r:2,e:'🦉',np:1},{id:'old_parrot',n:'舊夥伴：鸚鵡',c:'夥伴',p:0,r:2,e:'🦜',np:1},{id:'old_dragon',n:'舊夥伴：神龍',c:'夥伴',p:0,r:3,e:'🐲',np:1});
 CAT.forEach(c=>{c.s=c.s||1});const BYID={};CAT.forEach(c=>BYID[c.id]=c);
 
 /* ---------- 場景 ---------- */

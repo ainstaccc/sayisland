@@ -569,6 +569,10 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .prpop{position:fixed;inset:0;z-index:9999;background:rgba(40,20,70,.55);display:flex;align-items:center;justify-content:center;padding:24px}
 .prc{background:#fff;border-radius:28px;padding:28px 22px;text-align:center;display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;animation:pop .4s}
 .prc .pre{font-size:72px;line-height:1}.prc b{font-size:28px;line-height:1.3}.prc p{font-size:22px;margin:0}
+.eggs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.egb{background:#FAF5FF;border:2px solid var(--line);border-radius:18px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font:800 18px/1 inherit;color:var(--ink)}
+.egb .ms{width:68px;height:68px}.egb small{font-size:17px;color:var(--ink2)}
+.egb:active{transform:scale(.95)}.pbig .ms{width:150px;height:150px}.prc .muted{margin:0}
 </style>
 
 <div class="wrap" id="app">
@@ -577,6 +581,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="tools">
       <button class="pill" id="pStreak" aria-label="連續練習天數，點一下看說明"><i data-i="flame"></i><span id="streakN">0</span></button>
       <button class="pill" id="pStar" aria-label="星星數量，點一下看說明"><i data-i="star"></i><span id="starN">0</span></button>
+      <button class="ibtn" id="bgmBtn" aria-label="音樂開關"><i data-i="music"></i></button>
       <button class="ibtn" id="sndBtn" aria-label="音效開關"><i data-i="bell"></i></button>
     </div>
   </header>
@@ -596,7 +601,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.7.12</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
 
   <!-- 首頁 -->
@@ -615,7 +620,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.7.12</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -758,7 +763,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.7.12</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -827,7 +832,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.7.12</p>
+    <p class="ver">說說島 v1.8.0</p>
   </section>
 </div>
 
@@ -843,6 +848,8 @@ const ICO={
  flame:SV(`<path d="M16 2.5c1 5.500 8.500 8.500 8.500 16.500a8.500 8.500 0 0 1-17 0c0-4.500 2.500-6.500 4-8.500.5 2 1.500 3 2.500 3-.5-4 0-7.500 2-11z" fill="#FF8A3D" stroke="#E5531A" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 15c.6 3.200 4.200 4.700 4.200 8a4.200 4.200 0 0 1-8.400 0c0-2.800 3.200-4.300 4.200-8z" fill="#FFD84D"/>`),
  coin:SV(`<circle cx="16" cy="16" r="12.500" fill="#FFD84D" stroke="#E59A00" stroke-width="2"/><circle cx="16" cy="16" r="8.500" fill="#FFE680" stroke="#E59A00" stroke-width="1.5"/><path d="M16 10.500l1.700 3.500 3.800.5-2.800 2.600.7 3.800-3.400-1.900-3.400 1.900.7-3.800-2.800-2.600 3.800-.5z" fill="#E59A00"/>`),
  bell:SV(`<path d="M16 3.500a2 2 0 0 1 2 2v.9c3.400 1 5.600 4 5.600 7.700v4.200l2.600 3.200H5.800l2.600-3.200v-4.200c0-3.700 2.200-6.700 5.600-7.700V5.500a2 2 0 0 1 2-2z" fill="#FFC83D" stroke="#E59A00" stroke-width="1.8" stroke-linejoin="round"/><circle cx="16" cy="26.500" r="2.500" fill="#E59A00"/>`),
+ music:SV(`<path d="M12 24V8l14-3v16" fill="none" stroke="#8E78C0" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="9" cy="24.500" rx="4.200" ry="3.400" fill="#B79CF5" stroke="#8E78C0" stroke-width="1.8"/><ellipse cx="23" cy="21.500" rx="4.200" ry="3.400" fill="#B79CF5" stroke="#8E78C0" stroke-width="1.8"/>`),
+ musicOff:SV(`<g opacity=".5"><path d="M12 24V8l14-3v16" fill="none" stroke="#8E78C0" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round"/><ellipse cx="9" cy="24.500" rx="4.200" ry="3.400" fill="#C9B8E8" stroke="#8E78C0" stroke-width="1.8"/><ellipse cx="23" cy="21.500" rx="4.200" ry="3.400" fill="#C9B8E8" stroke="#8E78C0" stroke-width="1.8"/></g><path d="M4 4l24 24" stroke="#8E78C0" stroke-width="2.600" stroke-linecap="round"/>`),
  bellOff:SV(`<g opacity=".5"><path d="M16 3.500a2 2 0 0 1 2 2v.9c3.400 1 5.600 4 5.600 7.700v4.200l2.600 3.200H5.800l2.600-3.200v-4.200c0-3.700 2.200-6.700 5.600-7.700V5.500a2 2 0 0 1 2-2z" fill="#C9B8E8" stroke="#8E78C0" stroke-width="1.8" stroke-linejoin="round"/><circle cx="16" cy="26.500" r="2.500" fill="#8E78C0"/></g><path d="M5 5l22 22" stroke="#FF5C8A" stroke-width="3" stroke-linecap="round"/>`),
  island:SV(`<path d="M2 24.500c3-2.500 6-2.500 9 0s6 2.500 9 0 6-2.500 10 0V30H2z" fill="#5EC8E8"/><ellipse cx="16" cy="23.500" rx="10" ry="3.500" fill="#F4E1AA" stroke="#D9B76A" stroke-width="1.5"/><path d="M16 23c0-5 .5-9 2.500-13" stroke="#9C6B43" stroke-width="2.800" fill="none" stroke-linecap="round"/><path d="M18.500 10c-3-4-8-3.500-10.500-.5 4-1 7.500 0 10.500.5zM18.500 10c3-4 8-3.500 10.500-.5-4-1-7.500 0-10.500.5zM18.500 10c-.5-5 2-7.500 5-8-.5 3.500-2 6-5 8z" fill="#5DBB5A" stroke="#3F9A55" stroke-width="1.400" stroke-linejoin="round"/>`),
  friends:SV(`<circle cx="11" cy="10.500" r="4.800" fill="#FFD9C0" stroke="#D99A7A" stroke-width="1.5"/><circle cx="22" cy="10.500" r="4.800" fill="#FFE3B8" stroke="#D9A86A" stroke-width="1.500"/><path d="M2.500 27c0-5.500 3.800-8.500 8.500-8.500s8.500 3 8.500 8.500z" fill="#FF8FB7" stroke="#D9557F" stroke-width="1.600" stroke-linejoin="round"/><path d="M13.500 27c0-5.500 3.800-8.500 8.500-8.500s8.500 3 8.500 8.500z" fill="#6FC3F2" stroke="#3A8FC8" stroke-width="1.600" stroke-linejoin="round"/>`),
@@ -884,7 +891,63 @@ const MASC=[
  MS(`<ellipse cx="32" cy="58" rx="14" ry="3" fill="#000" opacity=".1"/><path d="M40 44c8 4 10 12 6 18-3-2-4-4-5-7z" fill="#4FA8E8" stroke="#2F7DBA" stroke-width="2" stroke-linejoin="round"/><path d="M22 44c-8 4-10 12-6 18 3-2 4-4 5-7z" fill="#FFD84D" stroke="#E5A800" stroke-width="2" stroke-linejoin="round"/><ellipse cx="32" cy="38" rx="17" ry="20" fill="#6BCB77" stroke="#3E9E4C" stroke-width="2.400"/><circle cx="32" cy="22" r="14" fill="#FF6B6B" stroke="#D93E3E" stroke-width="2.400"/><path d="M27 9c1-5 5-6 8-4-2 1-3 3-3 6" fill="#FF6B6B" stroke="#D93E3E" stroke-width="2" stroke-linejoin="round"/><circle cx="25" cy="21" r="6" fill="#fff"/><circle cx="39" cy="21" r="6" fill="#fff"/>${EY(26,21,3)}${EY(38,21,3)}<path d="M26 27c0 6 5 8 6 8s6-2 6-8c-3 1-9 1-12 0z" fill="#FFD84D" stroke="#E5A800" stroke-width="1.800" stroke-linejoin="round"/><path d="M14 38c3 4 3 10 0 14M50 38c-3 4-3 10 0 14" fill="none" stroke="#3E9E4C" stroke-width="2.400" stroke-linecap="round"/>`),
  MS(`<ellipse cx="32" cy="58" rx="17" ry="3" fill="#000" opacity=".1"/><path d="M8 28c-6-4-6-14-2-18 4 2 8 8 10 14zM56 28c6-4 6-14 2-18-4 2-8 8-10 14z" fill="#B79CF5" stroke="#7A5AC8" stroke-width="2" stroke-linejoin="round"/><path d="M52 50c8 0 10-6 6-10-1 4-4 6-8 5z" fill="#6BCB77" stroke="#3E9E4C" stroke-width="2" stroke-linejoin="round"/><ellipse cx="32" cy="38" rx="20" ry="20" fill="#6BCB77" stroke="#3E9E4C" stroke-width="2.400"/><ellipse cx="32" cy="45" rx="12" ry="11" fill="#FFF0A8"/><path d="M20 20l-3-10 9 5zM44 20l3-10-9 5z" fill="#FFD84D" stroke="#E5A800" stroke-width="2" stroke-linejoin="round"/><path d="M27 12l5 5 5-5" fill="#4FB45E" stroke="#3E9E4C" stroke-width="2" stroke-linejoin="round"/>${EY(23,32)}${EY(41,32)}${CHK(17,39)}${CHK(47,39)}<path d="M26 40q6 5 12 0" stroke="#2B6A3A" stroke-width="2.200" fill="none" stroke-linecap="round"/><circle cx="28" cy="36" r="1.200" fill="#2B6A3A"/><circle cx="36" cy="36" r="1.200" fill="#2B6A3A"/>`)
 ];
-const msUri=i=>'url("data:image/svg+xml,'+encodeURIComponent(MASC[i].replace('class="ms" ','xmlns="http://www.w3.org/2000/svg" '))+'")';
+/* ---------- v1.8 夥伴 2D 圖（蛋→4 階段）---------- */
+const SHD=r=>`<ellipse cx="32" cy="58" rx="${r}" ry="3" fill="#000" opacity=".1"/>`;
+const SK=(f,s,w)=>`fill="${f}" stroke="${s}" stroke-width="${w||2.4}" stroke-linejoin="round" stroke-linecap="round"`;
+const LN=(c,w)=>`fill="none" stroke="${c}" stroke-width="${w||2.4}" stroke-linecap="round" stroke-linejoin="round"`;
+const SMILE=(x,y,w)=>`<path d="M${x-w} ${y}q${w} ${w*.9} ${w*2} 0" ${LN('#B5603F',1.6)}/>`;
+const EGGC={red:['#E3B1AC','#B97C77','#F2D2CE'],yellow:['#EFDDA6','#C4AE6A','#F7EBC6'],green:['#BDD3B2','#86A67C','#DCE8D4'],blue:['#B5C8DA','#7E97B0','#D6E2EE'],purple:['#CBBCDB','#9887AE','#E4DAEE']};
+const EGGN={red:'紅色',yellow:'黃色',green:'綠色',blue:'藍色',purple:'紫色'};
+function petEgg(k,ap){const [f,s,l]=EGGC[k]||EGGC.yellow;ap=ap||0;
+ return MS(`${SHD(16)}<path d="M32 5C19 5 11 24 11 37c0 12 9 19 21 19s21-7 21-19C53 24 45 5 32 5z" ${SK(f,s)}/><circle cx="22" cy="24" r="3.4" fill="${l}"/><circle cx="41" cy="32" r="4" fill="${l}"/><circle cx="26" cy="46" r="3" fill="${l}"/><circle cx="43" cy="17" r="2.4" fill="${l}"/><path d="M20 15q2-5 7-7" ${LN('#fff',2.6)} opacity=".7"/>`+
+ `<path d="M24 33q2.5 2.4 5 0M35 33q2.500 2.400 5 0" ${LN('#6B5A5A',2)}/><ellipse cx="21" cy="38" rx="3.2" ry="2.1" fill="#FF9EBB" opacity=".75"/><ellipse cx="43" cy="38" rx="3.200" ry="2.100" fill="#FF9EBB" opacity=".75"/><path d="M29 40q3 2.400 6 0" ${LN('#B5603F',1.6)}/>`+
+ (ap>=2?`<path d="M30 6l4 6-5 4 5 5" ${LN(s,1.8)}/>`:'')+(ap>=3?`<path d="M44 40l-5 3 4 4-5 3M18 44l6-2-1 5" ${LN(s,1.8)}/>`:''));}
+/* 小雞 */
+function petChick(st,sex){
+ if(st===1)return MS(`${SHD(14)}<path d="M29 19c-1-4 1-7 4-8 0 3 2 4 1 8z" ${SK('#FFE27A','#E0B53C',2)}/><circle cx="32" cy="38" r="18" ${SK('#FFE27A','#E0B53C')}/><ellipse cx="14" cy="42" rx="4" ry="6" ${SK('#FFD34D','#E0B53C',2)}/><ellipse cx="50" cy="42" rx="4" ry="6" ${SK('#FFD34D','#E0B53C',2)}/><path d="M28.500 39l3.500 3.500 3.500-3.500z" ${SK('#FF9F43','#D9782B',1.6)}/>${EY(24,34,3.2)}${EY(40,34,3.2)}${CHK(19,41)}${CHK(45,41)}<path d="M27 56v3M37 56v3" ${LN('#FF9F43')}/>`);
+ if(st===2)return MS(`${SHD(16)}<path d="M26 17c0-4 3-5 4-2 0-4 4-4 4 0 1-3 4-2 4 2z" ${SK('#F46B6B','#C84646',1.8)}/><circle cx="32" cy="36" r="21" ${SK('#FFE27A','#E0B53C')}/><path d="M50 40c6-3 10-1 10 4-4 1-8 0-10-4z" ${SK('#FFD34D','#E0B53C',2)}/><ellipse cx="14" cy="42" rx="5" ry="8" ${SK('#FFD34D','#E0B53C',2)}/><ellipse cx="48" cy="42" rx="5" ry="8" ${SK('#FFD34D','#E0B53C',2)}/><path d="M28 38l4 4 4-4z" ${SK('#FF9F43','#D9782B',1.6)}/>${EY(23,33,3.4)}${EY(41,33,3.4)}${CHK(17,40)}${CHK(47,40)}<path d="M25 56v3.500M39 56v3.500M22 59.500h6M36 59.500h6" ${LN('#FF9F43')}/>`);
+ if(st===3)return MS(`${SHD(17)}<path d="M46 40c8-9 14-6 12 4-2 7-8 8-12 4z" ${SK('#F7C65B','#D0952A',2)}/><ellipse cx="31" cy="44" rx="18" ry="14" ${SK('#FFE27A','#E0B53C')}/><ellipse cx="22" cy="46" rx="6" ry="9" ${SK('#FFD34D','#E0B53C',2)}/><path d="M24 13c-1-5 3-6 4-3 0-5 5-5 5 0 2-3 5-1 4 3z" ${SK('#F46B6B','#C84646',1.8)}/><circle cx="31" cy="23" r="12.500" ${SK('#FFE27A','#E0B53C')}/><path d="M30 33q2 5 4 0" ${SK('#F46B6B','#C84646',1.6)}/><path d="M27 25l4.500 4 4.500-4z" ${SK('#FF9F43','#D9782B',1.6)}/>${EY(25,21,3)}${EY(38,21,3)}${CHK(21,27)}${CHK(42,27)}<path d="M25 57v-1.500M37 57v-1.500M22 58.500h6M34 58.500h6" ${LN('#FF9F43')}/>`);
+ if(sex==='f')return MS(`${SHD(18)}<path d="M46 38c9-8 14-3 11 6-2 6-8 7-12 3z" ${SK('#E6C79A','#B58A55',2)}/><ellipse cx="31" cy="43" rx="19" ry="15" ${SK('#F6E7CC','#C9A87A')}/><ellipse cx="24" cy="45" rx="7.500" ry="10" ${SK('#D9A86C','#A87A3E',2)}/><path d="M27 12c0-4 3-4 4-1 1-3 4-2 4 1z" ${SK('#F46B6B','#C84646',1.8)}/><circle cx="31" cy="22" r="12" ${SK('#F6E7CC','#C9A87A')}/><path d="M30 32q2 5 4 0" ${SK('#F46B6B','#C84646',1.6)}/><path d="M27 24l4.500 4 4.500-4z" ${SK('#FFB84D','#D9782B',1.6)}/>${EY(25,20,3)}${EY(38,20,3)}${CHK(21,26)}${CHK(42,26)}<path d="M26 57v-1.500M38 57v-1.500M23 58.500h6M35 58.500h6" ${LN('#FFB84D')}/>`);
+ return MS(`${SHD(18)}<ellipse cx="50" cy="28" rx="4.500" ry="12" transform="rotate(-25 50 28)" ${SK('#2FA39A','#1E7A73',2)}/><ellipse cx="53" cy="34" rx="4.500" ry="12" transform="rotate(5 53 34)" ${SK('#E5484D','#B03338',2)}/><ellipse cx="49" cy="40" rx="4.500" ry="11" transform="rotate(38 49 40)" ${SK('#F2B134','#C98A12',2)}/><ellipse cx="30" cy="43" rx="18" ry="15" ${SK('#EE9A52','#B8672B')}/><ellipse cx="23" cy="44" rx="7" ry="10" ${SK('#C9672E','#8F4519',2)}/><path d="M24 11c-1-6 4-7 5-3 0-6 6-5 6 0 3-3 6 0 4 4z" ${SK('#E5484D','#B03338',1.8)}/><circle cx="30" cy="21" r="12.500" ${SK('#EE9A52','#B8672B')}/><path d="M28 31q2.500 6 5 0" ${SK('#E5484D','#B03338',1.6)}/><path d="M25 24l4.500 4 4.500-4z" ${SK('#FFB84D','#D9782B',1.6)}/>${EY(24,20,3)}${EY(37,20,3)}${CHK(20,26)}${CHK(41,26)}<path d="M25 57v-1.500M37 57v-1.500M22 58.500h6M34 58.500h6" ${LN('#FFB84D')}/>`);}
+/* 小鳥 → 老鷹 */
+function petBird(st){
+ if(st===1)return MS(`${SHD(14)}<ellipse cx="32" cy="44" rx="16" ry="12" ${SK('#EBD9C3','#B89F82')}/><path d="M27 15q-2-5 1-7M33 13q0-6 3-7M38 16q3-4 5-3" ${LN('#B89F82',2)}/><circle cx="32" cy="29" r="15" ${SK('#EBD9C3','#B89F82')}/><path d="M23 32q9-6 18 0q-9 14-18 0z" ${SK('#FFB84D','#D98A1F',2)}/><ellipse cx="32" cy="36" rx="5" ry="3.600" fill="#E25B6B"/>${EY(24,25,3.6)}${EY(40,25,3.6)}${CHK(19,31)}${CHK(45,31)}<path d="M27 55v3M37 55v3" ${LN('#FFB84D')}/>`);
+ if(st===2)return MS(`${SHD(16)}<circle cx="32" cy="37" r="20" ${SK('#C99B6B','#8F6637')}/><ellipse cx="32" cy="43" rx="11" ry="10" fill="#F2DFC0"/><ellipse cx="13" cy="40" rx="5" ry="8" ${SK('#A57545','#7A4F27',2)}/><ellipse cx="51" cy="40" rx="5" ry="8" ${SK('#A57545','#7A4F27',2)}/><path d="M29 17q3-6 6 0" ${LN('#8F6637',2)}/><path d="M28 31l4 5 4-5q-4-3-8 0z" ${SK('#FFC83D','#D9971F',1.8)}/>${EY(24,28,3.4)}${EY(40,28,3.4)}${CHK(18,34)}${CHK(46,34)}<path d="M26 56v2.500M38 56v2.500" ${LN('#FFC83D')}/>`);
+ if(st===3)return MS(`${SHD(16)}<path d="M44 46l13 7-14 3z" ${SK('#A57545','#6B4423',2)}/><ellipse cx="31" cy="42" rx="17" ry="15" ${SK('#A57545','#6B4423')}/><ellipse cx="31" cy="46" rx="10" ry="9" fill="#F2DFC0"/><path d="M36 38c8-3 12 4 9 11-5 1-9-3-9-11z" ${SK('#7C5233','#4A2F1E',2)}/><circle cx="29" cy="22" r="12.500" ${SK('#E9DCC8','#9C8467')}/><path d="M25 27l4.500 5 4.500-5q-4.500-3.500-9 0z" ${SK('#FFC83D','#D9971F',1.8)}/>${EY(23,21,3)}${EY(35,21,3)}${CHK(19,26)}${CHK(39,26)}<path d="M26 57v1.500M36 57v1.500" ${LN('#FFC83D')}/>`);
+ return MS(`<ellipse cx="32" cy="59" rx="12" ry="2.500" fill="#000" opacity=".08"/><path d="M26 32C16 22 5 22 2 28c4 2 6 6 5 10 5 0 9-2 11-5 1 4 4 6 8 5z" ${SK('#8A5E3A','#4F3320')}/><path d="M38 32c10-10 21-10 24-4-4 2-6 6-5 10-5 0-9-2-11-5-1 4-4 6-8 5z" ${SK('#8A5E3A','#4F3320')}/><path d="M26 46l-4 11 10-5 10 5-4-11z" ${SK('#F6EEDD','#B89F82',2)}/><ellipse cx="32" cy="42" rx="12" ry="14" ${SK('#9A6B43','#5E3F25')}/><ellipse cx="32" cy="45" rx="7" ry="8" fill="#E8D3AE"/><circle cx="32" cy="22" r="12.500" ${SK('#FFFFFF','#B8B0A0')}/><path d="M27 25q5 8 10 0q-1 6-5 8-4-2-5-8z" ${SK('#FFC83D','#D9971F',1.8)}/>${EY(25,19,3.2)}${EY(39,19,3.2)}<path d="M21 15l5 2M43 15l-5 2" ${LN('#5E3F25',2)}/>${CHK(21,25)}${CHK(43,25)}`);}
+/* 小青蛙 */
+function petFrog(st){
+ const G1='#6DBB7A',G2='#3E8B52';
+ if(st===1)return MS(`${SHD(18)}<path d="M38 30q10-8 22-2-6 4-10 8 6 2 10 6-12 4-22-2z" ${SK('#4FA46A',G2)}/><circle cx="26" cy="34" r="17" ${SK(G1,G2)}/><ellipse cx="22" cy="44" rx="8" ry="5" fill="#BFE5BF" opacity=".7"/>${EY(19,29,3.6)}${EY(32,29,3.6)}${CHK(14,36)}${CHK(37,36)}${SMILE(25.5,39,3.2)}`);
+ if(st===2)return MS(`${SHD(18)}<path d="M38 28q10-8 21-2-5 4-9 7 5 2 9 6-11 4-21-1z" ${SK('#4FA46A',G2)}/><path d="M34 46q6 2 8 8h-8M30 48q4 0 6 8" ${SK(G1,G2,2)}/><ellipse cx="42" cy="55" rx="7" ry="3" ${SK(G1,G2,2)}/><circle cx="26" cy="33" r="17" ${SK(G1,G2)}/><ellipse cx="22" cy="43" rx="8" ry="5" fill="#BFE5BF" opacity=".7"/>${EY(19,28,3.6)}${EY(32,28,3.6)}${CHK(14,35)}${CHK(37,35)}${SMILE(25.5,38,3.2)}`);
+ if(st===3)return MS(`${SHD(20)}<path d="M46 40q8 0 12 6-8 2-12-2z" ${SK('#4FA46A',G2,2)}/><ellipse cx="30" cy="42" rx="18" ry="13" ${SK(G1,G2)}/><ellipse cx="30" cy="46" rx="11" ry="8" fill="#DDF3D0"/><path d="M42 50q8 0 10 8h-12z" ${SK(G1,G2,2)}/><ellipse cx="18" cy="56" rx="6.500" ry="3" ${SK(G1,G2,2)}/><ellipse cx="42" cy="57" rx="8" ry="3" ${SK(G1,G2,2)}/><circle cx="22" cy="26" r="8.500" ${SK(G1,G2)}/><circle cx="38" cy="26" r="8.500" ${SK(G1,G2)}/>${EY(22,26,4)}${EY(38,26,4)}${CHK(17,38)}${CHK(43,38)}${SMILE(30,38,5)}`);
+ return MS(`${SHD(22)}<ellipse cx="32" cy="43" rx="23" ry="15" ${SK('#7DC96A','#46923C')}/><ellipse cx="32" cy="47" rx="14" ry="9" fill="#E6F6C8"/><path d="M5 52q-2 7 6 7l5-2zM59 52q2 7-6 7l-5-2z" ${SK('#7DC96A','#46923C',2)}/><ellipse cx="14" cy="55" rx="7" ry="3.200" ${SK('#7DC96A','#46923C',2)}/><ellipse cx="50" cy="55" rx="7" ry="3.200" ${SK('#7DC96A','#46923C',2)}/><circle cx="20" cy="24" r="9.500" ${SK('#7DC96A','#46923C')}/><circle cx="44" cy="24" r="9.500" ${SK('#7DC96A','#46923C')}/><circle cx="20" cy="24" r="6.500" fill="#fff"/><circle cx="44" cy="24" r="6.500" fill="#fff"/><circle cx="21" cy="25" r="3.600" fill="#2B2B3A"/><circle cx="45" cy="25" r="3.600" fill="#2B2B3A"/><circle cx="22" cy="23.600" r="1.300" fill="#fff"/><circle cx="46" cy="23.600" r="1.300" fill="#fff"/>${CHK(13,40)}${CHK(51,40)}${SMILE(32,40,7)}`);}
+/* 小恐龍 → 暴龍 */
+function petDino(st){
+ const F='#7ACB92',S2='#3F935E',B='#E9F5C8';
+ if(st===1)return MS(`${SHD(16)}<path d="M46 46q10 2 12 8-10 1-14-3z" ${SK(F,S2,2)}/><ellipse cx="31" cy="42" rx="17" ry="15" ${SK(F,S2)}/><ellipse cx="29" cy="47" rx="10" ry="8" fill="${B}"/><path d="M14 27L18 20 23 25 27 17 32 24 37 17 41 25 46 20 50 27Q32 32 14 27z" ${SK('#FFF5E1','#D9B98A',2)}/><path d="M16 27q16 6 32 0" ${LN('#D9B98A',2)}/>${EY(24,35,3.6)}${EY(38,35,3.6)}${CHK(18,41)}${CHK(44,41)}${SMILE(31,42,3.6)}<path d="M24 55v3M38 55v3" ${LN(S2)}/>`);
+ if(st===2)return MS(`${SHD(17)}<path d="M44 44q12 0 16 10-12 2-18-4z" ${SK(F,S2)}/><path d="M18 34l-4-6 6 1M24 26l-3-7 6 3M32 22l-1-8 5 5" ${SK('#F2C46A','#C99530',1.8)}/><ellipse cx="30" cy="44" rx="16" ry="13" ${SK(F,S2)}/><ellipse cx="28" cy="48" rx="9" ry="7" fill="${B}"/><circle cx="30" cy="26" r="14" ${SK(F,S2)}/><path d="M39 28q9-2 9 4-6 4-11 0z" ${SK(F,S2,2)}/><path d="M12 54h8v4h-8zM30 54h8v4h-8z" ${SK(F,S2,2)}/>${EY(24,23,3.4)}${EY(36,23,3.4)}${CHK(19,29)}${SMILE(39,31,3)}<path d="M20 42q-5 4-2 8" ${LN(S2,2)}/>`);
+ if(st===3)return MS(`${SHD(19)}<path d="M44 40q14 2 18 14-14 2-22-6z" ${SK(F,S2)}/><path d="M16 34l-5-7 7 1M22 26l-3-8 7 4M30 21l0-9 5 6M38 24l3-8 4 7" ${SK('#F2C46A','#C99530',1.8)}/><ellipse cx="31" cy="44" rx="17" ry="14" ${SK(F,S2)}/><ellipse cx="29" cy="48" rx="10" ry="8" fill="${B}"/><circle cx="30" cy="25" r="14.500" ${SK(F,S2)}/><path d="M39 26q11-3 12 5-7 5-14 1z" ${SK(F,S2,2)}/><path d="M14 54h9v4h-9zM32 54h9v4h-9z" ${SK(F,S2,2)}/><path d="M18 40q-6 3-4 9" ${LN(S2,2.4)}/>${EY(24,22,3.4)}${EY(36,22,3.4)}${CHK(19,28)}<path d="M40 31q5 2 9 0" ${LN('#B5603F',1.6)}/><path d="M43 31l1.500 3 1.500-3z" fill="#fff"/>`);
+ return MS(`${SHD(22)}<path d="M40 38q18 0 22 16-18 0-26-8z" ${SK(F,S2)}/><ellipse cx="30" cy="42" rx="18" ry="15" ${SK(F,S2)}/><ellipse cx="29" cy="47" rx="11" ry="9" fill="${B}"/><path d="M10 54h10v4H10zM30 54h10v4H30z" ${SK(F,S2,2)}/><path d="M16 38q-6 0-6 5 5 1 8-2" ${SK(F,S2,2)}/><path d="M16 38l-3-1M16 41l-3 1" ${LN('#fff',1.4)}/><ellipse cx="29" cy="20" rx="17" ry="13" ${SK(F,S2)}/><path d="M33 24q18-1 18 7-8 4-18 0z" ${SK(F,S2,2.2)}/><path d="M36 31q6 3 13 0" ${LN('#B5603F',1.6)}/><path d="M37 31l1.700 3.600L40 31.300M43 31.500l1.700 3.600 1.500-3.200" fill="#fff" stroke="#C9B7A0" stroke-width=".8"/><path d="M24 14l-1-5 5 3M34 11l1-5 4 5" ${SK('#F2C46A','#C99530',1.6)}/>${EY(22,19,3.6)}${EY(32,17,3.4)}${CHK(16,26)}`);}
+/* 小鮭魚 */
+function petSalmon(st){
+ if(st===1)return MS(`<ellipse cx="32" cy="55" rx="14" ry="2.500" fill="#000" opacity=".08"/><path d="M46 34q10-5 14-2-2 4-2 4 0 0 2 4-4 3-14-2z" fill="#F8E6DC" stroke="#DDB9A6" stroke-width="1.800" stroke-linejoin="round"/><ellipse cx="30" cy="35" rx="20" ry="9.500" fill="#FCEFE8" stroke="#DDB9A6" stroke-width="2.400"/><circle cx="33" cy="45" r="7.500" fill="#FFA45C" stroke="#D97B2C" stroke-width="2"/><circle cx="31" cy="43" r="2" fill="#FFD3A6"/><path d="M26 31q8-3 16 0" ${LN('#F3C9B4',2)}/>${EY(15,33,3.4)}${CHK(19,39)}${SMILE(13,38,2.4)}`);
+ if(st===2)return MS(`<ellipse cx="32" cy="55" rx="16" ry="2.500" fill="#000" opacity=".08"/><path d="M46 36q8-8 14-6-3 7 0 14-6 2-14-8z" ${SK('#A9BBCB','#6C8296',2)}/><ellipse cx="29" cy="37" rx="21" ry="11" ${SK('#C9D8E4','#6C8296')}/><path d="M26 22q6 4 12 2" ${SK('#A9BBCB','#6C8296',2)}/><ellipse cx="29" cy="42" rx="14" ry="5" fill="#F2F6FA"/>${[20,27,34,41].map(x=>`<ellipse cx="${x}" cy="35" rx="2.200" ry="4" fill="#7A91A8" opacity=".6"/>`).join('')}${EY(15,33,3.6)}${CHK(19,40)}${SMILE(12.500,38,2.600)}`);
+ if(st===3)return MS(`<ellipse cx="32" cy="56" rx="17" ry="2.500" fill="#000" opacity=".08"/><path d="M46 36q8-9 15-7-4 8 0 16-7 1-15-9z" ${SK('#9DB3C9','#587592',2)}/><ellipse cx="29" cy="37" rx="22" ry="11.500" ${SK('#C3D3E3','#587592')}/><path d="M24 21q8 4 14 2" ${SK('#9DB3C9','#587592',2)}/><path d="M12 36q16 8 32 0q-8 11-32 0z" fill="#F3F7FB"/><path d="M20 30q8-3 16 0" ${LN('#fff',2.2)} opacity=".8"/><path d="M42 28l3-3M46 33l4-1" ${LN('#fff',1.8)}/>${EY(14,34,3.6)}${CHK(19,40)}${SMILE(11.500,39,2.600)}`);
+ return MS(`<ellipse cx="32" cy="56" rx="18" ry="2.500" fill="#000" opacity=".08"/><path d="M46 36q8-10 16-8-5 8 0 18-8 0-16-10z" ${SK('#E6806F','#B04F46',2)}/><ellipse cx="29" cy="37" rx="23" ry="12.500" ${SK('#F59A8A','#B04F46')}/><path d="M22 20q8 5 16 1 0 6-16 5z" ${SK('#E6806F','#B04F46',2)}/><path d="M10 38q18 9 34 0-8 12-34 0z" fill="#FFC9BB"/><path d="M7 38q-2-5 3-6l5 3q-3 4-8 3z" ${SK('#F59A8A','#B04F46',2)}/>${[22,29,36,42].map((x,i)=>`<circle cx="${x}" cy="${30+(i%2)*2}" r="1.700" fill="#C94F5C"/>`).join('')}${EY(15,33,3.6)}${CHK(20,40)}<path d="M9 38q3 3 7 1" ${LN('#B5603F',1.6)}/>`);}
+const PETS={
+ chick:{n:'小雞',cls:'雞',stg:['雛雞','小雞','少年雞','公雞'],art:petChick,fin:s=>s==='f'?'p_hen':'p_rooster',fn:{m:'公雞',f:'母雞'},it:'p_rooster'},
+ bird:{n:'小鳥',stg:['雛鳥','幼鳥','少年鳥','老鷹'],art:petBird,fin:()=>'p_eagle'},
+ frog:{n:'小青蛙',stg:['蝌蚪','長腿蝌蚪','小青蛙','青蛙'],art:petFrog,fin:()=>'p_frog'},
+ dino:{n:'小恐龍',stg:['幼龍','小龍','少年龍','暴龍'],art:petDino,fin:()=>'p_trex'},
+ salmon:{n:'小鮭魚',stg:['仔魚','幼魚','銀鮭','成年鮭魚'],art:petSalmon,fin:()=>'p_salmon'}};
+const PSP=Object.keys(PETS),EGGK=Object.keys(EGGC);
+const PAT=[4,8,12,16];
+const petStage=ap=>PAT.filter(x=>ap>=x).length;
+function petSvg(P){if(!P||!P.sp)return petEgg(P&&P.egg,P&&P.ap);const s=petStage(P.ap);return PETS[P.sp].art(Math.max(1,s),P.sex)}
+const petName=P=>{if(!P||!P.sp)return(EGGN[P&&P.egg]||'')+'蛋';const s=petStage(P.ap),n=PETS[P.sp].stg[Math.max(1,s)-1];return P.sp==='chick'&&s>=4?(P.sex==='f'?'母雞':'公雞'):n};
+
+const msUri=()=>{const sv=petSvg(S&&S.pet);return 'url("data:image/svg+xml,'+encodeURIComponent(sv.replace('class="ms" ','xmlns="http://www.w3.org/2000/svg" '))+'")'};
 Object.assign(ICO,{
  pencil:SV(`<path d="M6 26l1.500-6L21 6.500a3 3 0 0 1 4.300 0l.200.200a3 3 0 0 1 0 4.300L12 24.500z" fill="#FFD84D" stroke="#E59A00" stroke-width="1.800" stroke-linejoin="round"/><path d="M18.500 9l4.500 4.500" stroke="#E59A00" stroke-width="1.800"/><path d="M6 26l1.500-6 4.500 4.500z" fill="#FFE8C2" stroke="#E59A00" stroke-width="1.600" stroke-linejoin="round"/>`),
  sprout:SV(`<path d="M16 29V15" stroke="#5E9E52" stroke-width="3" stroke-linecap="round"/><path d="M16 17C8 18 4 13 4 7c8 0 12 3 12 10z" fill="#8FD562" stroke="#3F9A55" stroke-width="1.800" stroke-linejoin="round"/><path d="M16 14c0-6 4-9 12-9 0 7-4 11-12 9z" fill="#6BCB77" stroke="#3F9A55" stroke-width="1.800" stroke-linejoin="round"/>`),
@@ -1621,19 +1684,64 @@ const CATS={
  m:{n:'因果配對',ic:'🔗',c:'--c6',d:'因為⋯所以⋯，找一找',nw:1}};
 const CIC={u:'book',z:'zhuyin',q:'box',v:'bolt',a:'palette',e:'magnify',t:'talk',h:'kind',m:'link'};
 const cic=k=>ic(CIC[k])||CATS[k].ic;
-let MI=0;
+let MI=0,MURI='';
+/* ---------- v1.8 夥伴養成：先選蛋，+4/8/12/16 顆蘋果進入階段一到四 ---------- */
+function petInit(){if(S.petV)return;S.petV=1;
+  const cnt=learnedAll().length;let si=0;STAGES.forEach((x,i)=>{if(cnt>=x[0])si=i});
+  if(si>0){const ids=['','old_chick','old_bird','old_owl','old_parrot','old_dragon'],I=ISL();I.inv[ids[si]]=(I.inv[ids[si]]||0)+1;I.seen[ids[si]]=1;S.petMig=ids[si]}
+  S.pet=null;S.petCarry=si===0?cnt:0;save()}
+function petApple(){const P=S.pet;if(!P||P.done)return;const b=petStage(P.ap);P.ap++;const a=petStage(P.ap);
+  if(a>=1&&!P.sp){P.sp=PSP[Math.floor(Math.random()*PSP.length)];P.sex=Math.random()<.5?'m':'f'}
+  if(a>b){P.ev=(P.ev||[]).concat([a])}
+  if(P.ap>=16){P.done=1;const id=PETS[P.sp].fin(P.sex),I=ISL();I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.petDone=(S.petDone||[]).concat([{id,d:today()}]).slice(-40)}}
+const petNm=(sp,st,sex)=>sp==='chick'&&st>=4?(sex==='f'?'母雞':'公雞'):PETS[sp].stg[Math.max(1,st)-1];
+function homePops(){if(document.querySelector('.prpop')||$('#v-home').hidden)return;
+  if(!S.pet){eggPick();return}
+  if(petPop())return;prPop()}
+function eggPick(){if(document.querySelector('.prpop'))return;const o=document.createElement('div');o.className='prpop';
+  o.innerHTML=`<div class="prc"><b>選一顆蛋</b><p>蛋裡是什麼動物？孵出來才知道！</p><div class="eggs">${EGGK.map(k=>`<button class="egb" data-egg="${k}">${petEgg(k,0)}<small>${EGGN[k]}</small></button>`).join('')}</div>${S.petMig?'<p class="muted" style="font-size:18px">之前的夥伴已經放進背包，可以放到島上。</p>':''}</div>`;
+  document.body.appendChild(o);
+  o.onclick=e=>{const b=e.target.closest('[data-egg]');if(!b)return;S.pet={egg:b.dataset.egg,ap:S.petCarry||0};S.petCarry=0;S.petMig='';save();o.remove();sfx.ok();renderHome();toast('帶回家了，加油孵化！')}}
+function petPop(){const P=S.pet;if(!P||!P.ev||!P.ev.length||$('#v-home').hidden||document.querySelector('.prpop'))return false;
+  const st=P.ev.shift();save();const nm=petNm(P.sp,st,P.sex),o=document.createElement('div');o.className='prpop';
+  const title=st===1?`蛋孵化了！是${nm}！`:st===4?`長大成${nm}了！`:`長大了！變成${nm}`;
+  o.innerHTML=`<div class="prc"><div class="pbig">${PETS[P.sp].art(st,P.sex)}</div><b>${title}</b><p>${st===4?'已經放進背包，到「我的島」把牠放出來吧！':'繼續答題，還會再長大！'}</p><button class="btn" id="prok">好棒</button></div>`;
+  document.body.appendChild(o);try{(st===1?sfx.hatch:sfx.grow)();fxBurst(26)}catch(e){}
+  $('#prok').onclick=()=>{o.remove();renderHome();homePops()};return true}
 const STAGES=[[0,'🥚','蛋蛋'],[4,'🐣','小雞'],[10,'🐥','小鳥'],[18,'🦉','貓頭鷹'],[28,'🦜','鸚鵡'],[40,'🐲','神龍']];
 
 /* ---------- 音效／台灣腔語音 ---------- */
 let ac;
 function beep(f,d,t=0){if(!S.snd)return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain(),n=ac.currentTime+t;o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.16,n);g.gain.exponentialRampToValueAtTime(.001,n+d);o.connect(g);g.connect(ac.destination);o.start(n);o.stop(n+d)}catch(e){}}
 let COMBO=0;
+/* ---------- 背景音樂（WebAudio 合成，不用音檔；可在右上角音符開關）---------- */
+const BGM={mode:'',g:null,tm:0,step:0,next:0,duck:false};
+const mf=m=>440*Math.pow(2,(m-69)/12);
+const bgmOn=()=>S&&S.bgm!==false;
+function bTone(m,t,d,type,vol){try{const o=ac.createOscillator(),g=ac.createGain();o.type=type;o.frequency.value=mf(m);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(vol,t+.02);g.gain.exponentialRampToValueAtTime(.0008,t+d);o.connect(g);g.connect(BGM.g);o.start(t);o.stop(t+d+.05)}catch(e){}}
+const BCH={game:[[60,64,67,72],[57,60,64,69],[53,57,60,65],[55,59,62,67]],isl:[[60,64,67,71],[53,57,60,64],[57,60,64,67],[55,59,62,64]]};
+const PENT=[72,74,76,79,81,84];
+function bStep(k,t){const tr=BGM.mode==='isl'?'isl':'game',per=8,bar=Math.floor(k/per)%4,i=k%per,ch=BCH[tr][bar];
+  if(tr==='game'){bTone(ch[[0,1,2,1,3,2,1,2][i]],t,.42,'triangle',.07);if(i===0)bTone(ch[0]-12,t,1.1,'sine',.1);if(i===4)bTone(ch[0]-5,t,.5,'sine',.07);
+    if((i===2||i===6)&&Math.random()<.55)bTone(PENT[Math.floor(Math.random()*PENT.length)],t,.5,'sine',.06)}
+  else{if(i%2===0)bTone(ch[[0,1,2,3][(i/2)%4]]+12,t,1.1,'sine',.07);if(i===0){bTone(ch[0]-12,t,2.4,'sine',.08);bTone(ch[1],t,2.8,'triangle',.03);bTone(ch[2],t,2.8,'triangle',.03)}
+    if(i===5&&Math.random()<.6)bTone(PENT[Math.floor(Math.random()*PENT.length)],t,1.2,'sine',.055)}}
+function bgmStop(){if(BGM.tm){clearInterval(BGM.tm);BGM.tm=0}if(BGM.g&&ac){try{BGM.g.gain.setTargetAtTime(0,ac.currentTime,.15)}catch(e){}}}
+function bgmGo(){if(BGM.tm||!bgmOn()||!BGM.mode)return;
+  try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();
+    if(!BGM.g){BGM.g=ac.createGain();BGM.g.connect(ac.destination)}BGM.g.gain.setTargetAtTime(BGM.duck?.25:1,ac.currentTime,.2);
+    BGM.next=ac.currentTime+.1;BGM.step=0;
+    BGM.tm=setInterval(()=>{if(!bgmOn()||!BGM.mode||document.hidden){bgmStop();return}const eighth=BGM.mode==='isl'?.42:.31;while(BGM.next<ac.currentTime+.4){bStep(BGM.step,BGM.next);BGM.next+=eighth;BGM.step++}},110)}catch(e){}}
+function bgmMode(v){BGM.mode=['parent','who'].includes(v)?'':v==='isl'?'isl':'game';if(!BGM.mode)bgmStop();else if(!BGM.tm)bgmGo()}
+function bgmDuck(on){BGM.duck=on;try{if(BGM.g&&ac)BGM.g.gain.setTargetAtTime(on?.25:(BGM.tm?1:0),ac.currentTime,.12)}catch(e){}}
+['pointerdown','keydown'].forEach(ev=>document.addEventListener(ev,()=>{if(bgmOn()&&BGM.mode&&!BGM.tm)bgmGo();else if(ac&&ac.state==='suspended'&&bgmOn())ac.resume()},{passive:true}));
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&bgmOn()&&BGM.mode&&!BGM.tm)bgmGo()});
 const vib=p=>{try{if(S.snd&&navigator.vibrate)navigator.vibrate(p)}catch(e){}};
 function fxBurst(n,big){const f=document.getElementById('fx');if(!f)return;const em=['⭐','✨','🎉','💫','🍀'];
   for(let i=0;i<n;i++){const sp=document.createElement('span');sp.textContent=em[Math.floor(Math.random()*em.length)];const a=Math.random()*Math.PI*2,r=(big?150:80)+Math.random()*(big?150:70);
     sp.style.setProperty('--dx',Math.cos(a)*r+'px');sp.style.setProperty('--dy',(Math.sin(a)*r-30)+'px');sp.style.left='50%';sp.style.top=big?'34%':'36%';f.appendChild(sp);setTimeout(()=>sp.remove(),1000)}}
 function toast(t){document.querySelectorAll('.toast').forEach(x=>x.remove());const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),1300)}
-const sfx={ok(){COMBO++;const k=Math.min(COMBO,6)*40;beep(660+k,.12);beep(880+k,.2,.12);fxBurst(COMBO>=3?14:8);vib(18);if(COMBO>=3)toast('連對 '+COMBO+'！🔥')},ng(){COMBO=0;beep(220,.28);vib([30,40,30])},win(){beep(523,.12);beep(659,.12,.12);beep(784,.12,.24);beep(1047,.3,.36);fxBurst(28,1);vib([40,40,80])}};
+const sfx={ok(){COMBO++;const k=Math.min(COMBO,6)*40;beep(660+k,.12);beep(880+k,.2,.12);fxBurst(COMBO>=3?14:8);vib(18);if(COMBO>=3)toast('連對 '+COMBO+'！🔥')},ng(){COMBO=0;beep(220,.28);vib([30,40,30])},coin(){beep(988,.08);beep(1319,.28,.08);vib(15)},read(){beep(784,.09);beep(1047,.12,.09)},place(){beep(440,.06);beep(660,.1,.05);vib(12)},hatch(){[523,659,784,1047,1319].forEach((f,i)=>beep(f,.16,i*.1));vib([30,30,60])},grow(){[659,880,1175].forEach((f,i)=>beep(f,.18,i*.12));vib(30)},win(){beep(523,.12);beep(659,.12,.12);beep(784,.12,.24);beep(1047,.3,.36);fxBurst(28,1);vib([40,40,80])}};
 let VOICES=[];
 function loadVoices(){try{VOICES=speechSynthesis.getVoices()||[]}catch(e){VOICES=[]}}
 loadVoices();try{speechSynthesis.addEventListener('voiceschanged',loadVoices)}catch(e){}
@@ -1658,21 +1766,21 @@ function say(text){
     speechSynthesis.cancel();
     const u=new SpeechSynthesisUtterance(forSpeech(text));
     const v=pickVoice();u.lang='zh-TW';if(v){u.voice=v;u.lang=v.lang}
-    u.rate=.85;speechSynthesis.speak(u);
+    u.rate=.85;u.onstart=()=>bgmDuck(true);u.onend=u.onerror=()=>bgmDuck(false);speechSynthesis.speak(u);setTimeout(()=>bgmDuck(false),15000);
   }catch(e){}
 }
 
 /* ---------- 版面 ---------- */
 const views=['who','home','quiz','build','talk','match','zy','unit','ord','deck','res','parent','grp','isl'];
-function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot-img',msUri(MI))}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));
-  if(v==='home'){renderHome();setTimeout(prPop,350)}if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
+function show(v){COMBO=0;views.forEach(n=>$('#v-'+n).hidden=n!==v);window.scrollTo(0,0);try{document.documentElement.style.setProperty('--mascot-img',msUri())}catch(x){}document.body.classList.toggle('ingame',!['home','who','parent','deck','unit','grp'].includes(v));
+  bgmMode(v);if(v==='home'){renderHome();setTimeout(homePops,350)}if(v==='unit')renderUnits();if(v==='parent')openParent();if(v==='deck')renderDeck();if(v!=='isl')leaveIsl();if(v==='who')renderWho();if(v==='grp')renderGrp();if(v==='isl')renderIsl()}
 document.addEventListener('click',e=>{if(e.target.closest('[data-home]')){try{speechSynthesis.cancel()}catch(x){}show('home')}});
 
 /* ---------- 進度計算 ---------- */
 const learned=x=>((S.st[x.id]||{}).streak||0)>=2;
 const learnedAll=()=>Object.values(ALL).filter(learned);
 function streak(){let n=0;const d=new Date();if(!(S.days[today()]>0))d.setDate(d.getDate()-1);while(S.days[fmt(d)]>0){n++;d.setDate(d.getDate()-1)}return n}
-function rec(id,good){const s=S.st[id]||(S.st[id]={ok:0,ng:0,streak:0});if(good){s.ok++;s.streak++}else{s.ng++;s.streak=0}
+function rec(id,good){const s=S.st[id]||(S.st[id]={ok:0,ng:0,streak:0});if(good){s.ok++;s.streak++;if(s.streak===2){try{petApple()}catch(e){}}}else{s.ng++;s.streak=0}
   s.last=today();
   const x=ALL[id];if(x){S.log=S.log||{};const d=S.log[today()]||(S.log[today()]={});const c=d[x.cat]||(d[x.cat]={n:0,ok:0});c.n++;if(good)c.ok++;
     const ks=Object.keys(S.log).sort();while(ks.length>90)delete S.log[ks.shift()]}}
@@ -1767,17 +1875,18 @@ function renderHome(){
   $('#whoHint').textContent=Object.keys(DB.profiles).length>1?'換人 ▾':'＋ 新增小朋友';
   $('#whoAv').innerHTML=avh(S.av);$('#whoName').textContent=S.name||'小朋友';
   $('#starN').textContent=S.stars;$('#streakN').textContent=streak();$('#islC').innerHTML=cn(coin());
-  $('#sndBtn').innerHTML=ic(S.snd?'bell':'bellOff');
+  $('#sndBtn').innerHTML=ic(S.snd?'bell':'bellOff');$('#bgmBtn').innerHTML=ic(bgmOn()?'music':'musicOff');
   $('#lv1').setAttribute('aria-pressed',S.lv===1);$('#lv2').setAttribute('aria-pressed',S.lv===2);$('#lv3').setAttribute('aria-pressed',S.lv===3);
   const L=learnedAll(),cnt=L.length;
-  let si=0;STAGES.forEach((s,i)=>{if(cnt>=s[0])si=i});
-  const st=STAGES[si],nx=STAGES[si+1];
-  $('#mascot').innerHTML=MASC[si];MI=si;
+  petInit();const P=S.pet,pst=P?petStage(P.ap):0;
+  $('#mascot').innerHTML=petSvg(P);MURI=msUri();
   const w=L.filter(x=>x.ans);
-  $('#bubble').textContent=cnt?`${S.name||''}，今天想玩哪一關？`:'我是'+st[2]+'！陪你闖關！';
-  const need=nx?nx[0]-st[0]:0,have=nx?cnt-st[0]:0;
-  $('#apples').innerHTML=nx?Array.from({length:need},(_,i)=>`<i class="${i<have?'on':''}">${ICO.apple}</i>`).join(''):`<i class="on">${ICO.apple}</i>`.repeat(3);
-  $('#growTxt').textContent=nx?`再吃 ${need-have} 顆蘋果就變${nx[2]}！（同一題連續答對 2 次＝1 顆）`:'夥伴已經長到最大了！';
+  if(!P){$('#bubble').textContent='點我，選一顆蛋！';$('#apples').innerHTML='';$('#growTxt').textContent='答對題目就能孵出新夥伴'}
+  else if(P.done){$('#bubble').textContent=`${petNm(P.sp,4,P.sex)}長大了！`;$('#apples').innerHTML='<button class="btn sm" id="petNew">領一顆新蛋</button>';$('#growTxt').textContent='牠已經在背包，去島上找牠玩'}
+  else{const lo=[0].concat(PAT)[pst],need=4,have=P.ap-lo;
+    $('#bubble').textContent=P.sp?`${S.name||''}，${petNm(P.sp,pst,P.sex)}陪你闖關！`:(cnt?`${S.name||''}，今天想玩哪一關？`:'蛋蛋要孵化了，陪你闖關！');
+    $('#apples').innerHTML=Array.from({length:need},(_,i)=>`<i class="${i<have?'on':''}">${ICO.apple}</i>`).join('');
+    $('#growTxt').textContent=`再吃 ${need-have} 顆蘋果就${!P.sp?'孵化':'長大成'+PETS[P.sp].stg[pst]}！（同一題連續答對 2 次＝1 顆）`}
   renderWeek();renderBk();
   const dc=dailyCats(),nd=dc.filter(k=>todayN(k)>=GOAL).length;
   $('#dRow').innerHTML=dc.map(k=>{const c=CATS[k],n=todayN(k),ok=n>=GOAL;return `<button class="dc${ok?' ok':''}" data-cat="${k}" aria-label="${c.n}"><span>${cic(k)}</span><i>${ok?'✓':Math.min(n,GOAL)+'/'+GOAL}</i></button>`}).join('');
@@ -1847,11 +1956,12 @@ const openCat=e=>{const b=e.target.closest('[data-cat]');if(!b)return;
   const k=b.dataset.cat;const G={e:startBuild,t:startTalk,m:startMatch,z:startZ,u:()=>show('unit')};G[k]?G[k]():startQuiz(k)};
 document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t||!document.body.classList.contains('ingame'))return;const k=Object.keys(CATS).find(x=>CATS[x].n===t.textContent.trim());k&&missionInfo(k,null)});
 $('#missions').addEventListener('click',mapGo);$('#dRow').addEventListener('click',openCat);
-$('.hero').addEventListener('click',()=>say($('#bubble').textContent+$('#growTxt').textContent));
+$('.hero').addEventListener('click',e=>{if(e.target.closest('#petNew')){S.pet=null;S.petCarry=0;save();renderHome();eggPick();return}if(!S.pet){eggPick();return}say($('#bubble').textContent+$('#growTxt').textContent)});
 $('#lv1').onclick=()=>{S.lv=1;save();renderHome()};
 $('#lv2').onclick=()=>{S.lv=2;save();renderHome()};
 $('#lv3').onclick=()=>{S.lv=3;save();renderHome()};
 $('#sndBtn').onclick=()=>{S.snd=!S.snd;save();renderHome();if(S.snd)sfx.ok()};
+$('#bgmBtn').onclick=()=>{S.bgm=!bgmOn();save();renderHome();if(S.bgm){bgmMode(document.querySelector('section:not([hidden])')&&document.querySelector('section:not([hidden])').id.replace('v-','')||'home')}else bgmStop();toast(S.bgm?'音樂開':'音樂關')};
 $('#toParent').onclick=()=>show('parent');
 $('#toDeck').onclick=()=>show('deck');
 
@@ -1864,7 +1974,7 @@ function startQuiz(cat,only){
   show('quiz');renderQ();
 }
 const qSpoken=q=>q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說比較好？第一種，${q.shown[0]}。第二種，${q.shown[1]}。第三種，${q.shown[2]}。`:(q.cat==='u'&&isOX(q.ans)?zyClean(q.t)+'。對還是錯？':q.cat==='u'&&hasZy(q.t+q.opts.join(''))?zyClean(q.t)+'。請選出正確的答案。':q.t.replace('＿＿','，什麼，'));
-$('#qlisten').onclick=()=>{if(Q)say(qSpoken(Q.list[Q.i]))};
+$('#qlisten').onclick=()=>{if(Q){sfx.read();say(qSpoken(Q.list[Q.i]))}};
 function uLayout(q){if(q.opts.length===2)return 'two';return q.opts.some(o=>hasZy(o)||[...o].length>3)?'col':''}
 function renderQ(){
   const q=Q.list[Q.i];Q.locked=false;const c=CATS[Q.cat];
@@ -1882,7 +1992,7 @@ function renderQ(){
   $('#qtext').innerHTML=(a?chunks(a):'')+'<span class="blank" id="blank">？</span>'+(b?chunks(b):'');
   $('#qopts').innerHTML=shuffle(q.opts).map(o=>`<button class="opt" data-o="${o}">${o==='○'?'⭕':o==='✕'?'❌':o}</button>`).join('');}
   $('#qfb').hidden=true;$('#hsay').hidden=true;$('#hbox').value='';$('#hfb').hidden=true;$('#hhint').textContent='';
-  if(S.lv===1&&!S.noauto)setTimeout(()=>{if(Q&&Q.list[Q.i]===q&&!Q.locked)say(qSpoken(q))},450);
+  if(S.lv===1&&!S.noauto)setTimeout(()=>{if(Q&&Q.list[Q.i]===q&&!Q.locked){sfx.read();say(qSpoken(q))}},450);
 }
 $('#qopts').addEventListener('click',e=>{
   const b=e.target.closest('.opt');if(!b||Q.locked||b.disabled)return;
@@ -2560,7 +2670,7 @@ function loadIsl(){
   if(window.Island&&window.Island.ready)return Promise.resolve();
   if(ISLS.loaded)return ISLS.loaded;
   const ld=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error(src));document.head.appendChild(s)});
-  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=3')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
+  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=4')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
   ISLS.loaded.catch(()=>{ISLS.loaded=null});return ISLS.loaded;
 }
 const islSize=()=>{const n=learnedAll().length;return n>=50?10:n>=20?8:6};
@@ -2603,7 +2713,7 @@ function islItem(idx){
 }
 function islOk(){
   if(!ISLS.pos)return;const [x,z]=ISLS.pos,I=ISL();
-  if(ISLS.mode==='place'){if(!(I.inv[ISLS.t]>0))return islIdle();I.inv[ISLS.t]--;Island.add(ISLS.t,x,z);try{sfx.ok&&sfx.ok()}catch(e){}}
+  if(ISLS.mode==='place'){if(!(I.inv[ISLS.t]>0))return islIdle();I.inv[ISLS.t]--;Island.add(ISLS.t,x,z);try{sfx.place()}catch(e){}}
   else{Island.move(ISLS.idx,x,z)}
   islSave();islIdle();
 }
@@ -2640,7 +2750,7 @@ function drawBox(kind){
   else{if(coin()<b.cost){toast('島幣不夠，先去玩幾關');return}S.coin-=b.cost}
   const chr=b.pool==='char',pk=chr?'pityC':'pity',lim=chr?8:10;
   I[pk]=(I[pk]||0)+1;let r=roll(b.w);if(I[pk]>=lim&&r<2)r=2;if(r>=2)I[pk]=0;
-  let pool=Island.CAT.filter(c=>!!c.ch===chr&&rarOf(c.id)===r);if(!pool.length)pool=Island.CAT.filter(c=>!!c.ch===chr);
+  let pool=Island.CAT.filter(c=>!c.np&&!!c.ch===chr&&rarOf(c.id)===r);if(!pool.length)pool=Island.CAT.filter(c=>!c.np&&!!c.ch===chr);
   const it=pool[Math.floor(Math.random()*pool.length)];
   const had=!!I.seen[it.id]||I.items.some(x=>x[0]===it.id)||(I.inv[it.id]>0);
   let dup=false;
@@ -2665,7 +2775,7 @@ function reveal(it,r,isNew,kind,dup){
   },1300);
 }
 function sheetGift(){
-  const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0&&!c.ch);
+  const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0&&!c.ch&&!c.np);
   $('#islSheet').hidden=false;
   $('#islSheet').innerHTML=shHead('gift','送給 '+eh(ISLS.visit.nick))+(have.length?`<div class="igrid">${have.map(d=>card('',d.id,d.n,'× '+I.inv[d.id],`data-give="${d.id}"`)).join('')}</div><p class="muted">每天每位朋友可以送 1 個禮物。送出去的東西會少 1 個。</p>`:'<p class="muted" style="font-size:20px">背包裡沒有可以送的東西。去抽盲盒，抽到重複的就可以送朋友！</p>');
 }
@@ -2725,8 +2835,8 @@ $('#prsend').onclick=()=>{
 function prPop(){const q=S.pq||[];if(!q.length||$('#v-home').hidden||document.querySelector('.prpop'))return;
   const r=q.shift();save();const o=document.createElement('div');o.className='prpop';
   o.innerHTML=`<div class="prc"><div class="pre">🪙</div><b>爸媽送你 ${r.n} 島幣！</b><p>${r.w?eh(r.w):'做得好！'}</p><button class="btn" id="prok">收下</button></div>`;
-  document.body.appendChild(o);try{sfx.ok();fxBurst(24)}catch(e){}
-  $('#prok').onclick=()=>{o.remove();prPop()}}
+  document.body.appendChild(o);try{sfx.coin();fxBurst(24)}catch(e){}
+  $('#prok').onclick=()=>{o.remove();homePops()}}
 function openParent(){
   const a=6+Math.floor(Math.random()*4),b=4+Math.floor(Math.random()*6);pgA=a+b;
   $('#pgq').textContent=`請輸入答案才能進入：${a} + ${b} = ？`;$('#pgin').value='';$('#pgmsg').textContent='';
