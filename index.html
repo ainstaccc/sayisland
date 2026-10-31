@@ -638,7 +638,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.11.3</p>
+    <p class="ver">說說島 v1.11.4</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -667,7 +667,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.11.3</p>
+    <p class="ver">說說島 v1.11.4</p>
   </section>
 
   <!-- 選擇題 -->
@@ -811,7 +811,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.11.3</p>
+    <p class="ver">說說島 v1.11.4</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -880,7 +880,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.11.3</p>
+    <p class="ver">說說島 v1.11.4</p>
   </section>
 </div>
 
@@ -999,7 +999,7 @@ const PETS={
  dino:{n:'小恐龍',stg:['恐龍蛋','幼龍','小龍','暴龍'],art:wrapArt('dino',petDino,[1,3,4]),fin:()=>'p_trex'},
  salmon:{n:'小鮭魚',stg:['魚卵','幼魚','小魚','成年鮭魚'],art:wrapArt('salmon',petSalmon,[2,3,4]),fin:()=>'p_salmon'}};
 const PSP=Object.keys(PETS),EGGK=Object.keys(EGGC);
-const PAT=[4,8,12,16];
+const PAT=[4,12,24,40];/* 累計：彩蛋+4→階段一，+8→階段二，+12→階段三，+16→階段四，共 40 顆 */
 const petStage=ap=>PAT.filter(x=>ap>=x).length;
 function petSvg(P){if(!P||!P.sp)return petEgg(P&&P.egg,P&&P.ap);const s=petStage(P.ap);return PETS[P.sp].art(Math.max(1,s),P.sex)}
 const petName=P=>{if(!P||!P.sp)return(EGGN[P&&P.egg]||'')+'蛋';const s=petStage(P.ap),n=PETS[P.sp].stg[Math.max(1,s)-1];return P.sp==='chick'&&s>=4?(P.sex==='f'?'母雞':'公雞'):n};
@@ -1793,10 +1793,13 @@ function petInit(){if(S.petV)return;S.petV=1;
   const cnt=learnedAll().length;let si=0;STAGES.forEach((x,i)=>{if(cnt>=x[0])si=i});
   if(si>0){const ids=['','old_chick','old_bird','old_owl','old_parrot','old_dragon'],I=ISL();I.inv[ids[si]]=(I.inv[ids[si]]||0)+1;I.seen[ids[si]]=1;S.petMig=ids[si]}
   S.pet=null;S.petCarry=si===0?cnt:0;save()}
+function petRescale(){if(S.petS||!S.pet){return}S.petS=1;const P=S.pet;
+  if(!P.done&&P.sp){const old=[4,8,12,16],st=old.filter(x=>P.ap>=x).length,lo=[0].concat(old)[st],have=P.ap-lo,nlo=[0].concat(PAT)[st],nneed=PAT[st]-nlo;P.ap=nlo+Math.min(nneed-1,Math.round(nneed*have/4))}
+  save()}
 function petApple(){const P=S.pet;if(!P||P.done)return;const b=petStage(P.ap);P.ap++;const a=petStage(P.ap);
   if(a>=1&&!P.sp){P.sp=PSP[Math.floor(Math.random()*PSP.length)];P.sex=Math.random()<.5?'m':'f'}
   if(a>b){P.ev=(P.ev||[]).concat([a])}
-  if(P.ap>=16){P.done=1;const id=PETS[P.sp].fin(P.sex),I=ISL();I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.petDone=(S.petDone||[]).concat([{id,d:today()}]).slice(-40)}}
+  if(P.ap>=PAT[3]){P.done=1;const id=PETS[P.sp].fin(P.sex),I=ISL();I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.petDone=(S.petDone||[]).concat([{id,d:today()}]).slice(-40)}}
 const petNm=(sp,st,sex)=>sp==='chick'&&st>=4?(sex==='f'?'母雞':'公雞'):PETS[sp].stg[Math.max(1,st)-1];
 function homePops(){if(document.querySelector('.prpop')||$('#v-home').hidden)return;
   if(!S.pet){eggPick();return}
@@ -1804,7 +1807,7 @@ function homePops(){if(document.querySelector('.prpop')||$('#v-home').hidden)ret
 function eggPick(){if(document.querySelector('.prpop'))return;const o=document.createElement('div');o.className='prpop';
   o.innerHTML=`<div class="prc"><b>選一顆蛋</b><p>蛋裡是什麼動物？孵出來才知道！</p><div class="eggs">${EGGK.map(k=>`<button class="egb" data-egg="${k}">${petEgg(k,0)}<small>${EGGN[k]}</small></button>`).join('')}</div>${S.petMig?'<p class="muted" style="font-size:18px">之前的夥伴已經放進背包，可以放到島上。</p>':''}</div>`;
   document.body.appendChild(o);
-  o.onclick=e=>{const b=e.target.closest('[data-egg]');if(!b)return;S.pet={egg:b.dataset.egg,ap:S.petCarry||0};S.petCarry=0;S.petMig='';save();o.remove();sfx.ok();renderHome();toast('帶回家了，加油孵化！')}}
+  o.onclick=e=>{const b=e.target.closest('[data-egg]');if(!b)return;S.pet={egg:b.dataset.egg,ap:S.petCarry||0};S.petS=1;S.petCarry=0;S.petMig='';save();o.remove();sfx.ok();renderHome();toast('帶回家了，加油孵化！')}}
 function petPop(){const P=S.pet;if(!P||!P.ev||!P.ev.length||$('#v-home').hidden||document.querySelector('.prpop'))return false;
   const st=P.ev.shift();save();const nm=petNm(P.sp,st,P.sex),o=document.createElement('div');o.className='prpop';
   const title=st===1?`蛋變成${nm}了！原來是${PETS[P.sp].n}！`:st===4?`長大成${nm}了！`:`長大了！變成${nm}`;
@@ -1990,15 +1993,15 @@ function renderHome(){
   $('#sndBtn').innerHTML=ic(S.snd?'bell':'bellOff');$('#bgmBtn').innerHTML=ic(bgmOn()?'music':'musicOff');
   $('#lv1').setAttribute('aria-pressed',S.lv===1);$('#lv2').setAttribute('aria-pressed',S.lv===2);$('#lv3').setAttribute('aria-pressed',S.lv===3);
   const L=learnedAll(),cnt=L.length;
-  petInit();const P=S.pet,pst=P?petStage(P.ap):0;
+  petInit();petRescale();const P=S.pet,pst=P?petStage(P.ap):0;
   $('#mascot').innerHTML=petSvg(P);MURI=msUri();
   const w=L.filter(x=>x.ans);
   if(!P){$('#bubble').textContent='點我，選一顆蛋！';$('#apples').innerHTML='';$('#growTxt').textContent='答對題目就能孵出新夥伴'}
   else if(P.done){$('#bubble').textContent=`${petNm(P.sp,4,P.sex)}長大了！`;$('#apples').innerHTML='<button class="btn sm" id="petNew">領一顆新蛋</button>';$('#growTxt').textContent='牠已經在背包，去島上找牠玩'}
-  else{const lo=[0].concat(PAT)[pst],need=4,have=P.ap-lo;
+  else{const lo=[0].concat(PAT)[pst],need=PAT[pst]-lo,have=P.ap-lo;
     $('#bubble').textContent=P.sp?`${S.name||''}，${petNm(P.sp,pst,P.sex)}陪你闖關！`:(cnt?`${S.name||''}，今天想玩哪一關？`:'蛋蛋陪你闖關！');
     $('#apples').innerHTML=Array.from({length:need},(_,i)=>`<i class="${i<have?'on':''}">${ICO.apple}</i>`).join('');
-    $('#growTxt').textContent=`再吃 ${need-have} 顆蘋果${!P.sp?'，蛋裡的動物就會現身':'就長大成'+PETS[P.sp].stg[pst]}！（同一題連續答對 2 次＝1 顆）`}
+    $('#growTxt').textContent=`再吃 ${need-have} 顆蘋果${!P.sp?'，蛋裡的動物就會現身':'就長大成'+PETS[P.sp].stg[pst]}！（這階段 ${have}/${need}，總共 ${P.ap}/${PAT[3]}　同一題連續答對 2 次＝1 顆）`}
   renderWeek();renderBk();
   const dc=dailyCats(),nd=dc.filter(k=>todayN(k)>=GOAL).length;
   $('#dRow').innerHTML=dc.map(k=>{const c=CATS[k],n=todayN(k),ok=n>=GOAL;return `<button class="dc${ok?' ok':''}" data-cat="${k}" aria-label="${c.n}"><span>${cic(k)}</span><i>${ok?'✓':Math.min(n,GOAL)+'/'+GOAL}</i></button>`}).join('');
