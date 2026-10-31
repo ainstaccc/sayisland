@@ -1890,6 +1890,8 @@ $('#hsend').onclick=()=>{
   const q=Q&&Q.list[Q.i];if(!q||q.cat!=='h')return;
   const text=$('#hbox').value.trim();
   if(text.length<2){$('#hhint').textContent='先說一說，或打幾個字喔。';return}
+  if(q._lastSay===text&&!$('#hfb').hidden)return; /* 同一段話重複按：不重算、不重複加連對與紀錄 */
+  q._lastSay=text;
   const r=judgeSay(text),fb=$('#hfb');fb.hidden=false;
   const row=(ok,t)=>`<li>${ok?'✅':'⬜'} ${t}</li>`;
   const tips=[];
@@ -2012,7 +2014,7 @@ function startTalk(){
 }
 const needOf=()=>[0,3,4,5][S.lv];
 function renderT(){
-  const sc=T.list[T.i];T.tries=0;T.ctl=null;T.done=false;
+  const sc=T.list[T.i];T.tries=0;T.ctl=null;T.done=false;T.busy=false;T.last=null;
   $('#tprog').style.width=(T.i/T.list.length*100)+'%';$('#tprog').style.background='var(--c5)';
   $('#tcount').textContent=(T.i+1)+'/'+T.list.length;
   $('#tpic').textContent=sc.pic;$('#tcap').textContent=sc.cap||'';
@@ -2028,8 +2030,9 @@ $('#tmic').onclick=()=>{
 $('#tsend').onclick=()=>{
   const text=$('#tbox').value.trim();
   if(text.length<2){$('#thint').textContent='先說一說，或打幾個字喔。';return}
+  if(T.last&&T.last.i===T.i&&T.last.text===text&&!$('#tfb').hidden)return; /* 同一題、同一段話重複按：不重算、不重複加連對 */
   const sc=T.list[T.i],r=localJudge(sc,text);
-  T.tries++;T.last={text,r};
+  T.tries++;T.last={text,r,i:T.i};
   renderFb(sc,text,r);
 };
 function renderFb(sc,text,r){
@@ -2050,11 +2053,11 @@ function renderFb(sc,text,r){
             :`<button class="btn" id="tagain">再說一次</button><button class="btn alt sm" id="tdone">先到這裡</button>`}
     </div>
     <div class="src">📋 小幫手用關鍵字簡單判讀，說得不一樣也可能算對喔</div>`;
-  ok?sfx.win():sfx.ok();
+  if(ok){COMBO++;sfx.win();if(COMBO>=3)toast('連對 '+COMBO+'！🔥')}else{beep(660,.12);beep(784,.16,.12)} /* 沒達標只給提示音，不算連對 */
   $('#tr1').onclick=()=>say(text);
   if($('#tr2'))$('#tr2').onclick=()=>say(r.model||sc.model);
   if($('#tagain'))$('#tagain').onclick=()=>{$('#tfb').hidden=true;$('#tin').hidden=false;$('#tbox').focus();$('#thint').textContent='可以接著補充，也可以重說。'};
-  $('#tdone').onclick=()=>finishScene(sc,text,cov.length);
+  $('#tdone').onclick=()=>{if(T.busy)return;T.busy=true;finishScene(sc,text,cov.length)};
 }
 function finishScene(sc,text,n){
   const need=needOf();
