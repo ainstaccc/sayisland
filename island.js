@@ -123,6 +123,15 @@ const EN={
  swing:g=>{},slide:g=>{}
 };
 Object.keys(EN).forEach(k=>{const o=B[k];if(!o)return;B[k]=(x,z)=>{const g=o(x,z);try{EN[k](g,x,z)}catch(e){}return g}});
+/* ---------- v1.13.3 造型再加細節（2026-11-01） ---------- */
+const EN2={
+ bunny:g=>{const e1=box(.03,.12,.01,'#FFB7C5',-.05,.56,.135),e2=box(.03,.12,.01,'#FFB7C5',.05,.56,.135);g.add(e1,e2,sph(.018,'#FF8FB7',0,.33,.255),sph(.03,'#FFFFFF',-.16,.1,.1,1,.7,1.2),sph(.03,'#FFFFFF',.16,.1,.1,1,.7,1.2));chain(g,t=>{const w=Math.max(0,Math.sin(t*1.6+1))*.18;e1.rotation.z=w;e2.rotation.z=-w})},
+ mushroom:g=>{g.add(cyl(.17,.12,.012,'#F4E3CF',0,.2,0,12),sph(.03,'#FFFFFF',.02,.22,-.12),sph(.025,'#FFFFFF',-.14,.19,.04));chain(g,t=>{g.rotation.z=Math.sin(t*1.1)*.03})},
+ lamp:g=>{const hl=new T.Mesh(new T.RingGeometry(.14,.2,20),new T.MeshBasicMaterial({color:'#FFE9A0',transparent:true,opacity:.28,side:2,fog:false,depthWrite:false}));hl.position.y=.76;const mo=G(box(.03,.012,.02,'#FFFFFF',-.012,0,0),box(.03,.012,.02,'#FFFFFF',.012,0,0));g.add(hl,mo);chain(g,t=>{hl.rotation.x=1.57;hl.scale.setScalar(1+Math.sin(t*2)*.08);mo.position.set(Math.cos(t*2.4)*.17,.78+Math.sin(t*5)*.03,Math.sin(t*2.4)*.17);mo.rotation.z=Math.sin(t*30)*.5})},
+ bigtree:g=>{const lf=[];for(let i=0;i<3;i++){const m=box(.05,.008,.035,i%2?'#B9EE8A':'#7BCF5F',0,0,0);g.add(m);lf.push(m)}g.add(ico(.17,P.leafD,-.3,1.05,-.12,0),sph(.035,'#FF5C5C',.3,1.0,.2),sph(.035,'#FF5C5C',-.1,1.45,.28));chain(g,t=>{lf.forEach((m,i)=>{const k=(t*.25+i*.33)%1;m.position.set(Math.sin(i*2+k*5)*.45,1.3-k*1.2,Math.cos(i*2.3+k*4)*.45);m.rotation.set(k*8+i,k*6,k*5)})})},
+ duck:g=>{g.add(sph(.012,'#FFFFFF',-.036,.405,.228),sph(.012,'#FFFFFF',.036,.405,.228),sph(.03,'#FFB7C5',-.09,.31,.19,1,.6,.5),sph(.03,'#FFB7C5',.09,.31,.19,1,.6,.5));chain(g,t=>{g.position.y=Math.abs(Math.sin(t*2))*.012})}
+};
+Object.keys(EN2).forEach(k=>{const o=B[k];if(!o)return;B[k]=(x,z)=>{const g=o(x,z);try{EN2[k](g,x,z)}catch(e){}return g}});
 const CAT=[
  {id:'tree',n:'小樹',c:'自然',p:5,e:'🌳'},{id:'bush',n:'草叢',c:'自然',p:2,e:'🌿'},{id:'flowers',n:'花圃',c:'自然',p:4,e:'🌸'},{id:'sunflower',n:'向日葵',c:'自然',p:4,e:'🌻'},{id:'pine',n:'松樹',c:'自然',p:6,e:'🌲'},{id:'rock',n:'小石頭',c:'自然',p:2,e:'🪨'},{id:'mushroom',n:'蘑菇',c:'自然',p:4,e:'🍄'},{id:'pond',n:'小池塘',c:'自然',p:10,e:'💧'},{id:'sakura',n:'櫻花樹',c:'自然',p:12,e:'🌸'},{id:'bigtree',n:'大橡樹',c:'自然',p:9,e:'🌳'},
  {id:'duck',n:'小鴨',c:'動物',p:6,e:'🦆'},{id:'sheep',n:'小綿羊',c:'動物',p:8,e:'🐑'},{id:'bunny',n:'小兔子',c:'動物',p:8,e:'🐰'},{id:'cat',n:'小貓',c:'動物',p:10,e:'🐱'},{id:'penguin',n:'企鵝',c:'動物',p:14,e:'🐧'},
