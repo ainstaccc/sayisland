@@ -184,14 +184,18 @@ h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
 .mc.p0{background:color-mix(in srgb,var(--c1) 26%,var(--card))}.mc.p1{background:color-mix(in srgb,var(--c2) 26%,var(--card))}
 .mc.p2{background:color-mix(in srgb,var(--c3) 26%,var(--card))}.mc.p3{background:color-mix(in srgb,var(--c4) 26%,var(--card))}
 .mline{width:100%;min-height:62px;background:var(--ok-bg);border-radius:16px;padding:10px 14px;font:800 20px/1.4 var(--f-disp);color:var(--ok);text-align:center}
-/* v1.18.1 直式標準注音：由上往下排，聲調標在最後一個符號右側，輕聲標在第一個符號上方 */
+/* v1.18.2 直式標準注音：由上往下排，聲調標在最後一個符號右側，輕聲標在第一個符號上方 */
 .zv{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.05;margin:0 .5em 0 .2em;font-weight:800;font-style:normal}
 .zv b{display:block;position:relative;font-weight:800;line-height:1.05}
-.zv b u{position:absolute;left:100%;top:.02em;width:.5em;height:.6em;margin-left:.06em;text-decoration:none}
-.zv b u::before,.zv b u::after{content:"";position:absolute;background:currentColor;border-radius:.1em;width:.11em;height:.5em}
-.zv b u.t2::before{left:.2em;top:.05em;transform:rotate(35deg)}.zv b u.t2::after{display:none}
-.zv b u.t4::before{left:.2em;top:.05em;transform:rotate(-35deg)}.zv b u.t4::after{display:none}
-.zv b u.t3::before{left:.1em;top:.06em;height:.34em;transform:rotate(-40deg);transform-origin:50% 100%}.zv b u.t3::after{left:.26em;top:.06em;height:.34em;transform:rotate(40deg);transform-origin:50% 100%}
+.zv b u{position:absolute;left:100%;top:-.2em;margin-left:.03em}
+u.t2,u.t3,u.t4{display:block;width:.8em;height:.9em;text-decoration:none}
+u.t2::before,u.t3::before,u.t3::after,u.t4::before{content:"";position:absolute;background:currentColor;border-radius:.1em;width:.1em;transform-origin:50% 100%}
+u.t2::before{left:.12em;bottom:.12em;height:.7em;transform:rotate(38deg)}
+u.t4::before{left:.5em;bottom:.12em;height:.7em;transform:rotate(-38deg);transform-origin:50% 100%}
+u.t3::before{left:.12em;bottom:.12em;height:.32em;transform:rotate(-42deg)}
+u.t3::after{left:.12em;bottom:.12em;height:.7em;transform:rotate(38deg)}
+.tmk{display:inline-block;position:relative;width:.8em;height:.9em;vertical-align:middle;font-style:normal}.tmk u{position:absolute;inset:0}
+.zch{font:800 52px/1 var(--f-disp);margin-right:8px;color:var(--ink)}.zprev{font-size:34px;min-width:60px;margin-left:14px;display:flex;align-items:center}
 .zv i.zn{display:block;font-style:normal;font-size:.7em;line-height:1;margin-bottom:.05em}
 .zv.n0{margin-right:.2em}
 .opts.zy .opt{display:flex;align-items:center;justify-content:center;min-height:150px;padding:10px 4px;font-size:clamp(24px,6.8vw,30px);line-height:1}
@@ -203,7 +207,7 @@ body.ingame .opts.zy .opt{min-height:140px;font-size:clamp(24px,6.8vw,30px)}
 .zk .zv{font-size:clamp(16px,4.4vw,19px);margin:0 .5em 0 .05em}
 .zk .zv.n0{margin-right:.1em}
 .zk.pn .zh{font-size:clamp(26px,7vw,32px)}
-/* v1.18.1 填入玩法：點一個字，再點空格 */
+/* v1.18.2 填入玩法：點一個字，再點空格 */
 .fgrid{display:flex;flex-direction:column;gap:10px;width:100%}
 .fc{display:flex;align-items:center;gap:10px;min-height:64px;border-radius:18px;border:3px solid var(--line);background:var(--bg);padding:8px 12px;box-shadow:0 4px 0 var(--shadow);font:800 clamp(20px,5.6vw,26px)/1.3 var(--f-disp);color:var(--ink)}
 .fc .fe{font-size:32px;line-height:1;flex:none;cursor:pointer}
@@ -642,7 +646,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .egb{background:#FAF5FF;border:2px solid var(--line);border-radius:18px;padding:6px 2px;display:flex;flex-direction:column;align-items:center;gap:2px;font:800 18px/1 inherit;color:#3B2A5A}
 .egb .ms{width:68px;height:68px}.egb small{font-size:17px;color:#5E4B80}
 .egb:active{transform:scale(.95)}.pbig .ms{width:150px;height:150px}.prc .muted{margin:0}
-/* v1.18.1 我的島 UI（主題3）：底部按鈕立體感、面板把手、卡片按壓、盲盒光暈、頂部資訊 */
+/* v1.18.2 我的島 UI（主題3）：底部按鈕立體感、面板把手、卡片按壓、盲盒光暈、頂部資訊 */
 .islBar .btn{box-shadow:0 5px 0 rgba(0,0,0,.18),0 10px 16px -8px rgba(0,0,0,.35);transition:transform .12s,box-shadow .12s}
 .islBar .btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.18)}
 .islBar .btn .sv{width:1.25em;height:1.25em}
@@ -693,7 +697,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.18.1</p>
+    <p class="ver">說說島 v1.18.2</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -722,7 +726,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.18.1</p>
+    <p class="ver">說說島 v1.18.2</p>
   </section>
 
   <!-- 選擇題 -->
@@ -879,7 +883,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.18.1</p>
+    <p class="ver">說說島 v1.18.2</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -948,7 +952,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.18.1</p>
+    <p class="ver">說說島 v1.18.2</p>
   </section>
 </div>
 
@@ -1878,7 +1882,7 @@ const Y1=[['🏠','我＿＿家寫功課。','在','再','載','「在」說的�
 const Y2=[['🥇','哥哥跑步得到第一＿＿。','名','明','鳴','第一名的「名」。'],['🛒','媽媽帶我去市＿＿買菜。','場','常','長','「市場」的「場」，土字旁。'],['🧒','我們一＿＿去公園玩。','起','氣','七','「一起」的「起」。'],['🌈','雨後出現美麗的彩＿＿。','虹','紅','江','「彩虹」的「虹」是蟲字旁。'],['🏫','上學要準時，不可以＿＿到。','遲','持','池','「遲到」是比規定的時間晚到。'],['🎶','我很喜歡聽＿＿樂。','音','因','陰','「音樂」的「音」。'],['🧴','洗手要用肥＿＿。','皂','早','造','「肥皂」的「皂」。'],['📖','我喜歡看＿＿外書。','課','客','可','「課外書」的「課」，言字旁。'],['🐶','小狗的眼＿＿圓圓的。','睛','晴','請','「眼睛」的「睛」，目字旁。'],['😊','今天的＿＿情很好。','心','新','辛','「心情」的「心」。'],['🛍️','媽媽用錢＿＿東西。','買','賣','實','「買」是用錢拿到東西。'],['⏰','時＿＿到了，我們出發。','間','問','聞','「時間」的「間」，門裡面有日。'],['❓','我可以＿＿你一個問題嗎？','問','間','聞','「問」是開口發問，門裡面有口。'],['👃','我＿＿到花的香味。','聞','問','間','「聞」是用鼻子，門裡面有耳。'],['🤝','請你＿＿我一個忙。','幫','邦','綁','「幫忙」的「幫」。'],['🏊','夏天我喜歡去＿＿泳。','游','遊','由','「游泳」要在水裡，所以是三點水。'],['🎡','假日我們去公園＿＿玩。','遊','游','由','「遊玩」是出去玩，用走之旁。'],['👨‍👩‍👧','我們全＿＿人去郊遊。','家','加','嫁','「全家」的「家」。'],['🪁','＿＿箏飛得好高。','風','鳳','瘋','「風箏」的「風」。']];
 const Y3=[['🏃','他跑＿＿很快。','得','的','地','「跑得」是說明跑的情形，用「得」。'],['🌸','花兒靜靜＿＿開放。','地','的','得','「地」放在動作前面，說明怎麼做。'],['🎒','這是我＿＿書包。','的','得','地','「的」放在名詞前面，表示是誰的。'],['✍️','我在寫＿＿業。','作','做','坐','「作業」的「作」。'],['🍳','媽媽在廚房＿＿菜。','做','作','坐','「做菜」是動手完成一件事，用「做」。'],['🤝','我們要互相幫＿＿。','助','住','注','「幫助」的「助」，力字旁。'],['📣','老師＿＿醒我們要守秩序。','提','題','堤','「提醒」的「提」，提手旁。'],['🧪','他很有耐＿＿，不怕失敗。','心','新','辛','「耐心」的「心」。'],['😊','她開心＿＿笑了。','地','的','得','「地」放在動作前面，說明怎麼做。'],['🧒','弟弟長＿＿真高。','得','的','地','「長得」說明長的情形，用「得」。'],['🍰','這是媽媽做＿＿蛋糕。','的','得','地','「的」放在名詞前面，表示是誰的。'],['🐦','小鳥高興＿＿唱歌。','地','的','得','「地」放在動作前面。'],['🎤','他唱＿＿很好聽。','得','的','地','「唱得」說明唱的情形，用「得」。'],['👨‍🏭','爸爸在工＿＿。','作','做','坐','「工作」的「作」。'],['🍪','我們一起＿＿餅乾。','做','作','坐','「做餅乾」是動手完成一件事。'],['🧐','請你＿＿細看。','仔','子','字','「仔細」的「仔」。'],['🤝','大家要互相＿＿重。','尊','遵','樽','「尊重」的「尊」。'],['🌳','我們要愛＿＿大自然。','護','獲','穫','「愛護」的「護」。']];
 
-/* v1.18.1 注音辨辨看（低年級）：ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ。[圖, 詞, 字, 正確注音, 干擾1, 干擾2, 類型]；三個選項的聲調一樣，只差在要分辨的音 */
+/* v1.18.2 注音辨辨看（低年級）：ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ。[圖, 詞, 字, 正確注音, 干擾1, 干擾2, 類型]；三個選項的聲調一樣，只差在要分辨的音 */
 const ZBT={n:'ㄣ 收音時，舌尖頂在上排牙齒後面，嘴巴小小的。',g:'ㄥ 收音時，嘴巴放鬆，聲音往鼻子後面走。',a:'ㄢ 收音時，舌尖往上頂，嘴巴扁一點。',h:'ㄤ 收音時，嘴巴張大，聲音往後面拉長。',c:'ㄔ、ㄓ 是翹舌音，舌頭要往後捲。',z:'ㄘ、ㄗ 是平舌音，舌頭平平的，靠近牙齒。',cz:'ㄓ、ㄔ 是翹舌音，ㄗ、ㄘ 是平舌音，這個字要記起來。'};
 const ZB=[
 ['🚪','大門','門','ㄇㄣˊ','ㄇㄥˊ','ㄇㄢˊ','n'],['🌱','樹根','根','ㄍㄣ','ㄍㄥ','ㄍㄢ','n'],['🧑','大人','人','ㄖㄣˊ','ㄖㄥˊ','ㄖㄢˊ','n'],['📕','書本','本','ㄅㄣˇ','ㄅㄥˇ','ㄅㄢˇ','n'],
@@ -1900,7 +1904,7 @@ const ZB=[
 ['🐘','大象','象','ㄒㄧㄤˋ','ㄒㄧㄢˋ','ㄒㄧㄣˋ','h'],['🌳','旁邊','旁','ㄆㄤˊ','ㄆㄢˊ','ㄆㄥˊ','h'],['🧁','好胖','胖','ㄆㄤˋ','ㄆㄢˋ','ㄆㄥˋ','h'],['🏏','球棒','棒','ㄅㄤˋ','ㄅㄢˋ','ㄅㄥˋ','h'],
 ['🐘','很大','很','ㄏㄣˇ','ㄏㄥˇ','ㄏㄢˇ','n'],['🎀','粉紅','粉','ㄈㄣˇ','ㄈㄥˇ','ㄈㄢˇ','n'],['✅','真的','真','ㄓㄣ','ㄓㄥ','ㄗㄣ','cz'],['🧍','身體','身','ㄕㄣ','ㄕㄥ','ㄕㄢ','n'],['🧚','神仙','神','ㄕㄣˊ','ㄕㄥˊ','ㄕㄢˊ','n'],['📗','新書','新','ㄒㄧㄣ','ㄒㄧㄥ','ㄒㄧㄢ','n'],['🐠','金魚','金','ㄐㄧㄣ','ㄐㄧㄥ','ㄐㄧㄢ','n'],['📅','今天','今','ㄐㄧㄣ','ㄐㄧㄥ','ㄐㄧㄤ','n'],['👨‍👩‍👧','親人','親','ㄑㄧㄣ','ㄑㄧㄥ','ㄑㄧㄢ','n'],['🎶','音樂','音','ㄧㄣ','ㄧㄥ','ㄧㄢ','n'],['☁️','白雲','雲','ㄩㄣˊ','ㄩㄢˊ','ㄧㄢˊ','n'],['❓','問題','問','ㄨㄣˋ','ㄨㄥˋ','ㄨㄢˋ','n'],['♨️','溫水','溫','ㄨㄣ','ㄨㄥ','ㄨㄢ','n'],['🔤','認字','認','ㄖㄣˋ','ㄖㄢˋ','ㄖㄤˋ','n'],['➗','分開','分','ㄈㄣ','ㄈㄥ','ㄈㄢ','n'],['🐝','蜜蜂','蜂','ㄈㄥ','ㄈㄣ','ㄈㄤ','g'],['💪','能力','能','ㄋㄥˊ','ㄋㄣˊ','ㄋㄢˊ','g'],['⏳','等人','等','ㄉㄥˇ','ㄉㄢˇ','ㄉㄤˇ','g'],['👍','正好','正','ㄓㄥˋ','ㄓㄣˋ','ㄗㄥˋ','g'],['🎒','學生','生','ㄕㄥ','ㄕㄣ','ㄕㄤ','g'],['🏆','成功','成','ㄔㄥˊ','ㄔㄣˊ','ㄘㄥˊ','g'],['🪶','很輕','輕','ㄑㄧㄥ','ㄑㄧㄣ','ㄑㄧㄤ','g'],['🥦','青菜','青','ㄑㄧㄥ','ㄑㄧㄣ','ㄑㄧㄢ','g'],['🌅','明天','明','ㄇㄧㄥˊ','ㄇㄧㄣˊ','ㄇㄧㄢˊ','g'],['🤒','生病','病','ㄅㄧㄥˋ','ㄅㄧㄣˋ','ㄅㄧㄢˋ','g'],['🕊️','平安','平','ㄆㄧㄥˊ','ㄆㄧㄣˊ','ㄆㄧㄢˊ','g'],['🧊','冰塊','冰','ㄅㄧㄥ','ㄅㄧㄣ','ㄅㄧㄢ','g'],['😴','做夢','夢','ㄇㄥˋ','ㄇㄣˋ','ㄇㄢˋ','g'],['👂','聽話','聽','ㄊㄧㄥ','ㄊㄧㄣ','ㄊㄧㄢ','g'],['😊','心情','情','ㄑㄧㄥˊ','ㄑㄧㄣˊ','ㄑㄧㄢˊ','g'],['⛰️','山頂','頂','ㄉㄧㄥˇ','ㄉㄧㄣˇ','ㄉㄧㄢˇ','g'],['🌬️','吹風','吹','ㄔㄨㄟ','ㄘㄨㄟ','ㄓㄨㄟ','c'],['🚪','出去','出','ㄔㄨ','ㄘㄨ','ㄓㄨ','c'],['✍️','抄寫','抄','ㄔㄠ','ㄘㄠ','ㄓㄠ','c'],['🏊','水池','池','ㄔˊ','ㄘˊ','ㄓˊ','c'],['🕐','常常','常','ㄔㄤˊ','ㄘㄤˊ','ㄔㄢˊ','c'],['😠','吵架','吵','ㄔㄠˇ','ㄘㄠˇ','ㄓㄠˇ','c'],['🤢','臭臭','臭','ㄔㄡˋ','ㄘㄡˋ','ㄓㄡˋ','c'],['⛵','小船','船','ㄔㄨㄢˊ','ㄔㄨㄤˊ','ㄘㄨㄢˊ','c'],['🦸','超人','超','ㄔㄠ','ㄘㄠ','ㄕㄠ','c'],['📖','詞語','詞','ㄘˊ','ㄔˊ','ㄕˊ','z'],['🦔','刺蝟','刺','ㄘˋ','ㄔˋ','ㄙˋ','z'],['1️⃣','一次','次','ㄘˋ','ㄔˋ','ㄗˋ','z'],['🧽','擦桌','擦','ㄘㄚ','ㄔㄚ','ㄗㄚ','z'],['🏢','一層','層','ㄘㄥˊ','ㄔㄥˊ','ㄗㄥˊ','z'],['⏰','才能','才','ㄘㄞˊ','ㄔㄞˊ','ㄘㄠˊ','z'],['🌈','彩虹','彩','ㄘㄞˇ','ㄗㄞˇ','ㄘㄠˇ','z'],['⏪','從前','從','ㄘㄨㄥˊ','ㄔㄨㄥˊ','ㄘㄨㄣˊ','z'],['🧠','聰明','聰','ㄘㄨㄥ','ㄔㄨㄥ','ㄗㄨㄥ','z'],['🧶','粗細','粗','ㄘㄨ','ㄔㄨ','ㄗㄨ','z'],['📏','測量','測','ㄘㄜˋ','ㄔㄜˋ','ㄙㄜˋ','z'],['🏚️','倉庫','倉','ㄘㄤ','ㄔㄤ','ㄗㄤ','z'],['🏟️','操場','操','ㄘㄠ','ㄔㄠ','ㄗㄠ','z'],['💡','知道','知','ㄓ','ㄗ','ㄔ','cz'],['🏡','住家','住','ㄓㄨˋ','ㄗㄨˋ','ㄔㄨˋ','cz'],['📆','周末','周','ㄓㄡ','ㄗㄡ','ㄔㄡ','cz'],['📄','一張','張','ㄓㄤ','ㄗㄤ','ㄔㄤ','cz'],['🍳','煮飯','煮','ㄓㄨˇ','ㄗㄨˇ','ㄔㄨˇ','cz'],['📸','照相','照','ㄓㄠˋ','ㄗㄠˋ','ㄕㄠˋ','cz'],['🕷️','蜘蛛','蜘','ㄓ','ㄗ','ㄔ','cz'],['🏃','追趕','追','ㄓㄨㄟ','ㄗㄨㄟ','ㄔㄨㄟ','cz'],['🌱','種子','子','ㄗˇ','ㄓˇ','ㄘˇ','cz'],['🏘️','租房','租','ㄗㄨ','ㄓㄨ','ㄔㄨ','cz'],['🔢','總是','總','ㄗㄨㄥˇ','ㄓㄨㄥˇ','ㄗㄨㄣˇ','cz'],['📍','現在','在','ㄗㄞˋ','ㄓㄞˋ','ㄘㄞˋ','cz'],['🫙','滿了','滿','ㄇㄢˇ','ㄇㄤˇ','ㄇㄥˇ','a'],['🐌','慢走','慢','ㄇㄢˋ','ㄇㄤˋ','ㄇㄣˋ','a'],['👦','男生','男','ㄋㄢˊ','ㄋㄤˊ','ㄋㄥˊ','a'],['🏫','班級','班','ㄅㄢ','ㄅㄤ','ㄅㄣ','a'],['🧸','玩具','玩','ㄨㄢˊ','ㄨㄤˊ','ㄨㄣˊ','a'],['🌃','晚上','晚','ㄨㄢˇ','ㄨㄤˇ','ㄨㄣˇ','a'],['💬','談話','談','ㄊㄢˊ','ㄊㄤˊ','ㄊㄥˊ','a'],['3️⃣','三個','三','ㄙㄢ','ㄙㄤ','ㄙㄣ','a'],['🍭','好甜','甜','ㄊㄧㄢˊ','ㄊㄧㄥˊ','ㄊㄧㄠˊ','a'],['🌤️','天空','天','ㄊㄧㄢ','ㄊㄧㄥ','ㄊㄧㄠ','a'],['⬆️','前面','前','ㄑㄧㄢˊ','ㄑㄧㄤˊ','ㄑㄧㄥˊ','a'],['📍','這邊','邊','ㄅㄧㄢ','ㄅㄧㄥ','ㄅㄧㄠ','a'],['⭕','圓形','圓','ㄩㄢˊ','ㄩㄣˊ','ㄧㄢˊ','a'],['1️⃣','簡單','簡','ㄐㄧㄢˇ','ㄐㄧㄤˇ','ㄐㄧㄥˇ','a'],['🙏','感謝','感','ㄍㄢˇ','ㄍㄤˇ','ㄍㄥˇ','a'],['⬆️','上面','上','ㄕㄤˋ','ㄕㄢˋ','ㄕㄥˋ','h'],['🤔','想一想','想','ㄒㄧㄤˇ','ㄒㄧㄢˇ','ㄒㄧㄥˇ','h'],['👑','國王','王','ㄨㄤˊ','ㄨㄢˊ','ㄨㄣˊ','h'],['🟡','黃色','黃','ㄏㄨㄤˊ','ㄏㄨㄢˊ','ㄏㄨㄣˊ','h'],['🟦','方形','方','ㄈㄤ','ㄈㄢ','ㄈㄥ','h'],['🎒','放學','放','ㄈㄤˋ','ㄈㄢˋ','ㄈㄣˋ','h'],['🤝','幫忙','幫','ㄅㄤ','ㄅㄢ','ㄅㄥ','h'],['🗣️','講話','講','ㄐㄧㄤˇ','ㄐㄧㄢˇ','ㄐㄧㄥˇ','h'],['🟰','一樣','樣','ㄧㄤˋ','ㄧㄢˋ','ㄧㄣˋ','h'],['2️⃣','兩個','兩','ㄌㄧㄤˇ','ㄌㄧㄢˇ','ㄌㄧㄥˇ','h'],['🌬️','涼快','涼','ㄌㄧㄤˊ','ㄌㄧㄢˊ','ㄌㄧㄥˊ','h'],['💡','很亮','亮','ㄌㄧㄤˋ','ㄌㄧㄢˋ','ㄌㄧㄥˋ','h'],['⏱️','剛好','剛','ㄍㄤ','ㄍㄢ','ㄍㄥ','h']
 ];
-/* v1.18.1 注音圈叉：短句＋直式注音，判斷這句的注音全部都對（○）還是有錯（✕）。[圖, 短句, [[字,注音]…], [[錯的位置, 錯誤注音]…]] */
+/* v1.18.2 注音圈叉：短句＋直式注音，判斷這句的注音全部都對（○）還是有錯（✕）。[圖, 短句, [[字,注音]…], [[錯的位置, 錯誤注音]…]] */
 const ZO=[
 ["🐑", "小羊吃草。", [["小", "ㄒㄧㄠˇ"], ["羊", "ㄧㄤˊ"], ["吃", "ㄔ"], ["草", "ㄘㄠˇ"]], [[3, "ㄔㄠˇ"]]],
 ["🚗", "汽車很快。", [["汽", "ㄑㄧˋ"], ["車", "ㄔㄜ"], ["很", "ㄏㄣˇ"], ["快", "ㄎㄨㄞˋ"]], [[2, "ㄏㄥˇ"], [1, "ㄘㄜ"]]],
@@ -2644,11 +2648,12 @@ function renderZ(){
 }
 function drawZ(){
   const t=Z.tone;
-  const n=Z.fill.length,sl=Z.fill.map((s,i)=>`<button class="zs${s?' on':''}${Z.bad&&Z.bad[i]?' bad':''}" data-i="${i}" aria-label="第${i+1}格">${s||''}</button>`),tb=`<button class="zs tone${t?' on':''}${Z.toneBad?' bad':''}" data-tn="1" aria-label="聲調">${t?ZT[t][0]:'聲調'}</button>`;
-  $('#zslots').innerHTML='<div class="zcol">'+sl.map((h,i)=>`<div class="zrow">${h}${i===n-1?tb:''}</div>`).join('')+'</div>';
+  const n=Z.fill.length,sl=Z.fill.map((s,i)=>`<button class="zs${s?' on':''}${Z.bad&&Z.bad[i]?' bad':''}" data-i="${i}" aria-label="第${i+1}格">${s||''}</button>`),tb=`<button class="zs tone${t?' on':''}${Z.toneBad?' bad':''}" data-tn="1" aria-label="聲調">${t?zmk(t):'聲調'}</button>`;
+  $('#zslots').innerHTML=`<div class="zch">${Z.cur.ch}</div>`+'<div class="zcol">'+sl.map((h,i)=>`<div class="zrow">${h}${i===n-1?tb:''}</div>`).join('')+'</div>';
   $('#zpool').innerHTML=Z.pool.map(s=>`<button class="zc${Z.fill.includes(s)?' used':''}" data-s="${s}">${s}</button>`).join('');
-  $('#ztones').innerHTML=[1,2,3,4,5].map(k=>`<button class="zc tn${t===k?' used':''}" data-t="${k}"><span>${ZT[k][0]}</span><small>${ZT[k][1]}</small></button>`).join('');
+  $('#ztones').innerHTML=[1,2,3,4,5].map(k=>`<button class="zc tn${t===k?' used':''}" data-t="${k}"><span>${zmk(k)}</span><small>${ZT[k][1]}</small></button>`).join('');
 }
+const zmk=k=>k>=2&&k<=4?`<i class="tmk"><u class="t${k}"></u></i>`:ZT[k][0];
 const zZy=x=>x.tn===5?'˙'+x.sy.join(''):x.sy.join('')+ZTM[x.tn];
 $('#v-zy').addEventListener('click',e=>{
   if(!Z)return;const x=Z.cur;
