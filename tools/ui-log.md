@@ -1,4 +1,5 @@
 # UI 優化紀錄（新的在上面）
+- 2026-11-02 v1.20.5｜（Stacy 指定）nwPop 改成同 evPop：NW_SEEN 每次開啟每位小朋友跳一次、15 秒倒數自動關閉，顯示上架 7 天內的批次，移除 S.nwSeen 記錄。驗證：模擬 11/09 連續重開 3 次都跳、按鈕關閉後不重複、15 秒自動關閉、深色截圖正常、check.js ALL OK、無 pageerror。zizi.html 已同步到專案。
 - 2026-11-02 v1.20.4｜海盜船 B.pirateship 重做（原本像桌子）：A 字架、船身翹頭翹尾、帆與旗，以 piv 群組繞橫桿擺盪。island.js ?v=13。驗證：check.js ALL OK、縮圖截圖確認、無 pageerror。zizi.html 請同步 island.js。
 - 2026-11-02 v1.20.3｜修 v1.20.0 新品彈窗深色模式字看不清楚：.nwi 改固定色（底 #FAF5FF、字 #3B2A5A、副字 #5E4B80）、.nwc .muted 固定 #5E4B80（原因：.prc 底固定白，卻用了深色會變淺的 var(--ink)）。驗證：深色 390px 截圖＋對比 ≥4.5 檢查（新品彈窗、活動彈窗）通過；check.js ALL OK。zizi.html 請同步。
 - 2026-11-02 v1.20.2｜（Stacy 指定）動物不進商店、改走孵化：island.js 移除 dog/pig/turtle 商店品項，11/23 批次改 B.bumper/climber/planter；新增 B.p_pig/p_dog 與 CAT；index.html 新增 EMB()、petPig、petDog、EGGS.pig/dog、PETS.pig/dog(m:1)、EGGC/EGGN.embryo、petEgg 胚胎分支；petApple 依 P.egg==='embryo' 分哺乳類／非哺乳類池；選蛋說明、petPop、首頁氣泡文字支援「胚胎」。island.js ?v=12。驗證：check.js ALL OK；胚胎→小狗（狗胚胎→40 顆蘋果→p_dog 進 petDone）、紅蛋仍孵非哺乳類；階段圖與 3D 縮圖截圖確認；無 pageerror。zizi.html 請同步。

@@ -730,7 +730,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.20.4</p>
+    <p class="ver">說說島 v1.20.5</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -759,7 +759,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.20.4</p>
+    <p class="ver">說說島 v1.20.5</p>
   </section>
 
   <!-- 選擇題 -->
@@ -916,7 +916,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.20.4</p>
+    <p class="ver">說說島 v1.20.5</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -994,7 +994,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.20.4</p>
+    <p class="ver">說說島 v1.20.5</p>
   </section>
 </div>
 
@@ -3462,21 +3462,24 @@ function evPop(){
   o.querySelector('#evok').onclick=close;return true}
 /* ---------- 每週新品上架通知（NEWS 與 island.js 的 w 日期一致；新增一批就在這裡加一行）---------- */
 const NEWS=[{w:'2026-11-02',ids:['teacup','pirateship','bounce']},{w:'2026-11-09',ids:['seesaw','sandbox','picnic']},{w:'2026-11-16',ids:['maple','cactus','lotus']},{w:'2026-11-23',ids:['bumper','climber','planter']}];
-let NW_BUSY=0;
+let NW_SEEN='',NW_BUSY=0;
 function nwPop(){
-  if(NW_BUSY||$('#v-home').hidden||document.querySelector('.prpop'))return false;
-  const t=today(),seen=S.nwSeen||'',lim=fmt(new Date(Date.now()-14*864e5));
-  const fresh=NEWS.filter(n=>n.w<=t&&n.w>seen&&n.w>=lim);if(!fresh.length)return false;
+  if(NW_BUSY||NW_SEEN===DB.cur||$('#v-home').hidden||document.querySelector('.prpop'))return false;
+  const t=today(),lim=fmt(new Date(Date.now()-6*864e5));
+  const fresh=NEWS.filter(n=>n.w<=t&&n.w>=lim);if(!fresh.length)return false;
   NW_BUSY=1;
   loadIsl().then(()=>{
-    if(document.querySelector('.prpop')||$('#v-home').hidden){NW_BUSY=0;return}
-    const ids=fresh.flatMap(n=>n.ids).filter(id=>Island.BYID[id]);if(!ids.length){NW_BUSY=0;return}
+    NW_BUSY=0;
+    if(document.querySelector('.prpop')||$('#v-home').hidden)return;
+    const ids=fresh.flatMap(n=>n.ids).filter(id=>Island.BYID[id]);if(!ids.length)return;
+    NW_SEEN=DB.cur;
     const o=document.createElement('div');o.className='prpop';
-    o.innerHTML=`<div class="prc nwc"><b class="nwh">商店上新品！</b><div class="nwg">${ids.map(id=>`<div class="nwi">${th(id,96)}<span>${Island.BYID[id].n}</span><small>${Island.BYID[id].c}</small></div>`).join('')}</div><p class="muted" style="margin:0">到「我的島 → 商店」看看</p><button class="btn" id="nwok">我知道了</button></div>`;
+    o.innerHTML=`<div class="prc nwc"><b class="nwh">商店上新品！</b><div class="nwg">${ids.map(id=>`<div class="nwi">${th(id,96)}<span>${Island.BYID[id].n}</span><small>${Island.BYID[id].c}</small></div>`).join('')}</div><p class="muted" style="margin:0">到「我的島 → 商店」看看</p><button class="btn" id="nwok">我知道了</button><p class="muted" id="nwt" style="font-size:16px;margin:0">15 秒後自動關閉</p></div>`;
     document.body.appendChild(o);try{sfx.win()}catch(x){}
-    const close=()=>{S.nwSeen=fresh[fresh.length-1].w;save();NW_BUSY=0;if(o.isConnected){o.remove();homePops()}};
+    let left=15,tm=0;const close=()=>{clearInterval(tm);if(o.isConnected){o.remove();homePops()}};
+    tm=setInterval(()=>{left--;const e=o.querySelector('#nwt');if(e)e.textContent=left+' 秒後自動關閉';if(left<=0)close()},1000);
     o.querySelector('#nwok').onclick=close;
-  }).catch(()=>{NW_BUSY=0;S.nwSeen=fresh[fresh.length-1].w});
+  }).catch(()=>{NW_BUSY=0;NW_SEEN=DB.cur});
   return true}
 function renderEv(){
   const e=evCfg()||{name:'',from:today(),to:today(),cond:'zy_perfect',rw:'box',n:1,cap:0,on:false};
