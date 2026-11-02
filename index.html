@@ -730,7 +730,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.20.0</p>
+    <p class="ver">說說島 v1.20.1</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -759,7 +759,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.20.0</p>
+    <p class="ver">說說島 v1.20.1</p>
   </section>
 
   <!-- 選擇題 -->
@@ -916,7 +916,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.20.0</p>
+    <p class="ver">說說島 v1.20.1</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -994,7 +994,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.20.0</p>
+    <p class="ver">說說島 v1.20.1</p>
   </section>
 </div>
 
@@ -3400,6 +3400,7 @@ $('#prsend').onclick=()=>{
 };
 /* ---------- v1.19.0 期間限定活動：家長設定（存在這台裝置，所有小朋友共用）；獎勵只能是盲盒或島幣，不能是星星（星星會影響好友團排行公平） ---------- */
 const EV_COND={zy_perfect:['注音三關，一輪第一次全對','一輪第一次就全對'],
+ zy_each:['注音每關各算，一輪第一次全對','一輪第一次就全對（注音每一關各自計算上限）'],
  any_perfect:['任何關卡，一輪第一次全對','一輪第一次就全對'],
  any_round:['任何關卡，完成一輪','完成一輪'],
  daily_all:['完成當天全部今日任務','當天全部完成（每天一次）']};
@@ -3409,31 +3410,32 @@ function evActive(){const e=evCfg();if(!e||!e.on||!e.from||!e.to)return null;con
 const evMD=d=>+d.slice(5,7)+'/'+ +d.slice(8,10);
 function evAward(msgs,{cat,acc,td,bonusNow}){
   const e=evActive();if(!e)return;
-  const ok=e.cond==='zy_perfect'?S.lv===1&&(cat==='z'||cat==='zb'||cat==='zo')&&acc>=1
+  const zy=cat==='z'||cat==='zb'||cat==='zo',each=e.cond==='zy_each';
+  const ok=e.cond==='zy_perfect'||each?S.lv===1&&zy&&acc>=1
     :e.cond==='any_perfect'?acc>=1&&cat!=='u'
     :e.cond==='any_round'?cat!=='u'
     :e.cond==='daily_all'?bonusNow:false;
   if(!ok)return;
-  S.evx=S.evx||{};const key=td;const n=S.evx[key]||0;
-  if(e.cap>0&&n>=e.cap){msgs.push('活動今天的獎勵已經領滿了，明天再來！');return}
-  S.evx[key]=n+1;Object.keys(S.evx).sort().slice(0,-30).forEach(k=>delete S.evx[k]);
+  S.evx=S.evx||{};const key=each?td+':'+cat:td;const n=S.evx[key]||0;
+  if(e.cap>0&&n>=e.cap){msgs.push(each?'這一關今天的活動獎勵領滿了，明天再來，或去玩別關！':'活動今天的獎勵已經領滿了，明天再來！');return}
+  S.evx[key]=n+1;Object.keys(S.evx).sort().slice(0,-90).forEach(k=>delete S.evx[k]);
   const amt=Math.max(1,Math.min(10,e.n|0||1));
   if(e.rw==='coin'){coin();S.coin+=amt}else{const I=ISL();I.free=(I.free||0)+amt}
-  msgs.push(`活動「${e.name||'限定活動'}」達成！送你 ${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'} 🎁（今天第 ${n+1} 次）`);
+  msgs.push(`活動「${e.name||'限定活動'}」達成！送你 ${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'} 🎁（${each?CATS[cat].n+'　':''}今天第 ${n+1} 次）`);
 }
 let EV_SEEN='';
-const evLevels=e=>e.cond==='zy_perfect'?['z','zb','zo'].filter(k=>CATS[k]):dailyCats();
+const evLevels=e=>e.cond==='zy_perfect'||e.cond==='zy_each'?['z','zb','zo'].filter(k=>CATS[k]):dailyCats();
 function evPop(){
   const e=evActive();if(!e||EV_SEEN===DB.cur||$('#v-home').hidden||document.querySelector('.prpop'))return false;
   EV_SEEN=DB.cur;const amt=Math.max(1,Math.min(10,e.n|0||1));
   const lv=evLevels(e).map(k=>`<span class="evlv1">${CATS[k].n}</span>`).join('');
-  const note=e.cond==='zy_perfect'&&S.lv!==1?'<div class="evnote">只有低年級適用</div>':'';
+  const note=(e.cond==='zy_perfect'||e.cond==='zy_each')&&S.lv!==1?'<div class="evnote">只有低年級適用</div>':'';
   const row=(t,v)=>`<div class="evr"><em>${t}</em><div>${v}</div></div>`;
   const o=document.createElement('div');o.className='prpop';
   o.innerHTML=`<div class="prc evc"><div class="pre">${ICO.gift||ICO.coin}</div>
     <b class="evh">限時活動</b>
     <div class="evnm">${eh(e.name||'限定活動')}</div>
-    <div class="evl">${row('期間',`${evMD(e.from)} ～ ${evMD(e.to)}`)}${row('關卡',`<div class="evlvs">${lv}</div>${note}`)}${row('條件',EV_COND[e.cond][1])}${row('獎勵',`每次送 <b>${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'}</b>`)}${row('每日上限',e.cap>0?`最多 ${e.cap} 次`:'不限次數')}</div>
+    <div class="evl">${row('期間',`${evMD(e.from)} ～ ${evMD(e.to)}`)}${row('關卡',`<div class="evlvs">${lv}</div>${note}`)}${row('條件',EV_COND[e.cond][1])}${row('獎勵',`每次送 <b>${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'}</b>`)}${row('每日上限',e.cap>0?`${e.cond==='zy_each'?'每一關':''}最多 ${e.cap} 次`:'不限次數')}</div>
     <button class="btn" id="evok">我知道了</button><p class="muted" id="evt" style="font-size:16px;margin:0">15 秒後自動關閉</p></div>`;
   document.body.appendChild(o);try{sfx.win()}catch(x){}
   let left=15,tm=0;const close=()=>{clearInterval(tm);if(o.isConnected){o.remove();homePops()}};
@@ -3463,7 +3465,8 @@ function renderEv(){
   $('#evcond').innerHTML=Object.keys(EV_COND).map(k=>`<option value="${k}" ${k===e.cond?'selected':''}>${EV_COND[k][0]}</option>`).join('');
   $('#evrw').innerHTML=Object.keys(EV_RW).map(k=>`<option value="${k}" ${k===e.rw?'selected':''}>${EV_RW[k]}</option>`).join('');
   $('#evn').innerHTML=[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}" ${n===(e.n||1)?'selected':''}>每次送 ${n}</option>`).join('');
-  $('#evcap').innerHTML=[[0,'每天不限次數'],[1,'每天最多 1 次'],[3,'每天最多 3 次'],[5,'每天最多 5 次'],[10,'每天最多 10 次']].map(a=>`<option value="${a[0]}" ${a[0]===(e.cap||0)?'selected':''}>${a[1]}</option>`).join('');
+  const capFill=(cond,cur)=>{const pre=cond==='zy_each'?'每關每天最多 ':'每天最多 ';$('#evcap').innerHTML=[[0,cond==='zy_each'?'每關不限次數':'每天不限次數'],[1,pre+'1 次'],[3,pre+'3 次'],[5,pre+'5 次'],[10,pre+'10 次']].map(a=>`<option value="${a[0]}" ${a[0]===(cur||0)?'selected':''}>${a[1]}</option>`).join('')};
+  capFill(e.cond,e.cap);$('#evcond').onchange=()=>capFill($('#evcond').value,+$('#evcap').value||0);
   const a=evActive();
   $('#evst').textContent=!evCfg()?'目前沒有設定活動。':a?`進行中：「${a.name||'限定活動'}」${evMD(a.from)}～${evMD(a.to)}`:e.on?`已設定「${e.name||'限定活動'}」${e.from?evMD(e.from):''}～${e.to?evMD(e.to):''}，還沒開始或已結束。`:'活動已停用。';
 }
