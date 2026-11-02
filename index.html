@@ -706,7 +706,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.18.8</p>
+    <p class="ver">說說島 v1.18.9</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -735,7 +735,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.18.8</p>
+    <p class="ver">說說島 v1.18.9</p>
   </section>
 
   <!-- 選擇題 -->
@@ -892,7 +892,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.18.8</p>
+    <p class="ver">說說島 v1.18.9</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -961,7 +961,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.18.8</p>
+    <p class="ver">說說島 v1.18.9</p>
   </section>
 </div>
 
@@ -2893,6 +2893,8 @@ function finish({title,acc,line,cat,lid}){
   const dc=dailyCats();
   if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星，還送你 1 個免費盲盒 🎉');ISL().free=(ISL().free||0)+1;S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
   if(S.wkClaim!==wkKey()&&wkDone()>=WK_NEED){S.wkClaim=wkKey();S.stars+=WK_STARS;msgs.push('本週挑戰完成！寶箱打開 +'+WK_STARS+' 顆星 🎁')}
+  /* v1.18.9 低年級注音關（注音拼音／注音辨辨看／注音圈叉）：每一輪「第一次就全對」送 1 個免費普通盲盒，每天不設上限 */
+  if(S.lv===1&&(cat==='z'||cat==='zb'||cat==='zo')&&acc>=1){const I=ISL();I.free=(I.free||0)+1;S.zbx=S.zbx||{};S.zbx[td]=(S.zbx[td]||0)+1;Object.keys(S.zbx).sort().slice(0,-30).forEach(k=>delete S.zbx[k]);msgs.push('這一輪全部第一次就答對！送你 1 個免費盲盒 🎁（今天已送 '+S.zbx[td]+' 個）')}
   const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+nb.join('、'));unlChk().forEach(u=>msgs.push('解鎖 '+u.n+' '+u.e+'！已放進背包'))
   addWk(S.stars-s0);save();GRP_LAST=0;grpPush();
   $('#starN').textContent=S.stars;
