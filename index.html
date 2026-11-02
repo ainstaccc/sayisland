@@ -692,6 +692,11 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 #v-parent .uc{box-shadow:0 3px 0 var(--line)}
 #v-parent .tbl tr:nth-child(even) td{background:color-mix(in srgb,var(--line) 28%,transparent)}
 #v-parent .tbl th{border-bottom:3px solid var(--line)}
+/* v1.20.0 新品彈窗 */
+.nwc{gap:12px;max-height:88vh;overflow:auto}.nwh{font:900 28px/1.2 var(--f-disp);color:#E0457B;white-space:nowrap}
+.nwg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+.nwi{display:flex;flex-direction:column;align-items:center;gap:2px;background:var(--bg);border:3px solid var(--line);border-radius:18px;padding:8px 4px}
+.nwi .th{width:72px;height:72px}.nwi span{font:800 18px/1.2 var(--f-disp);white-space:nowrap}.nwi small{font-size:16px;color:var(--ink2);white-space:nowrap}
 @media (max-width:360px){.lb .ch:before{display:none}.lb .ch .vbtn{margin-right:auto}}
 @media (max-width:340px){.brand{font-size:26px}.brand .bl{-webkit-text-stroke-width:5px}.tools{gap:3px}.tools .ibtn{width:36px;height:36px}}
 @media (max-width:360px){.islTop .pill{font-size:20px;padding:6px 12px}.sheet{padding-left:12px;padding-right:12px}}
@@ -725,7 +730,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.19.3</p>
+    <p class="ver">說說島 v1.20.0</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -754,7 +759,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.19.3</p>
+    <p class="ver">說說島 v1.20.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -911,7 +916,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.19.3</p>
+    <p class="ver">說說島 v1.20.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -989,7 +994,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.19.3</p>
+    <p class="ver">說說島 v1.20.0</p>
   </section>
 </div>
 
@@ -2029,7 +2034,7 @@ function petApple(){const P=S.pet;if(!P||P.done)return;const b=petStage(P.ap);P.
 const petNm=(sp,st,sex)=>sp==='chick'&&st>=4?(sex==='f'?'母雞':'公雞'):PETS[sp].stg[Math.max(1,st)-1];
 function homePops(){if(document.querySelector('.prpop')||$('#v-home').hidden)return;
   if(!S.pet){eggPick();return}
-  if(petPop())return;if(prPop())return;evPop()}
+  if(petPop())return;if(prPop())return;if(evPop())return;nwPop()}
 function eggPick(){if(document.querySelector('.prpop'))return;const o=document.createElement('div');o.className='prpop';
   o.innerHTML=`<div class="prc"><b>選一顆蛋</b><p>蛋裡是什麼動物？孵出來才知道！</p><div class="eggs">${EGGK.map(k=>`<button class="egb" data-egg="${k}">${petEgg(k,0)}<small>${EGGN[k]}</small></button>`).join('')}</div>${S.petMig?'<p class="muted" style="font-size:18px">之前的夥伴已經放進背包，可以放到島上。</p>':''}</div>`;
   document.body.appendChild(o);
@@ -3106,6 +3111,7 @@ const coin=()=>{if(S.coin==null)S.coin=S.stars+10;return S.coin};
 const RN=['普通','稀有','超稀有','傳說'],RC=['#B8C6D8','#7CC4FF','#C79BFF','#FFC83D'];
 const rarOf=id=>{const d=Island.BYID[id];return d.r!==undefined?d.r:(d.p<=5?0:d.p<=12?1:d.p<=25?2:3)};
 const buyP=d=>Math.ceil(d.p*1.6);
+const isRel=c=>!c.w||c.w<=today();
 const th=(id,px,cls)=>`<img class="th ${cls||''}" src="${Island.thumb(id,px||128)}" alt="" draggable="false">`;
 const cn=n=>`<span class="cn">${ic('coin')}${n}</span>`;
 const ISLS={mode:'idle',t:null,idx:-1,pos:null,loaded:null,on:false,cat:'自然',tm:'auto',visit:null,at:null};
@@ -3116,7 +3122,7 @@ function loadIsl(){
   if(window.Island&&window.Island.ready)return Promise.resolve();
   if(ISLS.loaded)return ISLS.loaded;
   const ld=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=()=>no(new Error(src));document.head.appendChild(s)});
-  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=9')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
+  ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=10')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
   ISLS.loaded.catch(()=>{ISLS.loaded=null});return ISLS.loaded;
 }
 const islSize=()=>{const n=learnedAll().length;return n>=100?12:n>=50?10:n>=20?8:6};
@@ -3171,19 +3177,19 @@ const card=(cls,id,n,sub,attr,dis)=>`<button class="icard ${cls||''}" ${attr} ${
 const shHead=(i,t)=>`<div class="sh-h"><h3>${ic(i)}<span>${t}</span></h3><button class="ibtn" data-ia="close" aria-label="關閉">✕</button></div>`;
 function sheetShop(fac){
   const cats=fac?['商店','公共']:['自然','動物','生活','特別'];
-  const list=Island.CAT.filter(c=>c.c===ISLS.cat);
+  const list=Island.CAT.filter(c=>c.c===ISLS.cat&&isRel(c));
   $('#islSheet').hidden=false;
   $('#islSheet').innerHTML=shHead(fac?'island':'shop',fac?'設施':'商店')+`<div class="tabs">${cats.map(c=>`<button class="tabb" aria-pressed="${c===ISLS.cat}" data-tab="${c}">${c}</button>`).join('')}</div>
   <div class="igrid">${list.map(d=>card('',d.id,d.n,cn(buyP(d))+(d.s===2?'<em class="big">大</em>':''),`data-buy="${d.id}"`,coin()<buyP(d))).join('')}</div>
   <p class="muted">你有 ${cn(coin())}　盲盒比較便宜，還有機會抽到稀有的，人物只能用盲盒抽。</p>`;
 }
 function sheetBag(){
-  const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0),own=c=>I.seen[c.id]||allItems().some(r=>r[0]===c.id),seen=Island.CAT.filter(own).length;
+  const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0),own=c=>I.seen[c.id]||allItems().some(r=>r[0]===c.id),DXL=Island.CAT.filter(c=>isRel(c)||own(c)),seen=DXL.filter(own).length;
   $('#islSheet').hidden=false;
   $('#islSheet').innerHTML=shHead('bag','背包')+
   (have.length?`<div class="igrid">${have.map(d=>card('',d.id,d.n,'× '+I.inv[d.id],`data-place="${d.id}"`)).join('')}</div>`:'<p class="muted" style="font-size:20px">背包是空的。去商店買，或玩盲盒！</p>')+
-  `<h3 class="dexh">圖鑑　${seen} / ${Island.CAT.length}</h3>
-  <div class="dex">${Island.CAT.map(d=>`<span class="dx" style="border-color:${own(d)?RC[rarOf(d.id)]:'var(--line)'}" title="${own(d)?d.n:'？'}">${own(d)?th(d.id,72):th(d.id,72,'off')}</span>`).join('')}</div>`;
+  `<h3 class="dexh">圖鑑　${seen} / ${DXL.length}</h3>
+  <div class="dex">${DXL.map(d=>`<span class="dx" style="border-color:${own(d)?RC[rarOf(d.id)]:'var(--line)'}" title="${own(d)?d.n:'？'}">${own(d)?th(d.id,72):th(d.id,72,'off')}</span>`).join('')}</div>`;
 }
 function sheetBox(){
   const I=ISL();
@@ -3200,7 +3206,7 @@ function drawBox(kind){
   else{if(coin()<b.cost){toast('島幣不夠，先去玩幾關');return}S.coin-=b.cost}
   const chr=b.pool==='char',pk=chr?'pityC':'pity',lim=chr?8:10;
   I[pk]=(I[pk]||0)+1;let r=roll(b.w);if(I[pk]>=lim&&r<2)r=2;if(r>=2)I[pk]=0;
-  let pool=Island.CAT.filter(c=>!c.np&&!c.nb&&!!c.ch===chr&&rarOf(c.id)===r);if(!pool.length)pool=Island.CAT.filter(c=>!c.np&&!c.nb&&!!c.ch===chr);
+  let pool=Island.CAT.filter(c=>isRel(c)&&!c.np&&!c.nb&&!!c.ch===chr&&rarOf(c.id)===r);if(!pool.length)pool=Island.CAT.filter(c=>isRel(c)&&!c.np&&!c.nb&&!!c.ch===chr);
   const it=pool[Math.floor(Math.random()*pool.length)];
   const had=!!I.seen[it.id]||allItems().some(x=>x[0]===it.id)||(I.inv[it.id]>0);
   let dup=false;
@@ -3433,6 +3439,24 @@ function evPop(){
   let left=15,tm=0;const close=()=>{clearInterval(tm);if(o.isConnected){o.remove();homePops()}};
   tm=setInterval(()=>{left--;const t=o.querySelector('#evt');if(t)t.textContent=left+' 秒後自動關閉';if(left<=0)close()},1000);
   o.querySelector('#evok').onclick=close;return true}
+/* ---------- 每週新品上架通知（NEWS 與 island.js 的 w 日期一致；新增一批就在這裡加一行）---------- */
+const NEWS=[{w:'2026-11-02',ids:['teacup','pirateship','bounce']},{w:'2026-11-09',ids:['seesaw','sandbox','picnic']},{w:'2026-11-16',ids:['maple','cactus','lotus']},{w:'2026-11-23',ids:['dog','pig','turtle']}];
+let NW_BUSY=0;
+function nwPop(){
+  if(NW_BUSY||$('#v-home').hidden||document.querySelector('.prpop'))return false;
+  const t=today(),seen=S.nwSeen||'',lim=fmt(new Date(Date.now()-14*864e5));
+  const fresh=NEWS.filter(n=>n.w<=t&&n.w>seen&&n.w>=lim);if(!fresh.length)return false;
+  NW_BUSY=1;
+  loadIsl().then(()=>{
+    if(document.querySelector('.prpop')||$('#v-home').hidden){NW_BUSY=0;return}
+    const ids=fresh.flatMap(n=>n.ids).filter(id=>Island.BYID[id]);if(!ids.length){NW_BUSY=0;return}
+    const o=document.createElement('div');o.className='prpop';
+    o.innerHTML=`<div class="prc nwc"><b class="nwh">商店上新品！</b><div class="nwg">${ids.map(id=>`<div class="nwi">${th(id,96)}<span>${Island.BYID[id].n}</span><small>${Island.BYID[id].c}</small></div>`).join('')}</div><p class="muted" style="margin:0">到「我的島 → 商店」看看</p><button class="btn" id="nwok">我知道了</button></div>`;
+    document.body.appendChild(o);try{sfx.win()}catch(x){}
+    const close=()=>{S.nwSeen=fresh[fresh.length-1].w;save();NW_BUSY=0;if(o.isConnected){o.remove();homePops()}};
+    o.querySelector('#nwok').onclick=close;
+  }).catch(()=>{NW_BUSY=0;S.nwSeen=fresh[fresh.length-1].w});
+  return true}
 function renderEv(){
   const e=evCfg()||{name:'',from:today(),to:today(),cond:'zy_perfect',rw:'box',n:1,cap:0,on:false};
   $('#evname').value=e.name||'';$('#evfrom').value=e.from||'';$('#evto').value=e.to||'';
