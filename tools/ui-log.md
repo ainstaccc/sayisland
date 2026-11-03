@@ -1,4 +1,5 @@
 # UI 優化紀錄（新的在上面）
+- 2026-11-03 v1.20.6｜主題 6 深色模式與小螢幕：index.html `</style>` 前新增「v1.20.6」CSS：`.seg button{min-width:0}`、`@media(max-width:340px){.seg.s3 間距／padding 縮小}` 修選人頁年級列 320px 溢出 2px；`.igrid{repeat(3,minmax(0,1fr))}`、`.icard{min-width:0}`、`.icard b{nowrap}`、≤340px gap 6px 修商店／設施格 320px 右側被切 6px。驗證：check.js ALL OK；真實 index.html（未注入 hidden 規則時首頁僅 v-home）；320/390 × 淺/深：選人、首頁、好友團、家長區、詞卡冊、島、商店、盲盒、背包、設施 scrollWidth 溢出皆 0、無 pageerror；商店截圖確認。zizi.html 請同步。
 - 2026-11-02 v1.20.5｜（Stacy 指定）nwPop 改成同 evPop：NW_SEEN 每次開啟每位小朋友跳一次、15 秒倒數自動關閉，顯示上架 7 天內的批次，移除 S.nwSeen 記錄。驗證：模擬 11/09 連續重開 3 次都跳、按鈕關閉後不重複、15 秒自動關閉、深色截圖正常、check.js ALL OK、無 pageerror。zizi.html 已同步到專案。
 - 2026-11-02 v1.20.4｜海盜船 B.pirateship 重做（原本像桌子）：A 字架、船身翹頭翹尾、帆與旗，以 piv 群組繞橫桿擺盪。island.js ?v=13。驗證：check.js ALL OK、縮圖截圖確認、無 pageerror。zizi.html 請同步 island.js。
 - 2026-11-02 v1.20.3｜修 v1.20.0 新品彈窗深色模式字看不清楚：.nwi 改固定色（底 #FAF5FF、字 #3B2A5A、副字 #5E4B80）、.nwc .muted 固定 #5E4B80（原因：.prc 底固定白，卻用了深色會變淺的 var(--ink)）。驗證：深色 390px 截圖＋對比 ≥4.5 檢查（新品彈窗、活動彈窗）通過；check.js ALL OK。zizi.html 請同步。
