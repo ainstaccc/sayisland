@@ -164,7 +164,7 @@ B.p_eagle=(x,z)=>{const g=new T.Group(),bd=new T.Group(),w1=new T.Group(),w2=new
  w1.add(sph(.2,'#7C5233',-.2,0,0,1.5,.2,.8));w1.add(sph(.08,'#4A2F1E',-.4,0,0,1.3,.1,.8));w1.position.set(-.1,.05,0);
  w2.add(sph(.2,'#7C5233',.2,0,0,1.5,.2,.8));w2.add(sph(.08,'#4A2F1E',.4,0,0,1.3,.1,.8));w2.position.set(.1,.05,0);bd.add(w1,w2);
  bd.scale.setScalar(1.3);bd.position.set(0,.5,0);g.add(bd);const sh=shade(0,0,.18);g.add(sh);g.rotation.y=hash(x,z)*6;const p=hash(x,z,3)*6;
- g.userData.anim=t=>{const a=t*.9+p,r=.55;bd.position.set(Math.cos(a)*r,.95+Math.sin(t*1.7+p)*.08,Math.sin(a)*r);bd.rotation.y=-a+Math.PI;bd.rotation.z=.12;const f=Math.sin(t*7+p)*.55;w1.rotation.z=f;w2.rotation.z=-f;sh.position.set(bd.position.x,.012,bd.position.z);sh.scale.setScalar(.8+Math.sin(t*1.7+p)*.1)};return g};
+ g.userData.anim=t=>{const a=t*.9+p,r=.55;bd.position.set(Math.cos(a)*r,.95+Math.sin(t*1.7+p)*.08,Math.sin(a)*r);bd.rotation.y=-a;bd.rotation.z=.12;const f=Math.sin(t*7+p)*.55;w1.rotation.z=f;w2.rotation.z=-f;sh.position.set(bd.position.x,.012,bd.position.z);sh.scale.setScalar(.8+Math.sin(t*1.7+p)*.1)};return g};
 B.p_frog=(x,z)=>{const g=new T.Group(),fr=new T.Group();
  g.add(cyl(.34,.34,.03,'#5FB86B',0,.02,0,18),cyl(.3,.3,.035,'#7AD08A',0,.025,0,18),box(.02,.04,.34,'#9CCB7E',.17,.03,.0),sph(.06,'#FFB7D0',-.18,.06,.14,1,.5,1),sph(.035,'#FFD84D',-.18,.09,.14));
  fr.add(sph(.2,'#7DBE63',0,.2,0,1.1,.85,1),sph(.14,'#E9F5C9',0,.15,.1,1,.8,.7),sph(.09,'#7DBE63',-.12,.38,.08),sph(.09,'#7DBE63',.12,.38,.08),sph(.05,'#FFFFFF',-.12,.4,.14),sph(.05,'#FFFFFF',.12,.4,.14),sph(.028,'#2B2B3A',-.12,.4,.18),sph(.028,'#2B2B3A',.12,.4,.18),
@@ -285,7 +285,7 @@ function roam(g,o){o=o||{};const u=g.userData,SP=o.sp||.4,k=o.gait||'walk',bb=ne
   else if(k==='trot')g.position.y=mv?Math.abs(Math.sin(w))*.03:Math.sin(t*2+st.ph)*.006;
   const pa=u.parts;if(pa){const sw=mv?Math.sin(w):0;pa.legL.rotation.x=sw*.55;pa.legR.rotation.x=-sw*.55;pa.armL.rotation.x=-sw*.45;pa.armR.rotation.x=sw*.45;g.position.y=mv?Math.abs(sw)*.015:0}
   if(o.extra)o.extra(t,mv)}}
-['p_rooster','p_hen','p_trex'].forEach(id=>{const b0=B[id];B[id]=(x,z)=>{const g=b0(x,z);const a=g.userData.anim;roam(g,{r:.55,sp:.2,gait:'trot',extra:a});return g}});
+['p_rooster','p_hen','p_trex','p_dog'].forEach(id=>{const b0=B[id];B[id]=(x,z)=>{const g=b0(x,z);const a=g.userData.anim;roam(g,{r:.55,sp:id==='p_dog'?.3:.2,gait:'trot',extra:a});return g}});
 CAT.push(
  {id:'fac_cafe',n:'咖啡廳',c:'商店',p:14,e:'☕',nb:1},{id:'fac_flower',n:'花店',c:'商店',p:12,e:'💐',nb:1},{id:'fac_book',n:'書店',c:'商店',p:14,e:'📚',nb:1},{id:'fac_icecream',n:'冰淇淋攤',c:'商店',p:10,e:'🍦',nb:1},{id:'fac_restaurant',n:'餐廳',c:'商店',p:18,e:'🍜',nb:1},{id:'fac_market',n:'市集攤位',c:'商店',p:12,e:'🍎',nb:1},{id:'fac_conv',n:'便利商店',c:'商店',p:16,e:'🏪',nb:1},{id:'fac_post',n:'郵局',c:'公共',p:16,e:'📮',nb:1},
  {id:'fac_school',n:'學校',c:'公共',p:50,e:'🏫',s:2,nb:1},{id:'fac_library',n:'圖書館',c:'公共',p:48,e:'📖',s:2,nb:1},{id:'fac_hospital',n:'醫院',c:'公共',p:55,e:'🏥',s:2,nb:1},{id:'fac_fire',n:'消防局',c:'公共',p:52,e:'🚒',s:2,nb:1});
