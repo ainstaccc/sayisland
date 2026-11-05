@@ -40,6 +40,9 @@
 9. `git add -A && git commit && git push origin main`。commit 訊息：`nightly: 新增題目 YYYY-MM-DD`，結尾加上排程給的 Co-Authored-By 與 Claude-Session 行。
 10. 最後回報：各關卡新增數、有無被擋掉的題、push 是否成功。
 
+## 附註：v1.21.0 新增的三個關卡（目前不在每晚擴充清單內）
+成語 CY2/CY3、換句話說 PW2/PW3、造句 SJ2/SJ3 已有初始題庫（各 30 題），格式見 README 第 8 節，驗證規則在 `tools/lib-new.js`（`add.js`、`check.js` 都支援）。要納入每晚擴充，請先由使用者明確指示再改上面「今天要擴充的關卡」清單；不要自行加入。
+
 ## 絕對不要做
 - 不要改 `index.html` 的程式或既有題庫（只能改 `bank.js`、`tools/nightly-log.md`）。
 - 不要刪除或重排既有題目。

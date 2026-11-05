@@ -6,12 +6,15 @@ const html=fs.readFileSync('index.html','utf8');
 const slice=(a,b)=>{const i=html.indexOf(a),j=html.indexOf(b,i);return html.slice(i,j)};
 const base=new Function(slice('const Q1=[','const mk=(')+';return {Q1,Q2,V1,V2,A1,A2,M1,M2,E1,E2,Q3,V3,A3,M3,E3};')();
 Object.assign(base,new Function(slice('const H1=[','const mkH=')+';return {H1,H2,H3,R1,R2,R3,Y1,Y2,Y3,ZB};')());
+Object.assign(base,new Function(slice('/*NEWLV-START*/','/*NEWLV-END*/')+';return {CY2,CY3,PW2,PW3,SJ2,SJ3};')());
+const {isNew,keyOfNew,checkNew}=require('./lib-new.js');
 const bankSrc=fs.readFileSync('bank.js','utf8');
 const bank=JSON.parse(bankSrc.replace(/^window\.EXTRA=/,'').replace(/;\s*$/,''));
 const inp=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
 const S=x=>typeof x==='string'&&x.trim().length>0;
-const keyOf=(k,r)=>k==='ZB'?r[1]+r[2]:k[0]==='M'?r[1]:k[0]==='E'?r.scene:k[0]==='H'?r[1]:r[1];
+const keyOf=(k,r)=>isNew(k)?keyOfNew(k,r):k==='ZB'?r[1]+r[2]:k[0]==='M'?r[1]:k[0]==='E'?r.scene:k[0]==='H'?r[1]:r[1];
 function check(k,r){
+  if(isNew(k))return checkNew(k,r);
   const c=k[0];
   if('QVARY'.includes(c)&&k!=='ZB'){
     if(!Array.isArray(r)||r.length!==6||!r.every(S))return'欄位數不對（要 6 個字串）';
@@ -41,7 +44,7 @@ function check(k,r){
 }
 const added={},rej=[];
 for(const k of Object.keys(inp)){
-  if(!/^([QVAMEHRY][123]|ZB)$/.test(k)){rej.push(k+' key 不合法');continue}
+  if(!/^([QVAMEHRY][123]|ZB|(CY|PW|SJ)[23])$/.test(k)){rej.push(k+' key 不合法');continue}
   const seen=new Set([...(base[k]||[]),...(bank[k]||[])].map(r=>keyOf(k,r)));
   for(const r of inp[k]){
     const e=check(k,r);if(e){rej.push(k+' '+JSON.stringify(r).slice(0,40)+'… '+e);continue}
