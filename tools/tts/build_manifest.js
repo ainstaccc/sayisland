@@ -28,7 +28,11 @@ const ENUM = () => {
         else if (q.k === 'r') add(k, '把這個句子改寫：' + q.orig + '。' + q.ins);
         else if (q.word) add(k, '請用「' + q.word.replace(/…/g, '，') + '」造一個句子。' + q.hint);
       }
-      else if (k === 'u' || k === 'h') { /* 動態，不預錄 */ }
+      else if (k === 'h') { /* 好好說話：情境、「誰可以怎麼說」、第幾種、每個選項各自預錄（對應 index.html 的 hParts） */
+        add(k, q.t); add(k, (q.who === '我' ? '我' : q.who) + '可以怎麼說比較好？'); add(k, '第一種。'); add(k, '第二種。'); add(k, '第三種。');
+        q.opts.forEach(o => add(k, o));
+      }
+      else if (k === 'u') { /* 動態，不預錄 */ }
       else { add(k, I.qSpoken(q)); add(k, I.qFull(q)); }
     }
   }

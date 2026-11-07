@@ -755,12 +755,12 @@ body.ingame .cap,.zc small,.chip em,.zq small{font-size:16px}
 .bdh{display:flex;align-items:center;justify-content:space-between;margin-top:14px}
 .bdh b{font:800 18px/1.2 var(--f-disp)}
 .bdh em{font:800 16px/1 var(--f-disp);font-style:normal;color:var(--ink2);background:var(--bg);border-radius:999px;padding:4px 12px;white-space:nowrap}
-/* v1.22.5 頂部列在窄螢幕不被擠出（320～430px）：標題與按鈕依寬度縮小 */
+/* v1.22.6 頂部列在窄螢幕不被擠出（320～430px）：標題與按鈕依寬度縮小 */
 .top{min-width:0}.brand{flex:none}
 @media (max-width:430px){.brand{font-size:34px;-webkit-text-stroke-width:6px}.tools .ibtn{width:40px;height:40px}.tools .pill{padding:6px 8px}}
 @media (max-width:360px){.brand{font-size:28px}.tools{gap:4px}.tools .ibtn{width:38px;height:38px}.tools .pill{font-size:16px;padding:6px 7px;gap:3px}}
-/* v1.22.5 窄螢幕：捏臉格改3欄、日曆小字不外溢 */@media (max-width:360px){.mgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.dc i{letter-spacing:-1px;white-space:nowrap}.drow{gap:2px}.dc{padding:6px 0}}
-/* v1.22.5 對比與字級補強：問號空格、提示條、紅點徽章、15px 小字 */
+/* v1.22.6 窄螢幕：捏臉格改3欄、日曆小字不外溢 */@media (max-width:360px){.mgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.dc i{letter-spacing:-1px;white-space:nowrap}.drow{gap:2px}.dc{padding:6px 0}}
+/* v1.22.6 對比與字級補強：問號空格、提示條、紅點徽章、15px 小字 */
 :root{--pri-t:#C93673;--ok-t:#0E7A55}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--pri-t:var(--pri);--ok-t:var(--ok)}}:root[data-theme="dark"]{--pri-t:var(--pri);--ok-t:var(--ok)}
 .fbk,#blank,.chip.pend b{color:var(--pri-t)}
@@ -796,7 +796,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.22.5</p>
+    <p class="ver">說說島 v1.22.6</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -825,7 +825,7 @@ small,.gls{font-size:max(1em,16px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.22.5</p>
+    <p class="ver">說說島 v1.22.6</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1010,7 +1010,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.22.5</p>
+    <p class="ver">說說島 v1.22.6</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1088,7 +1088,7 @@ small,.gls{font-size:max(1em,16px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.22.5</p>
+    <p class="ver">說說島 v1.22.6</p>
   </section>
 </div>
 
@@ -2609,7 +2609,10 @@ function startQuiz(cat,only){
   show('quiz');renderQ();
 }
 const qSpoken=q=>q.cat==='y'?`${q.t.replace('＿＿',q.ans).replace(/[。！？]$/,'')}，${q.ans}是哪一個字？`:q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說比較好？第一種，${q.shown[0]}。第二種，${q.shown[1]}。第三種，${q.shown[2]}。`:q.cat==='zb'?`${q.w}的${q.ch}，注音是哪一個？`:q.cat==='zo'?`${q.t.replace(/。/g,'')}。哪個字的注音不對？點出來；都對就按全部正確。`:(q.cat==='u'&&isOX(q.ans)?zyClean(q.t)+'。對還是錯？':q.cat==='u'&&hasZy(q.t+q.opts.join(''))?zyClean(q.t)+'。請選出正確的答案。':q.t.replace('＿＿','，什麼，'));
-$('#qlisten').onclick=()=>{if(Q){sfx.read();say(qSpoken(Q.list[Q.i]))}};
+/* 好好說話：選項順序每次不同，所以拆成「情境」「誰可以怎麼說」「第幾種」「每個選項」固定短句，各自有預錄台灣腔音檔，用 sayList 依序播 */
+const hParts=q=>[q.t,(q.who==='我'?'我':q.who)+'可以怎麼說比較好？','第一種。',q.shown[0],'第二種。',q.shown[1],'第三種。',q.shown[2]];
+const sayQ=q=>q.cat==='h'&&q.shown?sayList(hParts(q)):say(qSpoken(q));
+$('#qlisten').onclick=()=>{if(Q){sfx.read();sayQ(Q.list[Q.i])}};
 function uLayout(q){if(q.opts.length===2)return 'two';return q.opts.some(o=>hasZy(o)||[...o].length>3)?'col':''}
 function renderQ(){
   const q=Q.list[Q.i];Q.locked=false;const c=CATS[Q.cat];
@@ -2630,7 +2633,7 @@ function renderQ(){
   $('#qtext').innerHTML=(a?chunks(a):'')+'<span class="blank" id="blank">？</span>'+(b?chunks(b):'');
   $('#qopts').innerHTML=shuffle(q.opts).map(o=>`<button class="opt" data-o="${o}">${o==='○'?'⭕':o==='✕'?'❌':hasZy(o)?zyV(esc(o)):o}</button>`).join('');}
   $('#qfb').hidden=true;$('#hsay').hidden=true;$('#hbox').value='';$('#hfb').hidden=true;$('#hhint').textContent='';
-  if(S.lv===1&&!S.noauto)setTimeout(()=>{if(Q&&Q.list[Q.i]===q&&!Q.locked){sfx.read();say(qSpoken(q))}},450);
+  if(S.lv===1&&!S.noauto)setTimeout(()=>{if(Q&&Q.list[Q.i]===q&&!Q.locked){sfx.read();sayQ(q)}},450);
 }
 $('#qopts').addEventListener('click',e=>{
   const b=e.target.closest('.opt');if(!b||Q.locked||b.disabled)return;
@@ -2705,7 +2708,7 @@ function nextQ(){
 /* ---------- 擴句 ---------- */
 let B=null;
 function startBuild(){lastGame=startBuild;B={list:pickItems('e',3),i:0,mist:0,peeks:0};show('build');renderB()}
-const sentenceOf=it=>it.parts.filter(p=>p[1]==='b').map(p=>p[3]).join('')+it.noun+it.parts.filter(p=>p[1]==='a').map(p=>p[3]).join('');
+const sentenceOf=it=>it.scene.replace(/[。！？]$/,'');
 function renderB(){
   const it=B.list[B.i];B.k=0;B.got={};B.itMist=0;B.itPeeks=0;
   $('#bprog').style.width=(B.i/B.list.length*100)+'%';$('#bprog').style.background='var(--c4)';
@@ -2748,9 +2751,10 @@ function doneB(){
   const it=B.list[B.i],full=sentenceOf(it);
   rec(it.id,B.itMist===0&&(S.lv===1||B.itPeeks<=1));save();drawB();
   $('#bplay').hidden=true;$('#bdone').hidden=false;$('#bscenewrap').hidden=false;$('#bpeek').hidden=true;$('#bmode').textContent='對照一下原文，你答對了嗎？';
-  const chips=[...it.parts.filter(p=>p[1]==='b').map(p=>p[3]),it.noun,...it.parts.filter(p=>p[1]==='a').map(p=>p[3])];
-  $('#bsent').innerHTML=chips.map(t=>`<div class="chip ${t===it.noun?'noun':''}"><b style="${t===it.noun?'':'background:color-mix(in srgb,var(--c4) 22%,var(--card))'}">${t}</b></div>`).join('')+'<div class="chip" style="min-width:0"><b style="padding-left:0">。</b></div>';
-  $('#bgrow').textContent='你把短文的重點，整理成一句完整的話了！';
+  let hl=esc(it.scene);it.parts.forEach(p=>{const t=esc(p[3]);if(hl.includes(t)&&!hl.includes('<mark')||hl.includes(t)&&!hl.includes('>'+t))hl=hl.replace(t,'<mark style="background:color-mix(in srgb,var(--c4) 35%,transparent);color:inherit;border-radius:6px;padding:0 3px">'+t+'</mark>')});
+  $('#bscenewrap').hidden=true;
+  $('#bsent').innerHTML='<div style="font-size:20px;line-height:1.7;font-weight:700;text-align:center">'+hl+'</div>';
+  $('#bgrow').textContent='重點都找到了！合起來就是完整的一句話：';
   $('#bnext').textContent=B.i+1>=B.list.length?'看結果':'下一題';
   sfx.win();B.full=full+'。';say(B.full);
 }
