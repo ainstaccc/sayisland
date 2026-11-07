@@ -4232,13 +4232,13 @@
  {
   "cat": "q",
   "key": "一，什麼，餅乾",
-  "speak": "一，什麼，餅乾",
+  "speak": "一，什麼，餅甘",
   "file": "audio/sp/7547491f79.mp3"
  },
  {
   "cat": "q",
   "key": "一片餅乾",
-  "speak": "一片餅乾",
+  "speak": "一片餅甘",
   "file": "audio/sp/6598a06c22.mp3"
  },
  {
@@ -7418,13 +7418,13 @@
  {
   "cat": "v",
   "key": "他用毛巾把頭髮，什麼，乾。",
-  "speak": "他用毛巾把頭法，什麼，乾。",
+  "speak": "他用毛巾把頭法，什麼，甘。",
   "file": "audio/sp/2a0945c050.mp3"
  },
  {
   "cat": "v",
   "key": "他用毛巾把頭髮擦乾。",
-  "speak": "他用毛巾把頭法擦乾。",
+  "speak": "他用毛巾把頭法擦甘。",
   "file": "audio/sp/bc519ff771.mp3"
  },
  {
@@ -8006,25 +8006,25 @@
  {
   "cat": "v",
   "key": "弟弟打翻牛奶，趕緊拿抹布，什麼，乾淨。",
-  "speak": "弟弟打翻牛奶，趕緊拿抹布，什麼，乾淨。",
+  "speak": "弟弟打翻牛奶，趕緊拿抹布，什麼，甘淨。",
   "file": "audio/sp/d64e9c0c94.mp3"
  },
  {
   "cat": "v",
   "key": "弟弟打翻牛奶，趕緊拿抹布擦拭乾淨。",
-  "speak": "弟弟打翻牛奶，趕緊拿抹布擦拭乾淨。",
+  "speak": "弟弟打翻牛奶，趕緊拿抹布擦拭甘淨。",
   "file": "audio/sp/fb532dcfc3.mp3"
  },
  {
   "cat": "v",
   "key": "志工們合力，什麼，垃圾，讓海灘恢復乾淨。",
-  "speak": "志工們合力，什麼，垃圾，讓海灘恢復乾淨。",
+  "speak": "志工們合力，什麼，垃圾，讓海灘恢復甘淨。",
   "file": "audio/sp/d6d300efd6.mp3"
  },
  {
   "cat": "v",
   "key": "志工們合力撿拾垃圾，讓海灘恢復乾淨。",
-  "speak": "志工們合力撿拾垃圾，讓海灘恢復乾淨。",
+  "speak": "志工們合力撿拾垃圾，讓海灘恢復甘淨。",
   "file": "audio/sp/8caac09e38.mp3"
  },
  {
@@ -8372,7 +8372,7 @@
  {
   "cat": "a",
   "key": "洗完澡的我，全身很乾淨。",
-  "speak": "洗完澡的我，全身很乾淨。",
+  "speak": "洗完澡的我，全身很甘淨。",
   "file": "audio/sp/f5330b13d2.mp3"
  },
  {
@@ -9308,7 +9308,7 @@
  {
   "cat": "a",
   "key": "洗好的衣服很乾淨。",
-  "speak": "洗好的衣服很乾淨。",
+  "speak": "洗好的衣服很甘淨。",
   "file": "audio/sp/c76a16f7cf.mp3"
  },
  {
@@ -9404,7 +9404,7 @@
  {
   "cat": "a",
   "key": "沙漠裡一滴水也沒有，空氣非常乾燥。",
-  "speak": "沙漠裡一滴水也沒有，空氣非常乾燥。",
+  "speak": "沙漠裡一滴水也沒有，空氣非常甘燥。",
   "file": "audio/sp/08ccba1660.mp3"
  },
  {
@@ -9668,7 +9668,7 @@
  {
   "cat": "a",
   "key": "洗完澡，身體好乾淨。",
-  "speak": "洗完澡，身體好乾淨。",
+  "speak": "洗完澡，身體好甘淨。",
   "file": "audio/sp/3aa08385f7.mp3"
  },
  {
@@ -9878,13 +9878,13 @@
  {
   "cat": "a",
   "key": "沙漠裡又乾又，什麼，，很難找到水。",
-  "speak": "沙漠裡又乾又，什麼，，很難找到水。",
+  "speak": "沙漠裡又甘又，什麼，，很難找到水。",
   "file": "audio/sp/41074c8d9b.mp3"
  },
  {
   "cat": "a",
   "key": "沙漠裡又乾又熱，很難找到水。",
-  "speak": "沙漠裡又乾又熱，很難找到水。",
+  "speak": "沙漠裡又甘又熱，很難找到水。",
   "file": "audio/sp/49869a1409.mp3"
  },
  {
@@ -10010,13 +10010,13 @@
  {
   "cat": "a",
   "key": "這片土地又乾又，什麼，，連草都很難生長。",
-  "speak": "這片土地又乾又，什麼，，連草都很難生掌。",
+  "speak": "這片土地又甘又，什麼，，連草都很難生掌。",
   "file": "audio/sp/0a3f3821ab.mp3"
  },
  {
   "cat": "a",
   "key": "這片土地又乾又貧瘠，連草都很難生長。",
-  "speak": "這片土地又乾又貧瘠，連草都很難生掌。",
+  "speak": "這片土地又甘又貧瘠，連草都很難生掌。",
   "file": "audio/sp/d9c469f1db.mp3"
  },
  {
@@ -10352,7 +10352,7 @@
  {
   "cat": "a",
   "key": "沙漠裡的天氣乾燥，白天熱晚上冷。",
-  "speak": "沙漠裡的天氣乾燥，白天熱晚上冷。",
+  "speak": "沙漠裡的天氣甘燥，白天熱晚上冷。",
   "file": "audio/sp/b776e02e4f.mp3"
  },
  {
@@ -13568,13 +13568,13 @@
  {
   "cat": "y",
   "key": "我們一起，什麼，餅乾。",
-  "speak": "我們一起，什麼，餅乾。",
+  "speak": "我們一起，什麼，餅甘。",
   "file": "audio/sp/48c41680e7.mp3"
  },
  {
   "cat": "y",
   "key": "我們一起做餅乾。",
-  "speak": "我們一起做餅乾。",
+  "speak": "我們一起做餅甘。",
   "file": "audio/sp/61b8a5159b.mp3"
  },
  {
@@ -14744,13 +14744,13 @@
  {
   "cat": "pw",
   "key": "「教室打掃得很乾淨。」換個說法：教室打掃得很，什麼，。",
-  "speak": "「教室打掃得很乾淨。」換個說法：教室打掃得很，什麼，。",
+  "speak": "「教室打掃得很甘淨。」換個說法：教室打掃得很，什麼，。",
   "file": "audio/sp/554a8b5d29.mp3"
  },
  {
   "cat": "pw",
   "key": "「教室打掃得很乾淨。」換個說法：教室打掃得很整潔。",
-  "speak": "「教室打掃得很乾淨。」換個說法：教室打掃得很整潔。",
+  "speak": "「教室打掃得很甘淨。」換個說法：教室打掃得很整潔。",
   "file": "audio/sp/464604d1ad.mp3"
  },
  {
@@ -16220,13 +16220,13 @@
  {
   "cat": "e",
   "key": "桌上有五顆紅紅的草莓，媽媽已經把它們洗乾淨了。",
-  "speak": "桌上有五顆紅紅的草莓，媽媽已經把它們洗乾淨了。",
+  "speak": "桌上有五顆紅紅的草莓，媽媽已經把它們洗甘淨了。",
   "file": "audio/sp/726b0c8d8d.mp3"
  },
  {
   "cat": "e",
   "key": "五顆紅紅的草莓桌上洗乾淨。",
-  "speak": "五顆紅紅的草莓桌上洗乾淨。",
+  "speak": "五顆紅紅的草莓桌上洗甘淨。",
   "file": "audio/sp/d29d6b79af.mp3"
  },
  {
@@ -17588,13 +17588,13 @@
  {
   "cat": "e",
   "key": "園丁因為天氣太乾，每天傍晚都用水管替花壇裡的玫瑰澆水，花兒才開得又大又紅。",
-  "speak": "園丁因為天氣太乾，每天傍晚都用水管替花壇裡的玫瑰澆水，花兒才開得又大又紅。",
+  "speak": "園丁因為天氣太甘，每天傍晚都用水管替花壇裡的玫瑰澆水，花兒才開得又大又紅。",
   "file": "audio/sp/7c9235b55d.mp3"
  },
  {
   "cat": "e",
   "key": "園丁天氣太乾替玫瑰澆水花壇裡又大又紅。",
-  "speak": "園丁天氣太乾替玫瑰澆水花壇裡又大又紅。",
+  "speak": "園丁天氣太甘替玫瑰澆水花壇裡又大又紅。",
   "file": "audio/sp/b0c7f35682.mp3"
  },
  {
@@ -17984,7 +17984,7 @@
  {
   "cat": "t",
   "key": "星期五大掃除，同學們分工合作，有人擦窗戶，有人掃地，因為大家都很認真，教室很快就變乾淨了。",
-  "speak": "星期五大掃除，同學們分工合作，有人擦窗戶，有人掃地，因為大家都很認真，教室很快就變乾淨了。",
+  "speak": "星期五大掃除，同學們分工合作，有人擦窗戶，有人掃地，因為大家都很認真，教室很快就變甘淨了。",
   "file": "audio/sp/295d4d5bd8.mp3"
  },
  {
@@ -18068,7 +18068,7 @@
  {
   "cat": "t",
   "key": "假日，志工們在海灘上撿垃圾，因為希望還給大海一片乾淨。",
-  "speak": "假日，志工們在海灘上撿垃圾，因為希望還給大海一片乾淨。",
+  "speak": "假日，志工們在海灘上撿垃圾，因為希望還給大海一片甘淨。",
   "file": "audio/sp/9572430289.mp3"
  },
  {
@@ -18620,13 +18620,13 @@
  {
   "cat": "m",
   "key": "因為每天刷牙，所以牙齒很乾淨。",
-  "speak": "因為每天刷牙，所以牙齒很乾淨。",
+  "speak": "因為每天刷牙，所以牙齒很甘淨。",
   "file": "audio/sp/6edfee64cb.mp3"
  },
  {
   "cat": "m",
   "key": "因為出大太陽，所以衣服很快乾。",
-  "speak": "因為出大太陽，所以衣服很快乾。",
+  "speak": "因為出大太陽，所以衣服很快甘。",
   "file": "audio/sp/ffb5e6dab0.mp3"
  },
  {
@@ -18716,7 +18716,7 @@
  {
   "cat": "m",
   "key": "因為頭髮濕了，所以用吹風機吹乾。",
-  "speak": "因為頭法濕了，所以用吹風機吹乾。",
+  "speak": "因為頭法濕了，所以用吹風機吹甘。",
   "file": "audio/sp/dba2e6f371.mp3"
  },
  {
@@ -19124,7 +19124,7 @@
  {
   "cat": "m",
   "key": "因為打翻水杯，所以拿抹布擦乾。",
-  "speak": "因為打翻水杯，所以拿抹布擦乾。",
+  "speak": "因為打翻水杯，所以拿抹布擦甘。",
   "file": "audio/sp/259bb87365.mp3"
  },
  {
@@ -19166,7 +19166,7 @@
  {
   "cat": "m",
   "key": "因為果汁打翻了，所以拿抹布擦乾淨。",
-  "speak": "因為果汁打翻了，所以拿抹布擦乾淨。",
+  "speak": "因為果汁打翻了，所以拿抹布擦甘淨。",
   "file": "audio/sp/8d441a52d6.mp3"
  },
  {
@@ -19220,7 +19220,7 @@
  {
   "cat": "m",
   "key": "因為認真打掃，所以教室變乾淨了。",
-  "speak": "因為認真打掃，所以教室變乾淨了。",
+  "speak": "因為認真打掃，所以教室變甘淨了。",
   "file": "audio/sp/19580af638.mp3"
  },
  {
@@ -19310,7 +19310,7 @@
  {
   "cat": "m",
   "key": "因為天乾物燥，所以容易發生火災。",
-  "speak": "因為天乾物燥，所以容易發生火災。",
+  "speak": "因為天甘物燥，所以容易發生火災。",
   "file": "audio/sp/7d5e0af39f.mp3"
  },
  {
@@ -19496,7 +19496,7 @@
  {
   "cat": "m",
   "key": "因為同學一起掃地，所以教室很快變乾淨。",
-  "speak": "因為同學一起掃地，所以教室很快變乾淨。",
+  "speak": "因為同學一起掃地，所以教室很快變甘淨。",
   "file": "audio/sp/cd446e1da2.mp3"
  },
  {
@@ -19602,123 +19602,1947 @@
   "file": "audio/sp/ca8c71b04e.mp3"
  },
  {
-  "cat": "sp",
-  "key": "小樹苗慢慢，什麼，高了。",
-  "speak": "小樹苗慢慢，什麼，高了。",
-  "file": "audio/sp/42d16d9200.mp3"
+  "cat": "hero",
+  "key": "點我，選一顆蛋！",
+  "speak": "點我，選一顆蛋！",
+  "file": "audio/sp/bdde1d38b6.mp3"
  },
  {
-  "cat": "sp",
-  "key": "小樹苗慢慢長高了。",
-  "speak": "小樹苗慢慢長高了。",
-  "file": "audio/sp/d29cbf0481.mp3"
+  "cat": "hero",
+  "key": "答對題目就能孵出新夥伴",
+  "speak": "答對題目就能孵出新夥伴",
+  "file": "audio/sp/9b7bb3a04b.mp3"
  },
  {
-  "cat": "sp",
-  "key": "我要把這本書，什麼，給圖書館。",
-  "speak": "我要把這本書，什麼，給圖書館。",
-  "file": "audio/sp/ed755187e2.mp3"
+  "cat": "hero",
+  "key": "母雞長大了！",
+  "speak": "母雞掌大了！",
+  "file": "audio/sp/c6d0eb7a8b.mp3"
  },
  {
-  "cat": "sp",
-  "key": "我要把這本書還給圖書館。",
-  "speak": "我要把這本書還給圖書館。",
-  "file": "audio/sp/10f4b4b9b5.mp3"
+  "cat": "hero",
+  "key": "牠已經在背包，去島上找牠玩",
+  "speak": "牠已經在背包，去島上找牠玩",
+  "file": "audio/sp/454ba9e353.mp3"
  },
  {
-  "cat": "sp",
-  "key": "我最喜歡上音，什麼，課。",
-  "speak": "我最喜歡上音，什麼，課。",
-  "file": "audio/sp/b321659d82.mp3"
+  "cat": "hero",
+  "key": "公雞長大了！",
+  "speak": "公雞掌大了！",
+  "file": "audio/sp/f9bc228fff.mp3"
  },
  {
-  "cat": "sp",
-  "key": "我最喜歡上音樂課。",
-  "speak": "我最喜歡上音樂課。",
-  "file": "audio/sp/7c30880257.mp3"
+  "cat": "hero",
+  "key": "雞蛋陪你闖關！",
+  "speak": "雞蛋陪你闖關！",
+  "file": "audio/sp/808d89e8a0.mp3"
  },
  {
-  "cat": "sp",
-  "key": "弟弟的頭，什麼，又黑又亮。",
-  "speak": "弟弟的頭，什麼，又黑又亮。",
-  "file": "audio/sp/9232f2297e.mp3"
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成雞蛋！",
+  "speak": "再吃4顆蘋果，就掌大成雞蛋！",
+  "file": "audio/sp/0a00f23d80.mp3"
  },
  {
-  "cat": "sp",
-  "key": "弟弟的頭髮又黑又亮。",
-  "speak": "弟弟的頭法又黑又亮。",
-  "file": "audio/sp/01f9cd3aee.mp3"
+  "cat": "hero",
+  "key": "同一題連續答對兩次，就算一顆蘋果。",
+  "speak": "同一題連續答對兩次，就算一顆蘋果。",
+  "file": "audio/sp/7e0ac025dc.mp3"
  },
  {
-  "cat": "sp",
-  "key": "我，什麼，著書包走去學校。",
-  "speak": "我，什麼，著書包走去學校。",
-  "file": "audio/sp/4d7c0979d2.mp3"
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成雞蛋！",
+  "speak": "再吃3顆蘋果，就掌大成雞蛋！",
+  "file": "audio/sp/5413514c95.mp3"
  },
  {
-  "cat": "sp",
-  "key": "我背著書包走去學校。",
-  "speak": "我揹著書包走去學校。",
-  "file": "audio/sp/0395d3f964.mp3"
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成雞蛋！",
+  "speak": "再吃2顆蘋果，就掌大成雞蛋！",
+  "file": "audio/sp/fea2d54277.mp3"
  },
  {
-  "cat": "sp",
-  "key": "爸爸把果汁，什麼，進杯子裡。",
-  "speak": "爸爸把果汁，什麼，進杯子裡。",
-  "file": "audio/sp/21685595dc.mp3"
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成雞蛋！",
+  "speak": "再吃1顆蘋果，就掌大成雞蛋！",
+  "file": "audio/sp/7a6df1c8bd.mp3"
  },
  {
-  "cat": "sp",
-  "key": "爸爸把果汁倒進杯子裡。",
-  "speak": "爸爸把果汁倒進杯子裡。",
-  "file": "audio/sp/4c66c0015f.mp3"
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成雛雞！",
+  "speak": "再吃8顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/4802db61f9.mp3"
  },
  {
-  "cat": "sp",
-  "key": "農夫在田裡，什麼，玉米。",
-  "speak": "農夫在田裡，什麼，玉米。",
-  "file": "audio/sp/b4fc63025d.mp3"
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成雛雞！",
+  "speak": "再吃7顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/8ad0cbc756.mp3"
  },
  {
-  "cat": "sp",
-  "key": "農夫在田裡種玉米。",
-  "speak": "農夫在田裡種玉米。",
-  "file": "audio/sp/6d9ebdc720.mp3"
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成雛雞！",
+  "speak": "再吃6顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/61c9eee1ce.mp3"
  },
  {
-  "cat": "sp",
-  "key": "盼了好久，暑，什麼，終於到了。",
-  "speak": "盼了好久，暑，什麼，終於到了。",
-  "file": "audio/sp/8afa251239.mp3"
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成雛雞！",
+  "speak": "再吃5顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/a97ba81d66.mp3"
  },
  {
-  "cat": "sp",
-  "key": "盼了好久，暑假終於到了。",
-  "speak": "盼了好久，暑假終於到了。",
-  "file": "audio/sp/6ad2ca8699.mp3"
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成雛雞！",
+  "speak": "再吃4顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/0dc6cbc30c.mp3"
  },
  {
-  "cat": "sp",
-  "key": "昨天晚上我很快就睡，什麼，了。",
-  "speak": "昨天晚上我很快就睡，什麼，了。",
-  "file": "audio/sp/954aee3905.mp3"
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成雛雞！",
+  "speak": "再吃3顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/9e62bbebae.mp3"
  },
  {
-  "cat": "sp",
-  "key": "昨天晚上我很快就睡著了。",
-  "speak": "昨天晚上我很快就睡著了。",
-  "file": "audio/sp/a8e6babdf2.mp3"
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成雛雞！",
+  "speak": "再吃2顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/5c539e0957.mp3"
  },
  {
-  "cat": "sp",
-  "key": "媽媽帶我去銀，什麼，存錢。",
-  "speak": "媽媽帶我去銀，什麼，存錢。",
-  "file": "audio/sp/1e62c433a9.mp3"
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成雛雞！",
+  "speak": "再吃1顆蘋果，就掌大成雛雞！",
+  "file": "audio/sp/d2bc6dd9c2.mp3"
  },
  {
-  "cat": "sp",
-  "key": "媽媽帶我去銀行存錢。",
-  "speak": "媽媽帶我去銀行存錢。",
-  "file": "audio/sp/9baa4dac82.mp3"
+  "cat": "hero",
+  "key": "雛雞陪你闖關！",
+  "speak": "雛雞陪你闖關！",
+  "file": "audio/sp/22fcb7ed20.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成小雞！",
+  "speak": "再吃12顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/dfe8a61ebc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成小雞！",
+  "speak": "再吃11顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/c1883a1150.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成小雞！",
+  "speak": "再吃10顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/802dc9136b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成小雞！",
+  "speak": "再吃9顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/3adb3a29ee.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成小雞！",
+  "speak": "再吃8顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/2e4ae660a2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成小雞！",
+  "speak": "再吃7顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/5b0f545d82.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成小雞！",
+  "speak": "再吃6顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/fca779bb88.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成小雞！",
+  "speak": "再吃5顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/d56e44d955.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成小雞！",
+  "speak": "再吃4顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/8f8cd90851.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成小雞！",
+  "speak": "再吃3顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/2a747a827d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成小雞！",
+  "speak": "再吃2顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/5fd32f3654.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成小雞！",
+  "speak": "再吃1顆蘋果，就掌大成小雞！",
+  "file": "audio/sp/11b3c71656.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "小雞陪你闖關！",
+  "speak": "小雞陪你闖關！",
+  "file": "audio/sp/bd768b2fc9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成公雞！",
+  "speak": "再吃16顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/1244886ffc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成公雞！",
+  "speak": "再吃15顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/782d286475.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成公雞！",
+  "speak": "再吃14顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/e82778ea6c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成公雞！",
+  "speak": "再吃13顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/6eec77b729.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成公雞！",
+  "speak": "再吃12顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/17ecdf7673.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成公雞！",
+  "speak": "再吃11顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/bc73c55d13.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成公雞！",
+  "speak": "再吃10顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/02d32c5feb.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成公雞！",
+  "speak": "再吃9顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/553d85168c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成公雞！",
+  "speak": "再吃8顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/599f36635a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成公雞！",
+  "speak": "再吃7顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/eb11f8dee3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成公雞！",
+  "speak": "再吃6顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/de33b9691c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成公雞！",
+  "speak": "再吃5顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/f4b86a14e3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成公雞！",
+  "speak": "再吃4顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/0d59b8a915.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成公雞！",
+  "speak": "再吃3顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/9e0bfdfa47.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成公雞！",
+  "speak": "再吃2顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/4add4f9fa5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成公雞！",
+  "speak": "再吃1顆蘋果，就掌大成公雞！",
+  "file": "audio/sp/09245061fd.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "老鷹長大了！",
+  "speak": "老鷹掌大了！",
+  "file": "audio/sp/b437e1b28e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "鳥蛋陪你闖關！",
+  "speak": "鳥蛋陪你闖關！",
+  "file": "audio/sp/996188ed43.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成鳥蛋！",
+  "speak": "再吃4顆蘋果，就掌大成鳥蛋！",
+  "file": "audio/sp/69fc87bb57.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成鳥蛋！",
+  "speak": "再吃3顆蘋果，就掌大成鳥蛋！",
+  "file": "audio/sp/08cf137aea.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成鳥蛋！",
+  "speak": "再吃2顆蘋果，就掌大成鳥蛋！",
+  "file": "audio/sp/ee60d1f309.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成鳥蛋！",
+  "speak": "再吃1顆蘋果，就掌大成鳥蛋！",
+  "file": "audio/sp/8af7d4d65d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成幼鳥！",
+  "speak": "再吃8顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/716a99a7c7.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成幼鳥！",
+  "speak": "再吃7顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/9ff745f2e2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成幼鳥！",
+  "speak": "再吃6顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/50eea8d783.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成幼鳥！",
+  "speak": "再吃5顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/43d192ce08.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成幼鳥！",
+  "speak": "再吃4顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/863413f195.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成幼鳥！",
+  "speak": "再吃3顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/60b974d075.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成幼鳥！",
+  "speak": "再吃2顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/fb7fcf9d04.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成幼鳥！",
+  "speak": "再吃1顆蘋果，就掌大成幼鳥！",
+  "file": "audio/sp/1313df8921.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "幼鳥陪你闖關！",
+  "speak": "幼鳥陪你闖關！",
+  "file": "audio/sp/1875f1534c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成小鳥！",
+  "speak": "再吃12顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/94e6fbc8bd.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成小鳥！",
+  "speak": "再吃11顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/62b70412b5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成小鳥！",
+  "speak": "再吃10顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/22b9559131.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成小鳥！",
+  "speak": "再吃9顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/97490dedb4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成小鳥！",
+  "speak": "再吃8顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/3578920357.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成小鳥！",
+  "speak": "再吃7顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/9a6fd97d95.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成小鳥！",
+  "speak": "再吃6顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/b58fa3a4eb.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成小鳥！",
+  "speak": "再吃5顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/e23eb022f5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成小鳥！",
+  "speak": "再吃4顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/f8f70ffe54.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成小鳥！",
+  "speak": "再吃3顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/6e5757934f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成小鳥！",
+  "speak": "再吃2顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/22515da3e8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成小鳥！",
+  "speak": "再吃1顆蘋果，就掌大成小鳥！",
+  "file": "audio/sp/b30963990c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "小鳥陪你闖關！",
+  "speak": "小鳥陪你闖關！",
+  "file": "audio/sp/b44641ace5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成老鷹！",
+  "speak": "再吃16顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/6dd4a05695.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成老鷹！",
+  "speak": "再吃15顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/44fafbeed0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成老鷹！",
+  "speak": "再吃14顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/db380d6e78.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成老鷹！",
+  "speak": "再吃13顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/9240d4f8d8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成老鷹！",
+  "speak": "再吃12顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/3e83c4e159.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成老鷹！",
+  "speak": "再吃11顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/e74646f205.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成老鷹！",
+  "speak": "再吃10顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/9f9ec2adb3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成老鷹！",
+  "speak": "再吃9顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/8bd66b7a47.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成老鷹！",
+  "speak": "再吃8顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/d9263aee0d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成老鷹！",
+  "speak": "再吃7顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/e025b9a53f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成老鷹！",
+  "speak": "再吃6顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/7397a36ea4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成老鷹！",
+  "speak": "再吃5顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/abf2f5cb30.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成老鷹！",
+  "speak": "再吃4顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/f53dd5219b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成老鷹！",
+  "speak": "再吃3顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/4260ebae90.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成老鷹！",
+  "speak": "再吃2顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/8995500e70.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成老鷹！",
+  "speak": "再吃1顆蘋果，就掌大成老鷹！",
+  "file": "audio/sp/bb0f360c4e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "青蛙長大了！",
+  "speak": "青蛙掌大了！",
+  "file": "audio/sp/53e69bd7be.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "蛙卵陪你闖關！",
+  "speak": "蛙卵陪你闖關！",
+  "file": "audio/sp/0a90f38446.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成蛙卵！",
+  "speak": "再吃4顆蘋果，就掌大成蛙卵！",
+  "file": "audio/sp/4da07b57f3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成蛙卵！",
+  "speak": "再吃3顆蘋果，就掌大成蛙卵！",
+  "file": "audio/sp/af9c1f2cb2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成蛙卵！",
+  "speak": "再吃2顆蘋果，就掌大成蛙卵！",
+  "file": "audio/sp/5372f26831.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成蛙卵！",
+  "speak": "再吃1顆蘋果，就掌大成蛙卵！",
+  "file": "audio/sp/a85e003604.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃8顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/d42c84701a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃7顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/47e490574b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃6顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/2b16509413.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃5顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/d58ed64acb.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃4顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/92c488a787.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃3顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/943a235ce2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃2顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/d7d3358d26.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成蝌蚪！",
+  "speak": "再吃1顆蘋果，就掌大成蝌蚪！",
+  "file": "audio/sp/66720f650c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "蝌蚪陪你闖關！",
+  "speak": "蝌蚪陪你闖關！",
+  "file": "audio/sp/21cd86e143.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃12顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/8dac4e9b94.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃11顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/a793218461.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃10顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/3656758ff8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃9顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/4088e81da0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃8顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/d83420e32e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃7顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/d6a36f40af.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃6顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/374c4f63bf.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃5顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/cfcb300359.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃4顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/311e4d771d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃3顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/9dd4db99ca.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃2顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/57879f0b96.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成長腿蝌蚪！",
+  "speak": "再吃1顆蘋果，就掌大成長腿蝌蚪！",
+  "file": "audio/sp/805eca021f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "長腿蝌蚪陪你闖關！",
+  "speak": "長腿蝌蚪陪你闖關！",
+  "file": "audio/sp/992f77764a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成青蛙！",
+  "speak": "再吃16顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/60c9f0f5c4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成青蛙！",
+  "speak": "再吃15顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/671741b18a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成青蛙！",
+  "speak": "再吃14顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/7b39ed2ef8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成青蛙！",
+  "speak": "再吃13顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/d071cb8585.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成青蛙！",
+  "speak": "再吃12顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/ad1220c3a2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成青蛙！",
+  "speak": "再吃11顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/368275d1ae.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成青蛙！",
+  "speak": "再吃10顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/462d98ed7a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成青蛙！",
+  "speak": "再吃9顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/02570cfdd2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成青蛙！",
+  "speak": "再吃8顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/6187c3978f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成青蛙！",
+  "speak": "再吃7顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/680aca5c1b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成青蛙！",
+  "speak": "再吃6顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/34a9cfafd8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成青蛙！",
+  "speak": "再吃5顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/388db3f99f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成青蛙！",
+  "speak": "再吃4顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/e38e6ab513.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成青蛙！",
+  "speak": "再吃3顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/a25a2c0808.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成青蛙！",
+  "speak": "再吃2顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/ace6a6c4d7.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成青蛙！",
+  "speak": "再吃1顆蘋果，就掌大成青蛙！",
+  "file": "audio/sp/6aef048d31.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "暴龍長大了！",
+  "speak": "暴龍掌大了！",
+  "file": "audio/sp/ce3043a02a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "恐龍蛋陪你闖關！",
+  "speak": "恐龍蛋陪你闖關！",
+  "file": "audio/sp/466b518180.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成恐龍蛋！",
+  "speak": "再吃4顆蘋果，就掌大成恐龍蛋！",
+  "file": "audio/sp/1c81a7f648.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成恐龍蛋！",
+  "speak": "再吃3顆蘋果，就掌大成恐龍蛋！",
+  "file": "audio/sp/05d8458c50.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成恐龍蛋！",
+  "speak": "再吃2顆蘋果，就掌大成恐龍蛋！",
+  "file": "audio/sp/130e560019.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成恐龍蛋！",
+  "speak": "再吃1顆蘋果，就掌大成恐龍蛋！",
+  "file": "audio/sp/5425c2e247.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成幼龍！",
+  "speak": "再吃8顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/5384dd4f5c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成幼龍！",
+  "speak": "再吃7顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/b7d6657473.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成幼龍！",
+  "speak": "再吃6顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/99087e4634.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成幼龍！",
+  "speak": "再吃5顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/8c4fcf43d7.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成幼龍！",
+  "speak": "再吃4顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/666544865a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成幼龍！",
+  "speak": "再吃3顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/960ad0c964.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成幼龍！",
+  "speak": "再吃2顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/4da494a2d0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成幼龍！",
+  "speak": "再吃1顆蘋果，就掌大成幼龍！",
+  "file": "audio/sp/701b7026c9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "幼龍陪你闖關！",
+  "speak": "幼龍陪你闖關！",
+  "file": "audio/sp/6a3c967099.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成小龍！",
+  "speak": "再吃12顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/6f6b232e5e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成小龍！",
+  "speak": "再吃11顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/4dfd4e5569.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成小龍！",
+  "speak": "再吃10顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/931cc8ce30.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成小龍！",
+  "speak": "再吃9顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/85909a46b9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成小龍！",
+  "speak": "再吃8顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/d5064b2212.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成小龍！",
+  "speak": "再吃7顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/b51da4e0ba.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成小龍！",
+  "speak": "再吃6顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/288e82edbf.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成小龍！",
+  "speak": "再吃5顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/414bcfb162.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成小龍！",
+  "speak": "再吃4顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/afb3467b30.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成小龍！",
+  "speak": "再吃3顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/dd087f11ff.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成小龍！",
+  "speak": "再吃2顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/167056c5e6.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成小龍！",
+  "speak": "再吃1顆蘋果，就掌大成小龍！",
+  "file": "audio/sp/9aad3cb244.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "小龍陪你闖關！",
+  "speak": "小龍陪你闖關！",
+  "file": "audio/sp/4cf701a292.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成暴龍！",
+  "speak": "再吃16顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/2d56c2c4de.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成暴龍！",
+  "speak": "再吃15顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/e73e1ef2ec.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成暴龍！",
+  "speak": "再吃14顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/533b24f35d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成暴龍！",
+  "speak": "再吃13顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/0319c6a71d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成暴龍！",
+  "speak": "再吃12顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/dfb1ce70cc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成暴龍！",
+  "speak": "再吃11顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/4f545460d8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成暴龍！",
+  "speak": "再吃10顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/c07e24aacf.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成暴龍！",
+  "speak": "再吃9顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/f015061ea0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成暴龍！",
+  "speak": "再吃8顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/5ac717ab72.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成暴龍！",
+  "speak": "再吃7顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/bfa915e2f6.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成暴龍！",
+  "speak": "再吃6顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/10def71c82.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成暴龍！",
+  "speak": "再吃5顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/4cf3547926.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成暴龍！",
+  "speak": "再吃4顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/091bef10fe.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成暴龍！",
+  "speak": "再吃3顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/771d4546e9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成暴龍！",
+  "speak": "再吃2顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/1d3249357e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成暴龍！",
+  "speak": "再吃1顆蘋果，就掌大成暴龍！",
+  "file": "audio/sp/46ca61fa92.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "成年鮭魚長大了！",
+  "speak": "成年鮭魚掌大了！",
+  "file": "audio/sp/26cdd859bd.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "魚卵陪你闖關！",
+  "speak": "魚卵陪你闖關！",
+  "file": "audio/sp/4ee0ec53e7.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成魚卵！",
+  "speak": "再吃4顆蘋果，就掌大成魚卵！",
+  "file": "audio/sp/aa55af4cb4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成魚卵！",
+  "speak": "再吃3顆蘋果，就掌大成魚卵！",
+  "file": "audio/sp/afcb3ccbb2.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成魚卵！",
+  "speak": "再吃2顆蘋果，就掌大成魚卵！",
+  "file": "audio/sp/3fa7b0f4b4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成魚卵！",
+  "speak": "再吃1顆蘋果，就掌大成魚卵！",
+  "file": "audio/sp/e6ac80a776.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成幼魚！",
+  "speak": "再吃8顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/2f751aad87.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成幼魚！",
+  "speak": "再吃7顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/2304924a9c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成幼魚！",
+  "speak": "再吃6顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/0d57e09c8f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成幼魚！",
+  "speak": "再吃5顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/39ae9874a3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成幼魚！",
+  "speak": "再吃4顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/49b7f650ef.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成幼魚！",
+  "speak": "再吃3顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/9df214eddc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成幼魚！",
+  "speak": "再吃2顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/e654dc4a96.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成幼魚！",
+  "speak": "再吃1顆蘋果，就掌大成幼魚！",
+  "file": "audio/sp/2ff7bfb95b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "幼魚陪你闖關！",
+  "speak": "幼魚陪你闖關！",
+  "file": "audio/sp/51dcba82dd.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成小魚！",
+  "speak": "再吃12顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/fcbd7db785.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成小魚！",
+  "speak": "再吃11顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/3de768c81a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成小魚！",
+  "speak": "再吃10顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/45cc7bb975.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成小魚！",
+  "speak": "再吃9顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/a781406583.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成小魚！",
+  "speak": "再吃8顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/5350b43a38.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成小魚！",
+  "speak": "再吃7顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/de92739e36.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成小魚！",
+  "speak": "再吃6顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/47a5d66099.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成小魚！",
+  "speak": "再吃5顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/a8a26f3a35.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成小魚！",
+  "speak": "再吃4顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/02518141d8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成小魚！",
+  "speak": "再吃3顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/baf46d66b1.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成小魚！",
+  "speak": "再吃2顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/b7e2d79a37.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成小魚！",
+  "speak": "再吃1顆蘋果，就掌大成小魚！",
+  "file": "audio/sp/32ef4ca2cc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "小魚陪你闖關！",
+  "speak": "小魚陪你闖關！",
+  "file": "audio/sp/66b9cd648d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃16顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/1daca9acec.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃15顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/95cce0abaa.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃14顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/0b3031dc1c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃13顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/06ea2fe401.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃12顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/3ec64e05a8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃11顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/536ced4e6d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃10顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/1eb1fca0f8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃9顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/9963d22703.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃8顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/e142c30276.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃7顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/03be389c35.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃6顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/7c5ae68c7c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃5顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/7357edfaf5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃4顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/ebf78990e0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃3顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/372cbcea05.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃2顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/f36667b0d6.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成成年鮭魚！",
+  "speak": "再吃1顆蘋果，就掌大成成年鮭魚！",
+  "file": "audio/sp/3e873258c6.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "大豬長大了！",
+  "speak": "大豬掌大了！",
+  "file": "audio/sp/cb76421417.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "豬胚胎陪你闖關！",
+  "speak": "豬胚胎陪你闖關！",
+  "file": "audio/sp/525478ab27.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成豬胚胎！",
+  "speak": "再吃4顆蘋果，就掌大成豬胚胎！",
+  "file": "audio/sp/fc6c78f144.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成豬胚胎！",
+  "speak": "再吃3顆蘋果，就掌大成豬胚胎！",
+  "file": "audio/sp/64ad128ba4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成豬胚胎！",
+  "speak": "再吃2顆蘋果，就掌大成豬胚胎！",
+  "file": "audio/sp/e00784c9a4.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成豬胚胎！",
+  "speak": "再吃1顆蘋果，就掌大成豬胚胎！",
+  "file": "audio/sp/28073002dd.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃8顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/bde68852eb.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃7顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/a924ab3106.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃6顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/5809dc92d5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃5顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/6dfb588ed0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃4顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/4282db155e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃3顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/22ea977128.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃2顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/e142ed69c3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成豬寶寶！",
+  "speak": "再吃1顆蘋果，就掌大成豬寶寶！",
+  "file": "audio/sp/1115c1818c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "豬寶寶陪你闖關！",
+  "speak": "豬寶寶陪你闖關！",
+  "file": "audio/sp/d58f272b79.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成小豬！",
+  "speak": "再吃12顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/642de1221d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成小豬！",
+  "speak": "再吃11顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/1b00208578.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成小豬！",
+  "speak": "再吃10顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/b1a74f17ae.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成小豬！",
+  "speak": "再吃9顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/1ece02c179.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成小豬！",
+  "speak": "再吃8顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/8311153891.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成小豬！",
+  "speak": "再吃7顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/f481a914b6.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成小豬！",
+  "speak": "再吃6顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/4092ca53c3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成小豬！",
+  "speak": "再吃5顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/7cc73a5835.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成小豬！",
+  "speak": "再吃4顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/23251ee384.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成小豬！",
+  "speak": "再吃3顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/622c64403f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成小豬！",
+  "speak": "再吃2顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/83146b01d3.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成小豬！",
+  "speak": "再吃1顆蘋果，就掌大成小豬！",
+  "file": "audio/sp/c88c36c9cb.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "小豬陪你闖關！",
+  "speak": "小豬陪你闖關！",
+  "file": "audio/sp/a44cce886b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成大豬！",
+  "speak": "再吃16顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/44cc9feacc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成大豬！",
+  "speak": "再吃15顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/eb14abb915.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成大豬！",
+  "speak": "再吃14顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/acbbb3505b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成大豬！",
+  "speak": "再吃13顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/eb3ccb3797.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成大豬！",
+  "speak": "再吃12顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/00f80bcdee.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成大豬！",
+  "speak": "再吃11顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/f22cdaae51.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成大豬！",
+  "speak": "再吃10顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/b95cb2b9ff.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成大豬！",
+  "speak": "再吃9顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/1453fc6b4e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成大豬！",
+  "speak": "再吃8顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/c0013e8ece.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成大豬！",
+  "speak": "再吃7顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/fe3c17e260.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成大豬！",
+  "speak": "再吃6顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/12ba55a970.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成大豬！",
+  "speak": "再吃5顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/e32cc334df.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成大豬！",
+  "speak": "再吃4顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/ba5a5f1b49.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成大豬！",
+  "speak": "再吃3顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/7797bc7ea0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成大豬！",
+  "speak": "再吃2顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/d5ffaffbd9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成大豬！",
+  "speak": "再吃1顆蘋果，就掌大成大豬！",
+  "file": "audio/sp/8e494c4c29.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "大狗長大了！",
+  "speak": "大狗掌大了！",
+  "file": "audio/sp/03703be2a0.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "狗胚胎陪你闖關！",
+  "speak": "狗胚胎陪你闖關！",
+  "file": "audio/sp/cbf3436130.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成狗胚胎！",
+  "speak": "再吃4顆蘋果，就掌大成狗胚胎！",
+  "file": "audio/sp/16200d5cdb.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成狗胚胎！",
+  "speak": "再吃3顆蘋果，就掌大成狗胚胎！",
+  "file": "audio/sp/2d12c87a03.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成狗胚胎！",
+  "speak": "再吃2顆蘋果，就掌大成狗胚胎！",
+  "file": "audio/sp/6541e1d450.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成狗胚胎！",
+  "speak": "再吃1顆蘋果，就掌大成狗胚胎！",
+  "file": "audio/sp/c98e8e214f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃8顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/1d0782b94c.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃7顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/a3d7da6a2d.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃6顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/af4a09e3aa.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃5顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/08618e6a1a.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃4顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/6b1bad4abf.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃3顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/e5c37aec37.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃2顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/a49f921f21.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成狗寶寶！",
+  "speak": "再吃1顆蘋果，就掌大成狗寶寶！",
+  "file": "audio/sp/a544fb8d50.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "狗寶寶陪你闖關！",
+  "speak": "狗寶寶陪你闖關！",
+  "file": "audio/sp/6bb9878960.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成小狗！",
+  "speak": "再吃12顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/dfac9d9bf5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成小狗！",
+  "speak": "再吃11顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/66331bdd61.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成小狗！",
+  "speak": "再吃10顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/d6e4f248bc.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成小狗！",
+  "speak": "再吃9顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/9e4a2eaea7.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成小狗！",
+  "speak": "再吃8顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/0ba3316121.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成小狗！",
+  "speak": "再吃7顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/0b1c438230.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成小狗！",
+  "speak": "再吃6顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/9e93b89b3b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成小狗！",
+  "speak": "再吃5顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/750c4b4e42.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成小狗！",
+  "speak": "再吃4顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/1373574717.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成小狗！",
+  "speak": "再吃3顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/337118da46.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成小狗！",
+  "speak": "再吃2顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/e55da8cd2e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成小狗！",
+  "speak": "再吃1顆蘋果，就掌大成小狗！",
+  "file": "audio/sp/585669dfd8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "小狗陪你闖關！",
+  "speak": "小狗陪你闖關！",
+  "file": "audio/sp/4a1343d8f1.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃16顆蘋果，就長大成大狗！",
+  "speak": "再吃16顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/521b989381.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃15顆蘋果，就長大成大狗！",
+  "speak": "再吃15顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/0bb66a89b5.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃14顆蘋果，就長大成大狗！",
+  "speak": "再吃14顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/f3903979d7.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃13顆蘋果，就長大成大狗！",
+  "speak": "再吃13顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/a65261e8b9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃12顆蘋果，就長大成大狗！",
+  "speak": "再吃12顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/d4c6d6db05.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃11顆蘋果，就長大成大狗！",
+  "speak": "再吃11顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/2b66a3f366.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃10顆蘋果，就長大成大狗！",
+  "speak": "再吃10顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/5d28ed309f.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃9顆蘋果，就長大成大狗！",
+  "speak": "再吃9顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/aca77f8985.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃8顆蘋果，就長大成大狗！",
+  "speak": "再吃8顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/888dec4c04.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃7顆蘋果，就長大成大狗！",
+  "speak": "再吃7顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/514ee779bf.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃6顆蘋果，就長大成大狗！",
+  "speak": "再吃6顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/1f198ebb9b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃5顆蘋果，就長大成大狗！",
+  "speak": "再吃5顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/202e8d1283.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，就長大成大狗！",
+  "speak": "再吃4顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/8d471681e9.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，就長大成大狗！",
+  "speak": "再吃3顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/296a69011b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，就長大成大狗！",
+  "speak": "再吃2顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/f65df31195.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，就長大成大狗！",
+  "speak": "再吃1顆蘋果，就掌大成大狗！",
+  "file": "audio/sp/4e0f55e482.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "今天想玩哪一關？",
+  "speak": "今天想玩哪一關？",
+  "file": "audio/sp/1839b281bd.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，蛋裡的動物就會現身！",
+  "speak": "再吃4顆蘋果，蛋裡的動物就會現身！",
+  "file": "audio/sp/44810b02e8.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "蛋蛋陪你闖關！",
+  "speak": "蛋蛋陪你闖關！",
+  "file": "audio/sp/d5bfc2ab54.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，蛋裡的動物就會現身！",
+  "speak": "再吃3顆蘋果，蛋裡的動物就會現身！",
+  "file": "audio/sp/854e8470ff.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，蛋裡的動物就會現身！",
+  "speak": "再吃2顆蘋果，蛋裡的動物就會現身！",
+  "file": "audio/sp/9c8ad415ac.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，蛋裡的動物就會現身！",
+  "speak": "再吃1顆蘋果，蛋裡的動物就會現身！",
+  "file": "audio/sp/176c0c606e.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃4顆蘋果，胚胎裡的動物就會現身！",
+  "speak": "再吃4顆蘋果，胚胎裡的動物就會現身！",
+  "file": "audio/sp/1f9bba9d6b.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "胚胎陪你闖關！",
+  "speak": "胚胎陪你闖關！",
+  "file": "audio/sp/70b065f4a1.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃3顆蘋果，胚胎裡的動物就會現身！",
+  "speak": "再吃3顆蘋果，胚胎裡的動物就會現身！",
+  "file": "audio/sp/149ac59e35.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃2顆蘋果，胚胎裡的動物就會現身！",
+  "speak": "再吃2顆蘋果，胚胎裡的動物就會現身！",
+  "file": "audio/sp/3df5291316.mp3"
+ },
+ {
+  "cat": "hero",
+  "key": "再吃1顆蘋果，胚胎裡的動物就會現身！",
+  "speak": "再吃1顆蘋果，胚胎裡的動物就會現身！",
+  "file": "audio/sp/7864c03518.mp3"
  }
 ]

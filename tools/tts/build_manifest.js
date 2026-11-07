@@ -32,6 +32,14 @@ const ENUM = () => {
       else { add(k, I.qSpoken(q)); add(k, I.qFull(q)); }
     }
   }
+  /* 首頁小豬／提示文字（固定句，不含名字） */
+  const PT = I.PETS, PA = I.PAT;
+  const heroAll = (P, pst) => I.heroParts(P, pst, true).forEach(t => add('hero', t));
+  heroAll(null, 0); heroAll({ done: true, sp: 'chick', sex: 'f' }, 4); heroAll({ done: true, sp: 'chick', sex: 'm' }, 4);
+  for (const sp of Object.keys(PT)) { heroAll({ done: true, sp, sex: 'f' }, 4);
+    for (let st = 0; st < 4; st++) { const lo = [0].concat(PA)[st], need = PA[st] - lo;
+      for (let n = 0; n < need; n++) for (const sex of ['f', 'm']) heroAll({ sp, sex, ap: lo + n }, st); } }
+  for (const egg of ['egg', 'embryo']) for (let n = 0; n < PA[0]; n++) for (const pl of [true, false]) I.heroParts({ sp: null, egg, ap: n }, 0, pl).forEach(t => add('hero', t));
   return [...out].map(([key, cat]) => ({ cat, key, speak: I.forSpeech(key) }));
 };
 
@@ -41,7 +49,7 @@ async function enumerate() {
   let h = fs.readFileSync(path.join(tmp, 'index.html'), 'utf8');
   const i = h.lastIndexOf('})();');
   if (i < 0) throw new Error('index.html 找不到結尾 })();');
-  h = h.slice(0, i) + "window.__INT={D,CATS,qSpoken,qFull,sentenceOf,forSpeech};\n" + h.slice(i);
+  h = h.slice(0, i) + "window.__INT={D,CATS,qSpoken,qFull,sentenceOf,forSpeech,PETS,PAT,heroParts};\n" + h.slice(i);
   fs.writeFileSync(path.join(tmp, 'index.html'), h);
   const b = await chromium.launch(); const p = await b.newPage(); const errs = [];
   p.on('pageerror', e => errs.push(e.message));
