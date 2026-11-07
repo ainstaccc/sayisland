@@ -1,0 +1,1 @@
+voice=zh-TW-HsiaoChenNeural rate=-5% pitch=+0Hz date=2026-11-07
