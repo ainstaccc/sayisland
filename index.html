@@ -231,13 +231,13 @@ body.ingame .opts.zy .opt{min-height:140px;font-size:clamp(24px,6.8vw,30px)}
 .fgrid{display:flex;flex-direction:column;gap:10px;width:100%}
 .fc{display:flex;align-items:center;gap:10px;min-height:64px;border-radius:18px;border:3px solid var(--line);background:var(--bg);padding:8px 12px;box-shadow:0 4px 0 var(--shadow);font:800 clamp(20px,5.6vw,26px)/1.3 var(--f-disp);color:var(--ink)}
 .fc .fe{font-size:32px;line-height:1;flex:none;cursor:pointer}
-.fc .ft{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.fc .ft{flex:1;min-width:0;display:block;line-height:1.7;text-wrap:pretty}.fc .ft .fbk{display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin:2px 4px}
 .fbk{min-width:58px;height:50px;padding:0 8px;border-radius:14px;border:3px dashed var(--ink2);background:var(--card);font:900 inherit;color:var(--pri);cursor:pointer}
 .fbk.sel{border-style:solid;border-color:var(--pri);background:color-mix(in srgb,var(--pri) 18%,var(--card))}
 .fbk.bad,.fw.bad{border-color:var(--ng);animation:shake .3s}
 .fbk.done{border:3px solid transparent;background:color-mix(in srgb,var(--ok) 22%,var(--card));color:var(--ok);cursor:default}
-.ftray{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;width:100%;padding:12px 10px;border-radius:20px;background:color-mix(in srgb,var(--c3) 22%,var(--card))}
-.fw{min-width:76px;height:62px;padding:0 12px;border-radius:18px;border:3px solid var(--line);background:var(--card);box-shadow:0 4px 0 var(--shadow);font:900 clamp(26px,7.4vw,32px)/1 var(--f-disp);color:var(--ink);cursor:pointer}
+.ftray{display:grid;grid-template-columns:repeat(auto-fit,minmax(86px,1fr));gap:10px;width:100%;padding:12px 10px;border-radius:20px;background:color-mix(in srgb,var(--c3) 22%,var(--card))}
+.fw{min-width:0;height:62px;white-space:nowrap;padding:0 12px;border-radius:18px;border:3px solid var(--line);background:var(--card);box-shadow:0 4px 0 var(--shadow);font:900 clamp(26px,7.4vw,32px)/1 var(--f-disp);color:var(--ink);cursor:pointer}
 .fw.sel{border-color:var(--pri);background:color-mix(in srgb,var(--pri) 18%,var(--card));transform:translateY(-2px)}
 .fw.used{visibility:hidden}
 
@@ -722,7 +722,7 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .bonus{display:flex;flex-direction:column;gap:8px;text-align:left;width:100%;box-sizing:border-box}
 .bonus .bm{display:flex;align-items:center;gap:10px;font:800 20px/1.35 var(--f-disp);color:var(--ink)}
 .bonus .bm .sv{width:30px;height:30px;flex:none}
-.bonus .bm span{min-width:0;text-wrap:balance}
+.bonus .bm span{min-width:0;text-wrap:balance;overflow-wrap:anywhere}.bonus .bm span .nb{overflow-wrap:normal}
 .res h2{text-shadow:0 3px 0 rgba(255,200,61,.55)}
 .res .stars{padding:6px 0}
 .wk .wd i.on .sv{width:22px;height:22px;display:inline-block;vertical-align:middle}
@@ -760,6 +760,13 @@ body.ingame .cap,.zc small,.chip em,.zq small{font-size:16px}
 @media (max-width:430px){.brand{font-size:34px;-webkit-text-stroke-width:6px}.tools .ibtn{width:40px;height:40px}.tools .pill{padding:6px 8px}}
 @media (max-width:360px){.brand{font-size:28px}.tools{gap:4px}.tools .ibtn{width:38px;height:38px}.tools .pill{font-size:16px;padding:6px 7px;gap:3px}}
 /* v1.22.5 窄螢幕：捏臉格改3欄、日曆小字不外溢 */@media (max-width:360px){.mgrid{grid-template-columns:repeat(3,minmax(0,1fr))}.dc i{letter-spacing:-1px;white-space:nowrap}.drow{gap:2px}.dc{padding:6px 0}}
+/* v1.22.5 對比與字級補強：問號空格、提示條、紅點徽章、15px 小字 */
+:root{--pri-t:#C93673;--ok-t:#0E7A55}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--pri-t:var(--pri);--ok-t:var(--ok)}}:root[data-theme="dark"]{--pri-t:var(--pri);--ok-t:var(--ok)}
+.fbk,#blank,.chip.pend b{color:var(--pri-t)}
+.mline,#fline{color:var(--ok-t)}
+.dotn,.new{background:#D93A57}
+small,.gls{font-size:max(1em,16px)}
 </style>
 
 <div class="wrap" id="app">
@@ -2601,7 +2608,7 @@ function startQuiz(cat,only){
   Q={cat,only,list,i:0,firstOk:0,total:list.length,retried:false,locked:false,first:{}};
   show('quiz');renderQ();
 }
-const qSpoken=q=>q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說比較好？第一種，${q.shown[0]}。第二種，${q.shown[1]}。第三種，${q.shown[2]}。`:q.cat==='zb'?`${q.w}的${q.ch}，注音是哪一個？`:q.cat==='zo'?`${q.t.replace(/。/g,'')}。哪個字的注音不對？點出來；都對就按全部正確。`:(q.cat==='u'&&isOX(q.ans)?zyClean(q.t)+'。對還是錯？':q.cat==='u'&&hasZy(q.t+q.opts.join(''))?zyClean(q.t)+'。請選出正確的答案。':q.t.replace('＿＿','，什麼，'));
+const qSpoken=q=>q.cat==='y'?`${q.t.replace('＿＿',q.ans).replace(/[。！？]$/,'')}，${q.ans}是哪一個字？`:q.cat==='h'?`${q.t}${q.who==='我'?'我':q.who}可以怎麼說比較好？第一種，${q.shown[0]}。第二種，${q.shown[1]}。第三種，${q.shown[2]}。`:q.cat==='zb'?`${q.w}的${q.ch}，注音是哪一個？`:q.cat==='zo'?`${q.t.replace(/。/g,'')}。哪個字的注音不對？點出來；都對就按全部正確。`:(q.cat==='u'&&isOX(q.ans)?zyClean(q.t)+'。對還是錯？':q.cat==='u'&&hasZy(q.t+q.opts.join(''))?zyClean(q.t)+'。請選出正確的答案。':q.t.replace('＿＿','，什麼，'));
 $('#qlisten').onclick=()=>{if(Q){sfx.read();say(qSpoken(Q.list[Q.i]))}};
 function uLayout(q){if(q.opts.length===2)return 'two';return q.opts.some(o=>hasZy(o)||[...o].length>3)?'col':''}
 function renderQ(){
@@ -2917,7 +2924,7 @@ function renderF(){
   $('#fprog').style.width=(F.b/F.boards*100)+'%';$('#fprog').style.background=`var(${c.c})`;
   $('#fcount').textContent=(F.b+1)+'/'+F.boards;
   $('#fgrid').innerHTML=bd.map(x=>{const [a,b]=x.t.split('＿＿');return `<div class="fc"><span class="fe" data-say="${esc(x.t.replace('＿＿','，什麼，'))}">${x.e}</span><span class="ft">${esc(a||'')}<button class="fbk" data-id="${x.id}" aria-label="空格">？</button>${esc(b||'')}</span></div>`}).join('');
-  $('#ftray').innerHTML=shuffle(bd.map(x=>x.ans)).map((w,i)=>`<button class="fw" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('');
+  $('#ftray').style.gridTemplateColumns='repeat('+(bd.length===4?2:Math.min(bd.length,3))+',minmax(0,1fr))';$('#ftray').innerHTML=shuffle(bd.map(x=>x.ans)).map((w,i)=>`<button class="fw" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('');
   $('#fline').textContent='點一個字，再點空格，把它放進去。';$('#fnext').hidden=true;
 }
 function fillTry(bEl,wEl){
@@ -3333,7 +3340,7 @@ const BADGES=[
   ['t50','star','累積50顆星',()=>S.stars>=50],['t100','medal','累積100顆星',()=>S.stars>=100],['i10','island','島上10件',()=>(ISL().items||[]).length>=10]
 ];
 function checkBadges(){S.badges=S.badges||{};const n=[];BADGES.forEach(b=>{if(!S.badges[b[0]]&&b[3]()){S.badges[b[0]]=today();n.push(b[2])}});return n}
-const nbk=t=>(String(t).match(/[^，。！？、：；]+[，。！？、：；]?/g)||[String(t)]).flatMap(x=>x.length>9?(x.match(/[^\s（]+\s*|（[^）]*）?\s*/g)||[x]):[x]).map(x=>`<span class="nb">${x}</span>`).join('');
+const nbk=t=>(String(t).match(/[^，。！？、：；]+[，。！？、：；]?/g)||[String(t)]).flatMap(x=>x.length>9?(x.match(/[^\s（]+\s*|（[^）]*）?\s*/g)||[x]):[x]).map(x=>{const t=x.replace(/\s+$/,''),sp=x.length>t.length?' ':'';return(x.length>9?`<span>${t}</span>`:`<span class="nb">${t}</span>`)+sp}).join('');
 function renderWeek(){
   const t=today(),days=wkDays(),done=wkDone(),got=S.wkClaim===wkKey(),W='一二三四五六日';
   $('#wkc').innerHTML=`<div style="display:flex;align-items:center;gap:10px"><div style="flex:1"><b>本週挑戰</b><small>${got?nbk('寶箱已打開，')+nbk('拿了 '+WK_STARS+' 顆星')+ic('star'):nbk('本週完成「今日任務」'+WK_NEED+' 天，')+nbk('開寶箱 +'+WK_STARS+' 顆星')}</small></div><span class="chest">${ic(got?'gift':'box')}</span></div>

@@ -1,6 +1,6 @@
 /* 說說島｜全畫面 UI 檢測：多種手機寬度 × 淺色／深色 × 三個年級，逐畫面找
    「橫向溢出、文字超出卡片／被切掉、元素跑出螢幕、深色對比不足、字太小」。
-   用法（在 repo 根目錄）：node tools/ui_scan.js [--widths=320,360,390,430] [--schemes=light,dark] [--lv=1,2,3] [--shots=資料夾]
+   用法（在 repo 根目錄）：node tools/ui_scan.js [--widths=320,360,390,430] [--schemes=light,dark] [--lv=1,2,3] [--shots=資料夾 [--allshots 每個畫面都截圖，預設只截有錯的]]
    需要 playwright（雲端環境已內建）。有「錯誤」類問題就以非 0 結束；「字太小」只列警告。
    會走的畫面：誰在玩、首頁、每一個關卡（出題→作答→回饋→下一題→結果）、我的島（商店／設施／盲盒／背包）、
    捏臉 7 個分頁、家長區、詞卡冊、好友團，以及首頁彈窗（活動／新品）。 */
@@ -24,7 +24,7 @@ function inPage(){
   const push=(type,el,detail,text)=>out.push({type,sel:lab(el),text:(text||el.textContent||'').trim().replace(/\s+/g,' ').slice(0,28),detail});
   if(document.documentElement.scrollWidth>W+1)out.push({type:'docOverflow',sel:'html',text:'',detail:'scrollWidth '+document.documentElement.scrollWidth+' > '+W});
   for(const el of document.body.querySelectorAll('*')){
-    if(!vis(el)||skip(el))continue;
+    if(!vis(el)||skip(el)||el.closest('.cp'))continue; /* .cp＝注音標點圖示（用 text-indent 藏字，故意裁切） */
     const r=el.getBoundingClientRect(),cs=getComputedStyle(el);
     const own=[...el.childNodes].filter(n=>n.nodeType===3&&n.textContent.trim());
     const hasText=own.length>0;
@@ -62,7 +62,7 @@ const profile=(lv)=>({cur:'p1',profiles:{p1:{name:'小明',av:'a:cat',lv,stars:6
       const res=await p.evaluate(inPage).catch(e=>[{type:'pageerror',sel:'scan',text:'',detail:String(e).slice(0,80)}]);
       const bad=res.filter(x=>x.type!=='small'||true);
       for(const x of bad){const k=[x.type,x.sel,x.text,tag,name].join('|');if(seen.has(k))continue;seen.add(k);all.push(Object.assign({cfg:tag,screen:name},x))}
-      if(SHOTS&&res.some(x=>ERR_TYPES.has(x.type))){await p.screenshot({path:path.join(SHOTS,`${String(++shotN).padStart(3,'0')}_${tag.replace(/\//g,'_')}_${name.replace(/[^\w一-鿿]/g,'_')}.png`)}).catch(()=>{})}
+      if(SHOTS&&(process.argv.includes('--allshots')||res.some(x=>ERR_TYPES.has(x.type)))){await p.screenshot({path:path.join(SHOTS,`${String(++shotN).padStart(3,'0')}_${tag.replace(/\//g,'_')}_${name.replace(/[^\w一-鿿]/g,'_')}.png`)}).catch(()=>{})}
     };
     const click=async(sel,t=400)=>{try{const el=await p.$(sel);if(!el)return false;await el.scrollIntoViewIfNeeded({timeout:1500}).catch(()=>{});await el.click({timeout:2000,force:true});await p.waitForTimeout(t);return true}catch(e){return false}};
     const home=async()=>{for(let i=0;i<3;i++){const h=await p.$('section:not([hidden]) [data-home]');if(!h)break;await h.click({force:true}).catch(()=>{});await p.waitForTimeout(250)}await p.evaluate(()=>document.querySelectorAll('.prpop').forEach(e=>e.remove()))};
@@ -77,7 +77,7 @@ const profile=(lv)=>({cur:'p1',profiles:{p1:{name:'小明',av:'a:cat',lv,stars:6
       const cats=await p.$$eval('#missions .node[data-cat]',a=>a.map(x=>x.dataset.cat));
       for(const k of [...new Set(cats)]){
         await home();
-        if(!await click(`#missions .node[data-cat="${k}"]`,700)){await click(`#dRow [data-cat="${k}"]`,700)}
+        if(await click(`#missions .node[data-cat="${k}"]`,1100)){if(await p.$('.tipbox')){await scan('關卡說明 '+k);await click('.tipbox [data-go]',700)}}else{await click(`#dRow [data-cat="${k}"]`,700)}
         for(let step=0;step<9;step++){
           const v=await p.evaluate(()=>{const s=[...document.querySelectorAll('section[id^=v-]')].find(s=>s.offsetHeight>0);return s?s.id:''});
           if(!v||v==='v-home')break;
