@@ -420,7 +420,7 @@ service cloud.firestore {
 - **範圍**：所有固定題目都有預錄 mp3，共 3,287 句、約 80 MB（`audio/sp/`）。包含：選對字／動詞／形容詞（q、v、a）、短文小偵探、看圖說話的示範句、好朋友配對（m）、因果配對、成語、換句話說、注音辨辨看／圈叉、部首、造句與改寫的題目、「聲音試聽」關。
 - **沒有預錄、仍用手機語音**：老師上傳的課文（我的課文）、好好說話（選項每次順序不同）、排詞成句的題目句（詞塊順序每次不同）、孩子自己寫的句子。
 - **播放規則**：`say(文字)` 先到 `audio/manifest.js` 找這句有沒有 mp3，有就播；沒有、檔案壞掉或播放失敗，自動退回手機語音。所以題目改了、新增了，沒音檔也不會沒聲音，只是暫時是手機語音。
-- **產音檔**：`node tools/tts/build_manifest.js`（盤點全部會唸的句子，寫 `tools/tts/items.json`）→ `python3 tools/tts/gen_audio.py`（只補沒有的）→ `node tools/tts/build_manifest.js --check`（要顯示「manifest 一致」）。雲端可執行（claude.ai 已允許 `speech.platform.bing.com`），細節看 `tools/tts/README.md`。
+- **產音檔**：`node tools/tts/build_manifest.js`（盤點全部會唸的句子，寫 `tools/tts/items.json`）→ `python3 tools/tts/gen_audio.py`（只補沒有的）→ `node tools/tts/build_manifest.js --check`（要顯示「manifest 一致」）。雲端可執行（claude.ai 已允許 `speech.platform.bing.com`），細節看 `tools/tts/README.md`。**每晚 05:12（台北）排程「說說島每晚補預錄音檔」**照 `tools/TTS_NIGHTLY.md` 自動補新題目的音檔、並在發音修正（`FIX`）讓唸法改變時重產該句（`tools/tts/speak-log.json` 記錄每個檔當時合成的字）。停止排程：到 Claude 排程清單把它停用。
 - 「聲音試聽」關（10 題易錯破音字）保留，不列入每日任務。
 - 預錄音檔不經過手機語音的 `FIX` 修正以外的處理：唸錯的詞要先改 `FIX`，再 `gen_audio.py --force --only <關卡代號>` 重產。
 
@@ -724,6 +724,7 @@ v0.1 的寵物只靠星星解鎖，沒有功能，容易膩。改成跟「學會
 | 2026-11-07 | v1.22.3 | 新增測試關「聲音試聽」（10 題，不列入每日任務）＋預錄音檔機制（`say()` 先找 `window.PREAUD`，找不到退回手機語音）；`tools/tts/` 放產音檔工具（`gen_audio.py`、`start.bat`、`build_manifest.js`），舊關卡未動 |
 | 2026-11-07 | tools | `gen_audio.py` 改成雲端可用（自動走 `HTTPS_PROXY`）；claude.ai 允許網域加 `speech.platform.bing.com`，雲端實測產曉臻 mp3 成功；聲音試聽關 Stacy 試聽通過 |
 | 2026-11-07 | v1.22.4 | 預錄語音擴大到全部固定題目：`build_manifest.js` 改成用 Playwright 開 App 盤點所有關卡（3,287 句）、`gen_audio.py` 支援同時合成（`--workers`）與依關卡重產（`--only`）；產出 `audio/sp/` 3,287 個 mp3（約 80 MB，曉臻、語速 -5%）；E2E 抽測各關皆播預錄、不退回手機語音 |
+| 2026-11-07 | tools | 新增夜間補音檔排程（05:12）與 `tools/TTS_NIGHTLY.md`；`gen_audio.py` 新增 `speak-log.json`，發音修正讓唸法改變時自動重產 |
 | 2026-11-05 | v1.21.0 | 中、高年級新增 3 關：成語（60 題）、換句話說（60 題）、造句（中年級排句子＋對稱句 30 題、高年級自己造句 30 題，規則檢查不用 AI）；成語、近義詞收進詞卡冊，造句收進「我的句子」；`tools/add.js`、`tools/check.js` 支援新題庫（`tools/lib-new.js`） |
 | 2026-11-05 | v1.13.3 | 重做島上「鞦韆」（`island.js` 的 `B.swing`）：原本繩子從座椅往上長出橫桿外、整組繞座椅轉、只有兩根直柱。改成 A 字腳（每側兩根斜腳）、橫桿加圓頭、繩子從橫桿垂下、座椅加大並改紅色，擺動的轉軸改在橫桿上 |
 | 2026-11-07 | tools | 新增夜間修發音：`tools/check_poly.js` 改成同時掃 `bank.js`、可輸出 JSON、跳過已確認詞（`tools/pron-ok.txt`）；新增 `tools/PRON_NIGHTLY.md` 作業說明與 `tools/pron-log.md` 紀錄；排程「說說島每晚修發音」每天 04:21。不影響遊戲版本號 |

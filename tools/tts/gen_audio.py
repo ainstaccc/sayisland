@@ -27,20 +27,37 @@ def write_manifest(items):
     return len(have)
 
 
-async def run(todo, voice, rate, pitch, force, workers, root):
+LOG = os.path.join(HERE, "speak-log.json")  # 檔名 → 當時合成的字；發音修正（FIX）改了之後，speak 變了就會自動重產
+
+
+def load_log():
+    try:
+        return json.load(open(LOG, encoding="utf-8"))
+    except Exception:
+        return {}
+
+
+def save_log(log):
+    with open(LOG, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(log, f, ensure_ascii=False, indent=0, sort_keys=True)
+        f.write("\n")
+
+
+async def run(todo, voice, rate, pitch, force, workers, root, log):
     sem = asyncio.Semaphore(workers)
     stat = {"ok": 0, "skip": 0, "bad": 0, "n": 0}
     total = len(todo)
 
     async def one(x):
         path = os.path.join(root, x["file"])
-        if os.path.exists(path) and not force:
+        if os.path.exists(path) and not force and log.get(x["file"], x["speak"]) == x["speak"]:
             stat["skip"] += 1; return
         async with sem:
             for k in range(4):
                 try:
                     await synth(x["speak"], voice, rate, pitch, path)
                     if os.path.getsize(path) < 500: raise RuntimeError("音檔太小，可能沒有合成成功")
+                    log[x["file"]] = x["speak"]
                     stat["ok"] += 1; stat["n"] += 1
                     if stat["n"] % 50 == 0: print("  已完成 %d / %d" % (stat["n"], total), flush=True)
                     return
@@ -72,7 +89,11 @@ def main():
         todo = [x for x in todo if force_missing(x, a.force)][: a.limit]
     os.makedirs(os.path.join(ROOT, "audio", "sp"), exist_ok=True)
     print("共 %d 句要檢查（同時 %d 句）" % (len(todo), a.workers), flush=True)
-    st = asyncio.run(run(todo, voice, a.rate, a.pitch, a.force, a.workers, ROOT))
+    log = load_log()
+    st = asyncio.run(run(todo, voice, a.rate, a.pitch, a.force, a.workers, ROOT, log))
+    for x in items:  # 已有檔但還沒記錄的，記成目前的 speak
+        if os.path.exists(os.path.join(ROOT, x["file"])): log.setdefault(x["file"], x["speak"])
+    save_log(log)
     if st["ok"]:
         with open(os.path.join(ROOT, "audio", "sp", "_voice.txt"), "w", encoding="utf-8") as f:
             f.write("voice=%s rate=%+d%% pitch=%+dHz date=%s\n" % (voice, a.rate, a.pitch, datetime.date.today()))
