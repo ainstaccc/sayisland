@@ -1,638 +1,230 @@
 [
  {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #0",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #1",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #2",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #3",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #4",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #5",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #6",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #7",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 zo v-quiz #8",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "？",
-  "detail": "scrollWidth 99 > 18"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 v v-fill #0",
-  "type": "contrast",
-  "sel": "button.fbk",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 v v-fill #0",
-  "type": "contrast",
-  "sel": "div#fline",
-  "text": "點一個字，再點空格，把它放進去。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 a v-fill #0",
-  "type": "contrast",
-  "sel": "button.fbk",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 a v-fill #0",
-  "type": "contrast",
-  "sel": "div#fline",
-  "text": "點一個字，再點空格，把它放進去。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #0",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #1",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #2",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #4",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #5",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #6",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 r v-quiz #8",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #0",
-  "type": "spill",
-  "sel": "span.ch",
-  "text": "天黑了，",
-  "detail": "文字 10→148，容器 16→374（div.qcard）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #0",
-  "type": "spill",
-  "sel": "span.cp.c",
-  "text": "，",
-  "detail": "文字 10→35，容器 16→374（div.qcard）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #0",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "，",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #0",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #0",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #1",
-  "type": "spill",
-  "sel": "span.ch",
-  "text": "天黑了，",
-  "detail": "文字 10→148，容器 16→374（div.qcard）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #1",
-  "type": "spill",
-  "sel": "span.cp.c",
-  "text": "，",
-  "detail": "文字 10→35，容器 16→374（div.qcard）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #1",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "，",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #1",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #2",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #2",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #3",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #3",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #4",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #5",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #5",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #6",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #7",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #7",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #8",
-  "type": "contrast",
-  "sel": "span#blank",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 y v-quiz #8",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 137 > 25"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #0",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #1",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #2",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #3",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #4",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #5",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #6",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #7",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 e v-build #8",
-  "type": "contrast",
-  "sel": "b",
-  "text": "？",
-  "detail": "對比 2.90（字 rgb(255, 92, 154) 底 rgb(255,255,255)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #0",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #1",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #2",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #3",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #4",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #5",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #6",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #7",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "，",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #7",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #8",
-  "type": "clip",
-  "sel": "span.cp.c",
-  "text": "，",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 h v-quiz #8",
-  "type": "clip",
-  "sel": "span.cp.p",
-  "text": "。",
-  "detail": "scrollWidth 124 > 23"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #0",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #1",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #2",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #3",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #4",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #5",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #6",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #7",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "關卡 m v-match #8",
-  "type": "contrast",
-  "sel": "div#mline",
-  "text": "配對成功後，這裡會唸出完整的句子。",
-  "detail": "對比 2.75（字 rgb(23, 166, 115) 底 rgb(216,248,234)）"
- },
- {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L1",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
   "screen": "島",
   "type": "contrast",
   "sel": "b.dotn",
   "text": "1",
-  "detail": "對比 3.21（字 rgb(255, 255, 255) 底 rgb(255,77,109)）"
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
  },
  {
-  "cfg": "light/390px/L1",
-  "screen": "島 shop",
+  "cfg": "light/320px/L1",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
   "type": "contrast",
   "sel": "b.dotn",
   "text": "1",
-  "detail": "對比 3.21（字 rgb(255, 255, 255) 底 rgb(255,77,109)）"
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
  },
  {
-  "cfg": "light/390px/L1",
-  "screen": "島 fac",
-  "type": "contrast",
-  "sel": "b.dotn",
-  "text": "1",
-  "detail": "對比 3.21（字 rgb(255, 255, 255) 底 rgb(255,77,109)）"
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
  },
  {
-  "cfg": "light/390px/L1",
-  "screen": "島 bag",
-  "type": "contrast",
-  "sel": "b.dotn",
-  "text": "1",
-  "detail": "對比 3.21（字 rgb(255, 255, 255) 底 rgb(255,77,109)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "島 box",
-  "type": "contrast",
-  "sel": "b.dotn",
-  "text": "1",
-  "detail": "對比 3.21（字 rgb(255, 255, 255) 底 rgb(255,77,109)）"
- },
- {
-  "cfg": "light/390px/L1",
-  "screen": "島 box",
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
   "type": "small",
   "sel": "small",
   "text": "普通 60% 稀有 28% 超稀有 10% 傳說 2%",
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
-  "screen": "島 box",
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
   "type": "small",
   "sel": "small",
   "text": "稀有 50% 超稀有 40% 傳說 10%",
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
-  "screen": "島 box",
+  "cfg": "light/320px/L1",
+  "screen": "島 目標",
   "type": "small",
   "sel": "small",
   "text": "普通 25% 稀有 40% 超稀有 28% 傳說 7%",
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 box",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "contrast",
   "sel": "b.dotn",
   "text": "1",
-  "detail": "對比 3.21（字 rgb(255, 255, 255) 底 rgb(255,77,109)）"
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small",
@@ -640,7 +232,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small.gls",
@@ -648,7 +240,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small",
@@ -656,7 +248,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small.gls",
@@ -664,7 +256,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small",
@@ -672,7 +264,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small.gls",
@@ -680,7 +272,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small",
@@ -688,7 +280,7 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
   "sel": "small.gls",
@@ -696,7 +288,463 @@
   "detail": "15px"
  },
  {
-  "cfg": "light/390px/L1",
+  "cfg": "light/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small",
+  "text": "達成「學會20題」解鎖（要有機場才能送）",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #4",
+  "type": "docOverflow",
+  "sel": "html",
+  "text": "",
+  "detail": "scrollWidth 341 > 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #4",
+  "type": "offscreen",
+  "sel": "button.opt",
+  "text": "不理會",
+  "detail": "243→341 / 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #4",
+  "type": "spill",
+  "sel": "button.opt",
+  "text": "不理會",
+  "detail": "文字 250→334，容器 16→304（div.qcard）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #5",
+  "type": "docOverflow",
+  "sel": "html",
+  "text": "",
+  "detail": "scrollWidth 341 > 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #5",
+  "type": "offscreen",
+  "sel": "button.opt",
+  "text": "不理會",
+  "detail": "243→341 / 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #5",
+  "type": "spill",
+  "sel": "button.opt",
+  "text": "不理會",
+  "detail": "文字 250→334，容器 16→304（div.qcard）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #6",
+  "type": "docOverflow",
+  "sel": "html",
+  "text": "",
+  "detail": "scrollWidth 341 > 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #6",
+  "type": "offscreen",
+  "sel": "button.opt",
+  "text": "不理會",
+  "detail": "243→341 / 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #6",
+  "type": "spill",
+  "sel": "button.opt",
+  "text": "不理會",
+  "detail": "文字 250→334，容器 16→304（div.qcard）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #7",
+  "type": "docOverflow",
+  "sel": "html",
+  "text": "",
+  "detail": "scrollWidth 344 > 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #7",
+  "type": "offscreen",
+  "sel": "button.opt.good",
+  "text": "不理會",
+  "detail": "243→341 / 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #7",
+  "type": "spill",
+  "sel": "button.opt.good",
+  "text": "不理會",
+  "detail": "文字 250→334，容器 16→304（div.qcard）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #8",
+  "type": "docOverflow",
+  "sel": "html",
+  "text": "",
+  "detail": "scrollWidth 341 > 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #8",
+  "type": "offscreen",
+  "sel": "button.opt",
+  "text": "不可能",
+  "detail": "243→341 / 320"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "關卡 pw v-quiz #8",
+  "type": "spill",
+  "sel": "button.opt",
+  "text": "不可能",
+  "detail": "文字 250→334，容器 16→304（div.qcard）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 shop",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 fac",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 bag",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "small",
+  "text": "普通 60% 稀有 28% 超稀有 10% 傳說 2%",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "small",
+  "text": "稀有 50% 超稀有 40% 傳說 10%",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "small",
+  "text": "普通 25% 稀有 40% 超稀有 28% 傳說 7%",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "contrast",
+  "sel": "b.dotn",
+  "text": "1",
+  "detail": "對比 4.47（字 rgb(255, 255, 255) 底 rgb(217,58,87)）"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small",
+  "text": "飛去朋友的島、送明信片、貼紙和友情設施",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small.gls",
+  "text": "60 / 100 顆星 還差 40 顆星",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small",
+  "text": "開去外島，外島也可以擺東西",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small.gls",
+  "text": "0 / 5 個徽章 還差 5 個徽章",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small",
+  "text": "每天一次，飛去神祕島撿特殊物品",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small.gls",
+  "text": "0 / 10 個徽章 還差 10 個徽章",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small",
+  "text": "學會的題目越多，島越大",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "small.gls",
+  "text": "0 / 20 題 → 8 格大島",
+  "detail": "15px"
+ },
+ {
+  "cfg": "light/320px/L3",
   "screen": "島 目標",
   "type": "small",
   "sel": "small",

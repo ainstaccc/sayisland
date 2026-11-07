@@ -137,7 +137,7 @@ h1,h2,h3{font-family:var(--f-disp);margin:0;text-wrap:balance}
 .qt .ch,.ch{white-space:nowrap}
 .blank{display:inline-block;min-width:2.4em;padding:0 6px;margin:0 2px;border-bottom:4px dashed var(--pri);color:var(--pri);white-space:nowrap}
 .blank.ok{color:var(--ok);border-color:var(--ok);border-bottom-style:solid}
-.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
 .opt{min-height:70px;border-radius:20px;background:var(--bg);border:3px solid var(--line);font:800 clamp(24px,7vw,32px)/1 var(--f-disp);white-space:nowrap;box-shadow:0 4px 0 var(--shadow);padding:0 4px}
 .opt:active{transform:translateY(3px)}
 .opt.good{background:var(--ok-bg);border-color:var(--ok);color:var(--ok)}
@@ -765,7 +765,7 @@ body.ingame .cap,.zc small,.chip em,.zq small{font-size:16px}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--pri-t:var(--pri);--ok-t:var(--ok)}}:root[data-theme="dark"]{--pri-t:var(--pri);--ok-t:var(--ok)}
 .fbk,#blank,.chip.pend b{color:var(--pri-t)}
 .mline,#fline{color:var(--ok-t)}
-.dotn,.new{background:#D93A57}
+.dotn,.new{background:#C42F4E}#sjword{color:var(--pri-t)}
 small,.gls{font-size:max(1em,16px)}
 </style>
 
@@ -2415,7 +2415,7 @@ function pickItems(cat,n,only){
   return pool.map(x=>[(learned(x)&&!stale(x)?1:learned(x)?.4:0)+Math.random()*.9,x]).sort((a,b)=>a[0]-b[0]).slice(0,n).map(a=>a[1]);
 }
 const cpH=t=>String(t).replace(/([，。、])/g,m=>`<span class="cp ${m==='，'?'c':m==='。'?'p':'d'}">${m}</span>`);
-const chunks=str=>(str.match(/[^，。！？]+[，。！？]?/g)||[]).map(p=>`<span class="ch">${cpH(zyV(esc(p)))}</span>`).join('');
+const chunks=str=>(str.match(/[^，。！？]+[，。！？]?[」』）]*/g)||[]).map(p=>`<span class="ch">${cpH(zyV(esc(p)))}</span>`).join('');
 const zyClean=t=>t.replace(ZYRE,'').replace('＿＿','').replace(/[「『]\s*[」』]/g,'').replace(/[（(]\s*[）)]/g,'').replace(/[，、]{2,}/g,'，').replace(/^[，。\s]+|[，\s]+$/g,'').replace(/。+$/,'');
 const qFull=q=>{if(q.cat==='h')return q.ans;
   if(q.cat==='zb')return q.w+'的'+q.ch+'。';
