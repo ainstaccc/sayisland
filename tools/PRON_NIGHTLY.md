@@ -32,7 +32,7 @@
    - `node tools/check.js` 印出 `ALL OK`。
    - `node tools/check_poly.js` 跑得起來（exit code 0）。
    - Playwright（chromium 參數 `--use-gl=swiftshader --enable-unsafe-swiftshader --ignore-gpu-blocklist --allow-file-access-from-files`）：開 `file://.../index.html`，輸入暱稱進首頁、進任一關卡出題，全程無 `pageerror`；`section[id^=v-]` 中 offsetHeight>0 的只有首頁 `#v-home`（**不可注入 `[hidden]{display:none!important}`**，要測真正的 index.html）。
-   - 用 `page.evaluate` 呼叫 `forSpeech('新增修正的原詞')`，確認輸出是你設定的「改唸詞」。
+   - 每個新增的修正都跑 `node tools/check_poly.js --speak="含原詞的一句話"`，確認輸出裡原詞已換成「改唸詞」（頁面全域抓不到 `forSpeech`，不要用 `page.evaluate` 測）。
 8. 版本號：首頁底部 `說說島 vX.Y.Z` 的 Z 加 1（所有出現處同步）；`README.md` 最上方版本與「更新紀錄」表追加一行（日期、版本、「發音修正 +N」）。
 9. 在 `tools/pron-log.md` 最上面追加：日期、審了幾筆、新增哪些修正（原詞→改唸詞＋正確讀音）、免修幾個、待人工確認清單與原因、`total` 剩幾筆。
 10. `git pull --rebase origin main`（每晚還有題庫機器人和 UI 機器人會 commit）→ `git add -A && git commit && git push origin main`。commit 訊息：`pron: YYYY-MM-DD 發音修正 +N`，結尾加排程給的 Co-Authored-By 與 Claude-Session 行。

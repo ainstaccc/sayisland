@@ -31,6 +31,17 @@ function grabArray(name) {
   return new Function('return ' + H.slice(start, i))();
 }
 
+// --speak="頭髮很長"：用 index.html 裡真正的 FIX／ADV／forSpeech 算出「實際會唸的字」（驗證修正有生效）
+const sp = args.find(a => a.startsWith('--speak='));
+if (sp) {
+  const a = H.indexOf('const FIX='), m = /const forSpeech=[\s\S]*?return r\};/.exec(H);
+  if (a < 0 || !m) { console.error('⚠ 找不到 FIX／forSpeech 區段'); process.exit(2); }
+  const f = new Function('DB', H.slice(a, m.index + m[0].length) + ';return forSpeech;')({ fix: [] });
+  const t = sp.slice('--speak='.length);
+  fs.writeSync(1, t + ' → ' + f(t) + '\n');
+  process.exit(0);
+}
+
 const KEYS = [];
 for (const p of ['Q', 'V', 'A', 'M', 'E', 'H', 'R', 'Y']) for (const n of [1, 2, 3]) KEYS.push(p + n);
 KEYS.push('ZB', 'TS');
