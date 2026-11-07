@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""說說島｜預錄語音產生器（在 Stacy 的電腦上執行；雲端連不到微軟語音服務）。
+"""說說島｜預錄語音產生器（可在 Stacy 的電腦執行；雲端要先在 claude.ai 允許網域加 speech.platform.bing.com，程式會自動走環境的 HTTPS_PROXY）。
 讀 items.json → 用微軟台灣語音（edge-tts）合成 mp3 → 存到 audio/sp/ → 更新 audio/manifest.js。
 用法：雙擊 start.bat，或  python gen_audio.py [--voice zh-TW-HsiaoChenNeural] [--rate -5] [--pitch 0] [--force] [--only 4]
 """
@@ -15,7 +15,9 @@ def synth(text, voice, rate, pitch, out):
     import edge_tts
 
     async def go():
-        await edge_tts.Communicate(text, voice, rate="%+d%%" % rate, pitch="%+dHz" % pitch).save(out)
+        px = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")  # 雲端環境需走代理；PC 沒設就直連
+        kw = {"proxy": px} if px else {}
+        await edge_tts.Communicate(text, voice, rate="%+d%%" % rate, pitch="%+dHz" % pitch, **kw).save(out)
 
     asyncio.run(go())
 

@@ -15,6 +15,12 @@
 - 已有的音檔會略過，失敗的下次再按一次會補。想全部重產：刪掉 `audio\sp` 再執行。
 - 聲音：曉臻（zh-TW-HsiaoChenNeural），語速 -5%，音調 0。要改在 `gen_audio.py` 最上面的設定。
 
+## 二之二、雲端自動產（2026-11-07 起）
+- 前提：claude.ai 設定 > 功能 > 網域許可清單，額外允許 `speech.platform.bing.com`（已加）。
+- 雲端環境的網路要走代理，`gen_audio.py` 會自動讀 `HTTPS_PROXY`，不用另外設定。
+- 指令（在 repo 根目錄）：`pip install edge-tts --break-system-packages`、`node tools/tts/build_manifest.js`、`python3 tools/tts/gen_audio.py`、`node tools/tts/build_manifest.js --check`。
+- 已實測：雲端用曉臻產出 mp3 成功。
+
 ## 三、檔案
 | 檔案 | 用途 |
 |---|---|
@@ -33,6 +39,7 @@
 預錄音檔是整句生成，唸錯的字要在 `gen_audio.py` 產之前先處理：在 `index.html` 的 `FIX` 加同音字替換（跟手機語音同一套），重新產該句。已知待確認：「長高」「還給」「音樂」「髮」「背著」「倒進」「種玉米」「暑假」「睡著」「銀行」都是易錯破音字，聽完請回報。
 
 ## 六、限制
-- 雲端連不到微軟語音服務，所以一定要在 Stacy 電腦產。
+- 雲端要先允許 `speech.platform.bing.com` 才連得到；沒允許時只能在 Stacy 電腦產。
+- 疑難：雲端出現 `Cannot connect to host speech.platform.bing.com ... Name or service not known` = 沒走代理（舊版 gen_audio.py）；`403 CONNECT tunnel failed` = 網域沒允許。
 - 微軟語音為非官方介接，日後可能變更。
 - 目前沒有家豪（TTSMaker 專屬）。
