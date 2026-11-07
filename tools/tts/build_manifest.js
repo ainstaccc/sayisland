@@ -1,58 +1,84 @@
-/* 說說島｜預錄語音清單產生器
- * 做兩件事（在 repo 根目錄執行：node tools/tts/build_manifest.js）：
- *  1. 讀 index.html 的 SPK（聲音試聽關）題目，算出 App 會「唸出來的每一句」＋套用發音修正後實際要合成的字，
- *     寫到 tools/tts/items.json（給 Stacy 電腦上的 gen_audio.py 產 mp3）。
- *  2. 掃 audio/sp/ 已經有的 mp3，寫 audio/manifest.js（App 啟動時載入；沒有檔的句子會自動用手機語音）。
- * 參數：--check 只檢查 manifest 與音檔是否一致（不寫檔），有缺檔／多餘檔以非 0 結束。
+/* 說說島｜預錄語音清單產生器（在 repo 根目錄執行：node tools/tts/build_manifest.js）
+ * 1. 用 Playwright 開 index.html（臨時副本，只多露出內部函式，不改正式檔），
+ *    用 App 自己的 qSpoken／qFull／forSpeech 算出「各關會唸的每一句」＋套用發音修正後實際要合成的字，
+ *    寫到 tools/tts/items.json（gen_audio.py 讀它）。
+ * 2. 掃 audio/sp/ 已有的 mp3，寫 audio/manifest.js（App 啟動時載入；沒檔的句子自動用手機語音）。
+ * 參數：--check 只檢查 manifest／音檔是否一致與缺檔數（不寫檔）；有多餘檔或 manifest 不一致時以非 0 結束。
+ *       --missing 只列出缺檔句數（給排程看）。
+ * 不預錄（每次內容不同）：老師上傳課文、好好說話(h)、排詞成句(sj 的 o)、改寫／造句的作答。
  */
-const fs = require('fs'), path = require('path'), crypto = require('crypto');
-const H = fs.readFileSync('index.html', 'utf8');
+const fs = require('fs'), os = require('os'), path = require('path'), crypto = require('crypto');
+const { chromium } = require('playwright');
 
-function grabArray(name) {
-  const m = H.indexOf('const ' + name + '=[');
-  if (m < 0) throw new Error('index.html 找不到 const ' + name);
-  let i = H.indexOf('[', m), depth = 0, q = null; const start = i;
-  for (; i < H.length; i++) {
-    const c = H[i];
-    if (q) { if (c === '\\') i++; else if (c === q) q = null; continue; }
-    if (c === '"' || c === "'" || c === '`') { q = c; continue; }
-    if (c === '[') depth++; else if (c === ']') { depth--; if (depth === 0) { i++; break; } }
+// 會被 say() 唸的字串規則（要和 index.html 一致；改 index.html 的唸法時，這裡要跟著改，E2E 會驗）
+const ENUM = () => {
+  const I = window.__INT, out = new Map();
+  const add = (cat, t) => { if (t && typeof t === 'string' && !out.has(t)) out.set(t, cat); };
+  for (const k of Object.keys(I.CATS)) {
+    for (const q of (I.D[k] || [])) {
+      if (['q', 'v', 'a'].includes(k)) { add(k, q.t.replace('＿＿', '，什麼，')); add(k, I.qFull(q)); }
+      else if (k === 'e') { add(k, q.scene); add(k, I.sentenceOf(q) + '。'); }
+      else if (k === 'm') add(k, `因為${q.c}，所以${q.f}。`);
+      else if (k === 'z') add(k, q.w + '的' + q.ch);
+      else if (k === 't') add(k, q.model);
+      else if (k === 'sj') {
+        if (q.k === 's') { add(k, q.t.replace('＿＿', '，什麼，')); add(k, q.t.replace('＿＿', q.right) + '。'); }
+        else if (q.k === 'o') add(k, q.sent);
+        else if (q.k === 'x') add(k, '照樣造句：' + q.word.replace(/…/g, '，') + '。例如：' + q.demo + '。' + q.hint);
+        else if (q.k === 'r') add(k, '把這個句子改寫：' + q.orig + '。' + q.ins);
+        else if (q.word) add(k, '請用「' + q.word.replace(/…/g, '，') + '」造一個句子。' + q.hint);
+      }
+      else if (k === 'u' || k === 'h') { /* 動態，不預錄 */ }
+      else { add(k, I.qSpoken(q)); add(k, I.qFull(q)); }
+    }
   }
-  return new Function('return ' + H.slice(start, i))();
+  return [...out].map(([key, cat]) => ({ cat, key, speak: I.forSpeech(key) }));
+};
+
+async function enumerate() {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'sayenum-'));
+  for (const f of ['index.html', 'bank.js', 'island.js', 'three.min.js', 'manifest.json']) if (fs.existsSync(f)) fs.copyFileSync(f, path.join(tmp, f));
+  let h = fs.readFileSync(path.join(tmp, 'index.html'), 'utf8');
+  const i = h.lastIndexOf('})();');
+  if (i < 0) throw new Error('index.html 找不到結尾 })();');
+  h = h.slice(0, i) + "window.__INT={D,CATS,qSpoken,qFull,sentenceOf,forSpeech};\n" + h.slice(i);
+  fs.writeFileSync(path.join(tmp, 'index.html'), h);
+  const b = await chromium.launch(); const p = await b.newPage(); const errs = [];
+  p.on('pageerror', e => errs.push(e.message));
+  await p.goto('file://' + path.join(tmp, 'index.html')); await p.waitForTimeout(800);
+  const items = await p.evaluate(ENUM);
+  await b.close(); fs.rmSync(tmp, { recursive: true, force: true });
+  if (errs.length) throw new Error('頁面錯誤：' + errs[0]);
+  if (!items.length) throw new Error('沒有盤點到任何句子');
+  return items;
 }
 
-// 用 index.html 裡真正的 FIX／ADV／forSpeech 算「實際會唸的字」
-const a = H.indexOf('const FIX='), m = /const forSpeech=[\s\S]*?return r\};/.exec(H);
-if (a < 0 || !m) throw new Error('找不到 FIX／forSpeech 區段');
-const forSpeech = new Function('DB', H.slice(a, m.index + m[0].length) + ';return forSpeech;')({ fix: [] });
+(async () => {
+  const seen = new Set(), items = [];
+  for (const x of await enumerate()) {
+    if (seen.has(x.key)) continue; seen.add(x.key);
+    x.file = 'audio/sp/' + crypto.createHash('sha1').update(x.key).digest('hex').slice(0, 10) + '.mp3';
+    items.push(x);
+  }
+  const have = items.filter(x => fs.existsSync(x.file));
+  const names = new Set(items.map(x => path.basename(x.file)));
+  const extra = fs.existsSync('audio/sp') ? fs.readdirSync('audio/sp').filter(f => f.endsWith('.mp3') && !names.has(f)) : [];
+  const man = 'window.PREAUD=' + JSON.stringify(Object.fromEntries(have.map(x => [x.key, x.file]))) + ';\n';
+  const byCat = {}; items.forEach(x => { const c = byCat[x.cat] = byCat[x.cat] || [0, 0]; c[0]++; if (fs.existsSync(x.file)) c[1]++; });
+  const sum = Object.entries(byCat).map(([k, v]) => k + ' ' + v[1] + '/' + v[0]).join('，');
 
-// App 實際呼叫 say() 的字串（要跟 index.html 的 qSpoken／qFull 預設分支一致）
-const spoken = q => q[1].replace('＿＿', '，什麼，');
-const full = q => q[1].replace('＿＿', q[2]);
-
-const SPK = grabArray('SPK');
-const seen = new Set(), items = [];
-SPK.forEach((r, i) => {
-  [['題目', spoken(r)], ['答案句', full(r)]].forEach(([kind, key]) => {
-    if (seen.has(key)) return; seen.add(key);
-    const file = 'audio/sp/' + crypto.createHash('sha1').update(key).digest('hex').slice(0, 10) + '.mp3';
-    items.push({ q: i + 1, kind, key, speak: forSpeech(key), file });
-  });
-});
-
-const have = items.filter(x => fs.existsSync(x.file));
-const extra = fs.existsSync('audio/sp') ? fs.readdirSync('audio/sp').filter(f => f.endsWith('.mp3') && !items.some(x => x.file === 'audio/sp/' + f)) : [];
-const man = 'window.PREAUD=' + JSON.stringify(Object.fromEntries(have.map(x => [x.key, x.file])), null, 0) + ';\n';
-
-if (process.argv.includes('--check')) {
-  const onDisk = fs.existsSync('audio/manifest.js') ? fs.readFileSync('audio/manifest.js', 'utf8') : '';
-  const ok = onDisk === man;
-  console.log('題目句 ' + items.length + ' 句；已有音檔 ' + have.length + ' 個；多餘音檔 ' + extra.length + ' 個；manifest ' + (ok ? '一致' : '需要重建'));
-  if (extra.length) console.log('多餘：' + extra.join(' '));
-  process.exitCode = ok && !extra.length ? 0 : 1;
-} else {
-  fs.mkdirSync('audio/sp', { recursive: true });
-  fs.writeFileSync('tools/tts/items.json', JSON.stringify(items, null, 1) + '\n');
-  fs.writeFileSync('audio/manifest.js', man);
-  console.log('items.json：' + items.length + ' 句；audio/manifest.js：' + have.length + ' 句有音檔' + (extra.length ? '；多餘音檔 ' + extra.length + ' 個（' + extra.join(' ') + '）' : ''));
-}
+  if (process.argv.includes('--check') || process.argv.includes('--missing')) {
+    const onDisk = fs.existsSync('audio/manifest.js') ? fs.readFileSync('audio/manifest.js', 'utf8') : '';
+    const ok = onDisk === man;
+    console.log('應有 ' + items.length + ' 句；已有音檔 ' + have.length + ' 個；缺 ' + (items.length - have.length) + ' 句；多餘音檔 ' + extra.length + ' 個；manifest ' + (ok ? '一致' : '需要重建'));
+    console.log('各關（有/應有）：' + sum);
+    if (extra.length) console.log('多餘：' + extra.slice(0, 20).join(' ') + (extra.length > 20 ? ' …' : ''));
+    process.exitCode = process.argv.includes('--missing') ? 0 : (ok && !extra.length ? 0 : 1);
+  } else {
+    fs.mkdirSync('audio/sp', { recursive: true });
+    fs.writeFileSync('tools/tts/items.json', JSON.stringify(items, null, 1) + '\n');
+    fs.writeFileSync('audio/manifest.js', man);
+    console.log('items.json：' + items.length + ' 句；audio/manifest.js：' + have.length + ' 句有音檔' + (extra.length ? '；多餘音檔 ' + extra.length + ' 個' : ''));
+    console.log('各關（有/應有）：' + sum);
+  }
+})().catch(e => { console.error(e.message); process.exit(2); });
