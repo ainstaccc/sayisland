@@ -1,98 +1,418 @@
 [
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "light/320px/L2",
   "screen": "島 box",
   "type": "small",
-  "sel": "small",
-  "text": "普通 60% 稀有 28% 超稀有 10% 傳說 2%",
-  "detail": "15px"
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
   "screen": "島 box",
   "type": "small",
-  "sel": "small",
-  "text": "稀有 50% 超稀有 40% 傳說 10%",
-  "detail": "15px"
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
   "screen": "島 box",
   "type": "small",
-  "sel": "small",
-  "text": "普通 25% 稀有 40% 超稀有 28% 傳說 7%",
-  "detail": "15px"
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
-  "screen": "島 目標",
+  "cfg": "light/320px/L2",
+  "screen": "島 box",
   "type": "small",
-  "sel": "small",
-  "text": "飛去朋友的島、送明信片、貼紙和友情設施",
-  "detail": "15px"
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
-  "sel": "small.gls",
-  "text": "60 / 100 顆星 還差 40 顆星",
-  "detail": "15px"
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
-  "sel": "small",
-  "text": "開去外島，外島也可以擺東西",
-  "detail": "15px"
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
-  "sel": "small.gls",
-  "text": "0 / 5 個徽章 還差 5 個徽章",
-  "detail": "15px"
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "light/320px/L2",
   "screen": "島 目標",
   "type": "small",
-  "sel": "small",
-  "text": "每天一次，飛去神祕島撿特殊物品",
-  "detail": "15px"
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
  },
  {
-  "cfg": "dark/360px/L2",
-  "screen": "島 目標",
-  "type": "small",
-  "sel": "small.gls",
-  "text": "0 / 10 個徽章 還差 10 個徽章",
-  "detail": "15px"
+  "cfg": "dark/320px/L2",
+  "screen": "關卡 sj v-sj #0",
+  "type": "contrast",
+  "sel": "button.sjc",
+  "text": "弟弟",
+  "detail": "對比 1.13（字 rgb(246, 238, 255) 底 rgb(255,255,255)）"
  },
  {
-  "cfg": "dark/360px/L2",
-  "screen": "島 目標",
-  "type": "small",
-  "sel": "small",
-  "text": "學會的題目越多，島越大",
-  "detail": "15px"
+  "cfg": "dark/320px/L2",
+  "screen": "關卡 sj v-sj #0",
+  "type": "contrast",
+  "sel": "button.sjc",
+  "text": "一邊",
+  "detail": "對比 1.13（字 rgb(246, 238, 255) 底 rgb(255,255,255)）"
  },
  {
-  "cfg": "dark/360px/L2",
-  "screen": "島 目標",
-  "type": "small",
-  "sel": "small.gls",
-  "text": "0 / 20 題 → 8 格大島",
-  "detail": "15px"
+  "cfg": "dark/320px/L2",
+  "screen": "關卡 sj v-sj #0",
+  "type": "contrast",
+  "sel": "button.sjc",
+  "text": "吃早餐",
+  "detail": "對比 1.13（字 rgb(246, 238, 255) 底 rgb(255,255,255)）"
  },
  {
-  "cfg": "dark/360px/L2",
+  "cfg": "dark/320px/L2",
+  "screen": "關卡 sj v-sj #0",
+  "type": "contrast",
+  "sel": "button.sjc",
+  "text": "看電視",
+  "detail": "對比 1.13（字 rgb(246, 238, 255) 底 rgb(255,255,255)）"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 shop",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 fac",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 bag",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 box",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
   "screen": "島 目標",
   "type": "small",
-  "sel": "small",
-  "text": "達成「學會20題」解鎖（要有機場才能送）",
-  "detail": "15px"
+  "sel": "span",
+  "text": "商店",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "設施",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "盲盒",
+  "detail": "14.5px"
+ },
+ {
+  "cfg": "dark/320px/L2",
+  "screen": "島 目標",
+  "type": "small",
+  "sel": "span",
+  "text": "背包",
+  "detail": "14.5px"
  }
 ]
