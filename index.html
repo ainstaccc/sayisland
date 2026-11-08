@@ -786,8 +786,12 @@ small,.gls{font-size:max(1em,16px)}
 .fc .ft .fbk{height:46px;min-width:52px;margin:0 3px;vertical-align:middle}
 .fc .ft .nb{white-space:nowrap}
 .fc .fe{align-self:center}
-/* v1.22.14 填入題窄螢幕：.nb／.ch 改 inline-block，放得下就整塊不斷行，放不下才在塊內換行，不再超出卡片 */
-.fc .ft .nb,.fc .ft .ch{display:inline-block;max-width:100%;white-space:normal;overflow-wrap:anywhere;vertical-align:baseline}
+/* v1.22.15 填入題窄螢幕：.nb／.ch 改 inline-block，放得下就整塊不斷行，放不下才在塊內換行，不再超出卡片 */
+.fc .fe{display:none}
+.fc .ft .ch{white-space:normal;overflow-wrap:anywhere}
+.fc .ft .nb{white-space:nowrap}
+.fc .ft{line-height:1.55}
+.fc .ft .fbk{height:38px;min-width:46px;padding:0 6px;margin:0 2px;border-width:2px;font-size:.85em}
 </style>
 
 <div class="wrap" id="app">
@@ -817,7 +821,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.22.14</p>
+    <p class="ver">說說島 v1.22.15</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -846,7 +850,7 @@ small,.gls{font-size:max(1em,16px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.22.14</p>
+    <p class="ver">說說島 v1.22.15</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1031,7 +1035,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.22.14</p>
+    <p class="ver">說說島 v1.22.15</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1109,7 +1113,7 @@ small,.gls{font-size:max(1em,16px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.22.14</p>
+    <p class="ver">說說島 v1.22.15</p>
   </section>
 </div>
 
@@ -2374,7 +2378,7 @@ const ADV=['整齊','溫柔','深深','大聲','誠懇','認真','高興','生�
 const ADVRE=new RegExp('('+ADV.sort((a,b)=>b.length-a.length).join('|')+')地','g');
 const forSpeech=t=>{let r=t;[...(DB.fix||[])].filter(f=>f&&f[0]).sort((x,y)=>y[0].length-x[0].length).forEach(([a,b])=>{r=r.split(a).join(b)});r=r.replace(ADVRE,'$1的');r=FIX.reduce((s,[a,b])=>s.split(a).join(b),r);r=r.replace(/乾(?!坤)/g,'甘');return r};/* 「乾」除了乾坤都唸ㄍㄢ（吹乾、擦乾、乾淨、乾燥、餅乾…），語音常誤唸成ㄑㄧㄢˊ，統一換同音字「甘」 */
 /* 預錄音檔：audio/manifest.js 的 PREAUD 以「要唸的原文」為鍵；有檔就播，播不出來就退回手機語音 */
-/* v1.22.14 預錄音檔改用「同一個」Audio 元素連播：iOS 只准「點擊當下解鎖過」的元素播放，原本每段新建 Audio，
+/* v1.22.15 預錄音檔改用「同一個」Audio 元素連播：iOS 只准「點擊當下解鎖過」的元素播放，原本每段新建 Audio，
    第 2 段起被擋 → 退回機器人又唸一次（好好說話曉臻唸完機器人再唸）。被手機擋住（NotAllowedError）時不再退回機器人，避免重複唸。 */
 let PAUD=null,SAYTOK=0;
 const SILWAV='data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=';
@@ -2970,7 +2974,7 @@ function renderF(){
   $('#ftag').textContent=c.n;
   $('#fprog').style.width=(F.b/F.boards*100)+'%';$('#fprog').style.background=`var(${c.c})`;
   $('#fcount').textContent=(F.b+1)+'/'+F.boards;
-  $('#fgrid').innerHTML=bd.map(x=>{const [a,b]=x.t.split('＿＿');return `<div class="fc"><span class="fe" data-say="${esc(x.t.replace('＿＿','，什麼，'))}">${x.e}</span><span class="ft">${chunks((a||'').slice(0,-2))}<span class="nb">${esc((a||'').slice(-2))}<button class="fbk" data-id="${x.id}" aria-label="空格">？</button>${esc(((b||'').match(/^[^，。！？]*[，。！？]?[」』）]*/)||[''])[0])}</span>${chunks((b||'').replace(/^[^，。！？]*[，。！？]?[」』）]*/,''))}</span></div>`}).join('');
+  $('#fgrid').innerHTML=bd.map(x=>{const [a,b]=x.t.split('＿＿');return `<div class="fc"><span class="fe" data-say="${esc(x.t.replace('＿＿','，什麼，'))}">${x.e}</span><span class="ft">${chunks((a||'').slice(0,-2))}<span class="nb">${esc((a||'').slice(-2))}<button class="fbk" data-id="${x.id}" aria-label="空格">？</button>${esc(((b||'').match(/^[^，。！？]{0,2}[，。！？]?[」』）]*/)||[''])[0])}</span>${chunks((b||'').replace(/^[^，。！？]{0,2}[，。！？]?[」』）]*/,''))}</span></div>`}).join('');
   $('#ftray').style.gridTemplateColumns='repeat('+(bd.length===4?2:Math.min(bd.length,3))+',minmax(0,1fr))';$('#ftray').innerHTML=shuffle(bd.map(x=>x.ans)).map((w,i)=>`<button class="fw" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('');
   $('#fline').textContent='點一個字，再點空格，把它放進去。';$('#fnext').hidden=true;
 }
