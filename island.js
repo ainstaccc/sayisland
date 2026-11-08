@@ -138,6 +138,13 @@ const EN2={
  duck:g=>{g.add(sph(.012,'#FFFFFF',-.036,.405,.228),sph(.012,'#FFFFFF',.036,.405,.228),sph(.03,'#FFB7C5',-.09,.31,.19,1,.6,.5),sph(.03,'#FFB7C5',.09,.31,.19,1,.6,.5));chain(g,t=>{g.position.y=Math.abs(Math.sin(t*2))*.012})}
 };
 Object.keys(EN2).forEach(k=>{const o=B[k];if(!o)return;B[k]=(x,z)=>{const g=o(x,z);try{EN2[k](g,x,z)}catch(e){}return g}});
+/* ---------- v1.22.13 造型細節（2026-11-08） ---------- */
+const EN3={
+ house:g=>{const fr='#7A4B2A';[-.22,.22].forEach(x=>{g.add(box(.2,.02,.02,fr,x,.3,.325),box(.02,.2,.02,fr,x,.3,.325),box(.2,.02,.03,fr,x,.2,.335))});g.add(sph(.015,'#FFD84D',.04,.13,.34),box(.12,.03,.12,'#8A8A96',.22,.93,-.1))},
+ cat:g=>{const w='#FFFFFF';g.add(box(.07,.004,.004,w,-.1,.37,.27),box(.07,.004,.004,w,.1,.37,.27),box(.07,.004,.004,w,-.1,.35,.27),box(.07,.004,.004,w,.1,.35,.27),sph(.025,'#FFB7C5',-.07,.5,.14,1,1,.5),sph(.025,'#FFB7C5',.07,.5,.14,1,1,.5),sph(.045,'#FFE0B0',0,.3,.2,1,.8,.8))},
+ sakura:g=>{const pt=[];for(let i=0;i<4;i++){const m=sph(.025,i%2?'#FFD6E5':'#FFB7D0',0,0,0,1,.3,1);g.add(m);pt.push(m)}g.add(ico(.14,'#FFD6E5',.05,1.12,.12,0),sph(.03,'#FFFFFF',.2,.78,.3),sph(.03,'#FFFFFF',-.25,.9,.2));chain(g,t=>{pt.forEach((m,i)=>{const k=(t*.22+i*.25)%1;m.position.set(Math.sin(i*2.1+k*4)*.4,1.0-k*.95,Math.cos(i*1.7+k*3)*.4);m.rotation.set(k*7,k*5,0)})})}
+};
+Object.keys(EN3).forEach(k=>{const o=B[k];if(!o)return;B[k]=(x,z)=>{const g=o(x,z);try{EN3[k](g,x,z)}catch(e){}return g}});
 const CAT=[
  {id:'tree',n:'小樹',c:'自然',p:5,e:'🌳'},{id:'bush',n:'草叢',c:'自然',p:2,e:'🌿'},{id:'flowers',n:'花圃',c:'自然',p:4,e:'🌸'},{id:'sunflower',n:'向日葵',c:'自然',p:4,e:'🌻'},{id:'pine',n:'松樹',c:'自然',p:6,e:'🌲'},{id:'rock',n:'小石頭',c:'自然',p:2,e:'🪨'},{id:'mushroom',n:'蘑菇',c:'自然',p:4,e:'🍄'},{id:'pond',n:'小池塘',c:'自然',p:10,e:'💧'},{id:'sakura',n:'櫻花樹',c:'自然',p:12,e:'🌸'},{id:'bigtree',n:'大橡樹',c:'自然',p:9,e:'🌳'},
  {id:'duck',n:'小鴨',c:'動物',p:6,e:'🦆'},{id:'sheep',n:'小綿羊',c:'動物',p:8,e:'🐑'},{id:'bunny',n:'小兔子',c:'動物',p:8,e:'🐰'},{id:'cat',n:'小貓',c:'動物',p:10,e:'🐱'},{id:'penguin',n:'企鵝',c:'動物',p:14,e:'🐧'},
