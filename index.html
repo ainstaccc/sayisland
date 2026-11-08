@@ -778,6 +778,8 @@ small,.gls{font-size:max(1em,16px)}
 .bagempty .sv{width:64px;height:64px;opacity:.55}.bagempty b{font:900 22px/1.2 var(--f-disp);white-space:nowrap}.bagempty span{font-size:18px;color:var(--ink2);white-space:nowrap}
 .bx.n{border-left:10px solid #5BC27A}.bx.l{border-left:10px solid #FFB000}.bx.c{border-left:10px solid #9B7BE8}
 @media (max-width:360px){.coinbar{font-size:16px;padding:6px 10px}.coinbar .cn{font-size:20px}.bx{border-left-width:8px!important}.bagempty b{font-size:20px}.bagempty span{font-size:16px}}
+/* v1.22.9 注音圈叉：只有一顆選項（全部正確）時跨滿整列，原本被擠在 3 欄的第 1 欄、字超出按鈕 */
+.opts>.opt:only-child{grid-column:1/-1}
 </style>
 
 <div class="wrap" id="app">
