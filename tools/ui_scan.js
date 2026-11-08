@@ -30,7 +30,7 @@ function inPage(){
     const hasText=own.length>0;
     if((hasText||el.tagName==='BUTTON'||el.tagName==='IMG')&&r.width>0&&(r.right>W+2||r.left<-2)&&!scrollAnc(el)&&cs.position!=='fixed')push('offscreen',el,Math.round(r.left)+'→'+Math.round(r.right)+' / '+W);
     if(hasText){
-      const rg=document.createRange();rg.selectNodeContents(el);const tr=[...rg.getClientRects()].filter(x=>x.width>0);
+      const rg=document.createRange();rg.selectNodeContents(el);const tr=[];{const tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;while(n=tw.nextNode()){if(!n.textContent.trim()||(n.parentElement&&n.parentElement.closest('.cp')))continue;const r2=document.createRange();r2.selectNodeContents(n);[...r2.getClientRects()].forEach(x=>{if(x.width>0)tr.push(x)})}}
       if(tr.length){const tl=Math.min(...tr.map(x=>x.left)),trr=Math.max(...tr.map(x=>x.right));const bx=boxOf(el);
         if(bx){const br=bx.getBoundingClientRect();if(trr>br.right+1.5||tl<br.left-1.5)push('spill',el,'文字 '+Math.round(tl)+'→'+Math.round(trr)+'，容器 '+Math.round(br.left)+'→'+Math.round(br.right)+'（'+lab(bx)+'）')}}
       const fs=parseFloat(cs.fontSize);

@@ -2997,7 +2997,7 @@ function fillTry(bEl,wEl){
   }
 }
 $('#v-fill').addEventListener('click',e=>{
-  const em=e.target.closest('.fe');if(em){say(em.dataset.say);return}
+  const fcd=e.target.closest('.fc');if(fcd&&!e.target.closest('.fbk,.fw')){const em=fcd.querySelector('.fe');if(em){say(em.dataset.say);return}}
   const w=e.target.closest('.fw'),b=e.target.closest('.fbk');
   if(w&&!w.classList.contains('used')){
     if(F.sel&&F.sel.t==='b')return fillTry(F.sel.el,w);
