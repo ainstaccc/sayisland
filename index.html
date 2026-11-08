@@ -786,6 +786,8 @@ small,.gls{font-size:max(1em,16px)}
 .fc .ft .fbk{height:46px;min-width:52px;margin:0 3px;vertical-align:middle}
 .fc .ft .nb{white-space:nowrap}
 .fc .fe{align-self:center}
+/* v1.22.14 填入題窄螢幕：.nb／.ch 改 inline-block，放得下就整塊不斷行，放不下才在塊內換行，不再超出卡片 */
+.fc .ft .nb,.fc .ft .ch{display:inline-block;max-width:100%;white-space:normal;overflow-wrap:anywhere;vertical-align:baseline}
 </style>
 
 <div class="wrap" id="app">
