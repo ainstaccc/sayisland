@@ -15787,9 +15787,63 @@
  },
  {
   "cat": "sj",
+  "key": "把這些詞排成一句話。",
+  "speak": "把這些詞排成一句話。",
+  "file": "audio/sp/5195f8d9c7.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "小貓",
+  "speak": "小貓",
+  "file": "audio/sp/657b6080f0.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "躺在",
+  "speak": "躺在",
+  "file": "audio/sp/81d4c7b37f.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "沙發上",
+  "speak": "沙發上",
+  "file": "audio/sp/367e1a3722.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "睡覺",
+  "speak": "睡叫",
+  "file": "audio/sp/da597cc017.mp3"
+ },
+ {
+  "cat": "sj",
   "key": "媽媽把蘋果切成小塊。",
   "speak": "媽媽把蘋果切成小塊。",
   "file": "audio/sp/f937229407.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "媽媽",
+  "speak": "媽媽",
+  "file": "audio/sp/63248c6d5b.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "把蘋果",
+  "speak": "把蘋果",
+  "file": "audio/sp/858317b21e.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "切成",
+  "speak": "切成",
+  "file": "audio/sp/00f1a22a53.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "小塊",
+  "speak": "小塊",
+  "file": "audio/sp/d34be09f24.mp3"
  },
  {
   "cat": "sj",
@@ -15799,9 +15853,57 @@
  },
  {
   "cat": "sj",
+  "key": "因為下雨",
+  "speak": "因為下雨",
+  "file": "audio/sp/31055b120d.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "所以我們",
+  "speak": "所以我們",
+  "file": "audio/sp/a42f747adb.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "改在教室",
+  "speak": "改在教室",
+  "file": "audio/sp/36350a3b9e.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "上體育課",
+  "speak": "上體育課",
+  "file": "audio/sp/fc5f6bf58b.mp3"
+ },
+ {
+  "cat": "sj",
   "key": "早上，哥哥背著書包走路去學校。",
   "speak": "早上，哥哥揹著書包走路去學校。",
   "file": "audio/sp/ac093149d9.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "早上",
+  "speak": "早上",
+  "file": "audio/sp/172fb7196f.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "哥哥",
+  "speak": "哥哥",
+  "file": "audio/sp/b91fac808b.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "背著書包",
+  "speak": "揹著書包",
+  "file": "audio/sp/7b61a7e0dd.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "走路去學校",
+  "speak": "走路去學校",
+  "file": "audio/sp/9cb0a8ae5b.mp3"
  },
  {
   "cat": "sj",
@@ -15811,9 +15913,51 @@
  },
  {
   "cat": "sj",
+  "key": "雨停了",
+  "speak": "雨停了",
+  "file": "audio/sp/e2d818825f.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "天空",
+  "speak": "天空",
+  "file": "audio/sp/b125e5a8da.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "出現了",
+  "speak": "出現了",
+  "file": "audio/sp/530a822ec6.mp3"
+ },
+ {
+  "cat": "sj",
   "key": "我每天晚上都會讀一本書。",
   "speak": "我每天晚上都會讀一本書。",
   "file": "audio/sp/a7773fc54e.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "我",
+  "speak": "我",
+  "file": "audio/sp/34f201bc50.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "每天晚上",
+  "speak": "每天晚上",
+  "file": "audio/sp/dc1ec47c0c.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "都會",
+  "speak": "都會",
+  "file": "audio/sp/4e539c92a4.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "讀一本書",
+  "speak": "讀一本書",
+  "file": "audio/sp/9baf1d4f6d.mp3"
  },
  {
   "cat": "sj",
@@ -15823,9 +15967,51 @@
  },
  {
   "cat": "sj",
+  "key": "小狗",
+  "speak": "小狗",
+  "file": "audio/sp/e974ae4966.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "搖著尾巴",
+  "speak": "搖著尾巴",
+  "file": "audio/sp/cc93deb334.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "跑向",
+  "speak": "跑向",
+  "file": "audio/sp/2cc550ce7f.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "主人",
+  "speak": "主人",
+  "file": "audio/sp/636e7702bc.mp3"
+ },
+ {
+  "cat": "sj",
   "key": "爸爸教我游泳。",
   "speak": "爸爸教我游泳。",
   "file": "audio/sp/e11d85b152.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "爸爸",
+  "speak": "爸爸",
+  "file": "audio/sp/c86d164500.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "教",
+  "speak": "教",
+  "file": "audio/sp/aa03e08180.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "游泳",
+  "speak": "游泳",
+  "file": "audio/sp/b66f447bfc.mp3"
  },
  {
   "cat": "sj",
@@ -15835,9 +16021,57 @@
  },
  {
   "cat": "sj",
+  "key": "弟弟",
+  "speak": "弟弟",
+  "file": "audio/sp/d61f999a29.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "一邊",
+  "speak": "一邊",
+  "file": "audio/sp/fc4d9a0fe2.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "吃早餐",
+  "speak": "吃早餐",
+  "file": "audio/sp/7084585bc6.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "看電視",
+  "speak": "看電視",
+  "file": "audio/sp/59fc463699.mp3"
+ },
+ {
+  "cat": "sj",
   "key": "同學們唱著歌祝老師生日快樂。",
   "speak": "同學們唱著歌祝老師生日快樂。",
   "file": "audio/sp/889ca58adf.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "同學們",
+  "speak": "同學們",
+  "file": "audio/sp/199eeb008b.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "唱著歌",
+  "speak": "唱著歌",
+  "file": "audio/sp/b7cb362f36.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "祝老師",
+  "speak": "祝老師",
+  "file": "audio/sp/79586d699e.mp3"
+ },
+ {
+  "cat": "sj",
+  "key": "生日快樂",
+  "speak": "生日快樂",
+  "file": "audio/sp/20f938abee.mp3"
  },
  {
   "cat": "sj",
@@ -17332,6 +17566,48 @@
   "key": "夏天的公園裡，小明和妹妹坐在長椅上吃紅紅的西瓜，兩個人都很開心。",
   "speak": "夏天的公園裡，小明和妹妹坐在長椅上吃紅紅的西瓜，兩個人都很開心。",
   "file": "audio/sp/0c472d32fb.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "看看圖，說說看。",
+  "speak": "看看圖，說說看。",
+  "file": "audio/sp/ebd92081bd.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "有誰？",
+  "speak": "有誰？",
+  "file": "audio/sp/225f4cf3f1.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "在哪裡？",
+  "speak": "在哪裡？",
+  "file": "audio/sp/bb058c5cf0.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "在做什麼？",
+  "speak": "在做什麼？",
+  "file": "audio/sp/77f2a47a85.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "看起來什麼樣子？",
+  "speak": "看起來什麼樣子？",
+  "file": "audio/sp/ea5091cb1f.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "心情怎麼樣？",
+  "speak": "心情怎麼樣？",
+  "file": "audio/sp/a566fd0620.mp3"
+ },
+ {
+  "cat": "t",
+  "key": "為什麼？",
+  "speak": "為什麼？",
+  "file": "audio/sp/ff157a133b.mp3"
  },
  {
   "cat": "t",

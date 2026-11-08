@@ -5,7 +5,7 @@
  * 2. 掃 audio/sp/ 已有的 mp3，寫 audio/manifest.js（App 啟動時載入；沒檔的句子自動用手機語音）。
  * 參數：--check 只檢查 manifest／音檔是否一致與缺檔數（不寫檔）；有多餘檔或 manifest 不一致時以非 0 結束。
  *       --missing 只列出缺檔句數（給排程看）。
- * 不預錄（每次內容不同）：老師上傳課文、好好說話(h)、排詞成句(sj 的 o)、改寫／造句的作答。
+ * 不預錄（每次內容不同）：老師上傳課文、改寫／造句的作答。（排詞成句 sj 的 o 以「提示句＋每個詞塊」分段預錄；看圖說話 t 的提示分段預錄。）
  */
 const fs = require('fs'), os = require('os'), path = require('path'), crypto = require('crypto');
 const { chromium } = require('playwright');
@@ -20,10 +20,10 @@ const ENUM = () => {
       else if (k === 'e') { add(k, q.scene); add(k, I.sentenceOf(q) + '。'); }
       else if (k === 'm') add(k, `因為${q.c}，所以${q.f}。`);
       else if (k === 'z') add(k, q.w + '的' + q.ch);
-      else if (k === 't') add(k, q.model);
+      else if (k === 't') { add(k, q.model); add(k, '看看圖，說說看。'); Object.values(I.ELQ).forEach(e => add(k, e.replace(/（.*?）/g, ''))); }
       else if (k === 'sj') {
         if (q.k === 's') { add(k, q.t.replace('＿＿', '，什麼，')); add(k, q.t.replace('＿＿', q.right) + '。'); }
-        else if (q.k === 'o') add(k, q.sent);
+        else if (q.k === 'o') { add(k, q.sent); add(k, '把這些詞排成一句話。'); Object.values(q.ch).forEach(c => add(k, c)); }
         else if (q.k === 'x') add(k, '照樣造句：' + q.word.replace(/…/g, '，') + '。例如：' + q.demo + '。' + q.hint);
         else if (q.k === 'r') add(k, '把這個句子改寫：' + q.orig + '。' + q.ins);
         else if (q.word) add(k, '請用「' + q.word.replace(/…/g, '，') + '」造一個句子。' + q.hint);
@@ -53,7 +53,7 @@ async function enumerate() {
   let h = fs.readFileSync(path.join(tmp, 'index.html'), 'utf8');
   const i = h.lastIndexOf('})();');
   if (i < 0) throw new Error('index.html 找不到結尾 })();');
-  h = h.slice(0, i) + "window.__INT={D,CATS,qSpoken,qFull,sentenceOf,forSpeech,PETS,PAT,heroParts};\n" + h.slice(i);
+  h = h.slice(0, i) + "window.__INT={ELQ,D,CATS,qSpoken,qFull,sentenceOf,forSpeech,PETS,PAT,heroParts};\n" + h.slice(i);
   fs.writeFileSync(path.join(tmp, 'index.html'), h);
   const b = await chromium.launch(); const p = await b.newPage(); const errs = [];
   p.on('pageerror', e => errs.push(e.message));

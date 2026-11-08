@@ -1,4 +1,5 @@
 # UI 優化紀錄（新的在上面）
+- 2026-11-08 v1.22.12｜（Stacy 回報）語音：①`say/sayList` 改共用 `playSeq`＋單一 `PAUD` Audio 元素（首次點擊以靜音檔解鎖）、`stopSay()`、NotAllowed 不退機器人；②`#tprompt` 改 `sayList(tParts())`、`#sjlisten` 的 sj-o 改 `sayList(['把這些詞排成一句話。',…詞塊])`；③build_manifest 的 ENUM 納入 t／sj-o 分段句，補產 46 句。驗證：voice_audit.js（含模擬 iOS 擋連播）lv1~3 ALL PRERECORDED、manifest 一致 4298、check.js。
 - 2026-11-08 v1.22.11｜（Stacy 回報）開盲盒會跳「連對」：reveal() 呼叫 sfx.ok()（會 COMBO++）。新增 `sfx.ding()`（同音效、不計 COMBO、無 toast），reveal()、選蛋 onclick、mapGo() 三處改用。驗證：Playwright 連開 4 次盲盒，舊版出現「連對 3／4」，新版 0 次；check.js ALL OK。zizi.html 已同步。
 - 2026-11-08 v1.22.10｜（Stacy 回報）填入玩法（動詞／量詞）版面：①renderFill 的 `.ft` 標記改為 `chunks(a去掉末2字)`＋`<span class="nb">a末2字＋空格按鈕＋b第一個子句</span>`＋`chunks(b其餘)`；②CSS（最後 `</style>` 前）`.fc .ft` 靠左、行距 1.5，`.fbk` 高 46px／margin 0 3px。驗證：check.js ALL OK；320/390×淺/深 截圖確認空格不再孤立、無溢出、無 pageerror。zizi.html 已同步到專案。
 - 2026-11-08 v1.22.9｜（Stacy 回報）注音圈叉「全部正確」按鈕只佔 3 欄格線的第 1 欄，字超出按鈕框：CSS 新增 `.opts>.opt:only-child{grid-column:1/-1}`（index.html 最後 `</style>` 前）。zizi.html 請同步這一行。
