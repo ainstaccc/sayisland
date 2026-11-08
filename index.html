@@ -780,6 +780,12 @@ small,.gls{font-size:max(1em,16px)}
 @media (max-width:360px){.coinbar{font-size:16px;padding:6px 10px}.coinbar .cn{font-size:20px}.bx{border-left-width:8px!important}.bagempty b{font-size:20px}.bagempty span{font-size:16px}}
 /* v1.22.9 注音圈叉：只有一顆選項（全部正確）時跨滿整列，原本被擠在 3 欄的第 1 欄、字超出按鈕 */
 .opts>.opt:only-child{grid-column:1/-1}
+/* v1.22.10 填入玩法：句子靠左、行距收緊、空格縮小並與前後各 1 字綁在一起（不再把「。」單獨甩到下一行） */
+.fc{align-items:center}
+.fc .ft{text-align:left;line-height:1.5}
+.fc .ft .fbk{height:46px;min-width:52px;margin:0 3px;vertical-align:middle}
+.fc .ft .nb{white-space:nowrap}
+.fc .fe{align-self:center}
 </style>
 
 <div class="wrap" id="app">
@@ -809,7 +815,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.22.9</p>
+    <p class="ver">說說島 v1.22.10</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -838,7 +844,7 @@ small,.gls{font-size:max(1em,16px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.22.9</p>
+    <p class="ver">說說島 v1.22.10</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1023,7 +1029,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.22.9</p>
+    <p class="ver">說說島 v1.22.10</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1101,7 +1107,7 @@ small,.gls{font-size:max(1em,16px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.22.9</p>
+    <p class="ver">說說島 v1.22.10</p>
   </section>
 </div>
 
@@ -2959,7 +2965,7 @@ function renderF(){
   $('#ftag').textContent=c.n;
   $('#fprog').style.width=(F.b/F.boards*100)+'%';$('#fprog').style.background=`var(${c.c})`;
   $('#fcount').textContent=(F.b+1)+'/'+F.boards;
-  $('#fgrid').innerHTML=bd.map(x=>{const [a,b]=x.t.split('＿＿');return `<div class="fc"><span class="fe" data-say="${esc(x.t.replace('＿＿','，什麼，'))}">${x.e}</span><span class="ft">${esc(a||'')}<button class="fbk" data-id="${x.id}" aria-label="空格">？</button>${esc(b||'')}</span></div>`}).join('');
+  $('#fgrid').innerHTML=bd.map(x=>{const [a,b]=x.t.split('＿＿');return `<div class="fc"><span class="fe" data-say="${esc(x.t.replace('＿＿','，什麼，'))}">${x.e}</span><span class="ft">${chunks((a||'').slice(0,-2))}<span class="nb">${esc((a||'').slice(-2))}<button class="fbk" data-id="${x.id}" aria-label="空格">？</button>${esc(((b||'').match(/^[^，。！？]*[，。！？]?[」』）]*/)||[''])[0])}</span>${chunks((b||'').replace(/^[^，。！？]*[，。！？]?[」』）]*/,''))}</span></div>`}).join('');
   $('#ftray').style.gridTemplateColumns='repeat('+(bd.length===4?2:Math.min(bd.length,3))+',minmax(0,1fr))';$('#ftray').innerHTML=shuffle(bd.map(x=>x.ans)).map((w,i)=>`<button class="fw" data-w="${esc(w)}" data-i="${i}">${esc(w)}</button>`).join('');
   $('#fline').textContent='點一個字，再點空格，把它放進去。';$('#fnext').hidden=true;
 }
