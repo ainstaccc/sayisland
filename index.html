@@ -780,6 +780,11 @@ small,.gls{font-size:max(1em,16px)}
 @media (max-width:360px){.coinbar{font-size:16px;padding:6px 10px}.coinbar .cn{font-size:20px}.bx{border-left-width:8px!important}.bagempty b{font-size:20px}.bagempty span{font-size:16px}}
 /* v1.22.9 注音圈叉：只有一顆選項（全部正確）時跨滿整列，原本被擠在 3 欄的第 1 欄、字超出按鈕 */
 .opts>.opt:only-child{grid-column:1/-1}
+/* v1.23.0 複合關：關卡名旁的題型小標籤（用主題色，深淺色都看得清楚） */
+.tagrow{display:flex;gap:6px;justify-content:center;align-items:center;flex-wrap:wrap}
+.tag.sub{background:var(--card);color:var(--ink);box-shadow:inset 0 0 0 2px var(--line);font-weight:800}
+.tag.sub[hidden]{display:none}
+body.ingame .qcard.hq .tagrow{align-self:flex-start}
 /* v1.22.10 填入玩法：句子靠左、行距收緊、空格縮小並與前後各 1 字綁在一起（不再把「。」單獨甩到下一行） */
 .fc{align-items:center}
 .fc .ft{text-align:left;line-height:1.5}
@@ -821,7 +826,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.22.16</p>
+    <p class="ver">說說島 v1.23.0</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -850,14 +855,14 @@ small,.gls{font-size:max(1em,16px)}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.22.16</p>
+    <p class="ver">說說島 v1.23.0</p>
   </section>
 
   <!-- 選擇題 -->
   <section id="v-quiz" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="qprog"></i></div><span class="pill" id="qcount" style="font-size:18px">1/6</span></div>
     <div class="qcard">
-      <span class="tag" id="qtag">量詞</span>
+      <div class="tagrow"><span class="tag" id="qtag">量詞</span><span class="tag sub" id="qsub" hidden></span></div>
       <div class="qe" id="qemoji"></div>
       <div class="qt" id="qtext"></div>
       <button class="btn sm alt" id="qlisten">🔊 唸題目</button>
@@ -994,7 +999,7 @@ small,.gls{font-size:max(1em,16px)}
   <section id="v-zy" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><div class="track"><i id="zprog"></i></div><span class="pill" id="zcount" style="font-size:18px">1/6</span></div>
     <div class="qcard">
-      <span class="tag">注音拼音</span>
+      <div class="tagrow"><span class="tag" id="ztag">注音拼音</span><span class="tag sub" id="zsub" hidden></span></div>
       <button class="zq" id="zq" aria-label="點一下聽題目"><span class="ze" id="zemoji"></span><b id="zchar"></b><span><small id="zword"></small></span><span class="zsp">🔊</span></button>
       <div class="ask" style="font-size:22px">拼出這個字的注音</div>
       <div class="zslots" id="zslots"></div>
@@ -1035,7 +1040,7 @@ small,.gls{font-size:max(1em,16px)}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.22.16</p>
+    <p class="ver">說說島 v1.23.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1113,7 +1118,7 @@ small,.gls{font-size:max(1em,16px)}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.22.16</p>
+    <p class="ver">說說島 v1.23.0</p>
   </section>
 </div>
 
@@ -2241,7 +2246,7 @@ const ZO=[
 ];
 const zoBuild=()=>{const o=[];ZO.forEach((r,i)=>{const base=r[2];o.push({id:'zo1-'+i+'-o',cat:'zo',lv:1,e:r[0],t:r[1],parts:base,ans:'○',opts:['○','✕'],tip:'每個字的注音都對，所以要選「全部正確」。'});
   r[3].forEach((w,j)=>{const ps=base.map((x,k)=>k===w[0]?[x[0],w[1]]:x);o.push({id:'zo1-'+i+'-x'+j,cat:'zo',lv:1,e:r[0],t:r[1],parts:ps,ans:'✕',wi:w[0],opts:['○','✕'],tip:'找到了！「'+base[w[0]][0]+'」要唸 '+base[w[0]][1]+'，不是 '+w[1]+'。'})})});return o};
-const zoHtml=q=>'<span class="zoask">哪個字的注音不對<span class="cp c">？</span>點它；都對就按「全部正確」</span><span class="zos">'+q.parts.map((p,k)=>p[1]?`<span class="zk tap" data-k="${k}" role="button" tabindex="0"><span class="zh">${esc(p[0])}</span>${zyV(esc(p[1]))}</span>`:`<span class="zk pn"><span class="zh">${cpH(esc(p[0]))}</span></span>`).join('')+'</span>';
+const zoHtml=q=>'<span class="zoask"><span class="nb">哪個字的注音不對<span class="cp c">？</span></span><span class="nb">點它；</span><span class="nb">都對就按「全部正確」</span></span><span class="zos">'+q.parts.map((p,k)=>p[1]?`<span class="zk tap" data-k="${k}" role="button" tabindex="0"><span class="zh">${esc(p[0])}</span>${zyV(esc(p[1]))}</span>`:`<span class="zk pn"><span class="zh">${cpH(esc(p[0]))}</span></span>`).join('')+'</span>';
 const mkH=(lv,R)=>R.map((r,i)=>({id:'h'+lv+'-'+i,cat:'h',lv,e:r[0],sc:r[1],who:r[2],ans:r[3],opts:[r[3],r[4],r[5]],tip:r[6],why:{[r[4]]:r[7],[r[5]]:r[8]},t:r[1]}));
 /* 每晚自動新增的題目（bank.js）：只附加在後面，不改舊題編號 */
 const XB=window.EXTRA||{};const X=(k,L)=>L.concat(((XB[k]||[]).filter(r=>r&&(Array.isArray(r)||r.parts))));
@@ -2271,14 +2276,16 @@ D.u=[];
 const ALL={};Object.values(D).flat().forEach(x=>ALL[x.id]=x);
 const CATS={
  u:{n:'我的課文',ic:'📚',c:'--c4',d:'把學校的課文變成關卡',nw:1,wide:1},
- z:{n:'注音拼音',ic:'🔤',c:'--c3',d:'看國字，用卡片拼出ㄅㄆㄇ，點了會唸',nw:1,wide:1},
- zb:{n:'注音辨辨看',ic:'🔡',c:'--c3',d:'ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ，分得出來嗎？',nw:1,wide:1},
- zo:{n:'注音圈叉',ic:'⭕',c:'--c1',d:'找出注音拼錯的字，都對就按全部正確',nw:1,wide:1},
+ zz:{n:'注音大挑戰',ic:'🔤',c:'--c3',d:'拼注音、選注音、找錯字，混在一起',nw:1,wide:1,mix:['z','zb','zo']},
+ z:{n:'注音拼音',ic:'🔤',c:'--c3',d:'看國字，用卡片拼出ㄅㄆㄇ，點了會唸',in:'zz'},
+ zb:{n:'注音辨辨看',ic:'🔡',c:'--c3',d:'ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ，分得出來嗎？',in:'zz'},
+ zo:{n:'注音圈叉',ic:'⭕',c:'--c1',d:'找出注音拼錯的字，都對就按全部正確',in:'zz'},
  q:{n:'量詞',ic:'📦',c:'--c1',d:'一＿＿書，要用哪個字？'},
  v:{n:'動詞',ic:'🏃',c:'--c2',d:'選出最貼切的動作'},
  a:{n:'形容詞',ic:'🎨',c:'--c3',d:'它是什麼樣子、味道？'},
- r:{n:'部首小幫手',ic:'🧩',c:'--c5',d:'這個字的部首是什麼？',nw:1},
- y:{n:'選對字',ic:'✏️',c:'--c6',d:'同音字、相似字，選對的寫',nw:1},
+ sz:{n:'生字大挑戰',ic:'🧩',c:'--c5',d:'找部首、選對字，混在一起',nw:1,mix:['r','y']},
+ r:{n:'部首小幫手',ic:'🧩',c:'--c5',d:'這個字的部首是什麼？',in:'sz'},
+ y:{n:'選對字',ic:'✏️',c:'--c6',d:'同音字、相似字，選對的寫',in:'sz'},
  cy:{n:'成語',ic:'🐉',c:'--c2',d:'看句子，選出最合適的成語',nw:1},
  pw:{n:'換句話說',ic:'🔄',c:'--c3',d:'換個說法，意思還是一樣',nw:1},
  sj:{n:'造句',ic:'✍️',c:'--c5',d:'排句子、對稱句、照樣造句、改寫句子',nw:1},
@@ -2286,8 +2293,11 @@ const CATS={
  t:{n:'看圖說話',ic:'🗣️',c:'--c5',d:'用說的，老師會引導你',nw:1},
  h:{n:'好好說話',ic:'💬',c:'--c2',d:'同一件事，選最讓人舒服的說法',nw:1,wide:1},
  m:{n:'因果配對',ic:'🔗',c:'--c6',d:'因為⋯所以⋯，找一找',nw:1}};
-const CIC={cy:'book',pw:'link',sj:'talk',zo:'zhuyin',zb:'zhuyin',r:'palette',y:'magnify',u:'book',z:'zhuyin',q:'box',v:'bolt',a:'palette',e:'magnify',t:'talk',h:'kind',m:'link'};
+const CIC={zz:'zhuyin',sz:'pencil',cy:'book',pw:'link',sj:'talk',zo:'zhuyin',zb:'zhuyin',r:'palette',y:'magnify',u:'book',z:'zhuyin',q:'box',v:'bolt',a:'palette',e:'magnify',t:'talk',h:'kind',m:'link'};
 const cic=k=>ic(CIC[k])||CATS[k].ic;
+/* v1.23.0 複合關：mix＝包含的子題型；子題型標 in（不單獨出現在地圖／今日任務，資料、學習紀錄、每晚出題都照舊用子題型代號） */
+const isMix=k=>!!(CATS[k]&&CATS[k].mix);
+const poolOf=k=>isMix(k)?CATS[k].mix.flatMap(c=>D[c]||[]):(D[k]||[]);
 let MI=0,MURI='';
 /* ---------- v1.8 夥伴養成：先選蛋，+4/8/12/16 顆蘋果進入階段一到四 ---------- */
 function petInit(){if(S.petV)return;S.petV=1;
@@ -2437,8 +2447,9 @@ function rec(id,good){const s=S.st[id]||(S.st[id]={ok:0,ng:0,streak:0});if(good)
   const x=ALL[id];if(x){S.log=S.log||{};const d=S.log[today()]||(S.log[today()]={});const c=d[x.cat]||(d[x.cat]={n:0,ok:0});c.n++;if(good)c.ok++;
     const ks=Object.keys(S.log).sort();while(ks.length>90)delete S.log[ks.shift()]}}
 const GOAL=3;
-const dailyCats=()=>Object.keys(CATS).filter(k=>k!=='u'&&D[k].some(x=>x.lv===S.lv));
-const todayN=k=>(((S.log||{})[today()]||{})[k]||{}).n||0;
+const dailyCats=()=>Object.keys(CATS).filter(k=>k!=='u'&&!CATS[k].in&&poolOf(k).some(x=>x.lv===S.lv));
+const logN=(L,k)=>isMix(k)?CATS[k].mix.reduce((a,c)=>a+(((L||{})[c]||{}).n||0),0):(((L||{})[k]||{}).n||0);
+const todayN=k=>logN((S.log||{})[today()],k);
 const stale=x=>{const l=(S.st[x.id]||{}).last;if(!l)return false;return (new Date(today())-new Date(l))/864e5>=7};
 function pickItems(cat,n,only){
   const pool=cat==='u'?D.u.filter(x=>!only||x.uid===only):D[cat].filter(x=>x.lv===S.lv);
@@ -2573,13 +2584,13 @@ const MAPX=[24,72,30,70,26,74,32,68,50];
 const MAPH=132,MAPTOP=78;
 let mapLast=null,mapBusy=false;
 const REDU=()=>window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-function mapKeys(){const ks=Object.keys(CATS).filter(k=>k==='u'||D[k].some(x=>x.lv===S.lv));return ks.filter(k=>k!=='u').concat(ks.includes('u')?['u']:[])}
+function mapKeys(){const ks=Object.keys(CATS).filter(k=>k==='u'||!CATS[k].in&&poolOf(k).some(x=>x.lv===S.lv));return ks.filter(k=>k!=='u').concat(ks.includes('u')?['u']:[])}
 function nodeCenter(i){const W=$('#missions').clientWidth||320;return [MAPX[i%MAPX.length]/100*W,MAPTOP+i*MAPH+46]}
 function renderMap(){
   const box=$('#missions'),ks=mapKeys();box.style.height=(MAPTOP+ks.length*MAPH+30)+'px';
   const deco=[ICO.cloud,ICO.star,ICO.balloon,ICO.cloud,ICO.heart,ICO.star,ICO.cloud,ICO.balloon].map((e,i)=>`<i class="dco" style="left:${[6,86,48,90,10,52,84,14][i]}%;top:${40+i*(ks.length*MAPH/8)}px;animation-delay:${i*.4}s">${e}</i>`).join('');
   box.innerHTML=`<svg class="trail" id="trail" aria-hidden="true"></svg>${deco}`+ks.map((k,i)=>{
-    const c=CATS[k],pool=k==='u'?D.u:D[k].filter(x=>x.lv===S.lv),m=pool.filter(learned).length,n=todayN(k),ok=n>=GOAL;
+    const c=CATS[k],pool=k==='u'?D.u:poolOf(k).filter(x=>x.lv===S.lv),m=pool.filter(learned).length,n=todayN(k),ok=n>=GOAL;
     return `<button class="node${ok?' ok':''}" style="--c:var(${c.c});left:${MAPX[i%MAPX.length]}%;top:${MAPTOP+i*MAPH}px" data-cat="${k}" aria-label="${c.n}">${c.nw?'<span class="new">新</span>':''}<span class="orb"><span class="ic">${cic(k)}</span>${ok?'<em class="chk">✓</em>':''}</span><b>${c.n}</b><small>${k==='u'?'家長準備':ok?'今天完成':'今天 '+Math.min(n,GOAL)+'/'+GOAL}</small></button>`}).join('')+`<div class="walker" id="walker" aria-hidden="true"><span>${$('#mascot').textContent}</span></div>`;
   drawTrail(ks);
   const first=ks.findIndex(k=>k!=='u'&&todayN(k)<GOAL),target=first<0?ks.length-1:first;
@@ -2604,7 +2615,9 @@ function placeWalker(i,anim){
   if(anim)setTimeout(()=>w.classList.remove('go'),700);
 }
 addEventListener('resize',()=>{if($('#missions')&&!$('#v-home').hidden){const ks=mapKeys();drawTrail(ks);const w=$('#walker');if(w&&mapLast!=null)placeWalker(mapLast,false)}});
-const KID={cy:['🐉','成語','成語大多是四個字，有很多是在說心情。看句子，選出最合適的成語。','玩法：點一個成語放進空格，答完會告訴你成語的意思。'],
+const KID={zz:['🔤','注音大挑戰','注音拼音、注音辨辨看、注音圈叉，三種題目混在一起，一輪 6 題。','玩法：看上面的小標籤，就知道這題要做什麼。點小標籤可以看玩法。'],
+sz:['🧩','生字大挑戰','部首小幫手、選對字，兩種題目混在一起，一輪 6 題。','玩法：看上面的小標籤，就知道這題要做什麼。點小標籤可以看玩法。'],
+cy:['🐉','成語','成語大多是四個字，有很多是在說心情。看句子，選出最合適的成語。','玩法：點一個成語放進空格，答完會告訴你成語的意思。'],
 pw:['🔄','換句話說','同一句話可以換個說法，意思不變。找出意思最接近的詞。','玩法：選出可以換進句子裡的詞。'],
 sj:['✍️','造句','中年級：排句子、找對稱句、照樣造句。高年級：改寫句子，或用指定詞語自己造句。','玩法：點詞塊排順序；高年級可以打字或用語音輸入。'],
 zo:['⭕','注音圈叉','看一個短句，每個字旁邊有注音。找出注音拼錯的那個字，點它；如果都對，就按「全部正確」。','玩法：點題目會唸給你聽，仔細看每個字的注音。'],
@@ -2635,7 +2648,7 @@ function mapGo(e){
   setTimeout(()=>{mapBusy=false;missionInfo(b.dataset.cat,()=>openCat({target:b}))},REDU()?0:720);
 }
 const openCat=e=>{const b=e.target.closest('[data-cat]');if(!b)return;
-  const k=b.dataset.cat;const G={e:startBuild,t:startTalk,m:startMatch,z:startZ,sj:startSJ,u:()=>show('unit'),q:()=>startFill('q'),v:()=>startFill('v'),a:()=>startFill('a')};G[k]?G[k]():startQuiz(k)};
+  const k=b.dataset.cat;const G={zz:()=>startMix('zz'),sz:()=>startMix('sz'),e:startBuild,t:startTalk,m:startMatch,z:startZ,sj:startSJ,u:()=>show('unit'),q:()=>startFill('q'),v:()=>startFill('v'),a:()=>startFill('a')};G[k]?G[k]():startQuiz(k)};
 document.addEventListener('click',e=>{const t=e.target.closest('.tag');if(!t||!document.body.classList.contains('ingame'))return;const k=Object.keys(CATS).find(x=>CATS[x].n===t.textContent.trim());k&&missionInfo(k,null)});
 $('#missions').addEventListener('click',mapGo);$('#dRow').addEventListener('click',openCat);
 $('.hero').addEventListener('click',e=>{if(e.target.closest('#petNew')){S.pet=null;S.petCarry=0;save();renderHome();eggPick();return}if(!S.pet){eggPick();return}sayList(heroParts(S.pet,S.pet?petStage(S.pet.ap):0,!!cntLearned()))});
@@ -2662,17 +2675,17 @@ const sayQ=q=>q.cat==='h'&&q.shown?sayList(hParts(q)):say(qSpoken(q));
 $('#qlisten').onclick=()=>{if(Q){sfx.read();sayQ(Q.list[Q.i])}};
 function uLayout(q){if(q.opts.length===2)return 'two';return q.opts.some(o=>hasZy(o)||[...o].length>3)?'col':''}
 function renderQ(){
-  const q=Q.list[Q.i];Q.locked=false;const c=CATS[Q.cat];
-  $('#qtag').textContent=c.n;
+  const q=Q.list[Q.i];Q.locked=false;const c=CATS[Q.cat],qc=q.cat;
+  $('#qtag').textContent=c.n;$('#qsub').hidden=!Q.mix;if(Q.mix)$('#qsub').textContent=CATS[qc].n;
   $('#qprog').style.width=(Q.i/Q.list.length*100)+'%';$('#qprog').style.background=`var(${c.c})`;
   $('#qcount').textContent=(Q.i+1)+'/'+Q.list.length;
-  $('#qemoji').textContent=q.e;$('#qemoji').hidden=(Q.cat==='cy'||Q.cat==='pw');
-  const isH=Q.cat==='h';document.querySelector('#v-quiz .qcard').classList.toggle('hq',isH);const uc=Q.cat==='u'?uLayout(q):'';$('#qopts').classList.toggle('col',isH||uc==='col'||((Q.cat==='cy'||Q.cat==='pw')&&q.opts.some(o=>[...o].length>3)));$('#qopts').classList.toggle('two',uc==='two');$('#qopts').classList.toggle('zy',Q.cat==='zb'||Q.cat==='u'&&hasZy(q.opts.join('')));$('#qopts').classList.toggle('hh',isH);
+  $('#qemoji').textContent=q.e;$('#qemoji').hidden=(qc==='cy'||qc==='pw');
+  const isH=qc==='h';document.querySelector('#v-quiz .qcard').classList.toggle('hq',isH);const uc=qc==='u'?uLayout(q):'';$('#qopts').classList.toggle('col',isH||uc==='col'||((qc==='cy'||qc==='pw')&&q.opts.some(o=>[...o].length>3)));$('#qopts').classList.toggle('two',uc==='two');$('#qopts').classList.toggle('zy',qc==='zb'||qc==='u'&&hasZy(q.opts.join('')));$('#qopts').classList.toggle('hh',isH);
   if(isH){
     q.shown=shuffle(q.opts);
     $('#qtext').innerHTML=chunks(q.t)+`<span class="who2">💬 ${esc(q.who==='我'?'我':q.who)}可以怎麼說？</span>`;
     $('#qopts').innerHTML=q.shown.map((o,i)=>`<button class="opt" data-o="${esc(o)}"><i>${'①②③'[i]}</i>${esc(o)}</button>`).join('');
-  }else if(Q.cat==='zo'){
+  }else if(qc==='zo'){
     $('#qtext').innerHTML=zoHtml(q);
     $('#qopts').innerHTML='<button class="opt" data-o="○">⭕ 全部正確</button>';
   }else{
@@ -2688,7 +2701,7 @@ $('#qopts').addEventListener('click',e=>{
 });
 /* 注音圈叉：直接點注音錯的那個字，或按「全部正確」 */
 const zoTap=e=>{
-  const k=e.target.closest('.zk.tap');if(!k||!Q||Q.cat!=='zo'||Q.locked||k.classList.contains('bad'))return;
+  const k=e.target.closest('.zk.tap');if(!k||!Q||!Q.list[Q.i]||Q.list[Q.i].cat!=='zo'||Q.locked||k.classList.contains('bad'))return;
   if(e.type==='keydown'){if(e.key!=='Enter'&&e.key!==' ')return;e.preventDefault()}
   const q=Q.list[Q.i];qAnswer(k,q.ans==='✕'&&+k.dataset.k===q.wi);
 };
@@ -2699,17 +2712,17 @@ function qAnswer(b,ok){
   const fb=$('#qfb');fb.hidden=false;
   if(ok){
     Q.locked=true;sfx.ok();$('#qemoji').hidden=false;
-    b.classList.add('good');if(Q.cat==='zo'&&q.ans==='✕')document.querySelectorAll('#qtext .zk.tap').forEach(x=>{if(x!==b)x.classList.add('off')});if($('#blank')&&Q.cat!=='h'){$('#blank').textContent=q.ans;$('#blank').classList.add('ok')}
+    b.classList.add('good');if(q.cat==='zo'&&q.ans==='✕')document.querySelectorAll('#qtext .zk.tap').forEach(x=>{if(x!==b)x.classList.add('off')});if($('#blank')&&q.cat!=='h'){$('#blank').textContent=q.ans;$('#blank').classList.add('ok')}
     document.querySelectorAll('#qopts .opt').forEach(x=>x.disabled=true);
     if(Q.first[q.id]){Q.firstOk++;rec(q.id,true)}
     fb.className='fb good';
-    fb.innerHTML=`<b>答對了！</b><span>${zyV(esc(q.tip))}</span><div class="fbrow"><button class="btn sm alt" id="qsay">🔊 唸給我聽</button>${Q.cat==='h'?'<button class="btn sm alt" id="qme">🎤 換我說說看</button>':''}<button class="btn sm" id="qnext">下一題</button></div>`;
+    fb.innerHTML=`<b>答對了！</b><span>${zyV(esc(q.tip))}</span><div class="fbrow"><button class="btn sm alt" id="qsay">🔊 唸給我聽</button>${q.cat==='h'?'<button class="btn sm alt" id="qme">🎤 換我說說看</button>':''}<button class="btn sm" id="qnext">下一題</button></div>`;
     $('#qsay').onclick=()=>say(qFull(q));
     if($('#qme'))$('#qme').onclick=()=>{$('#hsay').hidden=false;$('#hwho').textContent=(q.who==='我'?'如果是你，':q.who+'可以怎麼說？')+'你會怎麼說呢？';$('#hbox').focus();$('#hsay').scrollIntoView({block:'nearest',behavior:'smooth'})};$('#qnext').onclick=nextQ;$('#qnext').focus();
   }else{
     sfx.ng();b.classList.add('bad');b.disabled=true;
     if(Q.first[q.id]===false&&!q._rec){q._rec=true;rec(q.id,false)}
-    fb.className='fb bad';fb.innerHTML=`<b>${Q.cat==='h'?'這句聽起來不太舒服':'再想一想'}</b><span>${zyV(esc(Q.cat==='h'?(q.why[b.dataset.o]||q.tip):Q.cat==='zo'?(b.classList.contains('zk')?'這個字的注音是對的喔，再找找看。':'這句話裡有字的注音不對，找找看是哪一個。'):q.tip))}</span>`;
+    fb.className='fb bad';fb.innerHTML=`<b>${q.cat==='h'?'這句聽起來不太舒服':'再想一想'}</b><span>${zyV(esc(q.cat==='h'?(q.why[b.dataset.o]||q.tip):q.cat==='zo'?(b.classList.contains('zk')?'這個字的注音是對的喔，再找找看。':'這句話裡有字的注音不對，找找看是哪一個。'):q.tip))}</span>`;
   }
   save();
 }
@@ -2743,6 +2756,7 @@ $('#hsend').onclick=()=>{
   if(r.ok){sfx.ok();S.said.push({t:text,s:q.sc,d:today()});if(S.said.length>40)S.said.shift();save();fxBurst(18)}else sfx.ng();
 };
 function nextQ(){
+  if(Q.mix)return mixNext();
   Q.i++;
   if(Q.i>=Q.list.length){
     if(!Q.retried){const miss=Q.list.filter(x=>Q.first[x.id]===false);
@@ -3019,7 +3033,7 @@ $('#fnext').onclick=()=>{
 
 /* ---------- 注音拼音 ---------- */
 let Z=null;
-function startZ(){lastGame=startZ;const list=pickItems('z',6);Z={list,i:0,firstOk:0,total:list.length,retried:false,first:{}};show('zy');renderZ()}
+function startZ(){lastGame=startZ;const list=pickItems('z',6);Z={cat:'z',list,i:0,firstOk:0,total:list.length,retried:false,first:{}};show('zy');renderZ()}
 /* v1.19.2 注音拼音選項卡：常見混淆音「兩兩放在一起」。ZC[符號]＝最容易跟它搞混的音，越前面越常錯（送氣／不送氣、翹舌／平舌、前後鼻音、字形相近、台灣腔常混）。要調整只改這張表。 */
 const ZC={
  'ㄅ':['ㄆ','ㄉ','ㄇ'],'ㄆ':['ㄅ','ㄈ','ㄇ'],'ㄇ':['ㄋ','ㄅ','ㄆ'],'ㄈ':['ㄏ','ㄆ','ㄇ'],
@@ -3052,7 +3066,8 @@ function zPool(x){
 }
 function renderZ(){
   const x=Z.list[Z.i];Z.cur=x;Z.fill=x.sy.map(()=>null);Z.tone=null;Z.bad=null;Z.toneBad=false;Z.locked=false;Z.pool=zPool(x);
-  $('#zprog').style.width=(Z.i/Z.list.length*100)+'%';$('#zprog').style.background='var(--c3)';
+  $('#zprog').style.width=(Z.i/Z.list.length*100)+'%';$('#zprog').style.background=Z.mix?`var(${CATS[Z.cat].c})`:'var(--c3)';
+  $('#ztag').textContent=Z.mix?CATS[Z.cat].n:'注音拼音';$('#zsub').hidden=!Z.mix;if(Z.mix)$('#zsub').textContent=CATS.z.n;
   $('#zcount').textContent=(Z.i+1)+'/'+Z.list.length;
   $('#zemoji').textContent=x.e;$('#zchar').textContent=x.ch;$('#zword').textContent=x.w;
   $('#zfb').hidden=true;drawZ();
@@ -3096,12 +3111,56 @@ function zCheck(){
   setTimeout(()=>{if(Z.cur!==x)return;Z.fill=Z.fill.map((s,i)=>bad[i]?null:s);if(tb)Z.tone=null;Z.bad=null;Z.toneBad=false;Z.locked=false;drawZ()},900);
 }
 function nextZ(){
+  if(Z.mix)return mixNext();
   Z.i++;
   if(Z.i>=Z.list.length){
     if(!Z.retried){const miss=Z.list.filter(x=>Z.first[x.id]===false);if(miss.length){Z.retried=true;Z.list=Z.list.concat(miss);renderZ();return}}
     return finish({cat:'z',title:'注音小達人！',acc:Z.firstOk/Z.total,line:`第一次就拼對 ${Z.firstOk}/${Z.total} 個字`});
   }
   renderZ();
+}
+
+/* ---------- v1.23.0 複合關（注音大挑戰、生字大挑戰）----------
+   一輪 6 題，從各子題型平均挑（沒學會的優先），依序輪流出，前幾題就會每一種都碰到。
+   選擇題（注音辨辨看、注音圈叉、部首小幫手、選對字）用 quiz 畫面，注音拼音用 zy 畫面；
+   兩個畫面共用同一個回合物件 MR（Q 和 Z 都指向它），所以第一次答對、重來、星星都算在複合關。 */
+const MIXN=6;
+function mixPick(k){
+  const subs=CATS[k].mix.filter(c=>(D[c]||[]).some(x=>x.lv===S.lv));if(!subs.length)return [];
+  const per={};subs.forEach((c,i)=>per[c]=Math.floor(MIXN/subs.length)+(i<MIXN%subs.length?1:0));
+  const got={};subs.forEach(c=>got[c]=pickItems(c,per[c]));
+  /* 某一種題目不夠，從其他種補滿 */
+  let lack=MIXN-subs.reduce((a,c)=>a+got[c].length,0);
+  for(const c of subs){if(lack<=0)break;const more=pickItems(c,got[c].length+lack).filter(x=>!got[c].includes(x));got[c]=got[c].concat(more);lack-=more.length}
+  /* 輪流排：每一圈把題型順序打亂，且不讓上一圈最後一題和下一圈第一題同一種 */
+  const out=[];let last=null;
+  while(subs.some(c=>got[c].length)){
+    let ord=shuffle(subs.filter(c=>got[c].length));
+    if(ord.length>1&&ord[0]===last)ord.push(ord.shift());
+    ord.forEach(c=>{out.push(got[c].shift());last=c});
+  }
+  return out;
+}
+let MR=null;
+function startMix(k){
+  lastGame=()=>startMix(k);
+  const list=mixPick(k);if(!list.length){toast('這個年級還沒有這一關的題目');return}
+  MR={cat:k,mix:CATS[k].mix,list,i:0,firstOk:0,total:list.length,retried:false,locked:false,first:{}};
+  Q=MR;Z=MR;mixShow();
+}
+function mixShow(){
+  const x=MR.list[MR.i],v=x.cat==='z'?'zy':'quiz';
+  if($('#v-'+v).hidden){const cb=COMBO;show(v);COMBO=cb}
+  if(v==='zy')renderZ();else renderQ();
+}
+function mixNext(){
+  MR.i++;
+  if(MR.i>=MR.list.length){
+    if(!MR.retried){const miss=MR.list.filter(x=>MR.first[x.id]===false);
+      if(miss.length){MR.retried=true;MR.list=MR.list.concat(miss);return mixShow()}}
+    return finish({cat:MR.cat,title:CATS[MR.cat].n+'完成！',acc:MR.firstOk/MR.total,line:`第一次就答對 ${MR.firstOk}/${MR.total} 題`});
+  }
+  mixShow();
 }
 
 /* ---------- 我的課文（家長貼課文，自動做成關卡） ---------- */
@@ -3863,19 +3922,19 @@ $('#prsend').onclick=()=>{
   PR_N=0;$('#prwhy').value='';m.textContent=`已送出 ${n} 島幣，小朋友回首頁時會看到。`;renderPR();
 };
 /* ---------- v1.19.0 期間限定活動：家長設定（存在這台裝置，所有小朋友共用）；獎勵只能是盲盒或島幣，不能是星星（星星會影響好友團排行公平） ---------- */
-const EV_COND={zy_perfect:['注音三關，一輪第一次全對','一輪第一次就全對'],
- zy_each:['注音每關各算，一輪第一次全對','一輪第一次就全對（注音每一關各自計算上限）'],
+const EV_COND={zy_perfect:['注音大挑戰，一輪第一次全對','一輪第一次就全對'],
  any_perfect:['任何關卡，一輪第一次全對','一輪第一次就全對'],
  any_round:['任何關卡，完成一輪','完成一輪'],
  daily_all:['完成當天全部今日任務','當天全部完成（每天一次）']};
 const EV_RW={box:'免費盲盒',coin:'島幣'};
-const evCfg=()=>DB.ev&&DB.ev.cond&&EV_COND[DB.ev.cond]?DB.ev:null;
+/* v1.23.0 注音三關合併成注音大挑戰：舊的「注音每關各算」自動改成「注音大挑戰」 */
+const evCfg=()=>{if(DB.ev&&DB.ev.cond==='zy_each')DB.ev.cond='zy_perfect';return DB.ev&&DB.ev.cond&&EV_COND[DB.ev.cond]?DB.ev:null};
 function evActive(){const e=evCfg();if(!e||!e.on||!e.from||!e.to)return null;const t=today();return t>=e.from&&t<=e.to?e:null}
 const evMD=d=>+d.slice(5,7)+'/'+ +d.slice(8,10);
 function evAward(msgs,{cat,acc,td,bonusNow}){
   const e=evActive();if(!e)return;
-  const zy=cat==='z'||cat==='zb'||cat==='zo',each=e.cond==='zy_each';
-  const ok=e.cond==='zy_perfect'||each?S.lv===1&&zy&&acc>=1
+  const zy=cat==='zz'||cat==='z'||cat==='zb'||cat==='zo',each=false;
+  const ok=e.cond==='zy_perfect'?S.lv===1&&zy&&acc>=1
     :e.cond==='any_perfect'?acc>=1&&cat!=='u'
     :e.cond==='any_round'?cat!=='u'
     :e.cond==='daily_all'?bonusNow:false;
@@ -3888,18 +3947,18 @@ function evAward(msgs,{cat,acc,td,bonusNow}){
   msgs.push(`活動「${e.name||'限定活動'}」達成！送你 ${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'} 🎁（${each?CATS[cat].n+'　':''}今天第 ${n+1} 次）`);
 }
 let EV_SEEN='';
-const evLevels=e=>e.cond==='zy_perfect'||e.cond==='zy_each'?['z','zb','zo'].filter(k=>CATS[k]):dailyCats();
+const evLevels=e=>e.cond==='zy_perfect'?['zz']:dailyCats();
 function evPop(){
   const e=evActive();if(!e||EV_SEEN===DB.cur||$('#v-home').hidden||document.querySelector('.prpop'))return false;
   EV_SEEN=DB.cur;const amt=Math.max(1,Math.min(10,e.n|0||1));
   const lv=evLevels(e).map(k=>`<span class="evlv1">${CATS[k].n}</span>`).join('');
-  const note=(e.cond==='zy_perfect'||e.cond==='zy_each')&&S.lv!==1?'<div class="evnote">只有低年級適用</div>':'';
+  const note=e.cond==='zy_perfect'&&S.lv!==1?'<div class="evnote">只有低年級適用</div>':'';
   const row=(t,v)=>`<div class="evr"><em>${t}</em><div>${v}</div></div>`;
   const o=document.createElement('div');o.className='prpop';
   o.innerHTML=`<div class="prc evc"><div class="pre">${ICO.gift||ICO.coin}</div>
     <b class="evh">限時活動</b>
     <div class="evnm">${eh(e.name||'限定活動')}</div>
-    <div class="evl">${row('期間',`${evMD(e.from)} ～ ${evMD(e.to)}`)}${row('關卡',`<div class="evlvs">${lv}</div>${note}`)}${row('條件',EV_COND[e.cond][1])}${row('獎勵',`每次送 <b>${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'}</b>`)}${row('每日上限',e.cap>0?`${e.cond==='zy_each'?'每一關':''}最多 ${e.cap} 次`:'不限次數')}</div>
+    <div class="evl">${row('期間',`${evMD(e.from)} ～ ${evMD(e.to)}`)}${row('關卡',`<div class="evlvs">${lv}</div>${note}`)}${row('條件',EV_COND[e.cond][1])}${row('獎勵',`每次送 <b>${amt} ${e.rw==='coin'?'島幣':'個免費盲盒'}</b>`)}${row('每日上限',e.cap>0?`最多 ${e.cap} 次`:'不限次數')}</div>
     <button class="btn" id="evok">我知道了</button><p class="muted" id="evt" style="font-size:16px;margin:0">15 秒後自動關閉</p></div>`;
   document.body.appendChild(o);try{sfx.win()}catch(x){}
   let left=15,tm=0;const close=()=>{clearInterval(tm);if(o.isConnected){o.remove();homePops()}};
@@ -3932,7 +3991,7 @@ function renderEv(){
   $('#evcond').innerHTML=Object.keys(EV_COND).map(k=>`<option value="${k}" ${k===e.cond?'selected':''}>${EV_COND[k][0]}</option>`).join('');
   $('#evrw').innerHTML=Object.keys(EV_RW).map(k=>`<option value="${k}" ${k===e.rw?'selected':''}>${EV_RW[k]}</option>`).join('');
   $('#evn').innerHTML=[1,2,3,4,5,6,7,8,9,10].map(n=>`<option value="${n}" ${n===(e.n||1)?'selected':''}>每次送 ${n}</option>`).join('');
-  const capFill=(cond,cur)=>{const pre=cond==='zy_each'?'每關每天最多 ':'每天最多 ';$('#evcap').innerHTML=[[0,cond==='zy_each'?'每關不限次數':'每天不限次數'],[1,pre+'1 次'],[3,pre+'3 次'],[5,pre+'5 次'],[10,pre+'10 次']].map(a=>`<option value="${a[0]}" ${a[0]===(cur||0)?'selected':''}>${a[1]}</option>`).join('')};
+  const capFill=(cond,cur)=>{const pre='每天最多 ';$('#evcap').innerHTML=[[0,'每天不限次數'],[1,pre+'1 次'],[3,pre+'3 次'],[5,pre+'5 次'],[10,pre+'10 次']].map(a=>`<option value="${a[0]}" ${a[0]===(cur||0)?'selected':''}>${a[1]}</option>`).join('')};
   capFill(e.cond,e.cap);$('#evcond').onchange=()=>capFill($('#evcond').value,+$('#evcap').value||0);
   const a=evActive();
   $('#evst').textContent=!evCfg()?'目前沒有設定活動。':a?`進行中：「${a.name||'限定活動'}」${evMD(a.from)}～${evMD(a.to)}`:e.on?`已設定「${e.name||'限定活動'}」${e.from?evMD(e.from):''}～${e.to?evMD(e.to):''}，還沒開始或已結束。`:'活動已停用。';
@@ -3975,14 +4034,14 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.id==='pgin'
 function renderParent(){storeCheck().then(t=>{const e=document.getElementById('pstore');if(e)e.textContent=t});
   $('#pName').value=S.name||'';
   const rows=Object.keys(CATS).map(k=>{
-    const pool=D[k],ok=pool.reduce((s,x)=>s+((S.st[x.id]||{}).ok||0),0),ng=pool.reduce((s,x)=>s+((S.st[x.id]||{}).ng||0),0);
-    return `<tr><td>${CATS[k].ic} ${CATS[k].n}</td><td>${ok+ng}</td><td>${ok+ng?Math.round(ok/(ok+ng)*100)+'%':'—'}</td><td>${pool.filter(learned).length}/${pool.length}</td></tr>`}).join('');
-  const ks=Object.keys(CATS),days=[];for(let i=0;i<14;i++){const d=new Date();d.setDate(d.getDate()-i);days.push(fmt(d))}
+    const pool=poolOf(k),ok=pool.reduce((s,x)=>s+((S.st[x.id]||{}).ok||0),0),ng=pool.reduce((s,x)=>s+((S.st[x.id]||{}).ng||0),0);
+    return `<tr><td>${CATS[k].in?'　└ ':''}${CATS[k].ic} ${CATS[k].n}</td><td>${ok+ng}</td><td>${ok+ng?Math.round(ok/(ok+ng)*100)+'%':'—'}</td><td>${pool.filter(learned).length}/${pool.length}</td></tr>`}).join('');
+  const ks=Object.keys(CATS).filter(k=>!CATS[k].in),days=[];for(let i=0;i<14;i++){const d=new Date();d.setDate(d.getDate()-i);days.push(fmt(d))}
   const tot=Object.values(S.log||{}).reduce((a,d)=>a+Object.values(d).reduce((b,c)=>b+c.n,0),0),pd=Object.keys(S.log||{}).filter(k=>Object.values(S.log[k]).some(c=>c.n>0)).length;
   $('#plogSum').textContent=`累積練習 ${pd} 天、答了 ${tot} 題、學會 ${learnedAll().length} 個詞，連續 ${streak()} 天。`;
-  $('#plog').innerHTML=`<tr><th>日期</th>${ks.map(k=>`<th>${CATS[k].ic}</th>`).join('')}</tr>`+days.map(d=>{const L=(S.log||{})[d]||{};return `<tr><td>${d.slice(5).replace('-','/')}</td>${ks.map(k=>{const n=(L[k]||{}).n||0;return `<td style="${n>=GOAL?'background:var(--ok-bg);font-weight:800':''}">${n||'·'}</td>`}).join('')}</tr>`}).join('');
-  const HOW={cy:'看句子，選出最合適的成語（中、高年級，約一半是情緒類，例如興高采烈、垂頭喪氣、心平氣和）。答對會顯示成語的意思，可請孩子用這個成語再說一句話。',pw:'給一個句子，選出意思最接近的詞，或換句話說的說法（中、高年級）。重點是「意思一樣、說法不同」。',sj:'中年級：把打散的詞塊排成通順的句子；選出和前半句型一樣的後半句；照著範例的句型自己造句。高年級：依指示改寫句子（雙重否定、反問、被／把字句、轉述、比喻、換詞、縮短），或用指定詞語自己造句。自己寫的題目，程式只檢查「有用到指定的詞或句型、夠完整、有標點、沒照抄」，不會判斷內容好不好，請在旁邊聽孩子念自己的句子。',h:'一個情境、三種說法（意思一樣）。選對方聽起來最舒服的那一句；選錯會告訴孩子為什麼不舒服。可請孩子把句子大聲說一次。',z:'看國字，點拼音卡拼出注音，再選聲調。點卡片和題目都會唸。',u:'家長上傳的課文：挖空選詞、句子排序。',q:'選出適合的量詞，例如「一＿＿書」。',v:'選出最貼切的動作。',a:'選出形容樣子、味道的詞。',e:'讀短文，再回答有幾個、什麼樣子、在哪裡、做什麼，拼成完整的句子。',t:'看圖用說的或打字，老師會用問題引導你說得更完整。',m:'配對「因為」和「所以」。'};
-  $('#phow').innerHTML=Object.keys(CATS).map(k=>`<p class="muted"><b>${CATS[k].ic} ${CATS[k].n}</b>：${HOW[k]||CATS[k].d}</p>`).join('');
+  $('#plog').innerHTML=`<tr><th>日期</th>${ks.map(k=>`<th>${CATS[k].ic}</th>`).join('')}</tr>`+days.map(d=>{const L=(S.log||{})[d]||{};return `<tr><td>${d.slice(5).replace('-','/')}</td>${ks.map(k=>{const n=logN(L,k);return `<td style="${n>=GOAL?'background:var(--ok-bg);font-weight:800':''}">${n||'·'}</td>`}).join('')}</tr>`}).join('');
+  const HOW={zz:'注音三種題目混在一起（低年級），一輪 6 題：注音拼音、注音辨辨看、注音圈叉各 2 題，輪流出。今日任務算這一關的總題數。',sz:'部首小幫手和選對字混在一起（各年級），一輪 6 題，各 3 題交錯出。今日任務算這一關的總題數。',cy:'看句子，選出最合適的成語（中、高年級，約一半是情緒類，例如興高采烈、垂頭喪氣、心平氣和）。答對會顯示成語的意思，可請孩子用這個成語再說一句話。',pw:'給一個句子，選出意思最接近的詞，或換句話說的說法（中、高年級）。重點是「意思一樣、說法不同」。',sj:'中年級：把打散的詞塊排成通順的句子；選出和前半句型一樣的後半句；照著範例的句型自己造句。高年級：依指示改寫句子（雙重否定、反問、被／把字句、轉述、比喻、換詞、縮短），或用指定詞語自己造句。自己寫的題目，程式只檢查「有用到指定的詞或句型、夠完整、有標點、沒照抄」，不會判斷內容好不好，請在旁邊聽孩子念自己的句子。',h:'一個情境、三種說法（意思一樣）。選對方聽起來最舒服的那一句；選錯會告訴孩子為什麼不舒服。可請孩子把句子大聲說一次。',z:'看國字，點拼音卡拼出注音，再選聲調。點卡片和題目都會唸。',u:'家長上傳的課文：挖空選詞、句子排序。',q:'選出適合的量詞，例如「一＿＿書」。',v:'選出最貼切的動作。',a:'選出形容樣子、味道的詞。',e:'讀短文，再回答有幾個、什麼樣子、在哪裡、做什麼，拼成完整的句子。',t:'看圖用說的或打字，老師會用問題引導你說得更完整。',m:'配對「因為」和「所以」。'};
+  $('#phow').innerHTML=Object.keys(CATS).map(k=>`<p class="muted"><b>${CATS[k].in?'└ ':''}${CATS[k].ic} ${CATS[k].n}</b>：${HOW[k]||CATS[k].d}</p>`).join('');
   $('#pauto').checked=!S.noauto;renderFix();
   $('#ptbl').innerHTML=`<tr><th>關卡</th><th>作答</th><th>答對率</th><th>已學會</th></tr>${rows}`;
   const weak=Object.entries(S.st).filter(([id,s])=>ALL[id]&&s.ng>0&&s.streak<2).sort((a,b)=>b[1].ng-a[1].ng).slice(0,8);
@@ -4007,7 +4066,7 @@ $('#pvoice').onchange=e=>{S.voice=e.target.value;save()};
 $('#pvtest').onclick=()=>say('朝著太陽，一隻長耳朵的白兔，睡覺睡得很開心。');
 function report(){
   const L=['【說說島 測試回報】','日期：'+today(),'年級設定：'+(LVN[S.lv]||''),'連續天數：'+streak()+'　星星：'+S.stars];
-  Object.keys(CATS).forEach(k=>{const p=D[k],ok=p.reduce((s,x)=>s+((S.st[x.id]||{}).ok||0),0),ng=p.reduce((s,x)=>s+((S.st[x.id]||{}).ng||0),0);L.push(`${CATS[k].n}：作答 ${ok+ng}，答對率 ${ok+ng?Math.round(ok/(ok+ng)*100):0}%，已學會 ${p.filter(learned).length}/${p.length}`)});
+  Object.keys(CATS).forEach(k=>{const p=poolOf(k),ok=p.reduce((s,x)=>s+((S.st[x.id]||{}).ok||0),0),ng=p.reduce((s,x)=>s+((S.st[x.id]||{}).ng||0),0);L.push(`${CATS[k].in?CATS[CATS[k].in].n+'－':''}${CATS[k].n}：作答 ${ok+ng}，答對率 ${ok+ng?Math.round(ok/(ok+ng)*100):0}%，已學會 ${p.filter(learned).length}/${p.length}`)});
   const v=pickVoice();
   L.push('近7天各日答題數：'+Array.from({length:7},(_,i)=>{const d=new Date();d.setDate(d.getDate()-i);const k=fmt(d),c=(S.log||{})[k]||{};return k.slice(5)+'='+Object.values(c).reduce((a,x)=>a+x.n,0)}).join('、'));
   L.push('朗讀聲音：'+(v?v.name+'（'+v.lang+'）':'沒有'));
