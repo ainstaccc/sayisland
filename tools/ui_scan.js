@@ -54,6 +54,7 @@ const profile=(lv)=>({cur:'p1',profiles:{p1:{name:'小明',av:'a:cat',lv,stars:6
   if(SHOTS)fs.mkdirSync(SHOTS,{recursive:true});
   for(const scheme of SCHEMES)for(const w of WIDTHS)for(const lv of LVS){
     const ctx=await b.newContext({viewport:{width:w,height:780},colorScheme:scheme,deviceScaleFactor:1});
+    await ctx.route(/fonts\.(googleapis|gstatic)\.com/,r=>r.abort());
     const p=await ctx.newPage();const errs=[];p.on('pageerror',e=>errs.push(e.message));
     await p.addInitScript(d=>{if(!localStorage.getItem('zizi_v2'))localStorage.setItem('zizi_v2',JSON.stringify(d))},profile(lv));
     const tag=`${scheme}/${w}px/L${lv}`,seen=new Set();

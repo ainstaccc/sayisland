@@ -797,6 +797,16 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .fc .ft .nb{white-space:nowrap}
 .fc .ft{line-height:1.55}
 .fc .ft .fbk{height:38px;min-width:46px;padding:0 6px;margin:0 2px;border-width:2px;font-size:.85em}
+/* v1.23.1 主題5 好友團／排行榜／家長區：①窄螢幕小字 13px→16px（可換行）②前三名名次徽章立體＋第1名卡片金邊 ③合作目標進度條加粗＋條紋＋數字膠囊 ④邀請碼框與明信片卡立體 ⑤家長區表單欄位聚焦框 */
+.lb .rk{box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.lb .rk.r0{background:linear-gradient(#FFE680,#FFC83D)}.lb .rk.r1{background:linear-gradient(#EEF2F7,#C5CEDB)}.lb .rk.r2{background:linear-gradient(#F8C79B,#E8A064)}
+.lbs .lb:first-child{border-color:#F2C230}
+.gbar{height:24px;border:3px solid var(--line);box-sizing:border-box;background:var(--bg)}
+.gbar i{background:repeating-linear-gradient(45deg,rgba(255,255,255,.35) 0 8px,transparent 8px 16px),linear-gradient(90deg,#FFD84D,#4FD18B);transition:width .5s}
+.icode{box-shadow:0 4px 0 var(--line);user-select:all;-webkit-user-select:all;white-space:nowrap}
+.pcd{background:var(--bg);border:3px solid var(--line);border-radius:18px;padding:8px 12px;box-shadow:0 3px 0 var(--line)}.pcd small{font-size:16px}
+#v-parent .ta:focus,#v-grp .ta:focus{outline:3px solid var(--c1);outline-offset:2px}
+@media (max-width:360px){.lb .nm small{font-size:16px;flex-wrap:wrap;gap:0 8px}.icode{font-size:32px;letter-spacing:5px}}
 </style>
 
 <div class="wrap" id="app">
@@ -826,7 +836,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.23.0</p>
+    <p class="ver">說說島 v1.23.1</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -855,7 +865,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.23.0</p>
+    <p class="ver">說說島 v1.23.1</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1040,7 +1050,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.23.0</p>
+    <p class="ver">說說島 v1.23.1</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1118,7 +1128,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.23.0</p>
+    <p class="ver">說說島 v1.23.1</p>
   </section>
 </div>
 
@@ -3602,7 +3612,7 @@ async function renderGrp(){
   <div class="panel"><h3>${ic('heart')}<span>今天收到的鼓勵</span></h3><p class="gotp">${got||'還沒有，先去鼓勵朋友吧！'}</p></div>
   <div class="panel"><h3>${ic('gift')}<span>今天收到的明信片</span></h3>${pcs.length?pcs.map(x=>`<div class="pcd"><span>${x.e}</span><div><b>${eh(x.t)}</b><small>來自 ${eh(x.fn||'朋友')}</small></div></div>`).join(''):'<p class="muted">今天還沒有明信片。有機場就能寄給朋友！</p>'}</div>
   <div class="panel"><h3>${ic('gift')}<span>收到的禮物</span></h3>${gfs.length?`<div class="igrid">${gfs.map(c=>{return`<button class="icard" data-claim="${eh(c._id)}" data-k="${eh(c.k)}">${ic('giftG')}<b>${eh(c.fn)}</b><small>送你禮物</small></button>`}).join('')}</div><p class="muted">點一下就收下，會放進背包。</p>`:'<p class="muted">還沒有。去朋友的島上送禮物吧！</p>'}</div>
-  <div class="panel"><h3>邀請朋友</h3><p class="muted">把這組邀請碼給朋友（用 LINE 傳給家長就好）：</p>
+  <div class="panel"><h3>${ic('friends')}<span>邀請朋友</span></h3><p class="muted">把這組邀請碼給朋友（用 LINE 傳給家長就好）：</p>
   <div class="icode">${eh(S.grp.code)}</div><button class="btn alt sm" id="gCopy">複製邀請碼</button>
   ${FB_ON?'':'<p class="muted"><b>示範模式</b>：朋友是假的，雲端還沒開。</p>'}
   <p class="muted" style="color:var(--c2);font-weight:800">${eh(GRP_ERR)}${PUT_MODE==='basic'?'　⚠ 雲端規則還沒更新，朋友看不到你的島（請到 Firebase 發布新規則）':''}</p>
