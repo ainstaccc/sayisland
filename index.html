@@ -832,6 +832,12 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .gbar{background:#EFE7FA!important}
 .rcv .rem{display:block;text-align:left;text-align-last:left;word-spacing:0;letter-spacing:0;text-wrap:wrap}
 .rcv .rem .btn{margin-left:10px;vertical-align:middle}
+/* v1.23.3 主題 6 深色／小螢幕：①首頁地圖上方關卡的標籤不再被下一關圓球蓋住（node 依序遞減 z-index，walker 提到最上） ②深色未得徽章字色／圖示對比提高 ③320px 地圖標籤膠囊 padding 縮小 */
+.walker{z-index:40}
+:root[data-theme="dark"] .bdg span.off em{color:#D9CCF5;opacity:1}
+:root[data-theme="dark"] .bdg span.off .sv{opacity:.75}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .bdg span.off em{color:#D9CCF5;opacity:1}:root:not([data-theme="light"]) .bdg span.off .sv{opacity:.75}}
+@media(max-width:340px){.node small{padding:4px 8px}}
 </style>
 
 <div class="wrap" id="app">
@@ -861,7 +867,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.23.2</p>
+    <p class="ver">說說島 v1.23.3</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -890,7 +896,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.23.2</p>
+    <p class="ver">說說島 v1.23.3</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1075,7 +1081,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.23.2</p>
+    <p class="ver">說說島 v1.23.3</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1153,7 +1159,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.23.2</p>
+    <p class="ver">說說島 v1.23.3</p>
   </section>
 </div>
 
@@ -2627,7 +2633,7 @@ function renderMap(){
   const deco=[ICO.cloud,ICO.star,ICO.balloon,ICO.cloud,ICO.heart,ICO.star,ICO.cloud,ICO.balloon].map((e,i)=>`<i class="dco" style="left:${[6,86,48,90,10,52,84,14][i]}%;top:${40+i*(ks.length*MAPH/8)}px;animation-delay:${i*.4}s">${e}</i>`).join('');
   box.innerHTML=`<svg class="trail" id="trail" aria-hidden="true"></svg>${deco}`+ks.map((k,i)=>{
     const c=CATS[k],pool=k==='u'?D.u:poolOf(k).filter(x=>x.lv===S.lv),m=pool.filter(learned).length,n=todayN(k),ok=n>=GOAL;
-    return `<button class="node${ok?' ok':''}" style="--c:var(${c.c});left:${MAPX[i%MAPX.length]}%;top:${MAPTOP+i*MAPH}px" data-cat="${k}" aria-label="${c.n}">${c.nw?'<span class="new">新</span>':''}<span class="orb"><span class="ic">${cic(k)}</span>${ok?'<em class="chk">✓</em>':''}</span><b>${c.n}</b><small>${k==='u'?'家長準備':ok?'今天完成':'今天 '+Math.min(n,GOAL)+'/'+GOAL}</small></button>`}).join('')+`<div class="walker" id="walker" aria-hidden="true"><span>${$('#mascot').textContent}</span></div>`;
+    return `<button class="node${ok?' ok':''}" style="--c:var(${c.c});left:${MAPX[i%MAPX.length]}%;top:${MAPTOP+i*MAPH}px;z-index:${30-i}" data-cat="${k}" aria-label="${c.n}">${c.nw?'<span class="new">新</span>':''}<span class="orb"><span class="ic">${cic(k)}</span>${ok?'<em class="chk">✓</em>':''}</span><b>${c.n}</b><small>${k==='u'?'家長準備':ok?'今天完成':'今天 '+Math.min(n,GOAL)+'/'+GOAL}</small></button>`}).join('')+`<div class="walker" id="walker" aria-hidden="true"><span>${$('#mascot').textContent}</span></div>`;
   drawTrail(ks);
   const first=ks.findIndex(k=>k!=='u'&&todayN(k)<GOAL),target=first<0?ks.length-1:first;
   const from=mapLast!=null&&mapLast<ks.length?mapLast:0;
