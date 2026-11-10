@@ -807,6 +807,31 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .pcd{background:var(--bg);border:3px solid var(--line);border-radius:18px;padding:8px 12px;box-shadow:0 3px 0 var(--line)}.pcd small{font-size:16px}
 #v-parent .ta:focus,#v-grp .ta:focus{outline:3px solid var(--c1);outline-offset:2px}
 @media (max-width:360px){.lb .nm small{font-size:16px;flex-wrap:wrap;gap:0 8px}.icode{font-size:32px;letter-spacing:5px}}
+/* v1.23.2 好友團版面：①拿掉「幫他加油：」標籤 ②參觀鈕滿版一行、鼓勵鈕 48px 實色 ③收到的三張空卡合併成「今天收到的」④今日狀態膠囊 ⑤進度條內嵌文字＋終點禮物 ⑥說明縮成小提示 */
+.lb .ch:before{display:none!important}
+.lb .ch{flex-wrap:nowrap;justify-content:flex-start;gap:8px}
+.lb .ch .vbtn{flex:1 1 auto;margin-right:0;min-width:0;justify-content:center}
+.lb .ch .ibtn.cb{flex:none;width:48px;height:48px;background:color-mix(in srgb,var(--c1) 18%,var(--card));border:3px solid var(--c1)}
+.lb .ch .ibtn.cb:disabled{opacity:.45;border-color:var(--line);background:var(--bg)}
+.lb .ch .ibtn.cb .sv{width:26px;height:26px}
+.lb .nm small .sp{padding:0 10px;border-radius:99px;background:var(--line);color:var(--ink);font-weight:800}
+.lb .nm small .sp.ok{background:#CFF3DF;color:#0F5A34}
+.lb .nm small .sp .sv{width:16px;height:16px}
+.hint{margin:-6px 0 0;text-align:center;font-size:16px;color:var(--ink2)}
+.grow{display:flex;align-items:center;gap:8px}.grow .gbar{flex:1;position:relative;height:30px}
+.gbar .gt{position:absolute;inset:0;display:grid;place-items:center;font:900 16px/1 var(--f-disp);color:#3B2A5A;text-shadow:0 0 4px #fff,0 0 4px #fff;white-space:nowrap}
+.grow .gend .sv{width:36px;height:36px}
+.rcv{display:flex;flex-direction:column;gap:4px;padding:8px 0;border-top:2px dashed var(--line)}.rcv:first-of-type{border-top:0;padding-top:0}
+.rcv .rh{display:flex;align-items:center;gap:6px;font-size:18px}.rcv .rh .sv{width:24px;height:24px}
+.rcv .rem{margin:0;color:var(--ink2);font-size:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rcv .rem .btn{min-height:40px;font-size:18px;white-space:nowrap}
+.gotp{font-size:20px}
+@media (max-width:360px){.lb .nm small .sp{padding:0 8px}}
+/* v1.23.2b 修：狀態膠囊可換行不壓到星星、進度條固定淺底、空狀態文字不被拉開 */
+.lb .nm small{flex-wrap:wrap;gap:2px 8px}.lb .nm{min-width:0}
+.gbar{background:#EFE7FA!important}
+.rcv .rem{display:block;text-align:left;text-align-last:left;word-spacing:0;letter-spacing:0;text-wrap:wrap}
+.rcv .rem .btn{margin-left:10px;vertical-align:middle}
 </style>
 
 <div class="wrap" id="app">
@@ -3600,19 +3625,19 @@ async function renderGrp(){
   const doneN=mem.filter(m=>m.done).length;
     S.sent=S.sent||{};
   const rows=mem.map((m,i)=>{const me=m._id===S.grp.mid;
-    return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${avh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span>${m.done?ic('check')+'今日完成':'今日'+m.tn+'項'}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch"><button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic(placed('fac_airport')?'island':'lock')}<span>${placed('fac_airport')?'飛去參觀':'參觀島'}</span></button><button class="ibtn" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
+    return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${avh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span class="sp${m.done?' ok':''}">${m.done?ic('check')+'今日完成':(m.tt>0?'今日 '+m.tn+'/'+m.tt:'今日未開始')}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch"><button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic(placed('fac_airport')?'island':'lock')}<span>${placed('fac_airport')?'飛去參觀':'參觀島'}</span></button><button class="ibtn cb" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn cb" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
   const rc={},pcs=[];d.ch.forEach(c=>{if((c.k||'').indexOf('pc')===0){const x=PC[+c.k.slice(2)];if(x)pcs.push({e:x.e,t:x.t,fn:c.fn})}else rc[c.k]=(rc[c.k]||0)+1});
   const got=Object.keys(rc).map(k=>(k==='👏'?ic('clap'):k==='🔥'?ic('flame'):eh(k))+'×'+rc[k]).join('　');
   const gfs=gfOpen(d.gf);GRP_GF=gfs.length;
   S.cheerSeen=d.ch.length;save();
   B.innerHTML=`${goalMsg?`<div class="panel goal"><b>${goalMsg}</b></div>`:''}
-  <div class="panel"><h3>${ic('trophy')}<span>本週星星排行</span></h3><div class="lbs">${rows||'<p class="muted">還沒有人</p>'}</div>
-  <p class="muted">每週一重新計算。每個人的星星都是自己玩出來的！</p></div>
+  <div class="panel"><h3>${ic('trophy')}<span>本週星星排行</span></h3><p class="hint">每週一重新計算</p><div class="lbs">${rows||'<p class="muted">還沒有人</p>'}</div></div>
   <div class="panel"><h3>${ic('link')}<span>合作目標</span></h3><p class="muted">全員今天都完成「今日任務」，每個人再多拿 3 顆星。</p>
-  <div class="gbar"><i style="width:${mem.length?Math.round(doneN/mem.length*100):0}%"></i></div><p class="muted"><b>${doneN} / ${mem.length}</b> 人完成${S.gclaim===t?'・今天的獎勵已領':''}</p></div>
-  <div class="panel"><h3>${ic('heart')}<span>今天收到的鼓勵</span></h3><p class="gotp">${got||'還沒有，先去鼓勵朋友吧！'}</p></div>
-  <div class="panel"><h3>${ic('gift')}<span>今天收到的明信片</span></h3>${pcs.length?pcs.map(x=>`<div class="pcd"><span>${x.e}</span><div><b>${eh(x.t)}</b><small>來自 ${eh(x.fn||'朋友')}</small></div></div>`).join(''):'<p class="muted">今天還沒有明信片。有機場就能寄給朋友！</p>'}</div>
-  <div class="panel"><h3>${ic('gift')}<span>收到的禮物</span></h3>${gfs.length?`<div class="igrid">${gfs.map(c=>{return`<button class="icard" data-claim="${eh(c._id)}" data-k="${eh(c.k)}">${ic('giftG')}<b>${eh(c.fn)}</b><small>送你禮物</small></button>`}).join('')}</div><p class="muted">點一下就收下，會放進背包。</p>`:'<p class="muted">還沒有。去朋友的島上送禮物吧！</p>'}</div>
+  <div class="grow"><div class="gbar"><i style="width:${mem.length?Math.round(doneN/mem.length*100):0}%"></i><span class="gt">${doneN} / ${mem.length} 人完成</span></div><span class="gend">${ic('giftG')}</span></div>${S.gclaim===t?'<p class="muted"><b>今天的獎勵已領</b></p>':''}</div>
+  <div class="panel"><h3>${ic('heart')}<span>今天收到的</span></h3>
+  <div class="rcv"><div class="rh">${ic('clap')}<b>鼓勵</b></div>${got?`<p class="gotp">${got}</p>`:`<p class="rem">還沒有${mem.length>1?'<button class="btn sm alt" id="gGoLb">去鼓勵朋友</button>':''}</p>`}</div>
+  <div class="rcv"><div class="rh">${ic('gift')}<b>明信片</b></div>${pcs.length?pcs.map(x=>`<div class="pcd"><span>${x.e}</span><div><b>${eh(x.t)}</b><small>來自 ${eh(x.fn||'朋友')}</small></div></div>`).join(''):'<p class="rem">還沒有（有機場就能寄給朋友）</p>'}</div>
+  <div class="rcv"><div class="rh">${ic('giftG')}<b>禮物</b></div>${gfs.length?`<div class="igrid">${gfs.map(c=>{return`<button class="icard" data-claim="${eh(c._id)}" data-k="${eh(c.k)}">${ic('giftG')}<b>${eh(c.fn)}</b><small>送你禮物</small></button>`}).join('')}</div><p class="muted">點一下就收下，會放進背包。</p>`:'<p class="rem">還沒有（去朋友的島上送禮物吧）</p>'}</div></div>
   <div class="panel"><h3>${ic('friends')}<span>邀請朋友</span></h3><p class="muted">把這組邀請碼給朋友（用 LINE 傳給家長就好）：</p>
   <div class="icode">${eh(S.grp.code)}</div><button class="btn alt sm" id="gCopy">複製邀請碼</button>
   ${FB_ON?'':'<p class="muted"><b>示範模式</b>：朋友是假的，雲端還沒開。</p>'}
@@ -3629,6 +3654,7 @@ $('#grpBody').addEventListener('click',async e=>{
   if(b.dataset.visit){const m=((GRP_DATA||{}).mem||[]).find(x=>x._id===b.dataset.visit);if(m){if(!placed('fac_airport')){toast(lockMsg());return}flyVisit(m)}return}
   if(b.dataset.claim){const k=b.dataset.k;try{await loadIsl()}catch(x){toast('現在打不開，等一下再試');return}if(giftClaim(b.dataset.claim,k))toast('收下了：'+Island.BYID[k].n+'，在背包裡');GRP_GF=0;renderGrp();return}
   if(b.dataset.ch){b.disabled=true;try{await grpCheer(b.dataset.to,b.dataset.ch);toast('送出鼓勵')}catch(x){b.disabled=false;toast('送不出去，等一下再試')}return}
+  if(b.id==='gGoLb'){const l=$('.lbs');if(l)l.scrollIntoView({behavior:'smooth',block:'center'});return}
   if(b.id==='gCopy'){try{await navigator.clipboard.writeText(S.grp.code);toast('已複製邀請碼')}catch(x){toast('邀請碼：'+S.grp.code)}return}
   if(b.id==='gRef'){GRP_DATA=null;renderGrp();return}
   if(b.id==='gLeave'){if(!GRP_ARM){GRP_ARM=true;renderGrp();return}b.disabled=true;await grpLeave();GRP_ARM=false;GRP_DATA=null;renderGrp()}
