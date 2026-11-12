@@ -2,10 +2,18 @@
 const S=x=>typeof x==='string'&&x.trim().length>0;
 const PUNCT=/[，。！？、；：「」『』…\s]/g;
 const strip=s=>String(s).replace(PUNCT,'');
-const isNew=k=>/^(CY|PW|SJ)[23]$/.test(k);
+const isNew=k=>/^(CY|CS|PW|SJ)[23]$/.test(k);
 const keyOfNew=(k,r)=>k.startsWith('SJ')?(r[0]==='o'?r[3]:r[0]==='s'?r[2]:r[2]):r[1];
 const SPECIAL=['#neg2','#q','#noquote'];
 function checkNew(k,r){
+  if(/^CS[23]$/.test(k)){
+    if(!Array.isArray(r)||r.length!==6||!r.every(S))return'欄位數不對（要 6 個字串）';
+    if(!/^「[^」]{4}」/.test(r[1])||r[1].split('＿＿').length!==2)return'題目要像「成語」的意思是＿＿。（成語 4 字、剛好一個＿＿）';
+    if(new Set([r[2],r[3],r[4]]).size!==3)return'三個選項不能重複';
+    if([r[2],r[3],r[4]].some(x=>[...x].length>8))return'選項不超過 8 個字';
+    if(!r[5].startsWith(r[1].slice(1,5)+'：'))return'提示要以「成語：」開頭';
+    return'';
+  }
   if(/^(CY|PW)[23]$/.test(k)){
     if(!Array.isArray(r)||r.length!==6||!r.every(S))return'欄位數不對（要 6 個字串）';
     if(r[1].split('＿＿').length!==2)return'句子要剛好一個「＿＿」';

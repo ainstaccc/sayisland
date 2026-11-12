@@ -3,7 +3,7 @@ const fs=require('fs');const html=fs.readFileSync('index.html','utf8');
 const sl=(a,b)=>{const i=html.indexOf(a),j=html.indexOf(b,i);return html.slice(i,j)};
 const base=new Function(sl('const Q1=[','const mk=(')+';return {Q1,Q2,V1,V2,A1,A2,M1,M2,E1,E2,Q3,V3,A3,M3,E3};')();
 Object.assign(base,new Function(sl('const H1=[','const mkH=')+';return {H1,H2,H3,R1,R2,R3,Y1,Y2,Y3,ZB};')());
-Object.assign(base,new Function(sl('/*NEWLV-START*/','/*NEWLV-END*/')+';return {CY2,CY3,PW2,PW3,SJ2,SJ3};')());
+Object.assign(base,new Function(sl('/*NEWLV-START*/','/*NEWLV-END*/')+';return {CY2,CY3,CS2,CS3,PW2,PW3,SJ2,SJ3};')());
 const {isNew,keyOfNew,checkNew}=require('./lib-new.js');
 const bank=JSON.parse(fs.readFileSync('bank.js','utf8').replace(/^window\.EXTRA=/,'').replace(/;\s*$/,''));
 const cnt={},bad=[];
