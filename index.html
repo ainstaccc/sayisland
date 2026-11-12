@@ -935,7 +935,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.11</p>
+    <p class="ver">說說島 v1.25.12</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -964,7 +964,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.11</p>
+    <p class="ver">說說島 v1.25.12</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1129,7 +1129,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.11</p>
+    <p class="ver">說說島 v1.25.12</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1185,7 +1185,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.11</p>
+    <p class="ver">說說島 v1.25.12</p>
   </section>
 </div>
 
@@ -3477,7 +3477,7 @@ const wkStars=()=>S.wk&&S.wk.k===wkKey()?S.wk.n:0;
 const pidSafe=()=>String(DB.cur).replace(/[^A-Za-z0-9]/g,'').slice(0,20)||'p';
 const GCH='ABCDEFGHJKMNPQRSTUVWXYZ23456789';
 const newCode=()=>Array.from({length:6},()=>GCH[Math.floor(Math.random()*GCH.length)]).join('');
-function meDoc(full){const dc=dailyCats();const o={nick:(S.grp&&S.grp.nick)||S.name||'小朋友',av:S.av||'🐣',wk:wkKey(),ws:wkStars(),st:streak(),td:today(),tn:dc.filter(k=>todayN(k)>=GOAL).length,tt:dc.length,up:Date.now()};if(full!==false){const I=S.isl||{};o.isl=(I.items||[]).map(r=>r.join(',')).join(';');o.sz=I.size||6}return o}
+function meDoc(full){const dc=dailyCats();const o={nick:(S.grp&&S.grp.nick)||S.name||'小朋友',av:S.av||'🐣',wk:wkKey(),ws:wkStars(),st:streak(),td:today(),tn:dc.filter(k=>todayN(k)>=GOAL).length,tt:dc.length,up:Date.now()};if(full!==false){const I=S.isl||{};o.isl=(I.items||[]).map(r=>r.join(',')).concat(Object.keys(OUTS).flatMap(k=>((I.outs||{})[k]||[]).map(r=>'o.'+k+':'+r.join(',')))).join(';');o.sz=I.size||6}return o}
 let PUT_MODE='';
 async function putMe(path){try{await fsSet(path,meDoc(true));PUT_MODE='full'}catch(e){await fsSet(path,meDoc(false));PUT_MODE='basic'}}
 /* --- Firebase REST --- */
@@ -3632,6 +3632,7 @@ function loadIsl(){
   ISLS.loaded.catch(()=>{ISLS.loaded=null});return ISLS.loaded;
 }
 const islSize=()=>{const n=learnedAll().length;return n>=100?12:n>=50?10:n>=20?8:6};
+const parseOuts=str=>{const o={};(str||'').split(';').filter(x=>x.indexOf('o.')===0).forEach(x=>{const m=x.slice(2).match(/^([a-z]+):(.*)$/);if(!m||!OUTS[m[1]])return;const r=m[2].split(',');if(Island.BYID[r[0]])(o[m[1]]=o[m[1]]||[]).push([r[0],+r[1]||0,+r[2]||0])});return o};
 const parseIsl=str=>(str||'').split(';').filter(Boolean).map(x=>x.split(',')).filter(r=>Island.BYID[r[0]]).map(r=>[r[0],+r[1]||0,+r[2]||0]);
 function islHud(){$('#islCoin').innerHTML=ISLS.visit?`<span class="vn">${eh(ISLS.visit.nick)} 的島</span>`:cn(coin())}
 function islHint(t){const h=$('#islHint');h.hidden=!t;h.textContent=t||''}
@@ -3641,7 +3642,9 @@ function islIdle(){
   ISLS.mode='idle';ISLS.t=null;ISLS.idx=-1;ISLS.pos=null;
   if(window.Island&&Island.clearGhost){Island.clearGhost();Island.mark(null)}
   islClose();islHud();
-  $('#islGoal').hidden=!!ISLS.visit;
+  {const vo=ISLS.visit&&!ISLS.at&&Object.keys(parseOuts(ISLS.visit.isl)).length;$('#islGoal').hidden=!!ISLS.visit&&!vo;$('#islGoal').innerHTML=vo?ic('island')+'<span>外島</span>':ic('trophy')+'<span>目標</span>'}
+  if(ISLS.visit&&ISLS.at){islHint(OUTS[ISLS.at].e+' '+OUTS[ISLS.at].n);
+    $('#islBar').innerHTML=bt('vmain','back','回主島')+bt('vback','back','回我的島');return}
   if(ISLS.visit){islHint('');
     $('#islBar').innerHTML=bt('vback','back','回我的島')+bt('vcheer','clap','貼紙')+bt('vpc','heart','明信片')+bt('vgift','gift','友情設施','');return}
   {const L=learnedAll().length,nx=L<20?20:L<50?50:L<100?100:0;islHint(ISLS.at?OUTS[ISLS.at].e+' '+OUTS[ISLS.at].n:nx?'再學會 '+(nx-L)+' 題，島就變大！':'')}
@@ -3764,6 +3767,8 @@ async function sheetAir(){if(!S.grp){toast('先到好友團加入朋友');return
   $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('island','機場：去朋友的島')+(mem.length?`<div class="igrid">${mem.map(m=>`<button class="icard" data-fly="${eh(m._id)}"><span class="avb">${avh(m.av)}</span><b>${eh(m.nick)}</b><small>✈️ 出發</small></button>`).join('')}</div>`:'<p class="muted" style="font-size:20px">好友團裡還沒有別人。把邀請碼傳給朋友吧！</p>')}
 function sheetSail(){const I=ISL();$('#islSheet').hidden=false;
   $('#islSheet').innerHTML=shHead('island','郵輪碼頭：去外島')+`<div class="igrid">${Object.keys(OUTS).map(k=>`<button class="icard" data-sail="${k}"><span class="avb">${OUTS[k].e}</span><b>${OUTS[k].n}</b><small>${((I.outs||{})[k]||[]).length} 件</small></button>`).join('')}</div><p class="muted">外島有自己的空地，可以擺很多東西。東西共用背包。</p>`}
+function sheetVisitOuts(){const m=ISLS.visit,po=parseOuts(m.isl);$('#islSheet').hidden=false;
+  $('#islSheet').innerHTML=shHead('island',eh(m.nick)+' 的外島')+`<div class="igrid">${Object.keys(OUTS).map(k=>{const n=(po[k]||[]).length;return `<button class="icard" data-vsail="${k}" ${n?'':'disabled'}><span class="avb">${OUTS[k].e}</span><b>${OUTS[k].n}</b><small>${n?n+' 件':'還沒布置'}</small></button>`}).join('')}</div><p class="muted">坐船去看看朋友布置的外島。</p>`}
 function sheetStk(){const to=ISLS.visit._id;S.sent=S.sent||{};
   $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('clap','送貼紙給 '+eh(ISLS.visit.nick))+`<div class="stk">${STK.map(x=>{const on=x.ok(),sent=S.sent[today()+to+x.k];return`<button data-stk="${x.k}" ${on&&!sent?'':'disabled'}><span>${x.k}</span>${on?(sent?'送過了':x.n):'🔒 '+x.tip}</button>`}).join('')}</div><p class="muted">每種貼紙每天每位朋友限 1 次。多練習就會解鎖新貼紙！</p>`}
 function bdgPcs(to){const L=SER.map(x=>({x,h:bdgHi(x)})).filter(r=>r.h>=0).sort((a,b)=>b.h-a.h).slice(0,8);
@@ -3820,7 +3825,8 @@ $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-
   else if(a==='cancel')islIdle();else if(a==='ok')islOk();
   else if(a==='mv')startPlace(ISLS.t,ISLS.idx);
   else if(a==='pk'){const I=ISL();I.inv[ISLS.t]=(I.inv[ISLS.t]||0)+1;Island.remove(ISLS.idx);islSave();toast('收進背包了');islIdle()}
-  else if(a==='vback'){flyTo('回家囉～',()=>{ISLS.visit=null;renderIsl()},'🛩️',1200)}
+  else if(a==='vback'){flyTo('回家囉～',()=>{ISLS.visit=null;ISLS.at=null;renderIsl()},'🛩️',1200)}
+  else if(a==='vmain'){flyTo('回主島～',()=>{ISLS.at=null;renderIsl()},'🚢',1200)}
   else if(a==='vcheer')sheetStk();else if(a==='vpc')sheetPc();
   else if(a==='vgift')sheetGift();else if(a==='air')sheetAir();else if(a==='sail')sheetSail();else if(a==='rkt')rocketGo();
   else if(a==='home'){flyTo('回主島～',()=>{ISLS.at=null;renderIsl()},'🚢',1200)}});
@@ -3834,6 +3840,7 @@ $('#islSheet').addEventListener('click',async e=>{
   const pc=e.target.closest('[data-pc]');if(pc){try{await grpCheer(ISLS.visit._id,'pc'+pc.dataset.pc);toast('明信片寄出去了 '+PC[+pc.dataset.pc].e);sheetPc()}catch(x){toast('今天已經寄過了')}return}
   const fg=e.target.closest('[data-fgift]');if(fg){const d=Island.BYID[fg.dataset.fgift];try{await grpGift(ISLS.visit._id,d.id,buyP(d));toast('友情設施送出去了！');islHud();islIdle()}catch(x){toast(x.message||'送不出去，等一下再試')}return}
   const fl=e.target.closest('[data-fly]');if(fl){const m=((GRP_DATA||{}).mem||[]).find(x=>x._id===fl.dataset.fly);if(m){islClose();flyVisit(m)}return}
+  const vs=e.target.closest('[data-vsail]');if(vs&&ISLS.visit){const k=vs.dataset.vsail;islClose();flyTo('開往 '+OUTS[k].n+'…',()=>{ISLS.at=k;renderIsl()},'🚢',1600);return}
   const sl=e.target.closest('[data-sail]');if(sl){const k=sl.dataset.sail;islClose();flyTo('開往 '+OUTS[k].n+'…',()=>{ISLS.at=k;renderIsl()},'🚢',1600);return}
   const gv=e.target.closest('[data-give]');if(gv){try{await grpGift(ISLS.visit._id,gv.dataset.give);toast('禮物送出去了！');islIdle()}catch(x){toast(x.message||'送不出去，等一下再試')}return}
   if(e.target.closest('[data-ia="close"]'))islIdle()});
@@ -3848,7 +3855,7 @@ function renderIsl(){
     window.__MII=v?(/^m:/.test(v.av||'')?miiParse(v.av):{}):(S.mii?miiFix(S.mii).cur:{});window.__MII_FACE=miiFace(window.__MII);
     Island.mount($('#islHost'),{size:sz,theme:ISLS.at||null});Island.setTime(ISLS.tm);
     if(ISLS.at&&!v){const drop=Island.setItems((I.outs||{})[ISLS.at]||[])||[];if(drop.length){drop.forEach(r=>{I.inv[r[0]]=(I.inv[r[0]]||0)+1});(I.outs=I.outs||{})[ISLS.at]=Island.list();save()}Island.on('tile',islTile);Island.on('item',islItem)}
-    else if(v){Island.setItems(parseIsl(v.isl));Island.on('tile',null);Island.on('item',null);if(typeof v.isl!=='string')toast(v.nick+' 還沒更新到新版，島先空著')}
+    else if(v){Island.setItems(ISLS.at?(parseOuts(v.isl)[ISLS.at]||[]):parseIsl(v.isl));Island.on('tile',null);Island.on('item',null);if(typeof v.isl!=='string')toast(v.nick+' 還沒更新到新版，島先空著')}
     else{
       {const un=unlChk();if(un.length)toastQ('解鎖 '+un.map(u=>u.n+u.e).join('、')+'！已放進背包')}
       if(!I.welcome){I.welcome=1;I.free=(I.free||0)+1;save();toastQ('歡迎！送你 1 個免費盲盒')}
@@ -3860,7 +3867,7 @@ function renderIsl(){
 function leaveIsl(){if(ISLS.on&&window.Island){try{Island.unmount()}catch(e){}ISLS.on=false}ISLS.visit=null;ISLS.at=null}
 $('#toIsl').onclick=()=>{ISLS.visit=null;ISLS.at=null;show('isl')};
 $('#toIslG').onclick=()=>{ISLS.visit=null;ISLS.at=null;show('isl')};
-$('#islGoal').innerHTML=ic('trophy')+'<span>目標</span>';$('#islGoal').onclick=()=>sheetGoal();
+$('#islGoal').innerHTML=ic('trophy')+'<span>目標</span>';$('#islGoal').onclick=()=>{if(ISLS.visit)sheetVisitOuts();else sheetGoal()};
 
 
 /* ---------- 捏臉編輯器 ---------- */
