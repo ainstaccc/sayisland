@@ -935,7 +935,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.9</p>
+    <p class="ver">說說島 v1.25.10</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -964,7 +964,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.9</p>
+    <p class="ver">說說島 v1.25.10</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1129,7 +1129,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.9</p>
+    <p class="ver">說說島 v1.25.10</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1185,7 +1185,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.9</p>
+    <p class="ver">說說島 v1.25.10</p>
   </section>
 </div>
 
@@ -1198,6 +1198,7 @@ const $=s=>document.querySelector(s);
 const SV=b=>`<svg class="sv" viewBox="0 0 32 32" aria-hidden="true">${b}</svg>`;
 const GIFT=(a,b,c)=>SV(`<rect x="5" y="14" width="22" height="14" rx="3" fill="${a}" stroke="${c}" stroke-width="1.8"/><rect x="3.5" y="10" width="25" height="6" rx="3" fill="${b}" stroke="${c}" stroke-width="1.8"/><rect x="14" y="10" width="4" height="18" fill="#FFD84D"/><path d="M16 10c-1-5-8-6-7-2 .6 2 4 2 7 2zM16 10c1-5 8-6 7-2-.6 2-4 2-7 2z" fill="#FFD84D" stroke="#E59A00" stroke-width="1.6" stroke-linejoin="round"/>`);
 const ICO={
+ rocket:SV(`<path d="M16 2.800c4.200 3.200 6.200 8 6.200 13.200v6.200H9.800V16c0-5.200 2-10 6.200-13.200z" fill="#F4F6FA" stroke="#8E78C0" stroke-width="1.800" stroke-linejoin="round"/><circle cx="16" cy="12" r="3.200" fill="#6FC3F2" stroke="#8E78C0" stroke-width="1.600"/><path d="M9.800 17.500L5.500 22.500v4l4.300-2.200zM22.200 17.500l4.300 5v4l-4.300-2.200z" fill="#FF6B8A" stroke="#C2456A" stroke-width="1.500" stroke-linejoin="round"/><path d="M12.800 24.200h6.400L16 30z" fill="#FFB347" stroke="#E5531A" stroke-width="1.500" stroke-linejoin="round"/>`),
  star:SV(`<path d="M16 3.4l3.9 7.9 8.7 1.3-6.3 6.1 1.5 8.7L16 23.2l-7.8 4.1 1.5-8.7-6.3-6.1 8.7-1.3z" fill="#FFD84D" stroke="#E59A00" stroke-width="1.8" stroke-linejoin="round"/><path d="M12.5 10.5l3-4.5" stroke="#FFF6BF" stroke-width="2" stroke-linecap="round"/>`),
  lock:SV(`<rect x="6.500" y="14" width="19" height="14" rx="3.500" fill="#B79CF5" stroke="#7A5AC8" stroke-width="1.800"/><path d="M10.500 14v-3.500a5.500 5.500 0 0 1 11 0V14" fill="none" stroke="#7A5AC8" stroke-width="2.200" stroke-linecap="round"/><circle cx="16" cy="20.500" r="2" fill="#fff"/>`),
  flame:SV(`<path d="M16 2.5c1 5.500 8.500 8.500 8.500 16.500a8.500 8.500 0 0 1-17 0c0-4.500 2.500-6.500 4-8.500.5 2 1.500 3 2.500 3-.5-4 0-7.500 2-11z" fill="#FF8A3D" stroke="#E5531A" stroke-width="1.8" stroke-linejoin="round"/><path d="M16 15c.6 3.200 4.200 4.700 4.200 8a4.200 4.200 0 0 1-8.400 0c0-2.800 3.200-4.300 4.200-8z" fill="#FFD84D"/>`),
@@ -3396,6 +3397,7 @@ const SER=[
  {id:'i',n:'島上物件',ic:'island',tiers:[10,30,60],keys:['i10','i30','i60'],cur:()=>(ISL().items||[]).length,how:t=>'島上擺'+t+'件東西'},
  {id:'w',n:'週寶箱',ic:'gift',tiers:[1,4,12],keys:['w1','w4','w12'],cur:()=>Math.max(S.wkN||0,S.wkClaim?1:0),how:t=>'累積打開'+t+'次週寶箱'},
  {id:'x',n:'關卡探險家',ic:'magnify',tiers:[5,10,15],keys:['x5','x10','x15'],cur:()=>catsSeen(),how:t=>'玩過'+t+'種不同的關卡'},
+ {id:'r',n:'太空探險家',ic:'rocket',tiers:[3,6,9],keys:['r3','r6','r9'],cur:()=>Object.keys(S.mystV||{}).length,how:t=>'坐火箭造訪'+t+'個不同的星球'},
  {id:'e',n:'小耳朵',ic:'music',tiers:[30,150,500],keys:['e30','e150','e500'],cur:()=>S.nSay||0,how:t=>'按「唸給我聽」聽'+t+'次'}
 ].map(x=>Object.assign(x,{g:'一般'})).concat(LVC.map(k=>({id:'v_'+k,g:'關卡',lv:k,n:CATS[k].n,tiers:LVT[k],cur:()=>lvN(k),how:t=>'「'+CATS[k].n+'」學會'+t+'題'})));
 const SER_BY=Object.fromEntries(SER.map(x=>[x.id,x]));
@@ -3810,8 +3812,8 @@ function mystPop(p){p=p||MYSTP[8];const sn=((S.mystF||{})[p.k])||[],un=p.f.map((
   document.body.appendChild(o);
   o.addEventListener('click',e=>{const b=e.target.closest('[data-o]');if(!b)return;o.querySelectorAll('.orb').forEach(x=>x.disabled=true);
     const r=Math.random(),pool=r<.7?['sp_crystal','sp_meteor','sp_glowtree']:r<.95?['sp_moon','sp_ufo']:['sp_alien'],id=pool[Math.floor(Math.random()*pool.length)],I=ISL(),d=Island.BYID[id];
-    I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.myst=today();(S.mystV=S.mystV||{})[p.k]=1;const fl=((S.mystF=S.mystF||{})[p.k]=S.mystF[p.k]||[]);if(!fl.includes(fi))fl.push(fi);let allDone=false;if(!S.mystDone&&MYSTP.every(q=>S.mystV[q.k])){S.mystDone=today();I.free=(I.free||0)+1;allDone=true}save();try{sfx.win();fxBurst(24)}catch(x){}
-    o.innerHTML=`<b class="mtt">撿到了！</b><div class="mrv">${th(id,180)}</div><p class="ms big">${eh(d.n)}</p><p class="ms">${nbk('已放進背包，今天只能來一次')}</p>${allDone?`<p class="ms q">${nbk('九個星球都去過了！')}</p><p class="ms">${nbk('你是太空探險家，送你一個免費盲盒')}</p>`:''}<button class="btn" id="mok">帶回家</button>`;
+    I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.myst=today();(S.mystV=S.mystV||{})[p.k]=1;const fl=((S.mystF=S.mystF||{})[p.k]=S.mystF[p.k]||[]);if(!fl.includes(fi))fl.push(fi);let allDone=false;if(!S.mystDone&&MYSTP.every(q=>S.mystV[q.k])){S.mystDone=today();I.free=(I.free||0)+1;allDone=true}const nb=checkBadges(),bs=BDR,ml=milChk();save();try{sfx.win();fxBurst(24)}catch(x){}
+    o.innerHTML=`<b class="mtt">撿到了！</b><div class="mrv">${th(id,180)}</div><p class="ms big">${eh(d.n)}</p><p class="ms">${nbk('已放進背包，今天只能來一次')}</p>${nb.length?`<p class="ms q">${nbk('拿到新徽章！')}</p><p class="ms">${nbk(nb.join('、')+(bs?'，獎勵 '+bs+' 顆星':''))}</p>`:''}${ml.map(m=>`<p class="ms">${nbk('集滿 '+m.n+' 枚徽章！稱號「'+m.t+'」，禮物已放進背包')}</p>`).join('')}${allDone?`<p class="ms q">${nbk('九個星球都去過了！')}</p><p class="ms">${nbk('你是太空探險家，送你一個免費盲盒')}</p>`:''}<button class="btn" id="mok">帶回家</button>`;
     $('#mok').onclick=()=>{o.remove();flyTo('回家囉～',()=>{renderIsl()},'🚀',1200)}})}
 $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-ia]');if(!b)return;const a=b.dataset.ia;
   if(a==='shop'){ISLS.fac=0;if(['商店','公共'].includes(ISLS.cat))ISLS.cat='自然';sheetShop(0)}else if(a==='fac'){ISLS.fac=1;if(!['商店','公共'].includes(ISLS.cat))ISLS.cat='商店';sheetShop(1)}else if(a==='bag')sheetBag();else if(a==='box')sheetBox();
