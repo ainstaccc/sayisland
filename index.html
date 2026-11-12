@@ -868,6 +868,15 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 @keyframes orbf{from{transform:translateY(0)}to{transform:translateY(-10px)}}
 /* v1.25.3 神祕小行星選擇畫面：劇情三行（發現 3 個不明物體／火箭不夠大一次只能帶一個／你選哪一個？） */
 .mys .ms.q{font-size:28px;color:#FFE680;margin-top:2px}
+/* v1.25.4 火箭改成每天選星球：選星球地圖 .mmap/.pgrid/.pbtn、造訪打勾；各星球主題色背景（--mb）、行星圖 .mpl、小知識 .mfact */
+.mys{overflow:auto}.mys.pl{background:var(--mb)}.mys .mpl{position:relative;line-height:0;filter:drop-shadow(0 0 18px rgba(255,255,255,.25))}
+.mys .mfact{position:relative;margin:0;max-width:320px;width:100%;box-sizing:border-box;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.28);border-radius:18px;padding:10px 14px;font:700 18px/1.45 var(--f-body);color:#fff;text-align:center}
+.mys.pl{gap:12px}.mys.pl .mtt{font-size:34px}.mys.pl .orbs{margin-top:6px;padding-top:6px}.mys.pl .ms{font-size:20px}.mys.pl .ms.q{font-size:26px}
+.pgrid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%;max-width:340px}
+.pbtn{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 2px 8px;border-radius:20px;border:3px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;font:800 18px/1.1 var(--f-body);white-space:nowrap;cursor:pointer;min-width:0}
+.pbtn:active{transform:scale(.96)}.pbtn.vis{border-color:#7EE2B0;background:rgba(126,226,176,.16)}
+.pbtn .pck .sv{width:16px;height:16px;vertical-align:0}.pbtn .pck{position:absolute;top:-8px;right:-4px;width:26px;height:26px;border-radius:50%;background:#2FB27C;color:#fff;font:900 16px/26px var(--f-disp);font-style:normal;text-align:center;border:2px solid #fff}
+@media(max-width:360px){.pbtn{font-size:17px}.pbtn svg{width:54px;height:54px}.mys.pl .mpl svg{width:56px;height:56px}.mys.pl{gap:8px;padding:16px}}
 </style>
 
 <div class="wrap" id="app">
@@ -897,7 +906,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.3</p>
+    <p class="ver">說說島 v1.25.4</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -926,7 +935,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.3</p>
+    <p class="ver">說說島 v1.25.4</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1091,7 +1100,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.3</p>
+    <p class="ver">說說島 v1.25.4</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1150,7 +1159,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.3</p>
+    <p class="ver">說說島 v1.25.4</p>
   </section>
 </div>
 
@@ -3702,7 +3711,7 @@ function reveal(it,r,isNew,kind,dup){
 const UNL=[
  {id:'fac_airport',n:'機場',e:'✈️',d:'飛去朋友的島、送明信片、貼紙和友情設施',cur:()=>S.stars,need:100,u:'顆星'},
  {id:'fac_pier',n:'郵輪碼頭',e:'🚢',d:'開去外島，外島也可以擺東西',cur:nBadge,need:5,u:'個徽章'},
- {id:'fac_rocket',n:'火箭發射台',e:'🚀',d:'每天一次，飛去神祕小行星撿特殊物品',cur:nBadge,need:10,u:'個徽章'}];
+ {id:'fac_rocket',n:'火箭發射台',e:'🚀',d:'每天一次，飛去太空撿特殊物品',cur:nBadge,need:10,u:'個徽章'}];
 const OUTS={sand:{n:'沙灘島',e:'🏖️'},forest:{n:'森林島',e:'🌲'},snow:{n:'雪島',e:'❄️'}};
 function unlChk(){const I=ISL();S.unl=S.unl||{};const out=[];UNL.forEach(u=>{if(!S.unl[u.id]&&u.cur()>=u.need){S.unl[u.id]=today();I.inv[u.id]=(I.inv[u.id]||0)+1;I.seen[u.id]=1;out.push(u)}});if(out.length)save();return out}
 const placed=id=>(ISL().items||[]).some(r=>r[0]===id);
@@ -3745,14 +3754,37 @@ function sheetGoal(){const I=ISL();S.unl=S.unl||{};
   const ex=nx?`<div class="gl"><span class="gle">🏝️</span><div><b>主島變大</b><small>學會的題目越多，島越大</small><div class="gbar"><i style="width:${Math.round(L/nx[0]*100)}%"></i></div><small class="gls">${L} / ${nx[0]} 題　→ ${nx[1]}</small></div></div>`:'';
   const nk=STK.find(x=>!x.ok()),sk=nk?`<div class="gl"><span class="gle">${nk.k}</span><div><b>下一個貼紙：${nk.n}</b><small>達成「${nk.tip}」解鎖（要有機場才能送）</small></div></div>`:'';
   $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('trophy','解鎖目標（徽章 '+nBadge()+' / '+BTOT+'）')+rows+ex+sk+'<p class="muted">星星和徽章，靠每天練習就會慢慢變多。</p>'}
-function rocketGo(){if(S.myst===today()){toast('今天已經去過神祕小行星了，明天再來！');return}
-  islClose();flyTo('發射！前往神祕小行星…',mystPop,'🚀',1600)}
-function mystPop(){const o=document.createElement('div');o.className='mys';
-  o.innerHTML=`<b class="mtt">神祕小行星</b><p class="ms">${nbk('在探索小行星的路上，發現三個不明物體！')}</p><p class="ms">${nbk('火箭不夠大，一次只能帶回一個。')}</p><p class="ms q">你選哪一個？</p><div class="orbs">${[0,1,2].map(i=>`<button class="orb" data-o="${i}" style="animation-delay:-${i*.5}s">?</button>`).join('')}</div>`;
+const MYSTP=[
+ {k:'moon',n:'月球',c1:'#F2F2F2',c2:'#9A9AA6',bg:'#2A2A3C,#0E0E1A',f:'月球上沒有空氣，太空人的腳印可以留好幾百萬年。'},
+ {k:'mercury',n:'水星',c1:'#C9C2BA',c2:'#7E766D',bg:'#4A4038,#16110E',f:'水星離太陽最近，白天超級熱，晚上又超級冷。'},
+ {k:'venus',n:'金星',c1:'#FFE0A0',c2:'#D9902F',bg:'#6A4A1E,#1E1208',f:'金星是最熱的行星，比離太陽最近的水星還要熱。'},
+ {k:'mars',n:'火星',c1:'#F4A27E',c2:'#B5472B',bg:'#6B2A1C,#1C0A08',f:'火星看起來紅紅的，因為地面有很多生鏽的鐵。'},
+ {k:'jupiter',n:'木星',c1:'#F3D9B8',c2:'#B8764A',bands:1,bg:'#5A3A26,#160D08',f:'木星是最大的行星，上面的大紅斑是一個超大的風暴。'},
+ {k:'saturn',n:'土星',c1:'#F7E3A8',c2:'#C99A4A',ring:1,bg:'#5E4B24,#171108',f:'土星有漂亮的環，環是由很多冰塊和石頭組成的。'},
+ {k:'uranus',n:'天王星',c1:'#C8F2F2',c2:'#5FB8C4',bg:'#1E5A66,#08181C',f:'天王星是躺著轉的，看起來像一顆在滾的球。'},
+ {k:'neptune',n:'海王星',c1:'#8FB4FF',c2:'#2F4FC4',bg:'#1E2E7A,#080C20',f:'海王星離太陽最遠，那裡的風是太陽系裡最大的。'},
+ {k:'belt',n:'小行星帶',c1:'#D8C8B0',c2:'#7A6A58',belt:1,bg:'#3C3A52,#100F1C',f:'小行星帶在火星和木星中間，有好多好多大大小小的石頭。'}];
+const plSvg=(p,z)=>{const id='pg'+p.k;let s=`<svg viewBox="0 0 80 80" width="${z}" height="${z}" aria-hidden="true"><defs><radialGradient id="${id}" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="${p.c1}"/><stop offset="1" stop-color="${p.c2}"/></radialGradient><clipPath id="${id}c"><circle cx="40" cy="40" r="22"/></clipPath></defs>`;
+  if(p.belt){const r=[[14,50,5],[26,30,4],[44,22,6],[60,38,4],[66,56,5],[34,60,4],[20,40,3]];s+=r.map(q=>`<ellipse cx="${q[0]+4}" cy="${q[1]}" rx="${q[2]+3}" ry="${q[2]+1}" fill="url(#${id})" stroke="${p.c2}" stroke-width="1.5"/>`).join('')}
+  else{if(p.ring)s+=`<ellipse cx="40" cy="42" rx="37" ry="9" fill="none" stroke="${p.c2}" stroke-width="5" transform="rotate(-18 40 42)" opacity=".55"/>`;
+    s+=`<circle cx="40" cy="40" r="22" fill="url(#${id})"/>`;
+    if(p.bands)s+=`<g clip-path="url(#${id}c)" opacity=".5"><rect x="14" y="30" width="52" height="5" fill="#8A5230"/><rect x="14" y="43" width="52" height="6" fill="#8A5230"/><ellipse cx="50" cy="52" rx="5" ry="3" fill="#C0583A"/></g>`;
+    if(p.k==='moon')s+=`<g fill="#7C7C88" opacity=".6"><circle cx="32" cy="34" r="4"/><circle cx="48" cy="46" r="5"/><circle cx="36" cy="50" r="2.5"/></g>`;
+    if(p.k==='mars')s+=`<circle cx="46" cy="36" r="4" fill="#8E3420" opacity=".5"/>`;
+    if(p.ring)s+=`<path d="M4 47 Q40 60 76 37" fill="none" stroke="${p.c2}" stroke-width="5" transform="rotate(-18 40 42)" opacity=".9" clip-path="none"/>`}
+  return s+'</svg>'};
+function rocketGo(){if(S.myst===today()){toast('今天已經去過太空了，明天再來！');return}
+  islClose();mystMap()}
+function mystMap(){const o=document.createElement('div');o.className='mys mmap';const V=S.mystV||{},n=MYSTP.filter(p=>V[p.k]).length;
+  o.innerHTML=`<b class="mtt">要去哪裡？</b><p class="ms">已造訪 ${n} / ${MYSTP.length}</p><div class="pgrid">${MYSTP.map(p=>`<button class="pbtn${V[p.k]?' vis':''}" data-p="${p.k}">${plSvg(p,64)}<span>${p.n}</span>${V[p.k]?`<i class="pck">${ic('check')}</i>`:''}</button>`).join('')}</div><button class="btn alt" id="pno">先不要</button>`;
+  document.body.appendChild(o);
+  o.addEventListener('click',e=>{if(e.target.closest('#pno')){o.remove();return}const b=e.target.closest('[data-p]');if(!b)return;const p=MYSTP.find(x=>x.k===b.dataset.p);o.remove();flyTo('發射！前往'+p.n+'…',()=>mystPop(p),'🚀',1600)})}
+function mystPop(p){p=p||MYSTP[8];const o=document.createElement('div');o.className='mys pl';o.style.setProperty('--mb','radial-gradient(circle at 50% 110%,'+p.bg.split(',')[0]+' 0,'+p.bg.split(',')[1]+' 80%)');
+  o.innerHTML=`<div class="mpl">${plSvg(p,72)}</div><b class="mtt">${p.n}</b><p class="mfact">${nbk(p.f)}</p><p class="ms">${nbk('在前往'+p.n+'的路上，發現三個不明物體！')}</p><p class="ms">${nbk('火箭不夠大，一次只能帶回一個。')}</p><p class="ms q">你選哪一個？</p><div class="orbs">${[0,1,2].map(i=>`<button class="orb" data-o="${i}" style="animation-delay:-${i*.5}s">?</button>`).join('')}</div>`;
   document.body.appendChild(o);
   o.addEventListener('click',e=>{const b=e.target.closest('[data-o]');if(!b)return;o.querySelectorAll('.orb').forEach(x=>x.disabled=true);
     const r=Math.random(),pool=r<.7?['sp_crystal','sp_meteor','sp_glowtree']:r<.95?['sp_moon','sp_ufo']:['sp_alien'],id=pool[Math.floor(Math.random()*pool.length)],I=ISL(),d=Island.BYID[id];
-    I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.myst=today();save();try{sfx.win();fxBurst(24)}catch(x){}
+    I.inv[id]=(I.inv[id]||0)+1;I.seen[id]=1;S.myst=today();(S.mystV=S.mystV||{})[p.k]=1;save();try{sfx.win();fxBurst(24)}catch(x){}
     o.innerHTML=`<b class="mtt">撿到了！</b><div class="mrv">${th(id,180)}</div><p class="ms big">${eh(d.n)}</p><p class="ms">${nbk('已放進背包，今天只能來一次')}</p><button class="btn" id="mok">帶回家</button>`;
     $('#mok').onclick=()=>{o.remove();flyTo('回家囉～',()=>{renderIsl()},'🚀',1200)}})}
 $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-ia]');if(!b)return;const a=b.dataset.ia;
