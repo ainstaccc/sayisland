@@ -878,7 +878,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.23.8</p>
+    <p class="ver">說說島 v1.23.9</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -907,7 +907,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.23.8</p>
+    <p class="ver">說說島 v1.23.9</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1092,7 +1092,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.23.8</p>
+    <p class="ver">說說島 v1.23.9</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1170,7 +1170,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.23.8</p>
+    <p class="ver">說說島 v1.23.9</p>
   </section>
 </div>
 
@@ -2440,6 +2440,7 @@ FIX.push(['相間','相鍵']);
 FIX.push(['假日','嫁日']);
 FIX.push(['相機','像機'],['樂曲','悅取'],['還你','環你']);
 FIX.push(['拖把','拖靶']);
+FIX.push(['夾','頰']);/* 夾：教育部只有ㄐㄧㄚˊ一讀（夾菜、夾子、夾到、夾克），語音常誤唸一聲，統一換成同音字頰 */
 /* 「…地」當副詞（唸ㄉㄜ˙）：把這些詞後面的「地」換成「的」再唸 */
 const ADV=['整齊','溫柔','深深','大聲','誠懇','認真','高興','生氣','安靜','用力','努力','慢慢','輕輕','偷偷','悄悄','靜靜','默默','緊緊','遠遠','狠狠','好好','仔細','小心','專心','開心','難過','焦急','興奮','熟練','舒服','輕鬆','快樂','飛快','快快','笑咪咪','搖搖擺擺','搖搖晃晃','一株一株','一滴一滴','一件一件','一個一個','一點一點','一步一步','愉快','得意','驚訝','害羞','勇敢','小聲','急忙','匆匆','慢','快','輕','重重','大大','小小','高高','長長','久久','細細','慢吞吞','笑嘻嘻','高高興興','開開心心','平平安安'];
 const ADVRE=new RegExp('('+ADV.sort((a,b)=>b.length-a.length).join('|')+')地','g');
