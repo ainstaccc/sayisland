@@ -847,6 +847,8 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .node:active b{transform:translateY(2px);box-shadow:0 1px 0 rgba(150,80,190,.2)}
 .node:focus-visible .orb,.islbtn:focus-visible,.who:focus-visible{outline:4px solid #7A4DFF;outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.islbtn{transition:none}}
+/* v1.23.8 修短文小偵探完成後的綠字「重點都找到了…」跑位：v1.23.2 的 .grow{display:flex} 是好友團用，誤套到 #bgrow（斷詞 span 變成不換行的 flex 項目，左右溢出）。#bgrow 改回 block 置中、可換行 */
+#bgrow{display:block;width:100%;text-align:center;font-size:20px;line-height:1.5;word-spacing:0;letter-spacing:0}
 </style>
 
 <div class="wrap" id="app">
@@ -876,7 +878,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.23.7</p>
+    <p class="ver">說說島 v1.23.8</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -905,7 +907,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.23.7</p>
+    <p class="ver">說說島 v1.23.8</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1090,7 +1092,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.23.7</p>
+    <p class="ver">說說島 v1.23.8</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1168,7 +1170,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.23.7</p>
+    <p class="ver">說說島 v1.23.8</p>
   </section>
 </div>
 
