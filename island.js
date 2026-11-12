@@ -323,9 +323,36 @@ B.fac_rocket=()=>{const fl=glowMat('#FFA94D',1.6);const g=G(cyl(.3,.34,.06,'#8E9
 B.sp_crystal=()=>{const m=mat('#B79CF5',{transparent:true,opacity:.85,emissive:'#7A5AC8',emissiveIntensity:.35,roughness:.2});const g=G(cone(.12,.5,m,0,.3,0,5),cone(.09,.34,m,.15,.2,.05,5),cone(.08,.28,m,-.14,.16,.02,5),cyl(.22,.26,.05,'#8E94A6',0,.02,0,8));g.userData.anim=t=>{m.emissiveIntensity=.35+Math.sin(t*2)*.2};return g};
 B.sp_meteor=()=>{const gl=glowMat('#FF9A3C',1.3);const g=G(ico(.26,'#6B6F80',0,.24,0,1),ico(.09,gl,.14,.3,.14,0),ico(.07,gl,-.12,.36,.1,0),ico(.06,gl,.02,.18,-.2,0));g.userData.anim=t=>{g.rotation.y=t*.4};return g};
 B.sp_glowtree=()=>{const gl=glowMat('#7FE0FF',1.5);const g=G(cyl(.06,.1,.5,'#6A5A8A',0,.25,0,7),ico(.3,'#4A7ACF',0,.7,0),ico(.1,gl,.2,.78,.1,0),ico(.08,gl,-.18,.62,.14,0),ico(.09,gl,.02,.95,-.12,0));g.userData.sway=1;return g};
-B.sp_ufo=()=>{const gl=glowMat('#FFE680',1.4);const g=new T.Group();const u=G(cyl(.34,.34,.07,'#B8BED0',0,.0,0,16),cyl(.2,.34,.1,'#9AA3B5',0,-.06,0,16),sph(.17,'#BFE6FF',0,.1,0,1,.9,1),sph(.035,gl,.28,-.02,0),sph(.035,gl,-.28,-.02,0),sph(.035,gl,0,-.02,.28));u.position.y=.62;g.add(u,cyl(.02,.03,.62,'#9A9AA8',0,.3,0,5));g.userData.anim=t=>{u.position.y=.62+Math.sin(t*2)*.05;u.rotation.y=t*1.2};return g};
+B.sp_ufo=()=>{const g=new T.Group(),u=new T.Group();
+ const lm=(c,e)=>new T.MeshStandardMaterial({color:c,emissive:c,emissiveIntensity:e,roughness:.4,flatShading:true});
+ const glass=new T.MeshStandardMaterial({color:'#BFE6FF',transparent:true,opacity:.55,roughness:.1,metalness:.2,emissive:'#7FC8FF',emissiveIntensity:.18});
+ u.add(cyl(.38,.38,.05,'#6FA8F0',0,0,0,20),cyl(.24,.38,.09,'#B4BCD0',0,.06,0,20),cyl(.13,.24,.08,'#7E879B',0,-.065,0,20),cyl(.05,.07,.04,'#FFE680',0,-.12,0,10));
+ const dome=new T.Mesh(new T.SphereGeometry(.19,16,12,0,6.283,0,1.6),glass);dome.position.y=.1;u.add(dome);
+ const pil=G(sph(.065,'#8EE6A8',0,.13,0,1,1.1,1),sph(.013,'#1B1B2A',-.025,.14,.055),sph(.013,'#1B1B2A',.025,.14,.055));u.add(pil);
+ const ring=new T.Group(),bulbs=[];const cs=['#FFE680','#FF9EBB','#7FE0FF','#B79CF5'];
+ for(let i=0;i<8;i++){const a=i*Math.PI/4,m=lm(cs[i%4],.7),b=sph(.045,m,Math.cos(a)*.34,.01,Math.sin(a)*.34);bulbs.push(m);ring.add(b)}u.add(ring);
+ const bm=new T.MeshBasicMaterial({color:'#FFF3A0',transparent:true,opacity:.13,depthWrite:false,side:T.DoubleSide});
+ const beam=new T.Mesh(new T.ConeGeometry(.3,.56,18,1,true),bm);beam.castShadow=false;
+ const spot=new T.Mesh(new T.CylinderGeometry(.34,.34,.01,18),new T.MeshBasicMaterial({color:'#FFF3A0',transparent:true,opacity:.22,depthWrite:false}));spot.position.y=.012;spot.castShadow=false;
+ u.position.y=.68;g.add(u,beam,spot);beam.position.y=.34;
+ g.userData.anim=t=>{u.position.y=.68+Math.sin(t*2)*.04;u.rotation.z=Math.sin(t*1.3)*.05;u.rotation.x=Math.cos(t*1.1)*.04;ring.rotation.y=t*1.6;bulbs.forEach((m,i)=>{m.emissiveIntensity=Math.sin(t*5-i*.8)>0?1.6:.2});bm.opacity=.12+Math.sin(t*3)*.04;spot.scale.setScalar(1+Math.sin(t*3)*.06)};return g};
 B.sp_moon=()=>{const g=G(cyl(.16,.2,.08,'#8E94A6',0,.04,0,10));const mo=G(sph(.26,'#FFF3C4',0,0,0),sph(.06,'#EAD99A',.1,.1,.2),sph(.045,'#EAD99A',-.12,-.05,.22),sph(.035,'#EAD99A',.02,-.14,.24));mo.position.y=.5;g.add(mo);g.userData.anim=t=>{mo.position.y=.5+Math.sin(t*1.5)*.05;mo.rotation.y=t*.5};return g};
-B.sp_alien=()=>{const g=person({top:'#8EE6A8',bottom:'#5FBF7F',hair:'#8EE6A8',skin:'#A9F0B8'});[-.07,.07].forEach(x=>{g.add(cyl(.012,.012,.14,'#5FBF7F',x,.82,0,4),sph(.03,'#FFE680',x,.9,0))});addWander(g,.22,.3);return g};
+B.sp_alien=()=>{const sk='#8EE6A8',dk='#5FBF7F',suit='#6FA8F0',g=new T.Group();
+ const legL=cyl(.04,.045,.17,dk,-.055,.085,0,8),legR=cyl(.04,.045,.17,dk,.055,.085,0,8);
+ const body=cyl(.09,.12,.22,suit,0,.28,0,12),belt=cyl(.125,.125,.03,'#FFE680',0,.2,0,12),star=sph(.03,'#FFE680',0,.3,.115,1,1,.5);
+ const armL=G(cyl(.03,.03,.18,suit,0,-.07,0,6),sph(.04,sk,0,-.17,0));armL.position.set(-.13,.37,0);armL.rotation.z=.25;
+ const armR=G(cyl(.03,.03,.18,suit,0,-.07,0,6),sph(.04,sk,0,-.17,0));armR.position.set(.13,.37,0);armR.rotation.z=-.25;
+ const head=new T.Group();head.position.set(0,.6,0);
+ head.add(sph(.2,sk,0,0,0,1.2,1,1.05));
+ [-1,1].forEach(d=>{head.add(sph(.065,'#1B1B2A',d*.085,-.01,.185,.8,1.3,.45),sph(.016,'#FFFFFF',d*.075,.025,.215),sph(.03,'#FFB0B8',d*.15,-.07,.15,1,.7,.5))});
+ const eye3=new T.MeshStandardMaterial({color:'#FFE680',emissive:'#FFD84D',emissiveIntensity:.8,roughness:.4});
+ head.add(sph(.035,eye3,0,.12,.205));
+ const sm=mesh(new T.TorusGeometry(.04,.009,5,10,3.1),'#3F8F5F',0,-.07,.215);sm.rotation.z=3.14;head.add(sm);
+ const tips=[];[-1,1].forEach(d=>{const st=cyl(.01,.012,.16,dk,d*.09,.22,0,5);st.rotation.z=-d*.35;const m=new T.MeshStandardMaterial({color:'#FF9EBB',emissive:'#FF9EBB',emissiveIntensity:.5,roughness:.4}),tp=sph(.032,m,d*.123,.31,0);tips.push(m);head.add(st,tp)});
+ g.add(legL,legR,body,belt,star,armL,armR,head);
+ g.userData.parts={armL,armR,legL,legR,body,head,ph:Math.random()*6};
+ g.userData.extra=(t,mv)=>{head.rotation.z=Math.sin(t*2)*.07;tips.forEach((m,i)=>{m.emissiveIntensity=.35+Math.max(0,Math.sin(t*4+i*1.6))*1.1});eye3.emissiveIntensity=.6+Math.sin(t*3)*.4;if(!mv){armR.rotation.z=-2.4+Math.sin(t*7)*.35;armR.rotation.x=0}};
+ addWander(g,.22,.3);return g};
 CAT.push({id:'fac_airport',n:'機場',c:'交通',p:0,e:'✈️',s:2,np:1},{id:'fac_pier',n:'郵輪碼頭',c:'交通',p:0,e:'🚢',np:1},{id:'fac_rocket',n:'火箭發射台',c:'交通',p:0,e:'🚀',np:1},
  {id:'sp_crystal',n:'紫水晶',c:'神祕',p:0,r:2,e:'💎',np:1},{id:'sp_meteor',n:'隕石',c:'神祕',p:0,r:2,e:'☄️',np:1},{id:'sp_glowtree',n:'發光樹',c:'神祕',p:0,r:2,e:'🌳',np:1},
  {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1});
