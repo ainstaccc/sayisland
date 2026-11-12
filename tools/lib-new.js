@@ -13,7 +13,7 @@ function checkNew(k,r){
     if([r[2],r[3],r[4]].some(x=>[...x].length!==4))return'選項要是 4 字成語';
     if(new Set([r[2],r[3],r[4]]).size!==3)return'三個選項不能重複';
     if(r[2][0]!==m[2])return'正解要以上一個成語的最後一字開頭';
-    if(r[3][0]===m[2]||r[4][0]===m[2])return'干擾項不能也用那個字開頭';
+    if(r[3][0]!==m[2]||r[4][0]!==m[2])return'干擾項也要用那個字開頭（四個字、但不是成語）';
     if(!r[5].startsWith(r[2]+'：'))return'提示要以「成語：」開頭';
     return'';
   }
