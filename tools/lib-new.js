@@ -2,10 +2,21 @@
 const S=x=>typeof x==='string'&&x.trim().length>0;
 const PUNCT=/[，。！？、；：「」『』…\s]/g;
 const strip=s=>String(s).replace(PUNCT,'');
-const isNew=k=>/^(CY|CS|PW|SJ)[23]$/.test(k);
+const isNew=k=>/^(CY|CS|CJ|PW|SJ)[23]$/.test(k);
 const keyOfNew=(k,r)=>k.startsWith('SJ')?(r[0]==='o'?r[3]:r[0]==='s'?r[2]:r[2]):r[1];
 const SPECIAL=['#neg2','#q','#noquote'];
 function checkNew(k,r){
+  if(/^CJ[23]$/.test(k)){
+    if(!Array.isArray(r)||r.length!==6||!r.every(S))return'欄位數不對（要 6 個字串）';
+    const m=/^接龍：(.{4}) → ＿＿（「(.)」開頭）$/.exec(r[1]);
+    if(!m||m[2]!==m[1][3])return'題目格式：接龍：成語 → ＿＿（「最後一字」開頭）';
+    if([r[2],r[3],r[4]].some(x=>[...x].length!==4))return'選項要是 4 字成語';
+    if(new Set([r[2],r[3],r[4]]).size!==3)return'三個選項不能重複';
+    if(r[2][0]!==m[2])return'正解要以上一個成語的最後一字開頭';
+    if(r[3][0]===m[2]||r[4][0]===m[2])return'干擾項不能也用那個字開頭';
+    if(!r[5].startsWith(r[2]+'：'))return'提示要以「成語：」開頭';
+    return'';
+  }
   if(/^CS[23]$/.test(k)){
     if(!Array.isArray(r)||r.length!==6||!r.every(S))return'欄位數不對（要 6 個字串）';
     if(!/^「[^」]{4}」/.test(r[1])||r[1].split('＿＿').length!==2)return'題目要像「成語」的意思是＿＿。（成語 4 字、剛好一個＿＿）';
