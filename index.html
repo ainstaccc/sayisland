@@ -906,6 +906,13 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 /* v1.25.5 火箭回訪動力：每顆星球 4 句小知識（先出沒看過的）、選星球卡片下方 4 個小點（亮＝已看過）、九個星球都去過＝「太空探險家」＋1 個免費盲盒 */
 .pdots{display:flex;gap:4px;justify-content:center}.pdots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25)}.pdots i.on{background:#FFE680}
 .mys .gold{display:inline-flex;align-items:center;gap:6px;color:#FFE680;font-weight:900}.mys .gold .sv{width:1.1em;height:1.1em;vertical-align:0}
+
+/* v1.25.14 新關卡提醒 */
+.lnc{gap:10px;max-height:88vh;overflow:auto}
+.lnr{display:flex;align-items:center;gap:10px;width:100%;background:#FAF5FF;border:3px solid #E9DDF5;border-radius:18px;padding:10px;text-align:left;color:#3B2A5A;cursor:pointer;font-family:inherit}
+.lni{flex:none;width:44px;height:44px;display:grid;place-items:center}.lni svg{width:40px;height:40px}
+.lnt{flex:1;min-width:0;display:flex;flex-direction:column}.lnt b{font:800 20px/1.2 var(--f-disp);color:#3B2A5A;white-space:nowrap}.lnt small{font-size:16px;color:#5E4B80;line-height:1.3}
+.lnr em{flex:none;font-style:normal;font:800 16px/1 var(--f-disp);background:#E0457B;color:#fff;border-radius:999px;padding:6px 10px;white-space:nowrap}
 </style>
 
 <div class="wrap" id="app">
@@ -935,7 +942,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.13</p>
+    <p class="ver">說說島 v1.25.14</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -964,7 +971,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.13</p>
+    <p class="ver">說說島 v1.25.14</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1129,7 +1136,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.13</p>
+    <p class="ver">說說島 v1.25.14</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1185,7 +1192,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.13</p>
+    <p class="ver">說說島 v1.25.14</p>
   </section>
 </div>
 
@@ -2384,7 +2391,7 @@ function petApple(){const P=S.pet;if(!P||P.done)return;const b=petStage(P.ap);P.
 const petNm=(sp,st,sex)=>sp==='chick'&&st>=4?(sex==='f'?'母雞':'公雞'):PETS[sp].stg[Math.max(1,st)-1];
 function homePops(){if(document.querySelector('.prpop')||$('#v-home').hidden)return;
   if(!S.pet){eggPick();return}
-  if(petPop())return;if(prPop())return;if(evPop())return;nwPop()}
+  if(petPop())return;if(prPop())return;if(evPop())return;if(lvPop())return;nwPop()}
 function eggPick(){if(document.querySelector('.prpop'))return;const o=document.createElement('div');o.className='prpop';
   o.innerHTML=`<div class="prc"><b>選一顆蛋</b><p>蛋裡是什麼動物？孵出來才知道！「胚胎」會變成哺乳類。</p><div class="eggs">${EGGK.map(k=>`<button class="egb" data-egg="${k}">${petEgg(k,0)}<small>${EGGN[k]}</small></button>`).join('')}</div>${S.petMig?'<p class="muted" style="font-size:18px">之前的夥伴已經放進背包，可以放到島上。</p>':''}</div>`;
   document.body.appendChild(o);
@@ -4004,6 +4011,19 @@ function nwPop(){
     tm=setInterval(()=>{left--;const e=o.querySelector('#nwt');if(e)e.textContent=left+' 秒後自動關閉';if(left<=0)close()},1000);
     o.querySelector('#nwok').onclick=close;
   }).catch(()=>{NW_BUSY=0;NW_SEEN=DB.cur});
+  return true}
+/* v1.25.14 登入「新關卡／新題目」提醒：每天優化若有新關卡或大量新題，在這裡加一筆（w＝日期，k＝唯一代號，cat＝關卡，tag＝新關卡／新題目）。7 天內、孩子沒看過才會跳。 */
+const LVNEW=[{k:'cs1',w:'2026-11-12',cat:'cs',tag:'新關卡',d:'看成語，選出它的意思'},{k:'cy120',w:'2026-11-12',cat:'cy',tag:'新題目',d:'多了 120 題成語，快來挑戰'}];
+function lvPop(){
+  if($('#v-home').hidden||document.querySelector('.prpop'))return false;
+  const t=today(),lim=fmt(new Date(Date.now()-7*864e5)),seen=S.lnSeen||(S.lnSeen={});
+  const L=LVNEW.filter(n=>n.w<=t&&n.w>=lim&&!seen[n.k]&&CATS[n.cat]&&poolOf(n.cat).some(x=>x.lv===S.lv));
+  if(!L.length)return false;
+  L.forEach(n=>seen[n.k]=1);save();
+  const o=document.createElement('div');o.className='prpop';
+  o.innerHTML=`<div class="prc lnc"><b class="nwh">有新東西囉！</b><p class="muted" style="margin:0">去探新嚐鮮吧</p>${L.map(n=>`<button class="lnr" data-lc="${n.cat}"><span class="lni">${cic(n.cat)}</span><span class="lnt"><b>${CATS[n.cat].n}</b><small>${n.d}</small></span><em>${n.tag}</em></button>`).join('')}<button class="btn alt" id="lnok">等一下再玩</button></div>`;
+  document.body.appendChild(o);try{sfx.win()}catch(x){}
+  o.onclick=e=>{const b=e.target.closest('[data-lc]');if(b){o.remove();startQuiz(b.dataset.lc);return}if(e.target.closest('#lnok')){o.remove();homePops()}};
   return true}
 function renderEv(){
   const e=evCfg()||{name:'',from:today(),to:today(),cond:'zy_perfect',rw:'box',n:1,cap:0,on:false};
