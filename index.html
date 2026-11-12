@@ -698,6 +698,22 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .grpbtn .sv{width:32px;height:32px}
 #v-parent .panel h3{padding-bottom:6px;border-bottom:3px dashed var(--line)}
 #v-parent .uc{box-shadow:0 3px 0 var(--line)}
+#v-parent .hs{font-size:19px;color:var(--ink)}
+#v-parent .hl{margin:0 0 6px;padding-left:22px;display:flex;flex-direction:column;gap:4px;font-size:17px;color:var(--ink2);line-height:1.5}
+#v-parent .gl{display:flex;flex-direction:column;gap:8px}
+#v-parent .gl details{border:3px solid var(--line);border-radius:16px;background:var(--bg)}
+#v-parent .gl summary{list-style:none;display:flex;align-items:center;gap:10px;min-height:56px;padding:8px 12px;cursor:pointer}
+#v-parent .gl summary::-webkit-details-marker{display:none}
+#v-parent .gl summary::after{content:'▸';margin-left:auto;color:var(--ink2);font-size:20px;transition:transform .2s}
+#v-parent .gl details[open] summary::after{transform:rotate(90deg)}
+#v-parent .gl .gi{font-size:26px;flex:none}
+#v-parent .gl .gt{display:flex;flex-direction:column;min-width:0}
+#v-parent .gl .gt b{font-size:19px;color:var(--ink);white-space:nowrap}
+#v-parent .gl .gt small{font-size:16px;color:var(--ink2);line-height:1.35}
+#v-parent .gl .gc{flex:none;font-size:15px;font-weight:800;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:999px;padding:2px 10px;white-space:nowrap}
+#v-parent .gl .gd{padding:0 14px 12px 14px;border-top:2px dashed var(--line)}
+#v-parent .gl .gd ul{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:4px;font-size:17px;line-height:1.5;color:var(--ink2)}
+#v-parent .gl .gd .sub{margin-top:8px;font-size:16px;color:var(--ink2)}
 /* 家長區：每個面板預設收合，點標題才展開（一次只開一個） */
 #v-parent #pbody{display:flex;flex-direction:column;gap:10px}
 #v-parent #pbody>.panel{padding:0;gap:0;overflow:hidden}
@@ -919,7 +935,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.7</p>
+    <p class="ver">說說島 v1.25.8</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -948,7 +964,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.7</p>
+    <p class="ver">說說島 v1.25.8</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1113,15 +1129,12 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.7</p>
+    <p class="ver">說說島 v1.25.8</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
     <div class="panel" id="pgate"><h3>家長確認</h3><p class="muted" id="pgq"></p><input class="ta" id="pgin" inputmode="numeric" style="min-height:0;height:56px" maxlength="3" aria-label="答案"><div class="fbrow"><button class="btn sm" id="pgok">進入</button></div><p class="muted" id="pgmsg"></p></div>
     <div id="pbody" hidden>
-    <div class="panel"><h3>各關練習狀況</h3><div class="scroll"><table class="tbl" id="ptbl"></table></div></div>
-    <div class="panel"><h3>學習紀錄（近 14 天）</h3><p class="muted" id="plogSum"></p><div class="scroll"><table class="tbl" id="plog"></table></div><p class="muted">數字是當天答的題數，綠色代表達到每天 3 題的目標。</p></div>
-    <div class="panel"><h3>各關怎麼玩</h3><div id="phow"></div></div>
     <div class="panel"><h3>🎁 獎勵島幣</h3><p class="muted" id="prwho"></p>
       <div class="pnum" id="prnum"></div>
       <input class="ta" id="prwhy" maxlength="14" style="min-height:0;height:52px" placeholder="原因（可不填）" aria-label="獎勵原因">
@@ -1136,35 +1149,35 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <label class="muted">次數上限<select id="evcap" aria-label="每天次數上限"></select></label>
       <div class="fbrow"><button class="btn" id="evsave">儲存並開始</button><button class="btn alt sm" id="evstop">停止活動</button></div>
       <div class="hint" id="evmsg"></div></div>
+    <div class="panel"><h3>各關練習狀況</h3><div class="scroll"><table class="tbl" id="ptbl"></table></div></div>
+    <div class="panel"><h3>學習紀錄（近 14 天）</h3><p class="muted" id="plogSum"></p><div class="scroll"><table class="tbl" id="plog"></table></div><p class="muted">數字是當天答的題數，綠色代表達到每天 3 題的目標。</p></div>
+    <div class="panel"><h3>還需要加強</h3><ul class="weak" id="pweak"></ul><p class="muted" id="pweakNote"></p></div>
+    <div class="panel"><h3>各關怎麼玩</h3><div id="phow"></div></div>
+    <div class="panel"><h3>使用說明</h3>
+      <b class="hs">陪孩子玩</b>
+      <ul class="hl"><li>每次 5～10 分鐘就好</li><li>玩完請孩子「教你」一個今天學到的詞</li><li>答錯先問：「你覺得為什麼是這個？」</li><li>看圖說話先讓孩子說出第一句，再跟著小幫手的問題往下問</li></ul>
+      <b class="hs">看圖說話怎麼判讀</b>
+      <ul class="hl"><li>只用關鍵字比對有沒有提到「誰、哪裡、做什麼、樣子、心情」</li><li>不會送出任何資料</li><li>說法不同時可能判錯，請在旁邊聽孩子說</li><li>不方便說話時，用注音打字也是很好的練習</li></ul>
+    </div>
     <div class="panel"><h3>低年級自動唸題目</h3><p class="muted">低年級選擇題一出現就自動唸一次，小朋友還不太會認字時很有用。</p><label style="display:flex;gap:10px;align-items:center;font-size:20px"><input type="checkbox" id="pauto" style="width:26px;height:26px"> 自動唸題目</label></div>
     <div class="panel"><h3>發音修正</h3><p class="muted">發現某個詞唸錯（例如破音字），在左邊填原詞、右邊填「同音但不會唸錯的字」，按新增。只改發音，不改畫面；全部小朋友通用。可按「試唸」確認。</p>
       <div class="row2"><input class="ta" id="pfa" style="min-height:0;height:52px" maxlength="8" placeholder="原詞，例如：頭髮" aria-label="原詞"><input class="ta" id="pfb" style="min-height:0;height:52px" maxlength="8" placeholder="改唸成，例如：頭法" aria-label="改唸成"></div>
       <div class="fbrow"><button class="btn sm" id="pfadd">新增</button><button class="btn alt sm" id="pftest">試唸</button></div>
       <div id="pflist" class="ostack"></div></div>
-    <div class="panel"><h3>備份與還原</h3><p class="muted" id="pstore" style="font-weight:700">存檔檢查中…</p><p class="muted">進度只存在這個瀏覽器，換手機或清除資料會不見。按「複製備份」把文字存到備忘錄；要還原時貼回下面再按「還原」（會取代目前所有小朋友的資料）。</p>
-      <div class="fbrow"><button class="btn alt sm" id="pbk">複製備份</button></div>
-      <textarea class="rep" id="pbkt" placeholder="還原時把備份文字貼在這裡" aria-label="備份文字"></textarea>
-      <div class="fbrow"><button class="btn alt sm" id="pre">還原</button></div><p class="muted" id="pbkm"></p></div>
-    <div class="panel"><h3>還需要加強</h3><ul class="weak" id="pweak"></ul><p class="muted" id="pweakNote"></p></div>
     <div class="panel"><h3>朗讀聲音</h3>
       <p class="muted">會優先挑台灣中文聲音。若聽起來不像台灣腔，請從下面換一個，再按測試。</p>
       <select id="pvoice" aria-label="朗讀聲音"></select>
       <div class="fbrow"><button class="btn alt sm" id="pvtest">🔊 測試發音</button></div>
       <p class="muted" id="pvnote"></p>
     </div>
-    <div class="panel"><h3>看圖說話怎麼判讀</h3>
-      <p class="muted">程式只用關鍵字比對孩子說的話有沒有提到「誰、哪裡、做什麼、樣子、心情」，不會送出任何資料。說法不同時可能判錯，請在旁邊聽孩子說，用小幫手的問題帶著他多說一點。</p>
-      <p class="muted">不方便說話時，用注音打字也是很好的練習。</p>
-    </div>
+    <div class="panel"><h3>備份與還原</h3><p class="muted" id="pstore" style="font-weight:700">存檔檢查中…</p><p class="muted">進度只存在這個瀏覽器，換手機或清除資料會不見。按「複製備份」把文字存到備忘錄；要還原時貼回下面再按「還原」（會取代目前所有小朋友的資料）。</p>
+      <div class="fbrow"><button class="btn alt sm" id="pbk">複製備份</button></div>
+      <textarea class="rep" id="pbkt" placeholder="還原時把備份文字貼在這裡" aria-label="備份文字"></textarea>
+      <div class="fbrow"><button class="btn alt sm" id="pre">還原</button></div><p class="muted" id="pbkm"></p></div>
     <div class="panel"><h3>測試回報</h3>
       <p class="muted">玩過之後按「產生回報」，把文字貼給 Stacy。</p>
       <div class="fbrow"><button class="btn alt sm" id="prepBtn">產生回報</button><button class="btn alt sm" id="prepCopy">複製</button></div>
       <textarea class="rep" id="prep" readonly aria-label="測試回報內容"></textarea>
-    </div>
-    <div class="panel"><h3>陪孩子玩的小技巧</h3>
-      <p class="muted">1. 每次 5 到 10 分鐘就好，玩完請孩子「教你」一個今天學到的詞。</p>
-      <p class="muted">2. 答錯時先問：「你覺得為什麼是這個？」比直接給答案有效。</p>
-      <p class="muted">3. 看圖說話不用一次說很多，先讓孩子說出第一句，再用 AI 老師的問題往下問。</p>
     </div>
     <div class="panel"><h3>這位小朋友</h3>
       <input class="ta" id="pName" style="min-height:0;height:52px" maxlength="8" aria-label="修改名字">
@@ -1172,7 +1185,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.7</p>
+    <p class="ver">說說島 v1.25.8</p>
   </section>
 </div>
 
@@ -4033,8 +4046,26 @@ function renderParent(){storeCheck().then(t=>{const e=document.getElementById('p
   const tot=Object.values(S.log||{}).reduce((a,d)=>a+Object.values(d).reduce((b,c)=>b+c.n,0),0),pd=Object.keys(S.log||{}).filter(k=>Object.values(S.log[k]).some(c=>c.n>0)).length;
   $('#plogSum').textContent=`累積練習 ${pd} 天、答了 ${tot} 題、學會 ${learnedAll().length} 個詞，連續 ${streak()} 天。`;
   $('#plog').innerHTML=`<tr><th>日期</th>${ks.map(k=>`<th>${CATS[k].ic}</th>`).join('')}</tr>`+days.map(d=>{const L=(S.log||{})[d]||{};return `<tr><td>${d.slice(5).replace('-','/')}</td>${ks.map(k=>{const n=logN(L,k);return `<td style="${n>=GOAL?'background:var(--ok-bg);font-weight:800':''}">${n||'·'}</td>`}).join('')}</tr>`}).join('');
-  const HOW={zz:'注音三種題目混在一起（低年級），一輪 6 題：注音拼音、注音辨辨看、注音圈叉各 2 題，輪流出。今日任務算這一關的總題數。',sz:'部首小幫手和選對字混在一起（各年級），一輪 6 題，各 3 題交錯出。今日任務算這一關的總題數。',cy:'看句子，選出最合適的成語（中、高年級，約一半是情緒類，例如興高采烈、垂頭喪氣、心平氣和）。答對會顯示成語的意思，可請孩子用這個成語再說一句話。',pw:'給一個句子，選出意思最接近的詞，或換句話說的說法（中、高年級）。重點是「意思一樣、說法不同」。',sj:'中年級：把打散的詞塊排成通順的句子；選出和前半句型一樣的後半句；照著範例的句型自己造句。高年級：依指示改寫句子（雙重否定、反問、被／把字句、轉述、比喻、換詞、縮短），或用指定詞語自己造句。自己寫的題目，程式只檢查「有用到指定的詞或句型、夠完整、有標點、沒照抄」，不會判斷內容好不好，請在旁邊聽孩子念自己的句子。',h:'一個情境、三種說法（意思一樣）。選對方聽起來最舒服的那一句；選錯會告訴孩子為什麼不舒服。可請孩子把句子大聲說一次。',z:'看國字，點拼音卡拼出注音，再選聲調。點卡片和題目都會唸。',q:'選出適合的量詞，例如「一＿＿書」。',v:'選出最貼切的動作。',a:'選出形容樣子、味道的詞。',e:'讀短文，再回答有幾個、什麼樣子、在哪裡、做什麼，拼成完整的句子。',t:'看圖用說的或打字，老師會用問題引導你說得更完整。',m:'配對「因為」和「所以」。'};
-  $('#phow').innerHTML=Object.keys(CATS).map(k=>`<p class="muted"><b>${CATS[k].in?'└ ':''}${CATS[k].ic} ${CATS[k].n}</b>：${HOW[k]||CATS[k].d}</p>`).join('');
+  const GD={zz:['拼音、辨音、找錯字混合，一輪 6 題',['注音拼音、注音辨辨看、注音圈叉各 2 題','今日任務算這一關的總題數']],
+   z:['看國字，拼出注音',['點拼音卡拼出注音，再選聲調','點卡片和題目都會唸']],
+   zb:['分辨 ㄣㄥ、ㄔㄘ、ㄓㄗ、ㄢㄤ',['看字，選出正確的注音']],
+   zo:['找出注音拼錯的字',['點拼錯的字；都對就按「全部正確」']],
+   q:['選適合的量詞，如「一＿＿書」',['點字再點空格，放進去']],
+   v:['選最貼切的動作',[]],a:['選形容樣子、味道的詞',[]],
+   sz:['找部首、選對字混合，一輪 6 題',['部首小幫手、選對字各 3 題','今日任務算這一關的總題數']],
+   r:['找出國字的部首',[]],y:['同音字、相似字，選對的字',[]],
+   cy:['選最合適的成語',['約一半是情緒類，如興高采烈、垂頭喪氣','答對會顯示成語意思','可請孩子用這個成語再說一句話']],
+   pw:['找意思一樣、說法不同的詞',['選意思最接近的詞或換句話說']],
+   sj:['排句子、造句、改寫',['中年級：詞塊排句、對稱句、照樣造句','高年級：改寫句子、用指定詞語造句','自己寫的句子，程式只檢查有用到指定詞、夠完整、有標點、沒照抄；內容好不好請在旁邊聽孩子念']],
+   e:['讀短文，回答問題',['回答有幾個、什麼樣子、在哪裡、做什麼','拼成完整的一句話']],
+   t:['看圖用說的或打字',['老師用問題引導孩子說得更完整']],
+   h:['選最讓人舒服的說法',['一個情境、三種說法','選錯會說明哪裡不舒服','可請孩子大聲說一次']],
+   m:['配對「因為」和「所以」',[]]};
+  const gr=k=>{const l=[...new Set(poolOf(k).map(x=>x.lv))].sort();return !l.length?'':l.length>=3?'全年級':l.join()==='1'?'低年級':l.join()==='2'?'中年級':l.join()==='3'?'高年級':l.join()==='2,3'?'中高年級':l.join()==='1,2'?'低中年級':'全年級'};
+  const gRow=k=>{const g=GD[k]||[CATS[k].d,[]],kids=CATS[k].mix?CATS[k].mix.map(c=>`${CATS[c].ic} ${CATS[c].n}`).join('、'):'';
+    return `<details><summary><span class="gi">${CATS[k].ic}</span><span class="gt"><b>${CATS[k].n}</b><small>${g[0]}</small></span>${gr(k)?`<span class="gc">${gr(k)}</span>`:''}</summary><div class="gd">${g[1].length?`<ul>${g[1].map(x=>`<li>${x}</li>`).join('')}</ul>`:'<p class="sub">玩法簡單，點開關卡就會看到提示。</p>'}${kids?`<p class="sub">包含：${kids}</p>`:''}</div></details>`};
+  const top=Object.keys(CATS).filter(k=>!CATS[k].in);
+  $('#phow').className='gl';$('#phow').innerHTML=top.map(gRow).join('')+`<p class="muted">注音大挑戰、生字大挑戰裡的題型，記錄會分開計算（見「各關練習狀況」）。</p>`;
   $('#pauto').checked=!S.noauto;renderFix();
   $('#ptbl').innerHTML=`<tr><th>關卡</th><th>作答</th><th>答對率</th><th>已學會</th></tr>${rows}`;
   const weak=Object.entries(S.st).filter(([id,s])=>ALL[id]&&s.ng>0&&s.streak<2).sort((a,b)=>b[1].ng-a[1].ng).slice(0,8);
