@@ -698,6 +698,16 @@ body.ingame .opts.zy .opt{font-size:clamp(26px,7.5vw,34px)}
 .grpbtn .sv{width:32px;height:32px}
 #v-parent .panel h3{padding-bottom:6px;border-bottom:3px dashed var(--line)}
 #v-parent .uc{box-shadow:0 3px 0 var(--line)}
+/* 家長區：每個面板預設收合，點標題才展開（一次只開一個） */
+#v-parent #pbody{display:flex;flex-direction:column;gap:10px}
+#v-parent #pbody>.panel{padding:0;gap:0;overflow:hidden}
+#v-parent #pbody>.panel>h3{justify-content:space-between;width:100%;min-height:60px;padding:0 16px;margin:0;border-bottom:0;cursor:pointer;font-size:22px;color:var(--ink);-webkit-tap-highlight-color:transparent}
+#v-parent #pbody>.panel>h3::after{content:'▸';font-size:22px;color:var(--ink2);transition:transform .2s}
+#v-parent #pbody>.panel>h3:focus-visible{outline:3px solid var(--c1);outline-offset:-3px}
+#v-parent #pbody>.panel.open>h3{border-bottom:3px dashed var(--line)}
+#v-parent #pbody>.panel.open>h3::after{transform:rotate(90deg)}
+#v-parent #pbody>.panel>.pc{display:none;flex-direction:column;gap:10px;padding:14px 16px 16px}
+#v-parent #pbody>.panel.open>.pc{display:flex}
 #v-parent .tbl tr:nth-child(even) td{background:color-mix(in srgb,var(--line) 28%,transparent)}
 #v-parent .tbl th{border-bottom:3px solid var(--line)}
 /* v1.20.0 新品彈窗 */
@@ -909,7 +919,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.5</p>
+    <p class="ver">說說島 v1.25.6</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -938,7 +948,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.5</p>
+    <p class="ver">說說島 v1.25.6</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1103,7 +1113,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.5</p>
+    <p class="ver">說說島 v1.25.6</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1162,7 +1172,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.5</p>
+    <p class="ver">說說島 v1.25.6</p>
   </section>
 </div>
 
@@ -4004,7 +4014,7 @@ function tryParent(){
   const left=Math.ceil((pgLock-Date.now())/1000);
   if(left>0){$('#pgmsg').textContent=`錯太多次了，請等 ${left} 秒再試。`;$('#pgin').value='';return}
   const v=($('#pgin').value||'').trim();
-  if(v!==''&&+v===pgA){pgBad=0;$('#pgate').hidden=true;$('#pbody').hidden=false;renderParent();renderPR();renderEv()}
+  if(v!==''&&+v===pgA){pgBad=0;$('#pgate').hidden=true;$('#pbody').hidden=false;pcCollapse();renderParent();renderPR();renderEv()}
   else{
     pgBad++;
     if(pgBad>=3){pgBad=0;pgLock=Date.now()+30000;$('#pgmsg').textContent='錯太多次了，請等 30 秒再試。'}
@@ -4073,5 +4083,15 @@ $('#pDel').onclick=()=>{const b=$('#pDel');if(!armedDel){armedDel=true;b.textCon
   if(ids.length===1){DB.cur=ids[0];S=DB.profiles[DB.cur];save();show('home')}   /* 只有一位：直接進入，不問「我是誰」 */
   else show('who')}                                                           /* 0 位：建立第一位；2 位以上：選「我是誰」 */
 if(!Object.keys(DB.profiles).length)idbGet().then(async r=>{try{if(!r)return;const o=JSON.parse(r);if(Object.keys(o.profiles||{}).length&&!Object.keys(DB.profiles).length){DB=Object.assign({cur:'',profiles:{}},o);S=DB.profiles[DB.cur]||newProf('','🐣');save();show(DB.cur?'home':'who');toast('已找回上次的進度 ✨')}}catch(e){}});
+/* 家長區面板收合 */
+function pcInit(){document.querySelectorAll('#pbody>.panel').forEach(p=>{if(p.querySelector(':scope>.pc'))return;
+  const h=p.querySelector(':scope>h3');if(!h)return;const w=document.createElement('div');w.className='pc';
+  [...p.childNodes].forEach(n=>{if(n!==h)w.appendChild(n)});p.appendChild(w);
+  h.setAttribute('role','button');h.tabIndex=0;h.setAttribute('aria-expanded','false');
+  const tg=()=>{const was=p.classList.contains('open');document.querySelectorAll('#pbody>.panel.open').forEach(o=>{o.classList.remove('open');o.querySelector(':scope>h3').setAttribute('aria-expanded','false')});
+    if(!was){p.classList.add('open');h.setAttribute('aria-expanded','true');setTimeout(()=>{try{p.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(e){}},50)}};
+  h.addEventListener('click',tg);h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();tg()}})})}
+function pcCollapse(){document.querySelectorAll('#pbody>.panel.open').forEach(o=>{o.classList.remove('open');const h=o.querySelector(':scope>h3');h&&h.setAttribute('aria-expanded','false')})}
+pcInit();
 })();
 </script>
