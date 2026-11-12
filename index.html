@@ -863,7 +863,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .bdn{background:#FFF6D6;border-radius:14px;padding:10px;color:#3B2A5A;text-align:left}.bdn b{font-size:18px}.bdn small{font-size:16px;color:#5E4B80}.bdn .wkbar{margin:6px 0}
 .ttlb{display:flex;justify-content:space-between;align-items:center;gap:8px;white-space:nowrap}.ttlb small{font-size:16px;opacity:.8}
 .ttl{display:block;font-style:normal;font:800 16px/1.2 var(--f-disp);color:var(--sun,#E59A00);white-space:nowrap}
-/* v1.23.11 神祕星球畫面：標題 class 由 .mt 改 .mtt（原撞名捏臉卡片 .mt，變白底框黃字）；.mys .ms 補 height:auto（原撞名 SVG 圖示 .ms 高 1em，文字被壓扁蓋到球）；間距統一用 gap */
+/* v1.23.11 神祕小行星畫面：標題 class 由 .mt 改 .mtt（原撞名捏臉卡片 .mt，變白底框黃字）；.mys .ms 補 height:auto（原撞名 SVG 圖示 .ms 高 1em，文字被壓扁蓋到球）；間距統一用 gap */
 .mys{gap:18px}.mys .mtt{text-shadow:0 3px 0 rgba(0,0,0,.25);text-align:center;white-space:nowrap}.mys .ms{height:auto;display:block}.mys .orbs{margin-top:14px;padding-top:12px}.mys .mrv{margin:4px 0}
 @keyframes orbf{from{transform:translateY(0)}to{transform:translateY(-10px)}}
 </style>
@@ -895,7 +895,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.1</p>
+    <p class="ver">說說島 v1.25.2</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -924,7 +924,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.1</p>
+    <p class="ver">說說島 v1.25.2</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1089,7 +1089,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.1</p>
+    <p class="ver">說說島 v1.25.2</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1148,7 +1148,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.1</p>
+    <p class="ver">說說島 v1.25.2</p>
   </section>
 </div>
 
@@ -3700,7 +3700,7 @@ function reveal(it,r,isNew,kind,dup){
 const UNL=[
  {id:'fac_airport',n:'機場',e:'✈️',d:'飛去朋友的島、送明信片、貼紙和友情設施',cur:()=>S.stars,need:100,u:'顆星'},
  {id:'fac_pier',n:'郵輪碼頭',e:'🚢',d:'開去外島，外島也可以擺東西',cur:nBadge,need:5,u:'個徽章'},
- {id:'fac_rocket',n:'火箭發射台',e:'🚀',d:'每天一次，飛去神祕星球撿特殊物品',cur:nBadge,need:10,u:'個徽章'}];
+ {id:'fac_rocket',n:'火箭發射台',e:'🚀',d:'每天一次，飛去神祕小行星撿特殊物品',cur:nBadge,need:10,u:'個徽章'}];
 const OUTS={sand:{n:'沙灘島',e:'🏖️'},forest:{n:'森林島',e:'🌲'},snow:{n:'雪島',e:'❄️'}};
 function unlChk(){const I=ISL();S.unl=S.unl||{};const out=[];UNL.forEach(u=>{if(!S.unl[u.id]&&u.cur()>=u.need){S.unl[u.id]=today();I.inv[u.id]=(I.inv[u.id]||0)+1;I.seen[u.id]=1;out.push(u)}});if(out.length)save();return out}
 const placed=id=>(ISL().items||[]).some(r=>r[0]===id);
@@ -3743,10 +3743,10 @@ function sheetGoal(){const I=ISL();S.unl=S.unl||{};
   const ex=nx?`<div class="gl"><span class="gle">🏝️</span><div><b>主島變大</b><small>學會的題目越多，島越大</small><div class="gbar"><i style="width:${Math.round(L/nx[0]*100)}%"></i></div><small class="gls">${L} / ${nx[0]} 題　→ ${nx[1]}</small></div></div>`:'';
   const nk=STK.find(x=>!x.ok()),sk=nk?`<div class="gl"><span class="gle">${nk.k}</span><div><b>下一個貼紙：${nk.n}</b><small>達成「${nk.tip}」解鎖（要有機場才能送）</small></div></div>`:'';
   $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('trophy','解鎖目標（徽章 '+nBadge()+' / '+BTOT+'）')+rows+ex+sk+'<p class="muted">星星和徽章，靠每天練習就會慢慢變多。</p>'}
-function rocketGo(){if(S.myst===today()){toast('今天已經去過神祕星球了，明天再來！');return}
-  islClose();flyTo('發射！前往神祕星球…',mystPop,'🚀',1600)}
+function rocketGo(){if(S.myst===today()){toast('今天已經去過神祕小行星了，明天再來！');return}
+  islClose();flyTo('發射！前往神祕小行星…',mystPop,'🚀',1600)}
 function mystPop(){const o=document.createElement('div');o.className='mys';
-  o.innerHTML=`<b class="mtt">神祕星球</b><p class="ms">選一個發光的東西！</p><div class="orbs">${[0,1,2].map(i=>`<button class="orb" data-o="${i}" style="animation-delay:-${i*.5}s">?</button>`).join('')}</div>`;
+  o.innerHTML=`<b class="mtt">神祕小行星</b><p class="ms">選一個發光的東西！</p><div class="orbs">${[0,1,2].map(i=>`<button class="orb" data-o="${i}" style="animation-delay:-${i*.5}s">?</button>`).join('')}</div>`;
   document.body.appendChild(o);
   o.addEventListener('click',e=>{const b=e.target.closest('[data-o]');if(!b)return;o.querySelectorAll('.orb').forEach(x=>x.disabled=true);
     const r=Math.random(),pool=r<.7?['sp_crystal','sp_meteor','sp_glowtree']:r<.95?['sp_moon','sp_ufo']:['sp_alien'],id=pool[Math.floor(Math.random()*pool.length)],I=ISL(),d=Island.BYID[id];
