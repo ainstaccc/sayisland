@@ -913,7 +913,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .lni{flex:none;width:44px;height:44px;display:grid;place-items:center}.lni svg{width:40px;height:40px}
 .lnt{flex:1;min-width:0;display:flex;flex-direction:column}.lnt b{font:800 20px/1.2 var(--f-disp);color:#3B2A5A;white-space:nowrap}.lnt small{font-size:16px;color:#5E4B80;line-height:1.3}
 .lnr em{flex:none;font-style:normal;font:800 16px/1 var(--f-disp);background:#E0457B;color:#fff;border-radius:999px;padding:6px 10px;white-space:nowrap}
-/* v1.25.23 遊戲畫面小優化：①回饋條 .fb 滑入；②進度條填色加高光與外框；③配對成功 .mc.done 彈一下；④答對選項星光環 */
+/* v1.25.25 遊戲畫面小優化：①回饋條 .fb 滑入；②進度條填色加高光與外框；③配對成功 .mc.done 彈一下；④答對選項星光環 */
 .fb{animation:fbin .3s ease-out}
 @keyframes fbin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .track i{box-shadow:inset 0 4px 0 rgba(255,255,255,.35)}
@@ -955,7 +955,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.23</p>
+    <p class="ver">說說島 v1.25.25</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -984,7 +984,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.23</p>
+    <p class="ver">說說島 v1.25.25</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1149,7 +1149,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.23</p>
+    <p class="ver">說說島 v1.25.25</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1205,7 +1205,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.23</p>
+    <p class="ver">說說島 v1.25.25</p>
   </section>
 </div>
 
@@ -3668,9 +3668,9 @@ function loadIsl(){
   ISLS.loaded=ld('three.min.js?v=152').then(()=>ld('island.js?v=19')).then(()=>{if(!(window.Island&&window.Island.ready))throw new Error('webgl')});
   ISLS.loaded.catch(()=>{ISLS.loaded=null});return ISLS.loaded;
 }
-const islSize=()=>{const n=learnedAll().length;return n>=100?12:n>=50?10:n>=20?8:6};
-const parseOuts=str=>{const o={};(str||'').split(';').filter(x=>x.indexOf('o.')===0).forEach(x=>{const m=x.slice(2).match(/^([a-z]+):(.*)$/);if(!m||!OUTS[m[1]])return;const r=m[2].split(',');if(Island.BYID[r[0]])(o[m[1]]=o[m[1]]||[]).push([r[0],+r[1]||0,+r[2]||0])});return o};
-const parseIsl=str=>(str||'').split(';').filter(Boolean).map(x=>x.split(',')).filter(r=>Island.BYID[r[0]]).map(r=>[r[0],+r[1]||0,+r[2]||0]);
+const islSize=()=>{const n=learnedAll().length;return n>=250?16:n>=150?14:n>=100?12:n>=50?10:n>=20?8:6};
+const parseOuts=str=>{const o={};(str||'').split(';').filter(x=>x.indexOf('o.')===0).forEach(x=>{const m=x.slice(2).match(/^([a-z]+):(.*)$/);if(!m||!OUTS[m[1]])return;const r=m[2].split(',');if(Island.BYID[r[0]])(o[m[1]]=o[m[1]]||[]).push(r[3]?[r[0],+r[1]||0,+r[2]||0,+r[3]||0]:[r[0],+r[1]||0,+r[2]||0])});return o};
+const parseIsl=str=>(str||'').split(';').filter(Boolean).map(x=>x.split(',')).filter(r=>Island.BYID[r[0]]).map(r=>r[3]?[r[0],+r[1]||0,+r[2]||0,+r[3]||0]:[r[0],+r[1]||0,+r[2]||0]);
 function islHud(){$('#islCoin').innerHTML=ISLS.visit?`<span class="vn">${eh(ISLS.visit.nick)} 的島</span>`:cn(coin())}
 function islHint(t){const h=$('#islHint');h.hidden=!t;h.textContent=t||''}
 function islClose(){const s=$('#islSheet');s.hidden=true;s.innerHTML=''}
@@ -3684,7 +3684,7 @@ function islIdle(){
     $('#islBar').innerHTML=bt('vmain','back','回主島')+bt('vback','back','回我的島');return}
   if(ISLS.visit){islHint('');
     $('#islBar').innerHTML=bt('vback','back','回我的島')+bt('vcheer','clap','貼紙')+bt('vpc','heart','明信片')+bt('vgift','gift','友情設施','');return}
-  {const L=learnedAll().length,nx=L<20?20:L<50?50:L<100?100:0;islHint(ISLS.at?OUTS[ISLS.at].e+' '+OUTS[ISLS.at].n:nx?'再學會 '+(nx-L)+' 題，島就變大！':'')}
+  {const L=learnedAll().length,nx=L<20?20:L<50?50:L<100?100:L<150?150:L<250?250:0;islHint(ISLS.at?OUTS[ISLS.at].e+' '+OUTS[ISLS.at].n:nx?'再學會 '+(nx-L)+' 題，島就變大！':'')}
   if(ISLS.at){$('#islBar').innerHTML=bt('shop','shop','商店')+bt('fac','island','設施')+bt('bag','bag','背包')+bt('home','back','回主島');return}
   const f=ISL().free;
   $('#islBar').innerHTML=bt('shop','shop','商店')+bt('fac','island','設施')+`<button class="btn" data-ia="box">${ic('gift')}<span>盲盒</span>${f?`<b class="dotn">${f}</b>`:''}</button>`+bt('bag','bag','背包');
@@ -3710,7 +3710,7 @@ function islItem(idx){
   const it=Island.list()[idx],d=Island.BYID[it[0]];ISLS.mode='sel';ISLS.idx=idx;ISLS.t=it[0];
   Island.mark(it[1],it[2],d.s);islHint(d.n);islClose();
   const sp={fac_airport:['air','✈️ 出發'],fac_pier:['sail','🚢 出海'],fac_rocket:['rkt','🚀 發射']}[it[0]];
-  $('#islBar').innerHTML=(sp&&!ISLS.at?bt(sp[0],'',sp[1],''):'')+bt('mv','','搬家')+bt('pk','bag','收起來')+bt('cancel','','關閉');
+  $('#islBar').innerHTML=(sp&&!ISLS.at?bt(sp[0],'',sp[1],''):'')+bt('mv','','搬家')+bt('rot','','轉向')+bt('pk','bag','收起來')+bt('cancel','','關閉');
 }
 function islOk(){
   if(!ISLS.pos)return;const [x,z]=ISLS.pos,I=ISL();
@@ -3821,8 +3821,8 @@ function sheetGoal(){const I=ISL();S.unl=S.unl||{};
   const todo=all.filter(r=>!r.done).sort((x,y)=>(y.ok-x.ok)||(y.pc-x.pc)),fin=all.filter(r=>r.done);
   const row=r=>{const u=r.u,st=r.ok?'🎁 在背包，去放到島上':'還差 '+(u.need-r.c)+' '+u.u;
     return`<div class="gl"><span class="gle">${u.e}</span><div><b>${u.n}</b><small>${u.d}</small><div class="gbar"><i style="width:${r.pc}%"></i></div><small class="gls">${r.ok?st:r.c+' / '+u.need+' '+u.u+'　'+st}</small></div></div>`};
-  const L=learnedAll().length,nx=L<20?[20,'8 格大島']:L<50?[50,'10 格大島']:L<100?[100,'12 格大島']:null;
-  const ex=nx?`<div class="gl"><span class="gle">${ic('island')}</span><div><b>主島變大</b><small>再學會 ${nx[0]-L} 題，變成 ${nx[1]}</small><div class="gbar"><i style="width:${Math.round(L/nx[0]*100)}%"></i></div><small class="gls">${L} / ${nx[0]} 題</small></div></div>`:`<div class="gl"><span class="gle">${ic('island')}</span><div><b>主島已經最大 ✅</b><small>已學會 ${L} 題，島是 12 格大島</small><div class="gbar"><i style="width:100%"></i></div></div></div>`;
+  const L=learnedAll().length,nx=L<20?[20,'8 格大島']:L<50?[50,'10 格大島']:L<100?[100,'12 格大島']:L<150?[150,'14 格大島']:L<250?[250,'16 格大島']:null;
+  const ex=nx?`<div class="gl"><span class="gle">${ic('island')}</span><div><b>主島變大</b><small>再學會 ${nx[0]-L} 題，變成 ${nx[1]}</small><div class="gbar"><i style="width:${Math.round(L/nx[0]*100)}%"></i></div><small class="gls">${L} / ${nx[0]} 題</small></div></div>`:`<div class="gl"><span class="gle">${ic('island')}</span><div><b>主島已經最大 ✅</b><small>已學會 ${L} 題，島是 16 格大島</small><div class="gbar"><i style="width:100%"></i></div></div></div>`;
   const doneRow=fin.length?`<div class="gl"><span class="gle">✅</span><div><b>已完成 ${fin.length} 項</b><small>${fin.map(r=>r.u.n).join('、')}</small></div></div>`:'';
   const nk=STK.find(x=>!x.ok()),sk=nk?`<div class="gl"><span class="gle">${nk.k}</span><div><b>下一個貼紙：${nk.n}</b><small>達成「${nk.tip}」解鎖（要有機場才能送）</small></div></div>`:'';
   $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('trophy','解鎖目標 🏅'+nBadge()+'/'+BTOT)+ex+todo.map(row).join('')+sk+doneRow+'<p class="muted">星星和徽章，靠每天練習就會慢慢變多。</p>'}
@@ -3863,6 +3863,7 @@ $('#islBar').addEventListener('click',async e=>{const b=e.target.closest('[data-
   if(a==='shop'){ISLS.fac=0;if(['商店','公共'].includes(ISLS.cat))ISLS.cat='自然';sheetShop(0)}else if(a==='fac'){ISLS.fac=1;if(!['商店','公共'].includes(ISLS.cat))ISLS.cat='商店';sheetShop(1)}else if(a==='bag')sheetBag();else if(a==='box')sheetBox();
   else if(a==='cancel')islIdle();else if(a==='ok')islOk();
   else if(a==='mv')startPlace(ISLS.t,ISLS.idx);
+  else if(a==='rot'){Island.rotate(ISLS.idx);islSave();try{sfx.place()}catch(e){}}
   else if(a==='pk'){const I=ISL();I.inv[ISLS.t]=(I.inv[ISLS.t]||0)+1;Island.remove(ISLS.idx);islSave();toast('收進背包了');islIdle()}
   else if(a==='vback'){flyTo('回家囉～',()=>{ISLS.visit=null;ISLS.at=null;renderIsl()},'🛩️',1200)}
   else if(a==='vmain'){flyTo('回主島～',()=>{ISLS.at=null;renderIsl()},'🚢',1200)}

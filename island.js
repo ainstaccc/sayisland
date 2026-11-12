@@ -530,17 +530,18 @@ function buildBase(){
  sun.shadow.camera.updateProjectionMatrix();
 }
 /* ---------- 道具管理 ---------- */
-function make(t,gx,gz){const d=BYID[t];if(!d)return null;const g=B[t](gx,gz);const p=WP(gx,gz,d.s);g.position.set(p.x,0,p.z);g.userData.t=t;if(d.ch){g.userData.cs=1.35;g.scale.setScalar(1.35)}g.userData.base=g.position.clone();g.traverse(o=>{if(o.isMesh)o.castShadow=true});return g}
+function applyRot(g,r){let pv=g.userData.pv;if(!pv){if(!r)return;pv=new T.Group();g.children.slice().forEach(c=>pv.add(c));g.add(pv);g.userData.pv=pv}pv.rotation.y=r*Math.PI/2}
+function make(t,gx,gz,r){const d=BYID[t];if(!d)return null;const g=B[t](gx,gz);const p=WP(gx,gz,d.s);g.position.set(p.x,0,p.z);g.userData.t=t;if(d.ch){g.userData.cs=1.35;g.scale.setScalar(1.35)}g.userData.base=g.position.clone();g.traverse(o=>{if(o.isMesh)o.castShadow=true});if(r)applyRot(g,r);return g}
 function occ(gx,gz,s,ig){for(let i=0;i<items.length;i++){if(i===ig)continue;const it=items[i],ss=BYID[it.t].s;if(gx<it.x+ss&&gx+s>it.x&&gz<it.z+ss&&gz+s>it.z)return true}return false}
 function valid(gx,gz,s,ig){for(let a=0;a<s;a++)for(let b=0;b<s;b++)if(!active(gx+a,gz+b))return false;return !occ(gx,gz,s,ig)}
-function addItem(t,gx,gz,pop,silent){const g=make(t,gx,gz);if(!g)return -1;itemsG.add(g);items.push({t,x:gx,z:gz,g});if(pop&&!silent){g.userData.born=performance.now()/1000;g.scale.setScalar(.01);burst(g.position.x,.4,g.position.z)}return items.length-1}
+function addItem(t,gx,gz,pop,silent,r){r=((+r||0)%4+4)%4;const g=make(t,gx,gz,r);if(!g)return -1;itemsG.add(g);items.push({t,x:gx,z:gz,g,r});if(pop&&!silent){g.userData.born=performance.now()/1000;g.scale.setScalar(.01);burst(g.position.x,.4,g.position.z)}return items.length-1}
 function burst(x,y,z){const cs=['#FFD84D','#FF9EBB','#6FC3F2','#FFFFFF','#9BDD6B'];for(let i=0;i<14;i++){const m=new T.Mesh(new T.OctahedronGeometry(.06,0),new T.MeshBasicMaterial({color:cs[i%5],transparent:true,opacity:1,fog:false}));m.position.set(x,y,z);const a=Math.random()*6.283,s=.6+Math.random()*.9;fxG.add(m);fx.push({m,vx:Math.cos(a)*s,vy:1.8+Math.random()*1.4,vz:Math.sin(a)*s,life:1})}}
 /* ---------- 輸入 ---------- */
 function attach(){
  const ptr=new Map();let down=null,pinch=0;const ray=new T.Raycaster(),v2=new T.Vector2();
  canvas.addEventListener('pointerdown',e=>{canvas.setPointerCapture(e.pointerId);ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});down={x:e.clientX,y:e.clientY,t:performance.now(),moved:0};if(ptr.size===2){const a=[...ptr.values()];pinch=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y)}});
  canvas.addEventListener('pointermove',e=>{const p=ptr.get(e.pointerId);if(!p)return;const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;
-  if(ptr.size===2){const a=[...ptr.values()];const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);dist=Math.max(10,Math.min(26,dist*(pinch/d)));pinch=d;if(down)down.moved=99}
+  if(ptr.size===2){const a=[...ptr.values()];const d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);dist=Math.max(10,Math.min(40,dist*(pinch/d)));pinch=d;if(down)down.moved=99}
   else if(ptr.size===1&&down){down.moved+=Math.abs(dx)+Math.abs(dy);if(down.moved>8){az-=dx*.007;elv=Math.max(.38,Math.min(1.0,elv+dy*.004))}}});
  const up=e=>{const was=ptr.has(e.pointerId);ptr.delete(e.pointerId);if(!was)return;
   if(down&&down.moved<=8&&performance.now()-down.t<600&&ptr.size===0){const r=canvas.getBoundingClientRect();v2.set((e.clientX-r.left)/r.width*2-1,-((e.clientY-r.top)/r.height)*2+1);ray.setFromCamera(v2,cam);
@@ -548,7 +549,7 @@ function attach(){
    const ht=ray.intersectObjects(tileMeshes,false);if(ht.length&&cbs.tile){const u=ht[0].object.userData;cbs.tile(u.gx,u.gz)}}
   if(ptr.size===0)down=null};
  canvas.addEventListener('pointerup',up);canvas.addEventListener('pointercancel',up);
- canvas.addEventListener('wheel',e=>{e.preventDefault();dist=Math.max(10,Math.min(26,dist+e.deltaY*.01))},{passive:false});
+ canvas.addEventListener('wheel',e=>{e.preventDefault();dist=Math.max(10,Math.min(40,dist+e.deltaY*.01))},{passive:false});
 }
 /* ---------- 迴圈 ---------- */
 function fit(){if(!host)return;const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h,false);cam.aspect=w/h;
@@ -579,16 +580,17 @@ function frame(now){
 function tintGhost(g,ok){g.traverse(o=>{if(o.isMesh){o.material=o.material.clone();o.material.transparent=true;o.material.opacity=.7;o.castShadow=false;if(o.material.emissive){o.material.emissive.set(ok?'#000000':'#FF2D2D');o.material.emissiveIntensity=ok?0:.8}}})}
 /* ---------- 對外 ---------- */
 window.Island={ready:true,CAT,BYID,
- mount(el,o){host=el;if(!renderer)init();host.appendChild(canvas);N=(o&&o.size)||N;THEME=(o&&o.theme)||null;buildBase();applyTime();fit();if(window.ResizeObserver){ro=new ResizeObserver(fit);ro.observe(host)}running=true;lastT=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(frame)},
+ mount(el,o){host=el;if(!renderer)init();host.appendChild(canvas);N=(o&&o.size)||N;if(N>12)dist=Math.max(dist,15.5+(N-12)*3);THEME=(o&&o.theme)||null;buildBase();applyTime();fit();if(window.ResizeObserver){ro=new ResizeObserver(fit);ro.observe(host)}running=true;lastT=0;cancelAnimationFrame(raf);raf=requestAnimationFrame(frame)},
  unmount(){running=false;cancelAnimationFrame(raf);if(ro){ro.disconnect();ro=null}if(canvas&&canvas.parentNode)canvas.parentNode.removeChild(canvas);host=null;this.clearGhost()},
  on(k,f){cbs[k]=f},size(){return N},
- setSize(n){N=n;if(renderer){buildBase();items.forEach(it=>{})}},
- setItems(list){while(itemsG.children.length)itemsG.remove(itemsG.children[0]);items=[];const drop=[];list.forEach(r=>{let ok=!!BYID[r[0]];if(ok){const s=BYID[r[0]].s;for(let a=0;a<s;a++)for(let b=0;b<s;b++)if(!active(r[1]+a,r[2]+b))ok=false}if(ok&&occ(r[1],r[2],BYID[r[0]].s,-1))ok=false;if(ok)addItem(r[0],r[1],r[2],false,true);else drop.push(r)});return drop},
+ setSize(n){N=n;if(N>12)dist=Math.max(dist,15.5+(N-12)*3);if(renderer){buildBase();items.forEach(it=>{})}},
+ setItems(list){while(itemsG.children.length)itemsG.remove(itemsG.children[0]);items=[];const drop=[];list.forEach(r=>{let ok=!!BYID[r[0]];if(ok){const s=BYID[r[0]].s;for(let a=0;a<s;a++)for(let b=0;b<s;b++)if(!active(r[1]+a,r[2]+b))ok=false}if(ok&&occ(r[1],r[2],BYID[r[0]].s,-1))ok=false;if(ok)addItem(r[0],r[1],r[2],false,true,r[3]);else drop.push(r)});return drop},
  add(t,gx,gz){return addItem(t,gx,gz,true)},
  remove(i){const it=items[i];if(!it)return;burst(it.g.position.x,.4,it.g.position.z);itemsG.remove(it.g);items.splice(i,1)},
  move(i,gx,gz){const it=items[i];if(!it)return;const p=WP(gx,gz,BYID[it.t].s);it.x=gx;it.z=gz;it.g.position.set(p.x,0,p.z);if(it.g.userData.base)it.g.userData.base.set(p.x,0,p.z);it.g.userData.born=performance.now()/1000;it.g.scale.setScalar(.01);burst(p.x,.4,p.z)},
  growAnim(){const t=performance.now()/1000;ringMs.forEach(m=>{const a=Math.atan2(m.position.z,m.position.x);m.userData.gr={t0:t+.5+((a+Math.PI)/6.2832)*.9,y0:m.position.y};m.scale.setScalar(.001)})},
- list(){return items.map(it=>[it.t,it.x,it.z])},
+ list(){return items.map(it=>it.r?[it.t,it.x,it.z,it.r]:[it.t,it.x,it.z])},
+ rotate(i){const it=items[i];if(!it)return 0;it.r=((it.r||0)+1)%4;applyRot(it.g,it.r);it.g.userData.born=performance.now()/1000;it.g.scale.setScalar(.01);burst(it.g.position.x,.4,it.g.position.z);return it.r},
  valid,occ,active,why(gx,gz,s,ig){for(let a=0;a<s;a++)for(let b=0;b<s;b++)if(!active(gx+a,gz+b))return{edge:1};for(let i=0;i<items.length;i++){if(i===ig)continue;const it=items[i],ss=BYID[it.t].s;if(gx<it.x+ss&&gx+s>it.x&&gz<it.z+ss&&gz+s>it.z)return{t:it.t,n:BYID[it.t].n,x:it.x,z:it.z}}return null},
  mark(gx,gz,s){if(gx==null){mark.visible=false;return}const p=WP(gx,gz,s||1);mark.position.set(p.x,.03,p.z);mark.children[0].scale.setScalar(s===2?2:1);mark.visible=true},
  showGhost(t,gx,gz,ok){this.clearGhost();const d=BYID[t];if(!d)return;ghost=B[t](gx,gz);if(d.ch)ghost.scale.setScalar(1.35);const p=WP(gx,gz,d.s);ghost.position.set(p.x,.04,p.z);tintGhost(ghost,ok);markG.add(ghost)},
