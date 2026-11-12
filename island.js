@@ -460,7 +460,7 @@ CAT.forEach(c=>{c.s=c.s||1});const BYID={};CAT.forEach(c=>BYID[c.id]=c);
 /* ---------- 場景 ---------- */
 let renderer,scene,cam,host,canvas,ro,raf=0,running=false,lastT=0,clock0=0,cbs={};
 let foamS=10,isl2=[],ambG,butter=[],birds=[],flies,smokes=[],hemi,sun,moon,skyTex,skyCtx,stars,water,shallow,foams=[],clouds=[],baseG,tilesG,itemsG,fxG,markG,ghost=null,mark=null,boat;
-const TH={};let RO=false,N=6,az=.75,elv=.62,dist=15.5,items=[],fx=[],timeMode='auto',tileMeshes=[];
+const TH={};let ringMs=[],RO=false,N=6,az=.75,elv=.62,dist=15.5,items=[],fx=[],timeMode='auto',tileMeshes=[];
 const tgt=new T.Vector3(0,-.2,.9);
 const KEYS=[{h:0,top:'#10173F',bot:'#2B3470',sun:'#8EA2FF',si:.35,hi:.55,gl:1,st:1},{h:5,top:'#10173F',bot:'#2B3470',sun:'#8EA2FF',si:.35,hi:.55,gl:1,st:1},{h:6.5,top:'#FF9E7A',bot:'#FFD9A0',sun:'#FFC48A',si:.8,hi:.85,gl:.5,st:0},{h:8,top:'#B7D8DC',bot:'#F3EEE0',sun:'#FFF1D6',si:1.05,hi:1,gl:0,st:0},{h:16.5,top:'#B7D8DC',bot:'#F3EEE0',sun:'#FFF1D6',si:1.05,hi:1,gl:0,st:0},{h:18,top:'#FF8E72',bot:'#FFD08A',sun:'#FFB27A',si:.85,hi:.85,gl:.6,st:0},{h:19.5,top:'#2B3470',bot:'#8F6FA0',sun:'#8EA2FF',si:.5,hi:.65,gl:1,st:.6},{h:21,top:'#10173F',bot:'#2B3470',sun:'#8EA2FF',si:.35,hi:.55,gl:1,st:1},{h:24,top:'#10173F',bot:'#2B3470',sun:'#8EA2FF',si:.35,hi:.55,gl:1,st:1}];
 const lerpC=(a,b,k)=>new T.Color(a).lerp(new T.Color(b),k);
@@ -515,12 +515,13 @@ const active=(gx,gz)=>hd(gx-5,gz-5)<=RAD();
 function buildBase(){
  while(baseG.children.length)baseG.remove(baseG.children[0]);while(tilesG.children.length)tilesG.remove(tilesG.children[0]);tileMeshes=[];
  const R=RAD(),GR=({sand:['#F2D88C','#EACB78','#F6E2A8'],forest:['#3E9650','#368A48','#48A25A'],snow:['#F7FBFF','#DCEAF6','#FFFFFF']})[THEME]||[P.grass,P.grass2,'#A0CC84'],hx=(r,h,c,x,y,z,cast)=>{const m=cyl(r,r,h,c,x,y,z,6);m.castShadow=!!cast;return m};
- for(let q=-R-1;q<=R+1;q++)for(let r=-R-1;r<=R+1;r++){const d=hd(q,r);if(d>R+1)continue;const c=hp(q,r),x=c[0],z=c[1];
+ ringMs=[];for(let q=-R-1;q<=R+1;q++)for(let r=-R-1;r<=R+1;r++){const d=hd(q,r);if(d>R+1)continue;const c=hp(q,r),x=c[0],z=c[1],b0=baseG.children.length;
   if(d<=R){const col=GR[(((q-r)%3)+3)%3];const m=hx(HS*.99,.5,col,x,-.25,z,false);m.receiveShadow=true;m.userData={gx:q+5,gz:r+5};tilesG.add(m);tileMeshes.push(m)}
   else baseG.add(hx(HS*.99,.56,P.sand,x,-.34,z));
   baseG.add(hx(HS*.99,.8,P.soil,x,-.9,z));
   if(d<=R)baseG.add(hx(HS*.96,.7,P.soil2,x,-1.65,z));
-  if(d<=R-1)baseG.add(hx(HS*.9,.6,'#8E7C74',x,-2.3,z))}
+  if(d<=R-1)baseG.add(hx(HS*.9,.6,'#8E7C74',x,-2.3,z));
+  if(d>=R){baseG.children.slice(b0).forEach(m=>ringMs.push(m));if(d===R)ringMs.push(tilesG.children[tilesG.children.length-1])}}
  const sh=2*(HW*(R+1)+.95);shallow.geometry.dispose();shallow.geometry=new T.CircleGeometry(.5,6);shallow.scale.set(sh,sh,1);
  foams.forEach(f=>{f.geometry.dispose();f.geometry=new T.CircleGeometry(.5,6)});foamS=2*(HW*(R+1)+.6);foams.forEach(f=>f.scale.set(foamS,foamS,1));
  /* 碼頭與小船 */
@@ -557,6 +558,7 @@ function frame(now){
  if(document.hidden||!host||!host.clientWidth)return;
  if(now-lastT<30)return;const dt=Math.min(.1,(now-lastT)/1000);lastT=now;const t=now/1000;
  const d=dist*(cam.userData.fitK||1);cam.position.set(tgt.x+Math.sin(az)*Math.cos(elv)*d,tgt.y+Math.sin(elv)*d,tgt.z+Math.cos(az)*Math.cos(elv)*d);cam.lookAt(tgt);
+ ringMs.forEach(m=>{const gr=m.userData.gr;if(!gr)return;const p=Math.min(1,Math.max(0,(t-gr.t0)/.7)),e=1-Math.pow(1-p,3)*(1+(1-p)*.9);m.scale.setScalar(Math.max(.001,e));m.position.y=gr.y0-(1-Math.min(1,e))*.8;if(p>=1){m.scale.setScalar(1);m.position.y=gr.y0;delete m.userData.gr}});
  items.forEach(it=>{const g=it.g,u=g.userData;
   if(u.born!==undefined){const k=Math.min(1,(t-u.born)/.5);const s=k<1?(1-Math.pow(1-k,3))*(1+Math.sin(k*3.1416)*.25):1;g.scale.setScalar(Math.max(.01,s)*(u.cs||1));if(k>=1)delete u.born}
   if(u.anim)u.anim(t);if(u.sway)g.rotation.z=Math.sin(t*1.3+g.position.x)*.025});
@@ -585,6 +587,7 @@ window.Island={ready:true,CAT,BYID,
  add(t,gx,gz){return addItem(t,gx,gz,true)},
  remove(i){const it=items[i];if(!it)return;burst(it.g.position.x,.4,it.g.position.z);itemsG.remove(it.g);items.splice(i,1)},
  move(i,gx,gz){const it=items[i];if(!it)return;const p=WP(gx,gz,BYID[it.t].s);it.x=gx;it.z=gz;it.g.position.set(p.x,0,p.z);if(it.g.userData.base)it.g.userData.base.set(p.x,0,p.z);it.g.userData.born=performance.now()/1000;it.g.scale.setScalar(.01);burst(p.x,.4,p.z)},
+ growAnim(){const t=performance.now()/1000;ringMs.forEach(m=>{const a=Math.atan2(m.position.z,m.position.x);m.userData.gr={t0:t+.5+((a+Math.PI)/6.2832)*.9,y0:m.position.y};m.scale.setScalar(.001)})},
  list(){return items.map(it=>[it.t,it.x,it.z])},
  valid,occ,active,why(gx,gz,s,ig){for(let a=0;a<s;a++)for(let b=0;b<s;b++)if(!active(gx+a,gz+b))return{edge:1};for(let i=0;i<items.length;i++){if(i===ig)continue;const it=items[i],ss=BYID[it.t].s;if(gx<it.x+ss&&gx+s>it.x&&gz<it.z+ss&&gz+s>it.z)return{t:it.t,n:BYID[it.t].n,x:it.x,z:it.z}}return null},
  mark(gx,gz,s){if(gx==null){mark.visible=false;return}const p=WP(gx,gz,s||1);mark.position.set(p.x,.03,p.z);mark.children[0].scale.setScalar(s===2?2:1);mark.visible=true},
