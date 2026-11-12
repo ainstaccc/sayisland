@@ -849,6 +849,23 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 @media (prefers-reduced-motion:reduce){.islbtn{transition:none}}
 /* v1.23.8 修短文小偵探完成後的綠字「重點都找到了…」跑位：v1.23.2 的 .grow{display:flex} 是好友團用，誤套到 #bgrow（斷詞 span 變成不換行的 flex 項目，左右溢出）。#bgrow 改回 block 置中、可換行 */
 #bgrow{display:block;width:100%;text-align:center;font-size:20px;line-height:1.5;word-spacing:0;letter-spacing:0}
+
+/* v1.24.0 徽章牆：同類一格、分階 */
+.bdh.sub{margin-top:14px}
+.ttlrow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;font:800 18px/1.3 var(--f-disp)}.ttlrow span{white-space:nowrap}.ttlrow b{color:var(--sun,#E59A00)}
+.bgw{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin-top:8px}
+.bt{display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 4px 8px;border-radius:18px;border:2px dashed var(--line);background:transparent;color:var(--ink);font:800 16px/1.2 var(--f-disp);white-space:nowrap;cursor:pointer;min-width:0}
+.bt.on{border:2px solid #FFC83D;background:linear-gradient(#fff,#F4EAFF);color:#3B2A5A;box-shadow:0 3px 0 #D99A00}
+.bt .bi,.bdbig .bi{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:4px solid var(--tc,#cfc6e6);background:#fff;font-size:24px;line-height:1}
+.bt .bi .sv,.bdbig .bi .sv{width:26px;height:26px}.bt.off .bi{opacity:.6;filter:grayscale(.7)}
+.bt i{font-style:normal;font-size:16px}.bt.off i{opacity:.8}
+.bt .pip{display:flex;gap:4px;margin-top:2px}.bt .pip u{width:8px;height:8px;border-radius:50%;background:#d9d1ee;text-decoration:none;display:block}.bt .pip u.on{background:var(--tc)}
+.bdp{max-height:86vh;overflow:auto;text-wrap:balance}.bdbig{display:flex;justify-content:center}.bdbig .bi{width:84px;height:84px;border-width:7px}.bdbig .bi .sv{width:46px;height:46px}
+.bdl{display:flex;flex-direction:column;gap:6px;text-align:left}
+.bdr{display:grid;grid-template-columns:18px 1fr auto;grid-template-areas:'i b e' 's s s';gap:2px 8px;align-items:center;padding:8px 10px;border-radius:14px;background:#F4EAFF;color:#3B2A5A;font:700 16px/1.3 var(--f-disp)}.bdr i{grid-area:i;width:16px;height:16px;border-radius:50%;background:var(--tc)}.bdr:not(.on){opacity:.7}.bdr b{grid-area:b;font-size:18px;white-space:nowrap;color:#3B2A5A}.bdr span{grid-area:s;min-width:0;font-weight:600}.bdr em{grid-area:e;font-style:normal;color:#2E9E5B;font-weight:900}
+.bdn{background:#FFF6D6;border-radius:14px;padding:10px;color:#3B2A5A;text-align:left}.bdn b{font-size:18px}.bdn small{font-size:16px;color:#5E4B80}.bdn .wkbar{margin:6px 0}
+.ttlb{display:flex;justify-content:space-between;align-items:center;gap:8px;white-space:nowrap}.ttlb small{font-size:16px;opacity:.8}
+.ttl{display:block;font-style:normal;font:800 16px/1.2 var(--f-disp);color:var(--sun,#E59A00);white-space:nowrap}
 </style>
 
 <div class="wrap" id="app">
@@ -878,7 +895,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.23.10</p>
+    <p class="ver">說說島 v1.24.0</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -907,7 +924,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.23.10</p>
+    <p class="ver">說說島 v1.24.0</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1092,7 +1109,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.23.10</p>
+    <p class="ver">說說島 v1.24.0</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1170,7 +1187,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.23.10</p>
+    <p class="ver">說說島 v1.24.0</p>
   </section>
 </div>
 
@@ -2460,7 +2477,7 @@ function playSeq(list){
     if(i>=list.length){bgmDuck(false);return}
     const f=(window.PREAUD||{})[list[i]];
     if(!f){bgmDuck(false);sayTTS(list.slice(i).join(''));return}
-    a.onplay=()=>bgmDuck(true);a.onended=()=>run(i+1);
+    a.onplay=()=>{bgmDuck(true);try{if(S)S.nSay=(S.nSay||0)+1}catch(e){}};a.onended=()=>run(i+1);
     a.onerror=()=>{if(tok!==SAYTOK)return;bgmDuck(false);sayTTS(list.slice(i).join(''))};
     a.src=f;
     let pr;try{pr=a.play()}catch(e){pr=null}
@@ -2616,7 +2633,7 @@ $('#whoBtn').onclick=()=>{stopSay();show('who');if(Object.keys(DB.profiles).leng
 function renderHome(){
   syncU();setTimeout(()=>{try{grpHomeSync()}catch(e){}},0);
   $('#whoHint').textContent=Object.keys(DB.profiles).length>1?'換人 ▾':'＋ 新增小朋友';
-  $('#whoAv').innerHTML=avh(S.av);$('#whoName').textContent=S.name||'小朋友';
+  $('#whoAv').innerHTML=avh(S.av);{const tt=ttlNow();$('#whoName').innerHTML=eh(S.name||'小朋友')+(tt?`<em class="ttl">${eh(tt)}</em>`:'')}
   $('#starN').textContent=S.stars;$('#streakN').textContent=streak();$('#islC').innerHTML=cn(coin());
   $('#sndBtn').innerHTML=ic(S.snd?'bell':'bellOff');$('#bgmBtn').innerHTML=ic(bgmOn()?'music':'musicOff');
   $('#lv1').setAttribute('aria-pressed',S.lv===1);$('#lv2').setAttribute('aria-pressed',S.lv===2);$('#lv3').setAttribute('aria-pressed',S.lv===3);
@@ -3500,22 +3517,66 @@ function wkStart(d){const x=new Date(d||new Date());x.setHours(0,0,0,0);x.setDat
 const wkKey=()=>fmt(wkStart());
 function wkDays(){const st=wkStart(),a=[];for(let i=0;i<7;i++){const d=new Date(st);d.setDate(st.getDate()+i);a.push(fmt(d))}return a}
 const wkDone=()=>wkDays().filter(d=>(S.bd||{})[d]).length;
-const BADGES=[
-  ['s3','flame','連續3天',()=>streak()>=3],['s7','star','連續7天',()=>streak()>=7],['s14','medal','連續14天',()=>streak()>=14],['s30','crown','連續30天',()=>streak()>=30],
-  ['b5','check','全勤5天',()=>Object.keys(S.bd||{}).length>=5],['b20','medal','全勤20天',()=>Object.keys(S.bd||{}).length>=20],
-  ['l20','apple','學會20題',()=>learnedAll().length>=20],['l60','tree','學會60題',()=>learnedAll().length>=60],
-  ['w1','gift','週寶箱',()=>!!S.wkClaim],
-  ['t50','star','累積50顆星',()=>S.stars>=50],['t100','medal','累積100顆星',()=>S.stars>=100],['i10','island','島上10件',()=>(ISL().items||[]).length>=10]
-];
-function checkBadges(){S.badges=S.badges||{};const n=[];BADGES.forEach(b=>{if(!S.badges[b[0]]&&b[3]()){S.badges[b[0]]=today();n.push(b[2])}});return n}
+/* ---------- 徽章系統（v1.24.0）：同類只佔一格、分階（銅／銀／金／白金／鑽石） ---------- */
+const TN=['銅牌','銀牌','金牌','白金','鑽石'],TCOL=['#CD7F32','#AEB7C4','#FFC83D','#5CC8E6','#A77BFF'],TRW=[2,3,5,8,10];
+const LVC=['z','zb','zo','q','v','a','r','y','cy','pw','sj','e','t','h','m'];
+const LVT={z:[8,25,45],zb:[20,60,120],zo:[10,30,60],q:[20,60,120],v:[20,60,120],a:[20,60,120],r:[20,60,120],y:[20,60,120],cy:[8,25,45],pw:[8,25,45],sj:[8,25,45],e:[15,40,80],t:[6,15,30],h:[20,60,120],m:[20,60,120]};
+const LVTT={z:'拼音高手',zb:'注音偵探',zo:'注音高手',q:'量詞博士',v:'動詞達人',a:'形容詞達人',r:'部首小博士',y:'選字高手',cy:'成語達人',pw:'換句話說高手',sj:'造句小作家',e:'短文小偵探',t:'看圖說話家',h:'暖心說話家',m:'因果小偵探'};
+const lvN=k=>Object.values(ALL).filter(x=>x.cat===k&&learned(x)).length;
+const catsSeen=()=>{const o={};Object.keys(S.st||{}).forEach(id=>{const x=ALL[id];if(x&&LVC.indexOf(x.cat)>=0)o[x.cat]=1});return Object.keys(o).length};
+const SER=[
+ {id:'s',n:'連續天數',ic:'flame',tiers:[3,7,14,30,60],keys:['s3','s7','s14','s30','s60'],cur:()=>streak(),how:t=>'連續'+t+'天都有練習'},
+ {id:'b',n:'全勤天數',ic:'check',tiers:[5,20,60],keys:['b5','b20','b60'],cur:()=>Object.keys(S.bd||{}).length,how:t=>'累積'+t+'天完成「今日任務」'},
+ {id:'l',n:'學會題數',ic:'apple',tiers:[20,60,150,300],keys:['l20','l60','l150','l300'],cur:()=>learnedAll().length,how:t=>'累積學會'+t+'題（同一題連續答對 2 次）'},
+ {id:'t',n:'累積星星',ic:'star',tiers:[50,100,300],keys:['t50','t100','t300'],cur:()=>S.stars,how:t=>'累積'+t+'顆星'},
+ {id:'i',n:'島上物件',ic:'island',tiers:[10,30,60],keys:['i10','i30','i60'],cur:()=>(ISL().items||[]).length,how:t=>'島上擺'+t+'件東西'},
+ {id:'w',n:'週寶箱',ic:'gift',tiers:[1,4,12],keys:['w1','w4','w12'],cur:()=>Math.max(S.wkN||0,S.wkClaim?1:0),how:t=>'累積打開'+t+'次週寶箱'},
+ {id:'x',n:'關卡探險家',ic:'magnify',tiers:[5,10,15],keys:['x5','x10','x15'],cur:()=>catsSeen(),how:t=>'玩過'+t+'種不同的關卡'},
+ {id:'e',n:'小耳朵',ic:'music',tiers:[30,150,500],keys:['e30','e150','e500'],cur:()=>S.nSay||0,how:t=>'按「唸給我聽」聽'+t+'次'}
+].map(x=>Object.assign(x,{g:'一般'})).concat(LVC.map(k=>({id:'v_'+k,g:'關卡',lv:k,n:CATS[k].n,tiers:LVT[k],cur:()=>lvN(k),how:t=>'「'+CATS[k].n+'」學會'+t+'題'})));
+const SER_BY=Object.fromEntries(SER.map(x=>[x.id,x]));
+const bkey=(s,i)=>s.keys?s.keys[i]:s.id+'_'+i;
+const BTOT=SER.reduce((a,s)=>a+s.tiers.length,0);
+const bdgHi=s=>{let h=-1;s.tiers.forEach((t,i)=>{if((S.badges||{})[bkey(s,i)])h=i});return h};
+const bdgFind=key=>{for(const s of SER){const i=s.tiers.findIndex((t,j)=>bkey(s,j)===key);if(i>=0)return{s,i}}return null};
+const bdgIco=s=>s.lv?cic(s.lv):ic(s.ic);
+const MIL=[
+ {n:15,t:'小探險家',g:[['i','rainbow']]},
+ {n:25,t:'語文小達人',g:[['i','balloon'],['m','a',1]]},
+ {n:35,t:'說說島達人',g:[['i','carousel'],['m','x',1]]},
+ {n:45,t:'島上小明星',g:[['i','ferris'],['m','a',2]]},
+ {n:60,t:'說說島大師',g:[['i','castle'],['m','x',2]]}];
+let BDR=0;
+function checkBadges(){S.badges=S.badges||{};
+  if(!S.bdr){S.bdr={};Object.keys(S.badges).forEach(k=>S.bdr[k]=1)}  /* 舊版已拿到的徽章不補發獎勵 */
+  const n=[];BDR=0;
+  SER.forEach(s=>{const c=s.cur();s.tiers.forEach((t,i)=>{const k=bkey(s,i);if(!S.badges[k]&&c>=t){S.badges[k]=today();n.push(s.n+TN[i]);if(!S.bdr[k]){S.bdr[k]=1;BDR+=TRW[i]}}})});
+  if(BDR)S.stars+=BDR;return n}
+function milChk(){S.mil=S.mil||{};const out=[],c=Object.keys(S.badges||{}).length,I=ISL();
+  MIL.forEach(m=>{if(!S.mil[m.n]&&c>=m.n){S.mil[m.n]=today();m.g.forEach(g=>{if(g[0]==='i'){I.inv[g[1]]=(I.inv[g[1]]||0)+1;I.seen[g[1]]=1}else{const o=miiOwn().own[g[1]];if(o&&o.indexOf(g[2])<0)o.push(g[2])}});out.push(m)}});return out}
+const ttlList=()=>{const a=[];MIL.forEach(m=>{if((S.mil||{})[m.n])a.push({id:'m'+m.n,t:m.t,h:'集滿 '+m.n+' 枚徽章'})});LVC.forEach(k=>{if((S.badges||{})[bkey(SER_BY['v_'+k],2)])a.push({id:'v_'+k,t:LVTT[k],h:CATS[k].n+'金牌'})});return a};
+const ttlNow=()=>{const x=ttlList().find(y=>y.id===S.ttl);return x?x.t:''};
 const nbk=t=>(String(t).match(/[^，。！？、：；]+[，。！？、：；]?/g)||[String(t)]).flatMap(x=>x.length>9&&_SEG&&!/[\s（]/.test(x)?wordsOf(x).map(w=>'\u0001'+w):x.length>9?(x.match(/[^\s（]+\s*|（[^）]*）?\s*/g)||[x]):[x]).map(x=>{if(x[0]==='\u0001')return `<span class="nb">${x.slice(1)}</span>`;const t=x.replace(/\s+$/,''),sp=x.length>t.length?' ':'';return(x.length>9?`<span>${t}</span>`:`<span class="nb">${t}</span>`)+sp}).join('');
+const nBadge=()=>Object.keys(S.badges||{}).length;
+function bdgTile(x){const h=bdgHi(x),on=h>=0;return `<button class="bt ${on?'on':'off'}" data-bs="${x.id}" style="--tc:${on?TCOL[h]:'#cfc6e6'}"><span class="bi">${bdgIco(x)}</span><b>${x.n}</b><i>${on?TN[h]:'還沒拿到'}</i><span class="pip">${x.tiers.map((t,k)=>`<u class="${k<=h?'on':''}"></u>`).join('')}</span></button>`}
+function bdgPop(id){const x=SER_BY[id];if(!x)return;const h=bdgHi(x),cur=x.cur(),nx=h+1<x.tiers.length?h+1:-1,o=document.createElement('div');o.className='prpop';
+  const rows=x.tiers.map((t,i)=>{const d=(S.badges||{})[bkey(x,i)];return `<div class="bdr ${d?'on':''}" style="--tc:${TCOL[i]}"><i></i><b>${TN[i]}</b><span>${eh(x.how(t))}</span><em>${d?'✓':''}</em></div>`}).join('');
+  const nxt=nx>=0?`<div class="bdn"><b>下一階：${TN[nx]}</b><div class="wkbar"><span style="width:${Math.round(100*Math.min(cur,x.tiers[nx])/x.tiers[nx])}%"></span></div><small>${Math.min(cur,x.tiers[nx])} / ${x.tiers[nx]}　獎勵 +${TRW[nx]} 顆星</small></div>`:'<p>已經拿到最高階了，太厲害了！</p>';
+  o.innerHTML=`<div class="prc bdp"><div class="bdbig" style="--tc:${h>=0?TCOL[h]:'#cfc6e6'}"><span class="bi">${bdgIco(x)}</span></div><b>${x.n}</b><p>${h>=0?TN[h]+'：'+nbk(eh(x.how(x.tiers[h]))):'還沒拿到，加油！'}</p><div class="bdl">${rows}</div>${nxt}<button class="btn alt" data-x="1">關閉</button><small class="muted">到朋友的島，可以寄「我拿到徽章了」的明信片。</small></div>`;
+  o.onclick=e=>{if(e.target===o||e.target.closest('[data-x]'))o.remove()};document.body.appendChild(o)}
+function ttlPop(){const L=ttlList(),o=document.createElement('div');o.className='prpop';
+  o.innerHTML=`<div class="prc bdp"><b>選稱號</b><p>稱號會顯示在你的名字旁邊</p><div class="bdl">${L.length?L.map(t=>`<button class="btn ${S.ttl===t.id?'':'alt'} sm ttlb" data-t="${t.id}">${eh(t.t)}<small>${eh(t.h)}</small></button>`).join('')+`<button class="btn alt sm ttlb" data-t="">不戴稱號</button>`:'<p class="muted">集滿 15 枚徽章，或拿到關卡金牌，就有稱號。</p>'}</div><button class="btn alt" data-x="1">關閉</button></div>`;
+  o.onclick=e=>{const t=e.target.closest('[data-t]');if(t){S.ttl=t.dataset.t;save();o.remove();renderHome();return}if(e.target===o||e.target.closest('[data-x]'))o.remove()};document.body.appendChild(o)}
 function renderWeek(){
   const t=today(),days=wkDays(),done=wkDone(),got=S.wkClaim===wkKey(),W='一二三四五六日';
   $('#wkc').innerHTML=`<div style="display:flex;align-items:center;gap:10px"><div style="flex:1"><b>本週挑戰</b><small>${got?nbk('寶箱已打開，')+nbk('拿了 '+WK_STARS+' 顆星')+ic('star'):nbk('本週完成「今日任務」'+WK_NEED+' 天，')+nbk('開寶箱 +'+WK_STARS+' 顆星')}</small></div><span class="chest">${ic(got?'gift':'box')}</span></div>
   <div class="wkrow"><div class="wkbar" role="progressbar" aria-valuemin="0" aria-valuemax="${WK_NEED}" aria-valuenow="${Math.min(done,WK_NEED)}"><span style="width:${Math.round(100*Math.min(done,WK_NEED)/WK_NEED)}%"></span></div><em class="wkn">${Math.min(done,WK_NEED)}/${WK_NEED} 天</em></div>
   <div class="wd">${days.map((d,i)=>`<i class="${(S.bd||{})[d]?'on':''}${d===t?' t':''}">${(S.bd||{})[d]?ic('star'):W[i]}</i>`).join('')}</div>
-  <div class="bdh"><b>徽章</b><em>${BADGES.filter(b=>(S.badges||{})[b[0]]).length}/${BADGES.length}</em></div>
-  <div class="bdg">${BADGES.map(b=>`<span class="${(S.badges||{})[b[0]]?'on':'off'}">${ic(b[1])}<em>${b[2]}</em></span>`).join('')}</div>`;
+  <div class="bdh"><b>徽章</b><em>${nBadge()}/${BTOT}</em></div>
+  <div class="ttlrow"><span>稱號：<b>${eh(ttlNow()||'還沒有')}</b></span><button class="btn alt sm" data-ttl="1">換稱號</button></div>
+  <div class="bgw">${SER.filter(x=>x.g==='一般').map(bdgTile).join('')}</div>
+  <div class="bdh sub"><b>關卡徽章</b><em>${SER.filter(x=>x.g==='關卡').reduce((a,x)=>a+bdgHi(x)+1,0)}/${SER.filter(x=>x.g==='關卡').reduce((a,x)=>a+x.tiers.length,0)}</em></div>
+  <div class="bgw">${SER.filter(x=>x.g==='關卡').map(bdgTile).join('')}</div>`;
 }
 function finish({title,acc,line,cat,lid}){
   const n=acc>=.85?3:acc>=.6?2:1,td=today(),s0=S.stars;
@@ -3529,9 +3590,9 @@ function finish({title,acc,line,cat,lid}){
   S.days[td]=(S.days[td]||0)+1;
   const dc=dailyCats();let bonusNow=false;
   if(S.bonus!==td&&dc.length&&dc.every(k=>todayN(k)>=GOAL)){bonusNow=true;S.bonus=td;S.stars+=3;msgs.push('今日任務全部完成！額外拿到 3 顆星，還送你 1 個免費盲盒 🎉');ISL().free=(ISL().free||0)+1;S.bd=S.bd||{};S.bd[td]=1;Object.keys(S.bd).sort().slice(0,-120).forEach(k=>delete S.bd[k])}
-  if(S.wkClaim!==wkKey()&&wkDone()>=WK_NEED){S.wkClaim=wkKey();S.stars+=WK_STARS;msgs.push('本週挑戰完成！寶箱打開 +'+WK_STARS+' 顆星 🎁')}
+  if(S.wkClaim!==wkKey()&&wkDone()>=WK_NEED){S.wkClaim=wkKey();S.wkN=(S.wkN||0)+1;S.stars+=WK_STARS;msgs.push('本週挑戰完成！寶箱打開 +'+WK_STARS+' 顆星 🎁')}
   evAward(msgs,{cat,acc,td,bonusNow});
-  const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+nb.join('、'));unlChk().forEach(u=>msgs.push('解鎖 '+u.n+' '+u.e+'！已放進背包'))
+  const nb=checkBadges();if(nb.length)msgs.push('新徽章：'+(nb.length>3?nb.slice(0,3).join('、')+'…等 '+nb.length+' 枚':nb.join('、'))+(BDR?'，獎勵 '+BDR+' 顆星':''));milChk().forEach(m=>msgs.push('集滿 '+m.n+' 枚徽章！稱號「'+m.t+'」，禮物已放進背包'));unlChk().forEach(u=>msgs.push('解鎖 '+u.n+' '+u.e+'！已放進背包'))
   addWk(S.stars-s0);save();GRP_LAST=0;grpPush();
   $('#starN').textContent=S.stars;
   $('#rtitle').textContent=title;
@@ -3541,6 +3602,7 @@ function finish({title,acc,line,cat,lid}){
   show('res');sfx.win();
 }
 $('#again').onclick=()=>lastGame&&lastGame();
+$('#wkc').addEventListener('click',e=>{const b=e.target.closest('[data-bs]');if(b){bdgPop(b.dataset.bs);return}if(e.target.closest('[data-ttl]'))ttlPop()});
 
 /* ---------- 好友團（排行榜）---------- */
 /* 後端：Firebase Firestore（免費方案）。FBCFG 沒填時是「示範模式」，朋友是假的，資料只在本機。 */
@@ -3647,7 +3709,7 @@ async function renderGrp(){
     S.sent=S.sent||{};
   const rows=mem.map((m,i)=>{const me=m._id===S.grp.mid;
     return`<div class="lb${me?' me':''}"><span class="rk${i<3?' r'+i:''}">${i+1}</span><span class="av">${avh(m.av)}</span><div class="nm"><b>${eh(me?S.grp.nick:m.nick)}${me?'（我）':''}</b><small><span>${ic('flame')}${m.st}天</span> <span class="sp${m.done?' ok':''}">${m.done?ic('check')+'今日完成':(m.tt>0?'今日 '+m.tn+'/'+m.tt:'今日未開始')}</span></small></div><span class="ws">${ic('star')}${m.ws}</span>${me?'':`<div class="ch"><button class="btn sm vbtn" data-visit="${eh(m._id)}">${ic(placed('fac_airport')?'island':'lock')}<span>${placed('fac_airport')?'飛去參觀':'參觀島'}</span></button><button class="ibtn cb" data-ch="👏" data-to="${eh(m._id)}" ${S.sent[t+m._id+'👏']?'disabled':''} aria-label="送鼓掌">${ic('clap')}</button><button class="ibtn cb" data-ch="🔥" data-to="${eh(m._id)}" ${S.sent[t+m._id+'🔥']?'disabled':''} aria-label="送加油">${ic('flame')}</button></div>`}</div>`}).join('');
-  const rc={},pcs=[];d.ch.forEach(c=>{if((c.k||'').indexOf('pc')===0){const x=PC[+c.k.slice(2)];if(x)pcs.push({e:x.e,t:x.t,fn:c.fn})}else rc[c.k]=(rc[c.k]||0)+1});
+  const rc={},pcs=[];d.ch.forEach(c=>{if((c.k||'').indexOf('pcb')===0){const f=bdgFind(c.k.slice(3));if(f)pcs.push({e:'🏅',t:'我已經得到「'+f.s.n+' '+TN[f.i]+'」徽章了！你也快跟上吧！',fn:c.fn})}else if((c.k||'').indexOf('pc')===0){const x=PC[+c.k.slice(2)];if(x)pcs.push({e:x.e,t:x.t,fn:c.fn})}else rc[c.k]=(rc[c.k]||0)+1});
   const got=Object.keys(rc).map(k=>(k==='👏'?ic('clap'):k==='🔥'?ic('flame'):eh(k))+'×'+rc[k]).join('　');
   const gfs=gfOpen(d.gf);GRP_GF=gfs.length;
   S.cheerSeen=d.ch.length;save();
@@ -3811,7 +3873,6 @@ function reveal(it,r,isNew,kind,dup){
       if(a==='place'){islClose();startPlace(it.id)}else if(a==='again'){drawBox(kind)}else{sheetBox()}};
   },1300);
 }
-const nBadge=()=>Object.keys(S.badges||{}).length;
 const UNL=[
  {id:'fac_airport',n:'機場',e:'✈️',d:'飛去朋友的島、送明信片、貼紙和友情設施',cur:()=>S.stars,need:100,u:'顆星'},
  {id:'fac_pier',n:'郵輪碼頭',e:'🚢',d:'開去外島，外島也可以擺東西',cur:nBadge,need:5,u:'個徽章'},
@@ -3842,8 +3903,10 @@ function sheetSail(){const I=ISL();$('#islSheet').hidden=false;
   $('#islSheet').innerHTML=shHead('island','郵輪碼頭：去外島')+`<div class="igrid">${Object.keys(OUTS).map(k=>`<button class="icard" data-sail="${k}"><span class="avb">${OUTS[k].e}</span><b>${OUTS[k].n}</b><small>${((I.outs||{})[k]||[]).length} 件</small></button>`).join('')}</div><p class="muted">外島有自己的空地，可以擺很多東西。東西共用背包。</p>`}
 function sheetStk(){const to=ISLS.visit._id;S.sent=S.sent||{};
   $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('clap','送貼紙給 '+eh(ISLS.visit.nick))+`<div class="stk">${STK.map(x=>{const on=x.ok(),sent=S.sent[today()+to+x.k];return`<button data-stk="${x.k}" ${on&&!sent?'':'disabled'}><span>${x.k}</span>${on?(sent?'送過了':x.n):'🔒 '+x.tip}</button>`}).join('')}</div><p class="muted">每種貼紙每天每位朋友限 1 次。多練習就會解鎖新貼紙！</p>`}
+function bdgPcs(to){const L=SER.map(x=>({x,h:bdgHi(x)})).filter(r=>r.h>=0).sort((a,b)=>b.h-a.h).slice(0,8);
+  if(!L.length)return '';return `<h4 class="sh4">炫耀徽章：我已經得到…你也快跟上吧！</h4><div class="pcs">${L.map(r=>{const k=bkey(r.x,r.h),sent=(S.sent||{})[today()+to+'pcb'+k];return `<button class="pcb" data-pcb="${k}" ${sent?'disabled':''}><span>🏅</span><b>${r.x.n} ${TN[r.h]}</b>${sent?'<small>今天寄過了</small>':''}</button>`}).join('')}</div>`}
 function sheetPc(){const to=ISLS.visit._id;S.sent=S.sent||{};
-  $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('heart','寄明信片給 '+eh(ISLS.visit.nick))+`<div class="pcs">${PC.map((x,i)=>{const sent=S.sent[today()+to+'pc'+i];return`<button class="pcb" data-pc="${i}" ${sent?'disabled':''}><span>${x.e}</span><b>${x.t}</b>${sent?'<small>今天寄過了</small>':''}</button>`}).join('')}</div><p class="muted">每張明信片每天每位朋友限 1 次。</p>`}
+  $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('heart','寄明信片給 '+eh(ISLS.visit.nick))+`<div class="pcs">${PC.map((x,i)=>{const sent=S.sent[today()+to+'pc'+i];return`<button class="pcb" data-pc="${i}" ${sent?'disabled':''}><span>${x.e}</span><b>${x.t}</b>${sent?'<small>今天寄過了</small>':''}</button>`}).join('')}</div>${bdgPcs(to)}<p class="muted">每張明信片每天每位朋友限 1 次。</p>`}
 function sheetGift(){
   const I=ISL(),have=Island.CAT.filter(c=>(I.inv[c.id]||0)>0&&!c.ch&&!c.np),fl=Island.CAT.filter(c=>c.nb&&!c.np);
   $('#islSheet').hidden=false;
@@ -3855,7 +3918,7 @@ function sheetGoal(){const I=ISL();S.unl=S.unl||{};
   const L=learnedAll().length,nx=L<20?[20,'8 格大島']:L<50?[50,'10 格大島']:L<100?[100,'12 格大島']:null;
   const ex=nx?`<div class="gl"><span class="gle">🏝️</span><div><b>主島變大</b><small>學會的題目越多，島越大</small><div class="gbar"><i style="width:${Math.round(L/nx[0]*100)}%"></i></div><small class="gls">${L} / ${nx[0]} 題　→ ${nx[1]}</small></div></div>`:'';
   const nk=STK.find(x=>!x.ok()),sk=nk?`<div class="gl"><span class="gle">${nk.k}</span><div><b>下一個貼紙：${nk.n}</b><small>達成「${nk.tip}」解鎖（要有機場才能送）</small></div></div>`:'';
-  $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('trophy','解鎖目標（徽章 '+nBadge()+' / '+BADGES.length+'）')+rows+ex+sk+'<p class="muted">星星和徽章，靠每天練習就會慢慢變多。</p>'}
+  $('#islSheet').hidden=false;$('#islSheet').innerHTML=shHead('trophy','解鎖目標（徽章 '+nBadge()+' / '+BTOT+'）')+rows+ex+sk+'<p class="muted">星星和徽章，靠每天練習就會慢慢變多。</p>'}
 function rocketGo(){if(S.myst===today()){toast('今天已經去過神祕島了，明天再來！');return}
   islClose();flyTo('發射！前往神祕島…',mystPop,'🚀',1600)}
 function mystPop(){const o=document.createElement('div');o.className='mys';
@@ -3881,6 +3944,7 @@ $('#islSheet').addEventListener('click',async e=>{
   const pl=e.target.closest('[data-place]');if(pl){startPlace(pl.dataset.place);return}
   const dr=e.target.closest('[data-draw]');if(dr){drawBox(dr.dataset.draw);return}
   const sk=e.target.closest('[data-stk]');if(sk){try{await grpCheer(ISLS.visit._id,sk.dataset.stk);toast('貼紙送出去了 '+sk.dataset.stk);sheetStk()}catch(x){toast('今天已經送過了')}return}
+  const pcb=e.target.closest('[data-pcb]');if(pcb){try{await grpCheer(ISLS.visit._id,'pcb'+pcb.dataset.pcb);toast('徽章明信片寄出去了 🏅');sheetPc()}catch(x){toast('今天已經寄過了')}return}
   const pc=e.target.closest('[data-pc]');if(pc){try{await grpCheer(ISLS.visit._id,'pc'+pc.dataset.pc);toast('明信片寄出去了 '+PC[+pc.dataset.pc].e);sheetPc()}catch(x){toast('今天已經寄過了')}return}
   const fg=e.target.closest('[data-fgift]');if(fg){const d=Island.BYID[fg.dataset.fgift];try{await grpGift(ISLS.visit._id,d.id,buyP(d));toast('友情設施送出去了！');islHud();islIdle()}catch(x){toast(x.message||'送不出去，等一下再試')}return}
   const fl=e.target.closest('[data-fly]');if(fl){const m=((GRP_DATA||{}).mem||[]).find(x=>x._id===fl.dataset.fly);if(m){islClose();flyVisit(m)}return}
