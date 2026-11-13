@@ -955,7 +955,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.25</p>
+    <p class="ver">說說島 v1.25.26</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -984,7 +984,8 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <button class="grpbtn" id="toGrp"><i data-i="friends"></i><span>好友團・看朋友的星星</span><span class="rdot" id="grpDot" hidden></span></button>
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
-    <p class="ver">說說島 v1.25.25</p>
+    <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
+    <p class="ver">說說島 v1.25.26</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1149,7 +1150,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.25</p>
+    <p class="ver">說說島 v1.25.26</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1169,6 +1170,10 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <label class="muted">次數上限<select id="evcap" aria-label="每天次數上限"></select></label>
       <div class="fbrow"><button class="btn" id="evsave">儲存並開始</button><button class="btn alt sm" id="evstop">停止活動</button></div>
       <div class="hint" id="evmsg"></div></div>
+    <div class="panel"><h3>備份與還原</h3><p class="muted" id="pstore" style="font-weight:700">存檔檢查中…</p><p class="muted">進度只存在這個瀏覽器，換手機或清除資料會不見。按「複製備份」把文字存到備忘錄；要還原時貼回下面再按「還原」（會取代目前所有小朋友的資料）。</p>
+      <div class="fbrow"><button class="btn alt sm" id="pbk">複製備份</button></div>
+      <textarea class="rep" id="pbkt" placeholder="還原時把備份文字貼在這裡" aria-label="備份文字"></textarea>
+      <div class="fbrow"><button class="btn alt sm" id="pre">還原</button></div><p class="muted" id="pbkm"></p></div>
     <div class="panel"><h3>各關練習狀況</h3><div class="scroll"><table class="tbl" id="ptbl"></table></div></div>
     <div class="panel"><h3>學習紀錄（近 14 天）</h3><p class="muted" id="plogSum"></p><div class="scroll"><table class="tbl" id="plog"></table></div><p class="muted">數字是當天答的題數，綠色代表達到每天 3 題的目標。</p></div>
     <div class="panel"><h3>還需要加強</h3><ul class="weak" id="pweak"></ul><p class="muted" id="pweakNote"></p></div>
@@ -1190,10 +1195,6 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <div class="fbrow"><button class="btn alt sm" id="pvtest">🔊 測試發音</button></div>
       <p class="muted" id="pvnote"></p>
     </div>
-    <div class="panel"><h3>備份與還原</h3><p class="muted" id="pstore" style="font-weight:700">存檔檢查中…</p><p class="muted">進度只存在這個瀏覽器，換手機或清除資料會不見。按「複製備份」把文字存到備忘錄；要還原時貼回下面再按「還原」（會取代目前所有小朋友的資料）。</p>
-      <div class="fbrow"><button class="btn alt sm" id="pbk">複製備份</button></div>
-      <textarea class="rep" id="pbkt" placeholder="還原時把備份文字貼在這裡" aria-label="備份文字"></textarea>
-      <div class="fbrow"><button class="btn alt sm" id="pre">還原</button></div><p class="muted" id="pbkm"></p></div>
     <div class="panel"><h3>測試回報</h3>
       <p class="muted">玩過之後按「產生回報」，把文字貼給 Stacy。</p>
       <div class="fbrow"><button class="btn alt sm" id="prepBtn">產生回報</button><button class="btn alt sm" id="prepCopy">複製</button></div>
@@ -1205,7 +1206,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.25</p>
+    <p class="ver">說說島 v1.25.26</p>
   </section>
 </div>
 
@@ -4179,6 +4180,30 @@ $('#pDel').onclick=()=>{const b=$('#pDel');if(!armedDel){armedDel=true;b.textCon
   if(ids.length===1){DB.cur=ids[0];S=DB.profiles[DB.cur];save();show('home')}   /* 只有一位：直接進入，不問「我是誰」 */
   else show('who')}                                                           /* 0 位：建立第一位；2 位以上：選「我是誰」 */
 if(!Object.keys(DB.profiles).length)idbGet().then(async r=>{try{if(!r)return;const o=JSON.parse(r);if(Object.keys(o.profiles||{}).length&&!Object.keys(DB.profiles).length){DB=Object.assign({cur:'',profiles:{}},o);S=DB.profiles[DB.cur]||newProf('','🐣');save();show(DB.cur?'home':'who');toast('已找回上次的進度 ✨')}}catch(e){}});
+/* 首頁常駐「存檔碼」：複製備份、貼上找回（不用進家長區） */
+$('#toSave').onclick=()=>{
+  document.querySelectorAll('.tipbox').forEach(x=>x.remove());
+  const d=document.createElement('div');d.className='tipbox';d.setAttribute('role','dialog');
+  d.innerHTML=`<div class="tipc" style="max-height:92vh;overflow:auto"><div class="tip-i">💾</div><b>存檔碼</b>
+    <p>換手機、清除資料前，先複製存檔碼，貼到備忘錄。</p>
+    <button class="btn" id="svCopy">複製存檔碼</button>
+    <textarea class="ta" id="svT" readonly hidden aria-label="存檔碼" style="min-height:90px;font-size:15px"></textarea>
+    <hr style="width:100%;border:0;border-top:3px dashed currentColor;opacity:.3;margin:6px 0">
+    <p><b style="font-size:22px">找回進度</b></p>
+    <textarea class="ta" id="svIn" placeholder="把存檔碼貼在這裡" aria-label="貼上存檔碼" style="min-height:90px;font-size:15px"></textarea>
+    <button class="btn sm alt" id="svGo">找回進度</button>
+    <div class="hint" id="svM" style="min-height:0;color:inherit"></div>
+    <button class="btn sm ghost" id="svX">關閉</button></div>`;
+  d.onclick=e=>{if(e.target===d||e.target.closest('#svX'))d.remove()};
+  document.body.appendChild(d);
+  const m=d.querySelector('#svM');
+  d.querySelector('#svCopy').onclick=async()=>{const t=await makeCode();DB.bk=Date.now();save();
+    try{await navigator.clipboard.writeText(t);m.textContent='已複製！請貼到備忘錄保存。'}
+    catch(e){const ta=d.querySelector('#svT');ta.hidden=false;ta.value=t;ta.focus();ta.select();m.textContent='請長按上面文字 → 全選 → 拷貝，貼到備忘錄。'}
+    try{renderBk()}catch(e){}};
+  d.querySelector('#svGo').onclick=async()=>{try{const o=await readCode(d.querySelector('#svIn').value);mergeDB(o);d.remove();toast('找回來了！');renderWho();show('who')}
+    catch(e){m.textContent=(e&&e.msg)||'存檔碼看不懂，請確認是完整複製。'}};
+};
 /* 家長區面板收合 */
 function pcInit(){document.querySelectorAll('#pbody>.panel').forEach(p=>{if(p.querySelector(':scope>.pc'))return;
   const h=p.querySelector(':scope>h3');if(!h)return;const w=document.createElement('div');w.className='pc';
