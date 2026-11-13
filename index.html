@@ -926,6 +926,18 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .ttlrow b,.prc .ttl{color:#8A5200}
 :root[data-theme="dark"] .ttlrow b{color:#FFD84D}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ttlrow b{color:#FFD84D}}
+/* v1.25.27 結果頁／週挑戰／徽章小優化：①結果頁星星放在金色托盤、標題彈入、獎勵列依序滑入；②週挑戰進度條加斜紋、寶箱輕晃；③徽章格按壓回饋、已得徽章圓圈金色光澤、焦點框；prefers-reduced-motion 全部關閉 */
+.res .stars{width:fit-content;margin:0 auto;padding:10px 22px;border-radius:999px;background:linear-gradient(rgba(255,216,77,.28),rgba(255,216,77,.12));box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 3px 0 rgba(217,154,0,.25)}
+.res h2{animation:pop .5s both}
+.bonus .bm{animation:rise .45s both}.bonus .bm:nth-child(2){animation-delay:.12s}.bonus .bm:nth-child(3){animation-delay:.24s}.bonus .bm:nth-child(n+4){animation-delay:.36s}
+.wkbar>span{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.4) 0 8px,transparent 8px 16px),linear-gradient(90deg,#FFE680,#FFB800)}
+.wk .chest .sv{animation:chestw 2.8s ease-in-out infinite;transform-origin:50% 85%}
+@keyframes chestw{0%,80%,100%{transform:rotate(0)}86%{transform:rotate(-8deg)}92%{transform:rotate(7deg)}96%{transform:rotate(-4deg)}}
+.bt{transition:transform .12s,box-shadow .12s}
+.bt:active{transform:translateY(2px);box-shadow:0 1px 0 #D99A00}
+.bt:focus-visible{outline:4px solid #7A4DFF;outline-offset:2px}
+.bt.on .bi{background:radial-gradient(circle at 35% 30%,#fff 0 35%,#FFF1B8 100%);box-shadow:0 0 0 3px rgba(255,200,61,.35)}
+@media (prefers-reduced-motion:reduce){.res h2,.bonus .bm,.wk .chest .sv{animation:none!important}.bt{transition:none}}
 </style>
 
 <div class="wrap" id="app">
@@ -955,7 +967,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.26</p>
+    <p class="ver">說說島 v1.25.27</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -985,7 +997,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.26</p>
+    <p class="ver">說說島 v1.25.27</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1150,7 +1162,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.26</p>
+    <p class="ver">說說島 v1.25.27</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1206,7 +1218,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.26</p>
+    <p class="ver">說說島 v1.25.27</p>
   </section>
 </div>
 
