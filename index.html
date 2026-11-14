@@ -938,6 +938,25 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .bt:focus-visible{outline:4px solid #7A4DFF;outline-offset:2px}
 .bt.on .bi{background:radial-gradient(circle at 35% 30%,#fff 0 35%,#FFF1B8 100%);box-shadow:0 0 0 3px rgba(255,200,61,.35)}
 @media (prefers-reduced-motion:reduce){.res h2,.bonus .bm,.wk .chest .sv{animation:none!important}.bt{transition:none}}
+/* v1.25.29 我的島 UI 小優化：①面板（.sheet）頂端加拖曳握把、滑入動畫；②分頁 .tabb 按壓／焦點回饋、選取態內側高光；③商品卡 .icard 按壓下沉、焦點框、卡片依序彈入；④圖鑑已收集格 .dx 金邊；⑤抽卡稀有度標籤 .rar 光澤掃過；⑥底部按鈕列 .islBar .btn 按壓回饋；prefers-reduced-motion 全關 */
+.sheet{animation:shup .28s cubic-bezier(.2,1,.3,1)}
+.sheet::before{content:"";display:block;width:52px;height:6px;border-radius:99px;background:var(--line);margin:-6px auto 10px}
+@keyframes shup{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.tabb{transition:transform .12s,box-shadow .12s}
+.tabb:active{transform:translateY(2px)}
+.tabb:focus-visible,.icard:focus-visible,.islBar .btn:focus-visible{outline:4px solid #7A4DFF;outline-offset:2px}
+.tabb[aria-pressed="true"]{box-shadow:inset 0 2px 0 rgba(255,255,255,.65),0 3px 0 #D99A00}
+.icard{transition:transform .12s,box-shadow .12s;box-shadow:0 3px 0 var(--line);animation:pop .35s both}
+.icard:nth-child(2){animation-delay:.04s}.icard:nth-child(3){animation-delay:.08s}.icard:nth-child(4){animation-delay:.12s}.icard:nth-child(5){animation-delay:.16s}.icard:nth-child(n+6){animation-delay:.2s}
+.icard:not(:disabled):active{transform:translateY(3px);box-shadow:0 0 0 var(--line)}
+.icard:disabled{box-shadow:none}
+.dx:not(.off){border-color:#FFB000;box-shadow:0 2px 0 rgba(217,154,0,.35)}
+.rar{position:relative;overflow:hidden}
+.rar::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.7),transparent);animation:rarsh 2.4s ease-in-out infinite}
+@keyframes rarsh{0%,55%{left:-60%}100%{left:130%}}
+.islBar .btn{transition:transform .12s}
+.islBar .btn:active{transform:translateY(3px) scale(.98)}
+@media (prefers-reduced-motion:reduce){.sheet,.icard,.rar::after{animation:none!important}.tabb,.icard,.islBar .btn{transition:none}}
 </style>
 
 <div class="wrap" id="app">
@@ -967,7 +986,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.28</p>
+    <p class="ver">說說島 v1.25.29</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -997,7 +1016,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.28</p>
+    <p class="ver">說說島 v1.25.29</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1162,7 +1181,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.28</p>
+    <p class="ver">說說島 v1.25.29</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1218,7 +1237,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.28</p>
+    <p class="ver">說說島 v1.25.29</p>
   </section>
 </div>
 
