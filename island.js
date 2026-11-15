@@ -386,9 +386,41 @@ B.sp_alien=()=>{const sk='#8EE6A8',dk='#5FBF7F',suit='#6FA8F0',g=new T.Group();
  g.userData.parts={armL,armR,legL,legR,body,head,ph:Math.random()*6};
  g.userData.extra=(t,mv)=>{head.rotation.z=Math.sin(t*2)*.07;tips.forEach((m,i)=>{m.emissiveIntensity=.35+Math.max(0,Math.sin(t*4+i*1.6))*1.1});eye3.emissiveIntensity=.6+Math.sin(t*3)*.4;if(!mv){armR.rotation.z=-2.4+Math.sin(t*7)*.35;armR.rotation.x=0}};
  addWander(g,.22,.3);return g};
+B.sp_moonrabbit=()=>{const g=new T.Group(),fur='#FFFFFF',pk='#FFB0B8';
+ g.add(cyl(.34,.38,.06,'#C9CEE0',0,.03,0,16),cyl(.26,.3,.05,'#DDE1F0',0,.08,0,16));
+ [[.2,.08,.18,.07],[-.22,.07,.1,.05],[.1,.07,-.24,.06]].forEach(c=>g.add(ico(c[3],'#AEB4CC',c[0],c[1],c[2],0)));
+ const rb=new T.Group();rb.position.y=.1;
+ const body=sph(.17,fur,0,.2,0,1,1.05,1.1),tail=sph(.06,'#FFF3C4',0,.16,-.17),hd=new T.Group();hd.position.set(0,.43,.05);
+ hd.add(sph(.13,fur,0,0,0));
+ const ears=[-1,1].map(d=>{const e=G(sph(.045,fur,0,.14,0,.8,3,.6),sph(.025,pk,0,.14,.025,.8,2.6,.4));e.position.set(d*.06,.08,0);e.rotation.z=-d*.18;hd.add(e);return e});
+ [-1,1].forEach(d=>{hd.add(sph(.022,'#1B1B2A',d*.055,.02,.115,1,1.2,.6),sph(.007,'#FFFFFF',d*.05,.03,.133),sph(.025,pk,d*.095,-.03,.1,1,.7,.5))});
+ hd.add(sph(.02,pk,0,-.01,.13));
+ const sm=mesh(new T.TorusGeometry(.025,.006,5,10,3.1),'#B0614B',0,-.04,.125);sm.rotation.z=3.14;hd.add(sm);
+ const armL=G(cyl(.026,.03,.15,fur,0,-.06,0,6),sph(.03,fur,0,-.14,0)),armR=G(cyl(.026,.03,.15,fur,0,-.06,0,6),sph(.03,fur,0,-.14,0));
+ armL.position.set(-.13,.3,.06);armR.position.set(.13,.3,.06);armL.rotation.z=.3;armR.rotation.z=-.3;
+ const pes=new T.Group();pes.position.set(.2,.34,.2);pes.add(cyl(.018,.026,.28,'#B07A4B',0,0,0,6),sph(.06,'#8C5E36',0,.15,0,1,1.2,1),sph(.03,'#6B4526',0,.2,0,1,.6,1));pes.rotation.z=-.2;
+ const bowl=new T.Group();bowl.position.set(.24,.1,.26);bowl.add(cyl(.09,.06,.06,'#8C5E36',0,.03,0,10),cyl(.075,.075,.012,'#FFE9A8',0,.06,0,10));
+ rb.add(body,tail,hd,armL,armR);g.add(rb,bowl,pes);
+ const sm2=[],sg=new T.Group();for(let i=0;i<4;i++){const m=EM('#FFE680',1.2),d=ico(.026,m,0,0,0,0);sm2.push(m);sg.add(d)}g.add(sg);
+ g.userData.anim=t=>{const k=Math.max(0,Math.sin(t*3.2)),h=k*k;pes.position.y=.34-h*.1;pes.rotation.z=-.2-h*.35;armR.rotation.z=-.3-h*.5;armL.rotation.z=.3+h*.2;hd.rotation.x=h*.12;hd.rotation.z=Math.sin(t*1.1)*.05;ears.forEach((e,i)=>{e.rotation.x=Math.sin(t*2+i)*.08});rb.position.y=.1+Math.abs(Math.sin(t*1.6))*.012;
+  sg.children.forEach((d,i)=>{const p=((t*.5+i*.25)%1),a=i*1.57+t*.8;d.position.set(.24+Math.cos(a)*.1,.18+p*.4,.26+Math.sin(a)*.1);d.scale.setScalar(Math.sin(p*3.1416)*1.2+.05);d.rotation.set(t*2,t*3,0)});sm2.forEach((m,i)=>{m.emissiveIntensity=.7+Math.max(0,Math.sin(t*3+i*1.5))*.9})};return g};
+B.sp_ironcore=()=>{const g=new T.Group();
+ const met=(c,r)=>new T.MeshStandardMaterial({color:c,roughness:r,metalness:.85,flatShading:true});
+ g.add(cyl(.34,.38,.05,'#6E7385',0,.025,0,14));
+ const core=new T.Group();core.position.y=.5;
+ core.add(ico(.26,met('#8C93A6',.35),0,0,0,1),ico(.16,met('#B9C0D0',.25),.2,.12,.06,0),ico(.13,met('#6F7689',.45),-.2,-.06,.1,0),ico(.1,met('#A9B1C4',.3),.04,.22,-.14,0));
+ const vm=[],vp=[[.14,.1,.22],[-.12,.16,.2],[.02,-.12,.25],[-.2,-.04,-.12]];
+ vp.forEach(p=>{const m=EM('#FF8A3D',1),v=sph(.04,m,p[0],p[1],p[2],1,1,.5);vm.push(m);core.add(v)});
+ g.add(core);
+ [[.3,.07,.12,.08],[-.28,.06,.18,.06],[.18,.06,-.3,.07]].forEach(c=>g.add(ico(c[3],met('#7C8397',.4),c[0],c[1],c[2],0)));
+ const sh=new T.Mesh(new T.CylinderGeometry(.4,.4,.01,18),new T.MeshBasicMaterial({color:'#FFB070',transparent:true,opacity:.18,depthWrite:false}));sh.position.y=.012;sh.castShadow=false;g.add(sh);
+ const sp=[],sg=new T.Group();for(let i=0;i<5;i++){const m=EM('#FFD2A0',1.3),d=sph(.015,m,0,0,0);sp.push(m);sg.add(d)}g.add(sg);
+ g.userData.anim=t=>{core.position.y=.5+Math.sin(t*1.4)*.03;core.rotation.y=t*.5;core.rotation.x=Math.sin(t*.7)*.08;vm.forEach((m,i)=>{m.emissiveIntensity=.5+Math.max(0,Math.sin(t*2.4+i*1.3))*1.3});sh.material.opacity=.14+Math.sin(t*2)*.05;
+  sg.children.forEach((d,i)=>{const p=((t*.35+i*.2)%1),a=i*1.256+t*.6;d.position.set(Math.cos(a)*(.3+p*.1),.3+p*.6,Math.sin(a)*(.3+p*.1));d.scale.setScalar(Math.sin(p*3.1416)*1.4+.05)})};return g};
 CAT.push({id:'fac_airport',n:'機場',c:'交通',p:0,e:'✈️',s:2,np:1},{id:'fac_pier',n:'郵輪碼頭',c:'交通',p:0,e:'🚢',np:1},{id:'fac_rocket',n:'火箭發射台',c:'交通',p:0,e:'🚀',np:1},
  {id:'sp_crystal',n:'紫水晶',c:'神祕',p:0,r:2,e:'💎',np:1},{id:'sp_meteor',n:'隕石',c:'神祕',p:0,r:2,e:'☄️',np:1},{id:'sp_glowtree',n:'發光樹',c:'神祕',p:0,r:2,e:'🌳',np:1},
- {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1});
+ {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1},
+ {id:'sp_moonrabbit',n:'月兔',c:'神祕',p:0,r:3,e:'🐇',np:1},{id:'sp_ironcore',n:'鐵核礦石',c:'神祕',p:0,r:3,e:'🪨',np:1});
 
 /* ---------- v1.11 捏臉角色「我」（造型讀 window.__MII）---------- */
 /* 捏臉的臉（眼、眉、嘴、腮紅、臉飾）：index.html 把 SVG 字串放在 window.__MII_FACE，這裡轉成貼圖，貼在小人頭前面（圓柱弧面，跟著身體轉） */
