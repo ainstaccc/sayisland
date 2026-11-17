@@ -963,6 +963,13 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 #v-grp p.muted:empty{display:none}
 #v-grp #gLeave{border-style:dashed;box-shadow:none;background:transparent}
 #v-grp #gLeave:active{transform:translateY(2px)}
+/* v1.25.34 主題 6：詞卡冊分類標題改 SVG(.secn/.secic)、好友團邀請碼佔位字對比 */
+.sec:has(.secn){align-items:center}
+.sec .secn{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.sec .secic{display:inline-flex;width:28px;height:28px;flex:none}
+.sec .secic svg{width:100%;height:100%}
+.sec small{white-space:nowrap}
+#gCode::placeholder{color:var(--ink2);opacity:1;letter-spacing:2px}
 </style>
 
 <div class="wrap" id="app">
@@ -992,7 +999,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.33</p>
+    <p class="ver">說說島 v1.25.34</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1022,7 +1029,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.33</p>
+    <p class="ver">說說島 v1.25.34</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1187,7 +1194,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.33</p>
+    <p class="ver">說說島 v1.25.34</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1243,7 +1250,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.33</p>
+    <p class="ver">說說島 v1.25.34</p>
   </section>
 </div>
 
@@ -3441,7 +3448,7 @@ function renderDeck(){
   const parts=[];
   ['q','v','a','cy','pw'].forEach(k=>{
     const pool=D[k],got=pool.filter(learned);
-    parts.push(`<div class="sec">${CATS[k].ic} ${CATS[k].n}<small>${got.length}/${pool.length}</small></div>`+(got.length?`<div class="deck">${got.map(x=>`<button class="wc" data-say="${esc(qFull(x))}"><span class="e">${x.e}</span><b>${x.ans}</b><small>${esc(qFull(x))}</small></button>`).join('')}</div>`:'<p class="muted">還沒有，去玩玩看。</p>'));
+    parts.push(`<div class="sec"><span class="secn"><span class="secic">${cic(k)}</span>${CATS[k].n}</span><small>${got.length}/${pool.length}</small></div>`+(got.length?`<div class="deck">${got.map(x=>`<button class="wc" data-say="${esc(qFull(x))}"><span class="e">${x.e}</span><b>${x.ans}</b><small>${esc(qFull(x))}</small></button>`).join('')}</div>`:'<p class="muted">還沒有，去玩玩看。</p>'));
   });
   const sents=[];
   D.e.filter(learned).forEach(x=>sents.push([x.e,sentenceOf(x)+'。']));
@@ -3449,7 +3456,7 @@ function renderDeck(){
   D.sj.filter(learned).forEach(x=>{if(x.k==='o')sents.push([x.e,x.sent]);else if(x.k==='s')sents.push([x.e,x.t.replace('＿＿',x.right)+'。'])});
   D.m.filter(learned).forEach(x=>sents.push([x.e,`因為${x.c}，所以${x.f}。`]));
   S.said.slice(-10).reverse().forEach(x=>sents.push(['🗣️',x.t]));
-  parts.push(`<div class="sec">📝 我的句子<small>${sents.length} 句</small></div>`+(sents.length?sents.map(s=>`<button class="srow" data-say="${esc(s[1])}"><b>${s[0]}</b><span>${chunks(s[1])}</span><b>🔊</b></button>`).join(''):'<p class="muted">玩過擴句、因果配對、看圖說話，句子就會收進來。</p>'));
+  parts.push(`<div class="sec"><span class="secn"><span class="secic">${ic('talk')}</span>我的句子</span><small>${sents.length} 句</small></div>`+(sents.length?sents.map(s=>`<button class="srow" data-say="${esc(s[1])}"><b>${s[0]}</b><span>${chunks(s[1])}</span><b>🔊</b></button>`).join(''):'<p class="muted">玩過擴句、因果配對、看圖說話，句子就會收進來。</p>'));
   $('#deckBody').innerHTML=parts.join('');
 }
 $('#deckBody').addEventListener('click',e=>{const b=e.target.closest('[data-say]');if(b)say(b.dataset.say)});
