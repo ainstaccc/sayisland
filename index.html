@@ -983,6 +983,17 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .node small{background:linear-gradient(90deg,color-mix(in srgb,var(--c) 40%,#2B1D4D) var(--p,0%),rgba(43,29,77,.85) var(--p,0%))}:root:not([data-theme="light"]) .node.ok small{background:rgba(24,70,56,.9);color:#B8F5D8}}
 .node .orb::after{content:"";position:absolute;left:14%;top:10%;width:30%;height:16%;border-radius:50%;background:rgba(255,255,255,.55);transform:rotate(-28deg);pointer-events:none}
 .node.ok .orb::after{background:rgba(255,255,255,.75)}
+/* v1.25.38 主題 1 遊戲畫面：①回饋卡 .fb 依對錯加粗色邊＋底部立體陰影、標題字上色 ②答對選項外圈脈動光環 ③步驟小圓點 .dots 完成態加陰影＋彈出 ④情境句 .scene 左側色條 ⑤prefers-reduced-motion 關閉新動畫 */
+.fb.good{border-color:var(--ok);box-shadow:0 4px 0 color-mix(in srgb,var(--ok) 45%,transparent)}
+.fb.bad{border-color:var(--ng);box-shadow:0 4px 0 color-mix(in srgb,var(--ng) 45%,transparent)}
+.fb.good>b:first-child{color:#0B6E48}.fb.bad>b:first-child{color:#B3203F}
+:root[data-theme="dark"] .fb.good>b:first-child{color:var(--ok)}:root[data-theme="dark"] .fb.bad>b:first-child{color:var(--ng)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .fb.good>b:first-child{color:var(--ok)}:root:not([data-theme="light"]) .fb.bad>b:first-child{color:var(--ng)}}
+.opt.good{animation:pop .4s,okring .9s .3s ease-out 1}
+@keyframes okring{0%{box-shadow:0 6px 0 #2FB27C,0 0 0 0 rgba(47,178,124,.55)}100%{box-shadow:0 6px 0 #2FB27C,0 0 0 16px rgba(47,178,124,0)}}
+.dots i.on{box-shadow:0 3px 0 color-mix(in srgb,var(--sun) 60%,#000);animation:pop .35s both}
+.scene{border-left:6px solid var(--c4)}
+@media (prefers-reduced-motion:reduce){.opt.good{animation:none}.dots i.on{animation:none}}
 </style>
 
 <div class="wrap" id="app">
@@ -1012,7 +1023,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.37</p>
+    <p class="ver">說說島 v1.25.38</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1042,7 +1053,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.37</p>
+    <p class="ver">說說島 v1.25.38</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1207,7 +1218,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.37</p>
+    <p class="ver">說說島 v1.25.38</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1263,7 +1274,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.37</p>
+    <p class="ver">說說島 v1.25.38</p>
   </section>
 </div>
 
