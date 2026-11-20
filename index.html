@@ -548,7 +548,7 @@ body.ingame .mline{padding:6px 10px;font-size:18px;min-height:0}body.ingame #v-m
 .bdg span.off em{color:var(--ink2,var(--ink));opacity:.85;background:none}
 /* v1.7.4 結果頁／週挑戰／徽章 */
 .res{position:relative;overflow:hidden}
-.res::before{content:"";position:absolute;left:50%;top:-40px;width:340px;height:340px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,216,77,.38),transparent 62%);pointer-events:none;z-index:0}
+.res::before{content:"";z-index:-1;position:absolute;left:50%;top:-40px;width:340px;height:340px;transform:translateX(-50%);background:radial-gradient(circle,rgba(255,216,77,.38),transparent 62%);pointer-events:none;z-index:0}
 .res>*{position:relative;z-index:1}
 .res h2{font-size:30px;white-space:nowrap}
 .stars{gap:10px;font-size:64px}
@@ -994,6 +994,20 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .dots i.on{box-shadow:0 3px 0 color-mix(in srgb,var(--sun) 60%,#000);animation:pop .35s both}
 .scene{border-left:6px solid var(--c4)}
 @media (prefers-reduced-motion:reduce){.opt.good{animation:none}.dots i.on{animation:none}}
+/* v1.25.40 主題 2 結果頁／徽章／週挑戰：①結果頁卡片頂端加彩紙小點（純 CSS、緩慢飄動）②獎勵列圖示放進圓形底座，依類型（寶箱／徽章／星星）換色並加左側色條 ③結果說明句 #rline 加大加深（20px、固定色）④週挑戰進度條加粗到 18px 並加白色高光線 ⑤prefers-reduced-motion 關閉新動畫 */
+.res::before{content:"";position:absolute;left:0;right:0;top:0;height:86px;pointer-events:none;background:radial-gradient(circle 5px at 12% 28%,#FF7AA8 98%,transparent),radial-gradient(circle 4px at 26% 66%,#5CC8FF 98%,transparent),radial-gradient(circle 5px at 41% 22%,#FFC83D 98%,transparent),radial-gradient(circle 4px at 58% 70%,#8E6BFF 98%,transparent),radial-gradient(circle 5px at 73% 26%,#4CCB8A 98%,transparent),radial-gradient(circle 4px at 88% 62%,#FF9F43 98%,transparent);animation:cfdrift 4s ease-in-out infinite alternate}
+.res{isolation:isolate}
+@keyframes cfdrift{from{transform:translateY(-4px)}to{transform:translateY(6px)}}
+#rline{font:800 20px/1.35 var(--f-disp);color:#3B2A5A;background:#FFF1B8;border-radius:999px;padding:6px 18px;max-width:100%;box-sizing:border-box;text-wrap:balance}
+:root[data-theme="dark"] #rline{background:#FFF1B8;color:#3B2A5A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #rline{background:#FFF1B8;color:#3B2A5A}}
+.bonus .bm{border-left:6px solid #FFC83D}
+.bonus .bm.k-g{border-left-color:#FF9F43}.bonus .bm.k-m{border-left-color:#8E6BFF}
+.bonus .bm>.sv{box-sizing:content-box;width:26px;height:26px;padding:5px;border-radius:50%;background:#FFE680;box-shadow:inset 0 -3px 0 rgba(217,154,0,.35)}
+.bonus .bm.k-g>.sv{background:#FFD3A1}.bonus .bm.k-m>.sv{background:#DCCFFF}
+.wkbar{height:18px}
+.wkbar>span::after{content:"";position:absolute;left:8px;right:8px;top:3px;height:4px;border-radius:99px;background:rgba(255,255,255,.55)}
+@media (prefers-reduced-motion:reduce){.res::before{animation:none}}
 </style>
 
 <div class="wrap" id="app">
@@ -1023,7 +1037,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.39</p>
+    <p class="ver">說說島 v1.25.40</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1053,7 +1067,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.39</p>
+    <p class="ver">說說島 v1.25.40</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1218,7 +1232,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.39</p>
+    <p class="ver">說說島 v1.25.40</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1274,7 +1288,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.39</p>
+    <p class="ver">說說島 v1.25.40</p>
   </section>
 </div>
 
@@ -3602,7 +3616,7 @@ function finish({title,acc,line,cat,lid}){
   $('#rtitle').textContent=title;
   $('#rstars').innerHTML=got?[0,1,2].map(i=>`<span class="${i<got?'':'off'}">${ICO.star}</span>`).join(''):`<span>${ICO.bolt}</span>`;
   $('#rline').textContent=line+(got?'，拿到 '+got+' 顆星':'，練習已記錄');
-  const b=$('#rbonus');b.hidden=!msgs.length;b.innerHTML=msgs.map(m=>`<div class="bm">${ic(/寶箱|週/.test(m)?'gift':/徽章/.test(m)?'medal':'star')}<span>${nbk(eh(m.replace(/[\u{1F300}-\u{1FAFF}\u2B50\uFE0F]/gu,'').trim()))}</span></div>`).join('');
+  const b=$('#rbonus');b.hidden=!msgs.length;b.innerHTML=msgs.map(m=>`<div class="bm ${/寶箱|週/.test(m)?'k-g':/徽章/.test(m)?'k-m':'k-s'}">${ic(/寶箱|週/.test(m)?'gift':/徽章/.test(m)?'medal':'star')}<span>${nbk(eh(m.replace(/[\u{1F300}-\u{1FAFF}\u2B50\uFE0F]/gu,'').trim()))}</span></div>`).join('');
   show('res');sfx.win();
 }
 $('#again').onclick=()=>lastGame&&lastGame();
