@@ -1023,7 +1023,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.38</p>
+    <p class="ver">說說島 v1.25.39</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1053,7 +1053,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.38</p>
+    <p class="ver">說說島 v1.25.39</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1218,7 +1218,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.38</p>
+    <p class="ver">說說島 v1.25.39</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1274,7 +1274,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.38</p>
+    <p class="ver">說說島 v1.25.39</p>
   </section>
 </div>
 
@@ -1578,17 +1578,48 @@ try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}ca
 /* 存檔碼：ZZ2:（壓縮）或 ZZ1:（純文字），也接受舊版 JSON */
 const b64e=u8=>{let s='';u8.forEach(c=>s+=String.fromCharCode(c));return btoa(s)};
 const b64d=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
+/* 純 JS 解壓縮（gzip/deflate），不依賴瀏覽器 DecompressionStream；iOS 上串流解壓偶爾會失敗時當備援 */
+function zzInflate(src){
+  let sp=0,bb=0,bc=0,out=new Uint8Array(Math.max(1024,src.length*6)),op=0;
+  const need=n=>{if(op+n>out.length){const o=new Uint8Array(Math.max(out.length*2,op+n));o.set(out);out=o}};
+  const bits=n=>{while(bc<n){if(sp>=src.length)throw new Error('eof');bb|=src[sp++]<<bc;bc+=8}const v=bb&((1<<n)-1);bb>>>=n;bc-=n;return v};
+  const mk=l=>{const cnt=new Uint16Array(16),off=new Uint16Array(16),sym=new Uint16Array(l.length);
+    l.forEach(x=>cnt[x]++);cnt[0]=0;for(let i=1;i<16;i++)off[i]=off[i-1]+cnt[i-1];
+    l.forEach((x,i)=>{if(x)sym[off[x]++]=i});return{cnt,sym}};
+  const dec=h=>{let code=0,first=0,idx=0;for(let len=1;len<16;len++){code|=bits(1);const c=h.cnt[len];if(code-c<first)return h.sym[idx+(code-first)];idx+=c;first+=c;first<<=1;code<<=1}throw new Error('bad code')};
+  const LB=[3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258],LE=[0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0];
+  const DB_=[1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577],DE=[0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13];
+  let fl,fd;{const l=new Uint8Array(288);for(let i=0;i<288;i++)l[i]=i<144?8:i<256?9:i<280?7:8;fl=mk(l);fd=mk(new Uint8Array(30).fill(5))}
+  const codes=(hl,hd)=>{for(;;){let s=dec(hl);if(s<256){need(1);out[op++]=s}else if(s===256)return;else{s-=257;const len=LB[s]+bits(LE[s]),d=dec(hd),dist=DB_[d]+bits(DE[d]);if(dist>op)throw new Error('bad dist');need(len);for(let i=0;i<len;i++){out[op]=out[op-dist];op++}}}};
+  let last;do{last=bits(1);const t=bits(2);
+    if(t===0){bb=0;bc=0;const n=src[sp]|src[sp+1]<<8;sp+=4;need(n);out.set(src.subarray(sp,sp+n),op);op+=n;sp+=n}
+    else if(t===1)codes(fl,fd);
+    else if(t===2){const nl=bits(5)+257,nd=bits(5)+1,nc=bits(4)+4,ord=[16,17,18,0,8,7,9,6,10,5,11,4,12,3,13,2,14,1,15],l=new Uint8Array(19);
+      for(let i=0;i<nc;i++)l[ord[i]]=bits(3);const hc=mk(l),ls=new Uint8Array(nl+nd);
+      for(let i=0;i<nl+nd;){const s=dec(hc);if(s<16)ls[i++]=s;else{let p=0,r;if(s===16){p=ls[i-1];r=3+bits(2)}else if(s===17)r=3+bits(3);else r=11+bits(7);while(r--)ls[i++]=p}}
+      codes(mk(ls.subarray(0,nl)),mk(ls.subarray(nl)))}
+    else throw new Error('bad block')}while(!last);
+  return out.subarray(0,op)}
+function zzGunzip(u8){if(u8[0]!==0x1f||u8[1]!==0x8b)throw new Error('not gzip');const f=u8[3];let p=10;
+  if(f&4)p+=2+(u8[p]|u8[p+1]<<8);if(f&8){while(u8[p++]);}if(f&16){while(u8[p++]);}if(f&2)p+=2;return zzInflate(u8.subarray(p))}
+async function zzStreamGunzip(u8){const ds=new Blob([u8]).stream().pipeThrough(new DecompressionStream('gzip'));return new Uint8Array(await new Response(ds).arrayBuffer())}
+async function zzGunzipAny(u8){
+  if(window.DecompressionStream){try{return await zzStreamGunzip(u8)}catch(e){}}
+  return zzGunzip(u8)}                       /* 瀏覽器解不開就改用自己的解壓縮 */
 async function makeCode(){
   const json=JSON.stringify(DB),u8=new TextEncoder().encode(json);
-  /* 相容性優先：資料不大就用純文字碼（任何手機都能讀）；很大才壓縮 */
   if(u8.length<24000)return 'ZZ1:'+b64e(u8);
-  try{if(window.CompressionStream&&window.DecompressionStream){const cs=new Blob([u8]).stream().pipeThrough(new CompressionStream('gzip'));return 'ZZ2:'+b64e(new Uint8Array(await new Response(cs).arrayBuffer()))}}catch(e){}
+  try{if(window.CompressionStream){
+    const cs=new Blob([u8]).stream().pipeThrough(new CompressionStream('gzip'));
+    const gz=new Uint8Array(await new Response(cs).arrayBuffer());
+    const back=await zzGunzipAny(gz);                        /* 產生後立刻自己解開比對，對不上就不用壓縮版 */
+    if(back.length===u8.length&&back.every((v,i)=>v===u8[i]))return 'ZZ2:'+b64e(gz);
+  }}catch(e){}
   return 'ZZ1:'+b64e(u8);
 }
-/* 讀存檔碼：容忍換行／空白／全形冒號／前後多餘文字／漏掉開頭，也接受舊版 JSON */
 async function readCode(t){
-  t=(t||'').normalize('NFKC').replace(/[\u200B-\u200D\uFEFF]/g,'').trim();
-  let json=null,why='';
+  t=(t||'').normalize('NFKC').replace(/[​-‍﻿]/g,'').trim();
+  let json=null;
   const mj=t.indexOf('{');
   if(mj>=0&&t.slice(mj).trim().endsWith('}')&&!/ZZ[12]:/.test(t)){try{json=JSON.parse(t.slice(mj))}catch(e){}}
   if(!json){
@@ -1598,13 +1629,11 @@ async function readCode(t){
     body=body.replace(/[^A-Za-z0-9+\/=_-]/g,'').replace(/-/g,'+').replace(/_/g,'/');
     if(!kind)kind=body.startsWith('H4sI')?'2':'1';
     while(body.length%4)body+='=';
-    try{
-      if(kind==='2'){
-        if(!window.DecompressionStream){why='這個瀏覽器不支援解壓縮，請改用較新的手機或瀏覽器複製存檔碼。';throw 0}
-        const ds=new Blob([b64d(body)]).stream().pipeThrough(new DecompressionStream('gzip'));
-        json=JSON.parse(new TextDecoder().decode(await new Response(ds).arrayBuffer()));
-      }else json=JSON.parse(new TextDecoder().decode(b64d(body)));
-    }catch(e){const er=new Error(why||'存檔碼不完整（已讀到 '+body.length+' 個字元），請回到備忘錄重新全選複製。');er.msg=er.message;throw er}
+    const fail=(why,e)=>{const er=new Error(why+'（已讀到 '+body.length+' 個字元'+(e&&e.message?'；'+String(e.message).slice(0,40):'')+'）');er.msg=er.message;return er};
+    let raw;try{raw=b64d(body)}catch(e){throw fail('存檔碼少了一段或有多餘字元，請回到備忘錄重新全選複製',e)}
+    let bytes=raw;
+    if(kind==='2'){try{bytes=await zzGunzipAny(raw)}catch(e){throw fail('存檔碼解壓縮失敗，可能沒有完整複製',e)}}
+    try{json=JSON.parse(new TextDecoder().decode(bytes))}catch(e){throw fail('存檔碼內容讀不出來，可能沒有完整複製',e)}
   }
   if(!json||typeof json.profiles!=='object'||!Object.keys(json.profiles).length){const er=new Error('這不是說說島的存檔碼。');er.msg=er.message;throw er}
   return json;
