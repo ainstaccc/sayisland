@@ -1008,6 +1008,14 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
 .wkbar{height:18px}
 .wkbar>span::after{content:"";position:absolute;left:8px;right:8px;top:3px;height:4px;border-radius:99px;background:rgba(255,255,255,.55)}
 @media (prefers-reduced-motion:reduce){.res::before{animation:none}}
+/* v1.25.42 主題 3 我的島 UI（補 v1.25.31 沒做到的）：①盲盒列 .bx 加立體底影、幸運盒金色底影 ②圖鑑未收集格 .dx.off 改虛線框 ③面板標題列 .sh-h 加點線分隔 ④開箱卡 .rv-e 加柔光脈動 ⑤prefers-reduced-motion 關閉新動畫 */
+.bx{box-shadow:0 4px 0 var(--line)}
+.bx.lucky{box-shadow:0 4px 0 #D99A00}
+.dx.off{border-style:dashed}
+.sh-h{padding-bottom:8px;border-bottom:3px dotted var(--line)}
+.rv-card .rv-e{filter:drop-shadow(0 0 14px rgba(255,200,61,.75));animation:rvglow 1.6s ease-in-out infinite alternate}
+@keyframes rvglow{from{filter:drop-shadow(0 0 8px rgba(255,200,61,.45))}to{filter:drop-shadow(0 0 20px rgba(255,200,61,.95))}}
+@media (prefers-reduced-motion:reduce){.rv-card .rv-e{animation:none}}
 </style>
 
 <div class="wrap" id="app">
@@ -1037,7 +1045,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.41</p>
+    <p class="ver">說說島 v1.25.42</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1067,7 +1075,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.41</p>
+    <p class="ver">說說島 v1.25.42</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1232,7 +1240,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.41</p>
+    <p class="ver">說說島 v1.25.42</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1288,7 +1296,7 @@ body.ingame .qcard.hq .tagrow{align-self:flex-start}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.41</p>
+    <p class="ver">說說島 v1.25.42</p>
   </section>
 </div>
 
