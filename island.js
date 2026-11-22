@@ -417,10 +417,26 @@ B.sp_ironcore=()=>{const g=new T.Group();
  const sp=[],sg=new T.Group();for(let i=0;i<5;i++){const m=EM('#FFD2A0',1.3),d=sph(.015,m,0,0,0);sp.push(m);sg.add(d)}g.add(sg);
  g.userData.anim=t=>{core.position.y=.5+Math.sin(t*1.4)*.03;core.rotation.y=t*.5;core.rotation.x=Math.sin(t*.7)*.08;vm.forEach((m,i)=>{m.emissiveIntensity=.5+Math.max(0,Math.sin(t*2.4+i*1.3))*1.3});sh.material.opacity=.14+Math.sin(t*2)*.05;
   sg.children.forEach((d,i)=>{const p=((t*.35+i*.2)%1),a=i*1.256+t*.6;d.position.set(Math.cos(a)*(.3+p*.1),.3+p*.6,Math.sin(a)*(.3+p*.1));d.scale.setScalar(Math.sin(p*3.1416)*1.4+.05)})};return g};
+B.sp_sulfurcloud=()=>{const g=new T.Group();
+ const rk=new T.Group();
+ rk.add(cyl(.36,.4,.05,'#8A6B2A',0,.025,0,14),ico(.13,'#C9A227',.2,.08,.1,0),ico(.1,'#B58F1E',-.22,.07,.06,0),ico(.08,'#D8B43A',.04,.06,-.26,0));
+ [[.2,.14,.1],[-.22,.12,.06],[.04,.1,-.26]].forEach(c=>rk.add(sph(.03,'#F4E27A',c[0],c[1],c[2],1,.5,1)));
+ g.add(rk);
+ const cl=new T.Group(),ms=[],mk=(r,x,y,z,c,e)=>{const m=EM(c,e);ms.push(m);const b=sph(r,m,x,y,z,1,.78,.95);cl.add(b);return b};
+ mk(.22,0,0,0,'#FFE066',.5);mk(.16,.2,-.03,.04,'#FFD23F',.45);mk(.17,-.2,-.02,-.02,'#FFD23F',.45);mk(.13,.08,.1,.14,'#FFF0A0',.55);mk(.12,-.07,.07,-.15,'#FFF0A0',.55);mk(.1,.0,.12,-.02,'#FFF8C8',.6);
+ [-1,1].forEach(d=>{cl.add(sph(.022,'#3B2A5A',d*.075,.0,.2,1,1.2,.5),sph(.007,'#FFFFFF',d*.068,.012,.215),sph(.03,'#FFB070',d*.14,-.045,.17,1,.7,.5))});
+ const sm=mesh(new T.TorusGeometry(.04,.008,5,10,3.1),'#B0614B',0,-.04,.215);sm.rotation.z=3.14;cl.add(sm);
+ cl.position.y=.62;g.add(cl);
+ const wp=[],wg=new T.Group();for(let i=0;i<6;i++){const m=new T.MeshBasicMaterial({color:'#FFF3A0',transparent:true,opacity:.3,depthWrite:false});const d=new T.Mesh(new T.SphereGeometry(.07,8,6),m);d.castShadow=false;wp.push(m);wg.add(d)}g.add(wg);
+ const sp=[],sg=new T.Group();for(let i=0;i<4;i++){const m=EM('#FFF3A0',1.3),d=ico(.024,m,0,0,0,0);sp.push(m);sg.add(d)}g.add(sg);
+ const ring=new T.Mesh(new T.CylinderGeometry(.4,.4,.01,18),new T.MeshBasicMaterial({color:'#FFE680',transparent:true,opacity:.18,depthWrite:false}));ring.position.y=.012;ring.castShadow=false;g.add(ring);
+ g.userData.anim=t=>{cl.position.y=.62+Math.sin(t*1.3)*.06;cl.position.x=Math.sin(t*.7)*.05;const s=1+Math.sin(t*1.8)*.05;cl.scale.set(s,2-s,s);cl.rotation.y=Math.sin(t*.8)*.25;ms.forEach((m,i)=>{m.emissiveIntensity=.45+Math.max(0,Math.sin(t*2+i*.9))*.35});
+  wg.children.forEach((d,i)=>{const p=((t*.22+i*.17)%1),a=i*1.047+t*.35;d.position.set(Math.cos(a)*(.2+p*.22),.78+p*.55,Math.sin(a)*(.2+p*.22));d.scale.setScalar(.5+p*1.1);wp[i].opacity=.32*(1-p)});
+  sg.children.forEach((d,i)=>{const a=t*1.1+i*1.571;d.position.set(Math.cos(a)*.44,.55+Math.sin(t*2+i*1.7)*.1,Math.sin(a)*.44);d.rotation.set(t*2,t*3,0)});sp.forEach((m,i)=>{m.emissiveIntensity=.7+Math.max(0,Math.sin(t*3+i*1.5))*1.0});ring.material.opacity=.15+Math.sin(t*2)*.05};return g};
 CAT.push({id:'fac_airport',n:'機場',c:'交通',p:0,e:'✈️',s:2,np:1},{id:'fac_pier',n:'郵輪碼頭',c:'交通',p:0,e:'🚢',np:1},{id:'fac_rocket',n:'火箭發射台',c:'交通',p:0,e:'🚀',np:1},
  {id:'sp_crystal',n:'紫水晶',c:'神祕',p:0,r:2,e:'💎',np:1},{id:'sp_meteor',n:'隕石',c:'神祕',p:0,r:2,e:'☄️',np:1},{id:'sp_glowtree',n:'發光樹',c:'神祕',p:0,r:2,e:'🌳',np:1},
  {id:'sp_moon',n:'小月亮',c:'神祕',p:0,r:3,e:'🌙',np:1},{id:'sp_ufo',n:'飛碟',c:'神祕',p:0,r:3,e:'🛸',np:1},{id:'sp_alien',n:'外星朋友',c:'神祕',p:0,r:3,e:'👽',np:1,ch:1},
- {id:'sp_moonrabbit',n:'月兔',c:'神祕',p:0,r:3,e:'🐇',np:1},{id:'sp_ironcore',n:'鐵核礦石',c:'神祕',p:0,r:3,e:'🪨',np:1});
+ {id:'sp_moonrabbit',n:'月兔',c:'神祕',p:0,r:3,e:'🐇',np:1},{id:'sp_ironcore',n:'鐵核礦石',c:'神祕',p:0,r:3,e:'🪨',np:1},{id:'sp_sulfurcloud',n:'硫磺雲',c:'神祕',p:0,r:3,e:'☁️',np:1});
 
 /* ---------- v1.11 捏臉角色「我」（造型讀 window.__MII）---------- */
 /* 捏臉的臉（眼、眉、嘴、腮紅、臉飾）：index.html 把 SVG 字串放在 window.__MII_FACE，這裡轉成貼圖，貼在小人頭前面（圓柱弧面，跟著身體轉） */
