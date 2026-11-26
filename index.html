@@ -1041,6 +1041,16 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
 .wk .wd i{min-height:34px;display:inline-flex;align-items:center;justify-content:center}
 .ver{letter-spacing:.5px;padding:6px 0 10px}
 @media (prefers-reduced-motion:reduce){.brand .bl{animation:none}}
+/* v1.25.49 遊戲畫面小優化 */
+.opts .opt{position:relative}
+.opts .opt.good::after{content:"";position:absolute;right:-6px;top:-9px;width:24px;height:24px;border-radius:50%;background:#2FB27C url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat;box-shadow:0 2px 0 rgba(0,0,0,.15);pointer-events:none}
+.opts .opt.bad::after{content:"";position:absolute;right:-6px;top:-9px;width:24px;height:24px;border-radius:50%;background:#E8456B url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7l10 10M17 7L7 17' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E") center/16px no-repeat;box-shadow:0 2px 0 rgba(0,0,0,.15);pointer-events:none}
+.fb.good{border-left:8px solid #2FB27C}
+.fb.bad{border-left:8px solid #E8456B}
+.qcard{position:relative}
+.bar{box-shadow:inset 0 2px 0 rgba(0,0,0,.08)}
+.bar i{box-shadow:inset 0 -3px 0 rgba(0,0,0,.12)}
+@media (prefers-reduced-motion:reduce){.opt.bad,.fbk.bad,.fw.bad{animation:none}.qe{animation:none}}
 </style>
 
 <div class="wrap" id="app">
@@ -1070,7 +1080,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
       <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.48</p>
+    <p class="ver">說說島 v1.25.49</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1100,7 +1110,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.48</p>
+    <p class="ver">說說島 v1.25.49</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1265,7 +1275,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.48</p>
+    <p class="ver">說說島 v1.25.49</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1321,7 +1331,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.48</p>
+    <p class="ver">說說島 v1.25.49</p>
   </section>
 </div>
 
