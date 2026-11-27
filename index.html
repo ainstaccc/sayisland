@@ -1079,8 +1079,8 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
     </div>
     <div class="fbrow" style="justify-content:center"><button class="btn alt" id="wAdd">＋ 新增小朋友</button></div>
     <div class="panel" id="wRest"><button class="btn alt sm" id="wRestBtn"><i data-i="link"></i>有舊紀錄？用存檔碼找回</button>
-      <div id="wRestBox" hidden><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
-    <p class="ver">說說島 v1.25.50</p>
+      <div id="wRestBox" hidden><p class="muted">存檔碼要完整：開頭是 ZZ2: 或 ZZ1:，結尾是 |END|。</p><textarea class="ta" id="wRestT" placeholder="把存檔碼貼在這裡" aria-label="存檔碼"></textarea><div class="fbrow"><button class="btn sm" id="wRestGo">找回進度</button></div><div class="hint" id="wRestM"></div></div></div>
+    <p class="ver">說說島 v1.25.51</p>
   </section>
 
   <section id="v-mii" class="wrap" hidden>
@@ -1110,7 +1110,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
     <div class="wk" id="wkc"></div>
     <div class="row2"><button class="btn alt sm" id="toDeck"><i data-i="book"></i><span>我的詞卡冊</span></button><button class="btn alt sm" id="toParent"><i data-i="gear"></i><span>家長區</span></button></div>
     <button class="btn alt sm" id="toSave" style="width:100%"><span>💾 存檔碼（備份／找回）</span></button>
-    <p class="ver">說說島 v1.25.50</p>
+    <p class="ver">說說島 v1.25.51</p>
   </section>
 
   <!-- 選擇題 -->
@@ -1275,7 +1275,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">好友團</h2></div>
     <button class="islbtn" id="toIslG"><i data-i="island"></i><span>我的島</span></button>
     <div id="grpBody"></div>
-    <p class="ver">說說島 v1.25.50</p>
+    <p class="ver">說說島 v1.25.51</p>
   </section>
   <section id="v-parent" class="wrap" hidden>
     <div class="bar2"><button class="ibtn" data-home aria-label="回首頁">✕</button><h2 style="font-size:26px">家長區</h2></div>
@@ -1295,7 +1295,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
       <label class="muted">次數上限<select id="evcap" aria-label="每天次數上限"></select></label>
       <div class="fbrow"><button class="btn" id="evsave">儲存並開始</button><button class="btn alt sm" id="evstop">停止活動</button></div>
       <div class="hint" id="evmsg"></div></div>
-    <div class="panel"><h3>備份與還原</h3><p class="muted" id="pstore" style="font-weight:700">存檔檢查中…</p><p class="muted">進度只存在這個瀏覽器，換手機或清除資料會不見。按「複製備份」把文字存到備忘錄；要還原時貼回下面再按「還原」（會取代目前所有小朋友的資料）。</p>
+    <div class="panel"><h3>備份與還原</h3><p class="muted" id="pstore" style="font-weight:700">存檔檢查中…</p><p class="muted">進度只存在這個瀏覽器，換手機或清除資料會不見。按「複製備份」把文字存到備忘錄（開頭是 ZZ2: 或 ZZ1:，結尾是 |END|，才是完整的）；要還原時貼回下面再按「還原」（會取代目前所有小朋友的資料）。</p>
       <div class="fbrow"><button class="btn alt sm" id="pbk">複製備份</button></div>
       <textarea class="rep" id="pbkt" placeholder="還原時把備份文字貼在這裡" aria-label="備份文字"></textarea>
       <div class="fbrow"><button class="btn alt sm" id="pre">還原</button></div><p class="muted" id="pbkm"></p></div>
@@ -1331,7 +1331,7 @@ input::placeholder,textarea::placeholder{color:var(--ink2);opacity:.85}
       <p class="muted">資料只存在這支手機（這個瀏覽器）裡，每位小朋友各一份，不會互相影響。換手機或清除瀏覽器資料就會不見。</p></div>
   
     </div>
-    <p class="ver">說說島 v1.25.50</p>
+    <p class="ver">說說島 v1.25.51</p>
   </section>
 </div>
 
@@ -1632,7 +1632,7 @@ async function idbSet(v){try{const d=await idbOpen();d.transaction('kv','readwri
 async function idbGet(){try{const d=await idbOpen();return await new Promise(r=>{const q=d.transaction('kv').objectStore('kv').get('db');q.onsuccess=()=>r(q.result||null);q.onerror=()=>r(null)})}catch(e){return null}}
 const save=()=>{const t=JSON.stringify(DB);try{localStorage.setItem(KEY,t);STORE_OK=localStorage.getItem(KEY)===t}catch(e){STORE_OK=false}idbSet(t)};
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
-/* 存檔碼：ZZ2:（壓縮）或 ZZ1:（純文字），也接受舊版 JSON */
+/* 存檔碼：ZZ2:（壓縮）或 ZZ1:（純文字），結尾 |END|（舊版沒有結尾也能讀），也接受舊版 JSON */
 const b64e=u8=>{let s='';u8.forEach(c=>s+=String.fromCharCode(c));return btoa(s)};
 const b64d=t=>Uint8Array.from(atob(t),c=>c.charCodeAt(0));
 /* 純 JS 解壓縮（gzip/deflate），不依賴瀏覽器 DecompressionStream；iOS 上串流解壓偶爾會失敗時當備援 */
@@ -1663,33 +1663,38 @@ async function zzStreamGunzip(u8){const ds=new Blob([u8]).stream().pipeThrough(n
 async function zzGunzipAny(u8){
   if(window.DecompressionStream){try{return await zzStreamGunzip(u8)}catch(e){}}
   return zzGunzip(u8)}                       /* 瀏覽器解不開就改用自己的解壓縮 */
+const ZEND='|END|';   /* 存檔碼固定結尾：貼上後看到它，就知道有複製完整 */
 async function makeCode(){
   const json=JSON.stringify(DB),u8=new TextEncoder().encode(json);
-  if(u8.length<24000)return 'ZZ1:'+b64e(u8);
+  if(u8.length<24000)return 'ZZ1:'+b64e(u8)+ZEND;
   try{if(window.CompressionStream){
     const cs=new Blob([u8]).stream().pipeThrough(new CompressionStream('gzip'));
     const gz=new Uint8Array(await new Response(cs).arrayBuffer());
     const back=await zzGunzipAny(gz);                        /* 產生後立刻自己解開比對，對不上就不用壓縮版 */
-    if(back.length===u8.length&&back.every((v,i)=>v===u8[i]))return 'ZZ2:'+b64e(gz);
+    if(back.length===u8.length&&back.every((v,i)=>v===u8[i]))return 'ZZ2:'+b64e(gz)+ZEND;
   }}catch(e){}
-  return 'ZZ1:'+b64e(u8);
+  return 'ZZ1:'+b64e(u8)+ZEND;
 }
 async function readCode(t){
-  t=(t||'').normalize('NFKC').replace(/[​-‍﻿]/g,'').trim();
+  t=(t||'').normalize('NFKC').replace(/[\u200B-\u200D\uFEFF]/g,'').trim();
   let json=null;
   const mj=t.indexOf('{');
-  if(mj>=0&&t.slice(mj).trim().endsWith('}')&&!/ZZ[12]:/.test(t)){try{json=JSON.parse(t.slice(mj))}catch(e){}}
+  if(mj>=0&&t.slice(mj).trim().endsWith('}')&&!/zz[12]\s*:/i.test(t)){try{json=JSON.parse(t.slice(mj))}catch(e){}}
   if(!json){
-    let kind=null,body=t;
-    const m=t.match(/ZZ([12])\s*:\s*([\s\S]+)/);
-    if(m){kind=m[1];body=m[2]}
+    let hasEnd=false;
+    t=t.replace(/\|\s*end\s*\|\s*$/i,()=>{hasEnd=true;return''}).trim();
+    let body=t;
+    const m=t.match(/zz\s*[12]\s*:\s*([\s\S]+)/i);      /* 開頭 ZZ1:／ZZ2:（大小寫、空白、全形冒號都可以） */
+    if(m)body=m[1];
     body=body.replace(/[^A-Za-z0-9+\/=_-]/g,'').replace(/-/g,'+').replace(/_/g,'/');
-    if(!kind)kind=body.startsWith('H4sI')?'2':'1';
+    /* 不只看開頭：gzip 的 base64 一定從 H4sI 開始、純文字 JSON 從 eyJ 開始；開頭被改壞或漏掉也找得到起點 */
+    const g=body.indexOf('H4sI'),pj=body.indexOf('eyJ');
+    if(g>=0&&g<=8)body=body.slice(g);else if(pj>=0&&pj<=8)body=body.slice(pj);
     while(body.length%4)body+='=';
-    const fail=(why,e)=>{const er=new Error(why+'（已讀到 '+body.length+' 個字元'+(e&&e.message?'；'+String(e.message).slice(0,40):'')+'）');er.msg=er.message;return er};
+    const fail=(why,e)=>{const er=new Error(why+'（已讀到 '+body.length+' 個字元'+(e&&e.message?'；'+String(e.message).slice(0,40):'')+(hasEnd?'':'；結尾沒看到 |END|，請確認有複製到最後')+'）');er.msg=er.message;return er};
     let raw;try{raw=b64d(body)}catch(e){throw fail('存檔碼少了一段或有多餘字元，請回到備忘錄重新全選複製',e)}
     let bytes=raw;
-    if(kind==='2'){try{bytes=await zzGunzipAny(raw)}catch(e){throw fail('存檔碼解壓縮失敗，可能沒有完整複製',e)}}
+    if(raw[0]===0x1f&&raw[1]===0x8b){try{bytes=await zzGunzipAny(raw)}catch(e){throw fail('存檔碼解壓縮失敗，可能沒有完整複製',e)}}   /* 依內容判斷是不是壓縮碼，不依賴開頭寫 ZZ1 或 ZZ2 */
     try{json=JSON.parse(new TextDecoder().decode(bytes))}catch(e){throw fail('存檔碼內容讀不出來，可能沒有完整複製',e)}
   }
   if(!json||typeof json.profiles!=='object'||!Object.keys(json.profiles).length){const er=new Error('這不是說說島的存檔碼。');er.msg=er.message;throw er}
@@ -2766,7 +2771,7 @@ function renderBk(){
   b.hidden=!(has&&(old||!STORE_OK));
   if(b.hidden)return;
   b.innerHTML=`<span class="bkt"><i class="bki">${ic(STORE_OK?'box':'lock')}</i><span>${STORE_OK?'把進度存起來，換手機或清除資料也找得回來':'這個瀏覽器可能無法保存進度，請先複製存檔碼'}</span></span><button class="btn sm" id="bkGo">複製存檔碼</button>`;
-  $('#bkGo').onclick=async()=>{const t=await makeCode();DB.bk=Date.now();save();try{await navigator.clipboard.writeText(t);toast('已複製！貼到備忘錄保存')}catch(e){b.innerHTML='<div style="width:100%"><b>請長按下面文字 → 全選 → 拷貝，貼到備忘錄</b><textarea class="ta" id="bkT" readonly style="min-height:90px;font-size:15px"></textarea></div>';$('#bkT').value=t;$('#bkT').focus();$('#bkT').select();return}renderBk()};
+  $('#bkGo').onclick=async()=>{const t=await makeCode();DB.bk=Date.now();save();try{await navigator.clipboard.writeText(t);toast('已複製！貼到備忘錄保存')}catch(e){b.innerHTML='<div style="width:100%"><b>請長按下面文字 → 全選 → 拷貝，貼到備忘錄（開頭 ZZ2: 或 ZZ1:，結尾 |END|）</b><textarea class="ta" id="bkT" readonly style="min-height:90px;font-size:15px"></textarea></div>';$('#bkT').value=t;$('#bkT').focus();$('#bkT').select();return}renderBk()};
 }
 function renderWho(){
   const ids=Object.keys(DB.profiles);
@@ -4350,6 +4355,7 @@ $('#toSave').onclick=()=>{
   const d=document.createElement('div');d.className='tipbox';d.setAttribute('role','dialog');
   d.innerHTML=`<div class="tipc" style="max-height:92vh;overflow:auto"><div class="tip-i">💾</div><b>存檔碼</b>
     <p>換手機、清除資料前，先複製存檔碼，貼到備忘錄。</p>
+    <p style="margin:0">貼好後檢查：開頭是 ZZ2: 或 ZZ1:，結尾是 |END|，就是完整的。</p>
     <button class="btn" id="svCopy">複製存檔碼</button>
     <textarea class="ta" id="svT" readonly hidden aria-label="存檔碼" style="min-height:90px;font-size:15px"></textarea>
     <hr style="width:100%;border:0;border-top:3px dashed currentColor;opacity:.3;margin:6px 0">
